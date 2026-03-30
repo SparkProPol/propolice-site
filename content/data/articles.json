@@ -1,18 +1,34 @@
 [
   {
     "slug": "bienvenue-pro-police",
-    "title": "Bienvenue sur le nouveau site PRO POLICE",
-    "excerpt": "Une base moderne pour informer, représenter et structurer la communication syndicale.",
+    "title": "PRO POLICE : une voix claire au service des policiers",
+    "excerpt": "Un syndicat de terrain pour défendre, informer et représenter les professionnels de la Police nationale avec clarté, engagement et efficacité.",
     "url": "https://propolice.fr/",
     "category": "actualites",
     "published": true
   },
   {
     "slug": "universite-pro-police",
-    "title": "Université PRO POLICE : le cadre",
-    "excerpt": "Un espace d’information, d’analyse et de diffusion des connaissances professionnelles.",
+    "title": "Université PRO POLICE : informer pour mieux agir",
+    "excerpt": "Un espace structuré de décryptage, de diffusion des connaissances professionnelles et d’appui aux collègues confrontés aux réalités du terrain et de l’administration.",
     "url": "#universite",
     "category": "universite",
+    "published": true
+  },
+  {
+    "slug": "discipline-droits-reflexes",
+    "title": "Discipline : connaître ses droits avant de subir",
+    "excerpt": "Face à une procédure disciplinaire, les premiers réflexes sont déterminants. PRO POLICE met à disposition des repères clairs pour sécuriser sa position dès le départ.",
+    "url": "#ressources",
+    "category": "juridique",
+    "published": true
+  },
+  {
+    "slug": "mutation-strategie",
+    "title": "Mutation : anticiper, structurer, défendre son dossier",
+    "excerpt": "Une mobilité mal préparée peut fragiliser un parcours. Nous proposons une lecture concrète des enjeux, des méthodes et des erreurs à éviter.",
+    "url": "#ressources",
+    "category": "carriere",
     "published": true
   }
 ]
