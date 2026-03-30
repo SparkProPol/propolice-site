@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PRO POLICE — Syndicat • Université PRO POLICE</title>
+  <meta name="description" content="PRO POLICE : syndicat de professionnels de la Police nationale. Défendre, informer, représenter. Université PRO POLICE : ressources et analyses." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <header class="header" role="banner">
+    <div class="topbar">
+      <div class="brand">
+        <img class="logo" src="assets/logo.svg" alt="Logo PRO POLICE" width="40" height="40" />
+        <div class="brandtext">
+          <div class="brandname">PRO POLICE</div>
+          <div class="brandsub">Professionnels de la Police nationale</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#delegues">Délégués virtuels</a>
+        <a href="#universite">Université</a>
+        <a href="#actualites">Actualités</a>
+        <a href="#bonsplans">Bons plans</a>
+        <a href="#telechargements">Téléchargements</a>
+        <a href="#boutique">Boutique</a>
+        <a href="#adhesion" class="pill">Adhérer</a>
+      </nav>
+
+      <button class="menuBtn" id="menuBtn" aria-expanded="false" aria-controls="menuMobile">
+        <span class="sr">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
+      </button>
+    </div>
+
+    <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
+      <a href="#delegues">Délégués virtuels</a>
+      <a href="#universite">Université</a>
+      <a href="#actualites">Actualités</a>
+      <a href="#bonsplans">Bons plans</a>
+      <a href="#telechargements">Téléchargements</a>
+      <a href="#boutique">Boutique</a>
+      <a href="#adhesion">Adhérer</a>
+    </nav>
+
+    <section class="hero" id="contenu">
+      <div class="heroBg" aria-hidden="true"></div>
+      <div class="heroInner heroLeft">
+        <div class="badge">Syndicat • Information • Représentation</div>
+        <h1>Défendre ceux qui protègent. Informer ceux qui agissent.</h1>
+        <p class="lead">
+          PRO POLICE est un syndicat de professionnels. <strong>Votre délégué en poche</strong> : des repères clairs et des ressources utiles. L’<strong>Université PRO POLICE</strong> diffuse des ressources,
+          analyses et décryptages <strong>à finalité informative</strong> (sans se substituer à une formation diplômante).
+        </p>
+        <div class="ctaRow">
+          <a class="btn primary" href="#adhesion">Rejoindre PRO POLICE</a>
+          <a class="btn ghost" href="#ressources">Voir les ressources</a>
+        </div>
+        <div class="metaRow">
+          <div class="metaCard">
+            <div class="metaTitle">Ressources</div>
+            <div class="metaText">Fiches, modèles, synthèses</div>
+          </div>
+          <div class="metaCard">
+            <div class="metaTitle">Décryptage</div>
+            <div class="metaText">Statut, carrière, discipline</div>
+          </div>
+          <div class="metaCard">
+            <div class="metaTitle">Rencontres</div>
+            <div class="metaText">Webinaires & tables rondes</div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="heroFigure heroRight" aria-label="Aperçu visuel">
+        <img src="assets/hero.png" alt="Aperçu visuel (image fournie)" loading="lazy" />
+        <figcaption>Visuel d’ambiance — à remplacer par vos visuels officiels si besoin.</figcaption>
+      </figure>
+    </section>
+  </header>
+
+  <main class="main">
+    
+    <section class="section" id="delegues">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Votre délégué en poche</h2>
+          <p>Depuis votre PC ou votre mobile, consultez les <strong>délégués virtuels</strong> PRO POLICE (concept du site officiel).</p>
+        </div>
+
+        <div class="grid2">
+          <article class="card">
+            <div class="kicker">Accès rapide</div>
+            <h3>Consulter depuis votre smartphone</h3>
+            <p>Accès optimisé mobile pour des réponses rapides et des ressources utiles.</p>
+            <div class="row">
+              <a class="btn small" href="https://propolice.fr/" target="_blank" rel="noopener">Ouvrir le site officiel</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="kicker">Accès PC</div>
+            <h3>Consulter depuis votre ordinateur</h3>
+            <p>Confort de lecture, téléchargement de documents, accès aux rubriques officielles.</p>
+            <div class="row">
+              <a class="btn small" href="https://www.propolice.fr/" target="_blank" rel="noopener">Ouvrir le site officiel</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="notice">
+          <strong>Mix PRO POLICE :</strong> cette version modernisée conserve vos rubriques officielles (Actualités, Bons plans, Téléchargements, Boutique, Kits, Presse, Adhésion) et les intègre dans une navigation plus claire.
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="actualites">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Actualités syndicales</h2>
+          <p>Nos actualités, nos tracts et nos articles (source : site officiel).</p>
+        </div>
+
+        <div class="resourceGrid" id="actuGrid" aria-live="polite"></div>
+
+        <div class="row" style="margin-top:14px">
+          <a class="btn primary" href="https://propolice.fr/index.php/accueil/actu-et-agenda" target="_blank" rel="noopener">Voir toutes les actus</a>
+          <a class="btn ghost" href="https://www.propolice.fr/index.php/accueil/actu-et-agenda/article-category-blog-2" target="_blank" rel="noopener">Nos articles</a>
+          <a class="btn ghost" href="https://www.propolice.fr/index.php/accueil/actu-et-agenda/nos-videos" target="_blank" rel="noopener">Nos vidéos</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="bonsplans">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Les bons plans</h2>
+          <p>Partenaires, remises et bonnes adresses (source : site officiel).</p>
+        </div>
+
+        <div class="grid3">
+          <article class="card">
+            <div class="icon" aria-hidden="true">🏷️</div>
+            <h3>Auto / Moto</h3>
+            <p>Partenaires et offres négociées.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🍽️</div>
+            <h3>Resto</h3>
+            <p>Adresses et avantages.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🧰</div>
+            <h3>Vie quotidienne</h3>
+            <p>Services & réductions utiles.</p>
+          </article>
+        </div>
+
+        <div class="row" style="margin-top:14px">
+          <a class="btn primary" href="https://propolice.fr/index.php/accueil/bons-plans" target="_blank" rel="noopener">Accéder aux bons plans</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="telechargements">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Téléchargements</h2>
+          <p>Espace de téléchargements “rien que pour vous” — à connecter à votre bibliothèque interne (PDF, modèles, kits).</p>
+        </div>
+
+        <div class="grid2">
+          <article class="card">
+            <div class="kicker">Public</div>
+            <h3>Documents ouverts</h3>
+            <p>Fiches et documents accessibles à tous.</p>
+            <div class="row">
+              <button class="btn small" type="button" onclick="alert('À connecter : page Téléchargements du site officiel / bibliothèque PDF');">Voir</button>
+            </div>
+          </article>
+          <article class="card">
+            <div class="kicker">Adhérents</div>
+            <h3>Espace membre</h3>
+            <p>Ressources réservées (modèles, dossiers, supports).</p>
+            <div class="row">
+              <button class="btn small" type="button" onclick="document.getElementById('adhesion').scrollIntoView({behavior:'smooth'});">Débloquer via adhésion</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="boutique">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Boutique officielle</h2>
+          <p>Retrouvez votre gamme de produits avec le logo PRO POLICE (lien vers la boutique officielle).</p>
+        </div>
+
+        <div class="ctaStrip">
+          <div>
+            <h3>Accéder à la boutique</h3>
+            <p>Ouverture dans un nouvel onglet.</p>
+          </div>
+          <a class="btn primary" href="https://propolice.fr/index.php/la-boutique" target="_blank" rel="noopener">Entrer dans la boutique</a>
+        </div>
+
+        <div class="row" style="margin-top:14px">
+          <a class="btn ghost" href="https://propolice.fr/index.php/nos-kits" target="_blank" rel="noopener">Nos kits</a>
+          <a class="btn ghost" href="https://propolice.fr/index.php/espace-presse" target="_blank" rel="noopener">Espace presse</a>
+          <a class="btn ghost" href="https://www.propolice.fr/index.php/a-propos" target="_blank" rel="noopener">À propos</a>
+        </div>
+      </div>
+    </section>
+<section class="section" id="universite">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Université PRO POLICE</h2>
+          <p>Un espace d’<strong>information</strong>, d’analyse et de transmission des connaissances professionnelles.</p>
+        </div>
+
+        <div class="grid3">
+          <article class="card">
+            <div class="icon" aria-hidden="true">📘</div>
+            <h3>Connaissances statutaires</h3>
+            <p>Avancement, mobilité, congés, droits & obligations — explications claires, orientées terrain.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">⚖️</div>
+            <h3>Analyses juridiques</h3>
+            <p>Décryptage de textes, procédures et jurisprudences, avec des repères concrets.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🧠</div>
+            <h3>Réflexion sécurité</h3>
+            <p>Notes, points de doctrine, retours d’expérience, débats professionnels.</p>
+          </article>
+        </div>
+
+        <div class="notice">
+          <strong>Note importante :</strong> les contenus de l’Université PRO POLICE ont un objectif <em>informatif</em>.
+          Ils ne constituent pas une “formation professionnelle” et ne remplacent pas un conseil juridique personnalisé.
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="ressources">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Ressources</h2>
+          <p>Fiches syndicales, modèles de courrier, guides pratiques — organisés par thématique.</p>
+        </div>
+
+        <div class="filters">
+          <label class="field">
+            <span>Rechercher</span>
+            <input id="searchInput" type="search" placeholder="Ex : discipline, mutation, congés, TAJ…" autocomplete="off" />
+          </label>
+          <label class="field">
+            <span>Thème</span>
+            <select id="tagSelect">
+              <option value="all">Tous</option>
+              <option value="discipline">Discipline</option>
+              <option value="carriere">Carrière</option>
+              <option value="mobilite">Mobilité</option>
+              <option value="conges">Congés</option>
+              <option value="juridique">Juridique</option>
+            </select>
+          </label>
+          <button class="btn small" id="resetBtn" type="button">Réinitialiser</button>
+        </div>
+
+        <div class="resourceGrid" id="resourceGrid" aria-live="polite"></div>
+
+        <div class="ctaStrip">
+          <div>
+            <h3>Vous voulez accéder aux modèles et aux ressources réservées ?</h3>
+            <p>Adhérez pour soutenir l’action syndicale et débloquer l’espace membre.</p>
+          </div>
+          <a class="btn primary" href="#adhesion">Adhérer</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="webinaires">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Rencontres & webinaires d’information</h2>
+          <p>Des sessions d’information en ligne et des tables rondes professionnelles.</p>
+        </div>
+
+        <div class="grid2">
+          <article class="card">
+            <div class="kicker">Webinaire</div>
+            <h3>Comprendre une procédure disciplinaire</h3>
+            <p>Repères, étapes, droits, points de vigilance — approche pédagogique et factuelle.</p>
+            <div class="row">
+              <span class="chip">45–60 min</span>
+              <span class="chip">Questions / réponses</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="kicker">Table ronde</div>
+            <h3>Mobilité & carrière : stratégies concrètes</h3>
+            <p>Anticiper les échéances, préparer les dossiers, dialoguer avec l’administration.</p>
+            <div class="row">
+              <span class="chip">Intervenants</span>
+              <span class="chip">Retours terrain</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="notice">
+          <strong>Important :</strong> ces rencontres sont des <em>sessions d’information</em> (non certifiantes).
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="adhesion">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Adhérer à PRO POLICE</h2>
+          <p>Un parcours simple. Vous pourrez brancher un paiement en ligne plus tard (Stripe/HelloAsso).</p>
+        </div>
+
+        <div class="pricing">
+          <article class="priceCard">
+            <h3>Soutien</h3>
+            <div class="price">5€<span>/mois</span></div>
+            <ul>
+              <li>Actualités & veille</li>
+              <li>Accès articles publics</li>
+              <li>Newsletter</li>
+            </ul>
+            <button class="btn outline" data-plan="Soutien">Choisir</button>
+          </article>
+
+          <article class="priceCard featured">
+            <div class="flag">Le plus choisi</div>
+            <h3>Adhérent</h3>
+            <div class="price">10€<span>/mois</span></div>
+            <ul>
+              <li>Assistance syndicale</li>
+              <li>Accès ressources membres</li>
+              <li>Invitations webinaires</li>
+            </ul>
+            <button class="btn primary" data-plan="Adhérent">Choisir</button>
+          </article>
+
+          <article class="priceCard">
+            <h3>Premium</h3>
+            <div class="price">20€<span>/mois</span></div>
+            <ul>
+              <li>Accès complet Université (membres)</li>
+              <li>Modèles & dossiers avancés</li>
+              <li>Priorité questions</li>
+            </ul>
+            <button class="btn outline" data-plan="Premium">Choisir</button>
+          </article>
+        </div>
+
+        <form class="form card" id="adhForm">
+          <div class="formHead">
+            <h3>Demande d’adhésion</h3>
+            <p>Ce formulaire est une base. Il enregistre localement (démo) : tu pourras le connecter à un email / CRM.</p>
+          </div>
+
+          <div class="formGrid">
+            <label class="field">
+              <span>Nom</span>
+              <input required name="nom" type="text" autocomplete="family-name" />
+            </label>
+            <label class="field">
+              <span>Prénom</span>
+              <input required name="prenom" type="text" autocomplete="given-name" />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input required name="email" type="email" autocomplete="email" />
+            </label>
+            <label class="field">
+              <span>Département (optionnel)</span>
+              <input name="dept" type="text" placeholder="Ex : 77" />
+            </label>
+            <label class="field full">
+              <span>Message (optionnel)</span>
+              <textarea name="message" rows="4" placeholder="Contexte, demande, objectifs…"></textarea>
+            </label>
+          </div>
+
+          <div class="row between">
+            <div class="smallmuted" id="planLabel">Plan choisi : <strong>Adhérent</strong> (modifiable)</div>
+            <button class="btn primary" type="submit">Envoyer</button>
+          </div>
+
+          <p class="tiny">
+            En soumettant, vous acceptez que vos informations soient utilisées pour le traitement de votre demande.
+            (Ajoute ici ta politique RGPD/mentions légales avant mise en ligne.)
+          </p>
+
+          <div class="toast" id="toast" role="status" aria-live="polite"></div>
+        </form>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footGrid">
+      <div>
+        <div class="brand mini">
+          <img class="logo" src="assets/logo.svg" alt="" width="34" height="34" />
+          <div class="brandtext">
+            <div class="brandname">PRO POLICE</div>
+            <div class="brandsub">Syndicat — Université PRO POLICE</div>
+          </div>
+        </div>
+        <p class="footNote">
+          Contenus à finalité informative. © <span id="year"></span> PRO POLICE.
+        </p>
+      </div>
+
+      <div class="footLinks">
+        <a href="#delegues">Délégués virtuels</a>
+        <a href="#universite">Université</a>
+        <a href="#actualites">Actualités</a>
+        <a href="#bonsplans">Bons plans</a>
+      </div>
+
+      <div class="footLinks">
+        <a href="#telechargements">Téléchargements</a>
+        <a href="#boutique">Boutique</a>
+        <a href="#adhesion">Adhérer</a>
+        <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
