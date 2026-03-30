@@ -1,8 +1,8 @@
 [
   {
     "id": "fiche-discipline-001",
-    "title": "Guide : procédure disciplinaire (repères)",
-    "desc": "Étapes, droits, points de vigilance, check-list documentaire.",
+    "title": "Procédure disciplinaire : ce que vous devez savoir immédiatement",
+    "desc": "Vos droits, les étapes clés, les erreurs à éviter et les réflexes à adopter dès le premier contact avec l'administration.",
     "tags": [
       "discipline",
       "juridique"
@@ -11,8 +11,8 @@
   },
   {
     "id": "modele-courrier-001",
-    "title": "Modèle : demande de communication de pièces",
-    "desc": "Demande structurée et courtoise pour obtenir des documents RH/administratifs.",
+    "title": "Modèle prêt à l’emploi : demande de communication de pièces",
+    "desc": "Un modèle structuré pour exiger vos droits face à l'administration et obtenir les documents nécessaires à votre défense.",
     "tags": [
       "juridique",
       "carriere"
@@ -21,12 +21,42 @@
   },
   {
     "id": "fiche-mutation-001",
-    "title": "Fiche : mobilité & mutation (méthode)",
-    "desc": "Anticiper, constituer le dossier, chronologie et erreurs fréquentes.",
+    "title": "Mutation : stratégie et erreurs à éviter",
+    "desc": "Comment préparer efficacement votre mutation, défendre votre dossier et éviter les refus liés à une mauvaise anticipation.",
     "tags": [
       "mobilite",
       "carriere"
     ],
     "access": "public"
+  },
+  {
+    "id": "fiche-arret-001",
+    "title": "Arrêt maladie : droits et pièges à éviter",
+    "desc": "Ce que vous pouvez faire, ce que vous devez éviter et comment protéger votre situation administrative.",
+    "tags": [
+      "sante",
+      "juridique"
+    ],
+    "access": "public"
+  },
+  {
+    "id": "fiche-hierarchie-001",
+    "title": "Pression hiérarchique : comment réagir",
+    "desc": "Identifier les dérives, garder une posture professionnelle et protéger vos droits sans vous mettre en difficulté.",
+    "tags": [
+      "management",
+      "terrain"
+    ],
+    "access": "public"
+  },
+  {
+    "id": "modele-recours-001",
+    "title": "Modèle : recours administratif complet",
+    "desc": "Un modèle structuré pour contester une décision et faire valoir vos droits efficacement.",
+    "tags": [
+      "juridique",
+      "recours"
+    ],
+    "access": "membre"
   }
 ]
