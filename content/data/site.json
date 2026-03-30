@@ -1,33 +1,33 @@
-{"tagline": "Défendre ceux qui protègent",
+{
   "brand": {
     "name": "PRO POLICE",
     "subtitle": "Professionnels de la Police nationale",
-    "tagline": "Défendre ceux qui protègent. Informer ceux qui agissent.",
+    "tagline": "Défendre. Informer. Représenter.",
     "promise": "Votre délégué en poche, à tout moment.",
-    "hero_badge": "Syndicat • Information • Représentation",
-    "hero_lead": "PRO POLICE est un syndicat de professionnels. Votre délégué en poche : des repères clairs et des ressources utiles. L’Université PRO POLICE diffuse des ressources, analyses et décryptages à finalité informative.",
+    "hero_badge": "Syndicat • Terrain • Engagement",
+    "hero_lead": "PRO POLICE est un syndicat de professionnels engagé au service des policiers. Nous apportons des réponses concrètes, des analyses claires et un accompagnement réel dans toutes les situations professionnelles. Notre objectif : ne jamais laisser un collègue seul face à l'administration.",
     "cta_primary": "Rejoindre PRO POLICE",
-    "cta_secondary": "Voir les ressources"
+    "cta_secondary": "Accéder aux ressources"
   },
   "homepage": {
     "meta_cards": [
       {
-        "title": "Ressources",
-        "text": "Fiches, modèles, synthèses"
+        "title": "Défense",
+        "text": "Accompagnement individuel et collectif face aux situations administratives et disciplinaires"
       },
       {
-        "title": "Décryptage",
-        "text": "Statut, carrière, discipline"
+        "title": "Information",
+        "text": "Fiches pratiques, décryptages juridiques et éclairage des textes"
       },
       {
-        "title": "Rencontres",
-        "text": "Webinaires & tables rondes"
+        "title": "Action",
+        "text": "Présence sur le terrain, représentation et engagement syndical"
       }
     ],
-    "university_notice": "Les contenus de l’Université PRO POLICE ont un objectif informatif. Ils ne constituent pas une formation professionnelle et ne remplacent pas un conseil juridique personnalisé."
+    "university_notice": "L’Université PRO POLICE constitue un espace d’information et de diffusion des connaissances professionnelles. Les contenus proposés n’ont pas vocation à constituer une formation certifiante mais visent à éclairer les personnels dans leurs démarches et leur compréhension de l’environnement professionnel."
   },
   "adhesion": {
-    "title": "Adhérer à PRO POLICE",
-    "intro": "Un parcours simple. Vous pourrez brancher un paiement en ligne plus tard (HelloAsso, Stripe, etc.)."
+    "title": "Rejoindre PRO POLICE",
+    "intro": "Adhérer à PRO POLICE, c’est rejoindre un collectif engagé, structuré et présent pour défendre vos droits, vous informer et vous accompagner tout au long de votre carrière."
   }
 }
