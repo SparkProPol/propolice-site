@@ -388,38 +388,28 @@ h1{
 }
 
 
-/* --- Mobile improvements (v3) --- */
+/* --- Mobile improvements --- */
 @media (max-width: 760px){
   .topbar{flex-wrap:wrap; gap:10px; padding:12px 14px}
-  .brand{min-width: 220px}
+  .brand{min-width:220px}
   .menuBtn{margin-left:auto}
   .hero{padding:18px 14px 18px}
   .heroFigure img{min-height:220px; max-height:320px; object-fit:cover}
   h1{letter-spacing:-.4px}
   .ctaRow{flex-direction:column; align-items:stretch}
   .btn{width:100%}
-  .metaRow{grid-template-columns:1fr; gap:10px}
-  .filters{grid-template-columns:1fr; gap:10px}
+  .metaRow,.filters,.pricing,.resourceGrid,.grid3,.grid2,.footGrid,.formGrid{grid-template-columns:1fr}
   .ctaStrip{flex-direction:column; align-items:stretch}
   .ctaStrip .btn{width:100%}
-  .pricing{grid-template-columns:1fr}
-  .resourceGrid{grid-template-columns:1fr}
-  .grid3{grid-template-columns:1fr}
-  .grid2{grid-template-columns:1fr}
-  .footGrid{grid-template-columns:1fr}
   .navMobile a{padding:12px 6px}
 }
-
-/* Fix for very small screens */
+@media (max-width: 980px){
+  .heroLeft{order:2}
+  .heroRight{order:1}
+}
 @media (max-width: 380px){
   .brandname{font-size:14px}
   .brandsub{font-size:11px}
   .badge{font-size:11px}
   .heroFigure figcaption{font-size:11px}
-}
-
-
-@media (max-width: 980px){
-  .heroLeft{order:2}
-  .heroRight{order:1}
 }

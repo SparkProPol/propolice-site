@@ -1,0 +1,32 @@
+[
+  {
+    "id": "fiche-discipline-001",
+    "title": "Guide : procédure disciplinaire (repères)",
+    "desc": "Étapes, droits, points de vigilance, check-list documentaire.",
+    "tags": [
+      "discipline",
+      "juridique"
+    ],
+    "access": "public"
+  },
+  {
+    "id": "modele-courrier-001",
+    "title": "Modèle : demande de communication de pièces",
+    "desc": "Demande structurée et courtoise pour obtenir des documents RH/administratifs.",
+    "tags": [
+      "juridique",
+      "carriere"
+    ],
+    "access": "membre"
+  },
+  {
+    "id": "fiche-mutation-001",
+    "title": "Fiche : mobilité & mutation (méthode)",
+    "desc": "Anticiper, constituer le dossier, chronologie et erreurs fréquentes.",
+    "tags": [
+      "mobilite",
+      "carriere"
+    ],
+    "access": "public"
+  }
+]
