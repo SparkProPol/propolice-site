@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "bienvenue-pro-police",
+    "title": "Bienvenue sur le nouveau site PRO POLICE",
+    "excerpt": "Une base moderne pour informer, représenter et structurer la communication syndicale.",
+    "url": "https://propolice.fr/",
+    "category": "actualites",
+    "published": true
+  },
+  {
+    "slug": "universite-pro-police",
+    "title": "Université PRO POLICE : le cadre",
+    "excerpt": "Un espace d’information, d’analyse et de diffusion des connaissances professionnelles.",
+    "url": "#universite",
+    "category": "universite",
+    "published": true
+  }
+]

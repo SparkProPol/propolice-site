@@ -244,3 +244,79 @@ function renderActus(){
   }
 }
 renderActus();
+
+
+// ---------------- Dynamic content loading (Decap-ready) ----------------
+async function getJSON(path){
+  const res = await fetch(path, {cache: "no-store"});
+  if(!res.ok) throw new Error(`Erreur chargement: ${path}`);
+  return await res.json();
+}
+function normalizeListData(data){
+  if(Array.isArray(data)) return data;
+  if(data && Array.isArray(data.items)) return data.items;
+  return [];
+}
+async function loadSiteSettings(){
+  try{
+    const site = await getJSON("content/data/site.json");
+    document.title = `${site.brand.name} — Syndicat • Université PRO POLICE`;
+    document.querySelectorAll(".brandname").forEach(el => el.textContent = site.brand.name || el.textContent);
+    document.querySelectorAll(".brandsub").forEach((el, i) => { if(i < 2) el.textContent = site.brand.subtitle || el.textContent; });
+    const badge = document.querySelector(".badge"); if(badge) badge.textContent = site.brand.hero_badge || badge.textContent;
+    const h1 = document.querySelector(".heroLeft h1"); if(h1) h1.textContent = site.brand.tagline || h1.textContent;
+    const lead = document.querySelector(".lead"); if(lead) lead.textContent = site.brand.hero_lead || lead.textContent;
+    const ctas = document.querySelectorAll(".ctaRow .btn");
+    if(ctas[0]) ctas[0].textContent = site.brand.cta_primary || ctas[0].textContent;
+    if(ctas[1]) ctas[1].textContent = site.brand.cta_secondary || ctas[1].textContent;
+    const metaCards = document.querySelectorAll(".metaCard");
+    (site.homepage?.meta_cards || []).forEach((card, i) => {
+      if(metaCards[i]){
+        const t = metaCards[i].querySelector(".metaTitle");
+        const d = metaCards[i].querySelector(".metaText");
+        if(t) t.textContent = card.title || "";
+        if(d) d.textContent = card.text || "";
+      }
+    });
+    const adhTitle = document.querySelector("#adhesion .sectionHead h2");
+    if(adhTitle) adhTitle.textContent = site.adhesion?.title || adhTitle.textContent;
+    const adhIntro = document.querySelector("#adhesion .sectionHead p");
+    if(adhIntro) adhIntro.textContent = site.adhesion?.intro || adhIntro.textContent;
+  }catch(err){ console.warn(err); }
+}
+async function loadResourcesFromJSON(){
+  try{
+    const loaded = normalizeListData(await getJSON("content/data/resources.json"));
+    if(loaded.length){
+      resources.length = 0;
+      loaded.forEach(item => resources.push(item));
+      applyFilters();
+    }
+  }catch(err){ console.warn(err); }
+}
+async function loadArticlesCards(){
+  try{
+    const items = normalizeListData(await getJSON("content/data/articles.json")).filter(x => x.published !== false);
+    const grid = document.getElementById("articlesGrid");
+    if(!grid) return;
+    grid.innerHTML = "";
+    if(!items.length){
+      grid.innerHTML = `<div class="card" style="grid-column:1/-1"><h3>Aucune publication</h3><p>Ajoute des cartes depuis l'administration.</p></div>`;
+      return;
+    }
+    for(const a of items){
+      const el = document.createElement("article");
+      el.className = "card resource";
+      el.innerHTML = `
+        <div class="thumb" aria-hidden="true">${thumbSvg(a.title || "Article")}</div>
+        <h3>${a.title || ""}</h3>
+        <p>${a.excerpt || ""}</p>
+        <div class="tags"><span class="tag">${a.category || "Publication"}</span></div>
+        <div class="actions"><a class="linkBtn" href="${a.url || "#"}" target="${(a.url || "").startsWith("http") ? "_blank" : "_self"}" rel="noopener">Ouvrir</a></div>`;
+      grid.appendChild(el);
+    }
+  }catch(err){ console.warn(err); }
+}
+loadSiteSettings();
+loadResourcesFromJSON();
+loadArticlesCards();

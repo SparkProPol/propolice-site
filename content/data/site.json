@@ -1,0 +1,33 @@
+{
+  "brand": {
+    "name": "PRO POLICE",
+    "subtitle": "Professionnels de la Police nationale",
+    "tagline": "Défendre ceux qui protègent. Informer ceux qui agissent.",
+    "promise": "Votre délégué en poche, à tout moment.",
+    "hero_badge": "Syndicat • Information • Représentation",
+    "hero_lead": "PRO POLICE est un syndicat de professionnels. Votre délégué en poche : des repères clairs et des ressources utiles. L’Université PRO POLICE diffuse des ressources, analyses et décryptages à finalité informative.",
+    "cta_primary": "Rejoindre PRO POLICE",
+    "cta_secondary": "Voir les ressources"
+  },
+  "homepage": {
+    "meta_cards": [
+      {
+        "title": "Ressources",
+        "text": "Fiches, modèles, synthèses"
+      },
+      {
+        "title": "Décryptage",
+        "text": "Statut, carrière, discipline"
+      },
+      {
+        "title": "Rencontres",
+        "text": "Webinaires & tables rondes"
+      }
+    ],
+    "university_notice": "Les contenus de l’Université PRO POLICE ont un objectif informatif. Ils ne constituent pas une formation professionnelle et ne remplacent pas un conseil juridique personnalisé."
+  },
+  "adhesion": {
+    "title": "Adhérer à PRO POLICE",
+    "intro": "Un parcours simple. Vous pourrez brancher un paiement en ligne plus tard (HelloAsso, Stripe, etc.)."
+  }
+}
