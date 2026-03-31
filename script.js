@@ -396,3 +396,93 @@ function calculerNuit() {
 loadSiteSettings();
 loadResourcesFromJSON();
 loadArticlesCards();
+// ---------------- Simulateur primes version enrichie ----------------
+function getSalaireBase(grade, echelon) {
+  const grilles = {
+    gpx: [2100, 2140, 2180, 2220, 2260, 2300, 2340, 2380, 2420, 2460, 2500, 2540],
+    bc: [2250, 2300, 2350, 2400, 2450, 2500, 2550, 2600, 2650, 2700, 2750, 2800],
+    major: [2500, 2560, 2620, 2680, 2740, 2800, 2860, 2920, 2980, 3040, 3100, 3160]
+  };
+
+  const index = Math.max(1, Math.min(12, parseInt(echelon || 1, 10))) - 1;
+  return grilles[grade]?.[index] || 2100;
+}
+
+function getITN(zone) {
+  const table = {
+    "1": 185,
+    "2": 120,
+    "3": 90
+  };
+  return table[String(zone)] || 90;
+}
+
+function getSFT(enfants) {
+  const n = parseInt(enfants || 0, 10);
+  if (n <= 0) return 0;
+  if (n === 1) return 2.29;
+  if (n === 2) return 73.79;
+  if (n === 3) return 183.56;
+  return 183.56 + ((n - 3) * 130.81);
+}
+
+function calculerPrimes() {
+  const grade = document.getElementById("grade")?.value || "gpx";
+  const echelon = document.getElementById("echelon")?.value || 1;
+  const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
+  const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
+  const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
+  const zone = document.getElementById("zone")?.value || "3";
+
+  const salaireBase = getSalaireBase(grade, echelon);
+  const primeITN = getITN(zone);
+  const majorationNuit = heuresNuit * 2.2;
+  const majorationDimanche = heuresDimanche * 2.8;
+  const sft = getSFT(enfants);
+
+  const totalEstime = salaireBase + primeITN + majorationNuit + majorationDimanche + sft;
+
+  const bloc = `
+    <div style="display:grid; gap:10px;">
+      <div class="row between"><span>Salaire de base estimé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
+      <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
+      <div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
+      <div class="row between"><span>Majoration dimanche</span><strong>+ ${majorationDimanche.toFixed(2)} €</strong></div>
+      <div class="row between"><span>SFT ${enfants > 0 ? `(${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span><strong>+ ${sft.toFixed(2)} €</strong></div>
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
+      <div class="row between" style="font-size:1.15rem;">
+        <strong>Total estimé</strong>
+        <strong>${totalEstime.toFixed(2)} €</strong>
+      </div>
+      <div class="notice" style="margin-top:10px;">
+        <strong>Note :</strong> estimation indicative à visée informative. Les règles exactes peuvent varier selon votre situation administrative, votre affectation et les textes applicables.
+      </div>
+    </div>
+  `;
+
+  const cible = document.getElementById("resultatPrimeDetail");
+  if (cible) {
+    cible.innerHTML = bloc;
+  }
+}
+
+function reinitSimulateur() {
+  const defaults = {
+    grade: "gpx",
+    echelon: 1,
+    heuresNuit: 0,
+    heuresDimanche: 0,
+    enfants: 0,
+    zone: "1"
+  };
+
+  Object.entries(defaults).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = value;
+  });
+
+  const cible = document.getElementById("resultatPrimeDetail");
+  if (cible) {
+    cible.innerHTML = `<div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>`;
+  }
+}
