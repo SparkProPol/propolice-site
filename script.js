@@ -111,7 +111,8 @@ function render(list){
         <button class="linkBtn" data-copy="${r.id}">Copier l’ID</button>
       </div>
     `;
-    grid.appendChild(el);
+    renderPremiumLock(el, r);
+grid.appendChild(el);;
   }
 }
 
