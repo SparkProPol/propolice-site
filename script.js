@@ -485,4 +485,24 @@ function reinitSimulateur() {
   if (cible) {
     cible.innerHTML = `<div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>`;
   }
+  // 🔒 Gestion contenu premium (front simple)
+function isMember(){
+  return localStorage.getItem("propolice_member") === "true";
+}
+
+function renderPremiumLock(el, r){
+  if(r.access === "membre" && !isMember()){
+    el.classList.add("locked");
+
+    const lock = document.createElement("div");
+    lock.className = "lockOverlay";
+    lock.innerHTML = `
+      <div class="lockContent">
+        <p>🔒 Contenu réservé aux adhérents</p>
+        <a href="index.html#adhesion" class="btn small primary">Débloquer</a>
+      </div>
+    `;
+    el.appendChild(lock);
+  }
+}
 }
