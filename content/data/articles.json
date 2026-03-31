@@ -38,5 +38,13 @@
     "url": "fiche-discipline.html",
     "category": "juridique",
     "published": true
-  }
+  },
+  {
+  "slug": "mutation-mobilite-erreurs",
+  "title": "Mutation / mobilité : les erreurs à éviter",
+  "excerpt": "Une fiche simple et concrète pour préparer son dossier, éviter les oublis et renforcer la cohérence de sa demande.",
+  "url": "fiche-mutation.html",
+  "category": "carriere",
+  "published": true
+}
 ]
