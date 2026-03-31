@@ -8,12 +8,12 @@
     "url": "fiche-discipline.html"
   },
   {
-    "id": "modele-courrier-001",
-    "title": "Modèle : demande de communication de pièces",
-    "desc": "Demande structurée et courtoise pour obtenir des documents RH/administratifs.",
-    "tags": ["juridique", "carriere"],
-    "access": "membre"
-  },
+  "id": "modele-courrier-001",
+  "title": "Modèle : demande de communication de pièces (version PRO)",
+  "desc": "Version optimisée utilisée en accompagnement syndical (réservée adhérents).",
+  "tags": ["juridique", "carriere"],
+  "access": "membre"
+},
   {
   "id": "fiche-mutation-001",
   "title": "Mutation / mobilité : les erreurs à éviter",
