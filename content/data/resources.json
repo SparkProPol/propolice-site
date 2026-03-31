@@ -15,12 +15,13 @@
     "access": "membre"
   },
   {
-    "id": "fiche-mutation-001",
-    "title": "Fiche : mobilité & mutation (méthode)",
-    "desc": "Anticiper, constituer le dossier, chronologie et erreurs fréquentes.",
-    "tags": ["mobilite", "carriere"],
-    "access": "public"
-  },
+  "id": "fiche-mutation-001",
+  "title": "Mutation / mobilité : les erreurs à éviter",
+  "desc": "Une fiche simple pour anticiper, structurer son dossier et éviter les refus liés à une mauvaise préparation.",
+  "tags": ["mobilite", "carriere"],
+  "access": "public",
+  "url": "fiche-mutation.html"
+},
   {
     "id": "fiche-conges-001",
     "title": "Fiche : congés (cadre général)",
