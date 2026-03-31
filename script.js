@@ -372,6 +372,27 @@ async function loadArticlesCards(){
   }
 }
 
+// ---------------- Simulateur travail de nuit ----------------
+function calculerNuit() {
+  const nuits = parseFloat(document.getElementById("nuits")?.value) || 0;
+  const prime = parseFloat(document.getElementById("prime")?.value) || 0;
+
+  const totalNuits = nuits * 3;
+  const moyenneMensuelle = prime / 3;
+
+  const resultat = `
+    Sur 3 mois :
+    <br>- ${totalNuits} nuits travaillées
+    <br>- Prime estimée : ${prime.toFixed(2)} €
+    <br><br>Moyenne mensuelle estimée : ${moyenneMensuelle.toFixed(2)} €
+  `;
+
+  const cible = document.getElementById("resultatNuit");
+  if (cible) {
+    cible.innerHTML = resultat;
+  }
+}
+
 loadSiteSettings();
 loadResourcesFromJSON();
 loadArticlesCards();
