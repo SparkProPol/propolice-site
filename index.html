@@ -25,21 +25,12 @@
       </div>
 
       <nav class="nav" aria-label="Navigation principale">
-  <a href="#top">Accueil</a>
-  <a href="#ressources">Ressources</a>
-  <a href="#universite">Université</a>
-  <a href="#actualites">Actualités</a>
-  <a href="#bonsplans">Bons plans</a>
-  <a href="#telechargements">Téléchargements</a>
-  <a href="#adhesion" class="pill">Adhérer</a>
-</nav>
-      <nav class="nav" aria-label="Navigation principale">
-        <a href="#delegues">Délégués virtuels</a>
+        <a href="#contenu">Accueil</a>
+        <a href="#ressources">Ressources</a>
         <a href="#universite">Université</a>
         <a href="#actualites">Actualités</a>
         <a href="#bonsplans">Bons plans</a>
         <a href="#telechargements">Téléchargements</a>
-        <a href="#boutique">Boutique</a>
         <a href="#adhesion" class="pill">Adhérer</a>
       </nav>
 
@@ -49,22 +40,13 @@
       </button>
     </div>
 
-  <nav class="navMobile" id="menuMobile">
-  <a href="#top">Accueil</a>
-  <a href="#ressources">Ressources</a>
-  <a href="#universite">Université</a>
-  <a href="#actualites">Actualités</a>
-  <a href="#bonsplans">Bons plans</a>
-  <a href="#telechargements">Téléchargements</a>
-  <a href="#adhesion">Adhérer</a>
-</nav>
-    id="menuMobile" aria-label="Navigation mobile">
-      <a href="#delegues">Délégués virtuels</a>
+    <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
+      <a href="#contenu">Accueil</a>
+      <a href="#ressources">Ressources</a>
       <a href="#universite">Université</a>
       <a href="#actualites">Actualités</a>
       <a href="#bonsplans">Bons plans</a>
       <a href="#telechargements">Téléchargements</a>
-      <a href="#boutique">Boutique</a>
       <a href="#adhesion">Adhérer</a>
     </nav>
 
@@ -105,7 +87,7 @@
   </header>
 
   <main class="main">
-    
+
     <section class="section" id="delegues">
       <div class="container">
         <div class="sectionHead">
@@ -143,11 +125,17 @@
         <div class="sectionHead">
           <h2>Actualités syndicales</h2>
           <p>Analyses, prises de position et informations utiles pour comprendre les enjeux actuels de la Police nationale et défendre efficacement ses droits.</p>
-        <div class="notice">
-<strong>Objectif :</strong> apporter une lecture claire, directe et utile des situations professionnelles rencontrées sur le terrain.
-</div>
+        </div>
 
-        <div class="resourceGrid" id="actuGrid" aria-live="polite"></div><div class="notice" style="margin-top:14px"><strong>Mode gestion :</strong> ce pack ajoute une interface d’administration à <code>/admin</code> pour modifier les réglages du site, les cartes de ressources et les cartes articles.</div>
+        <div class="notice">
+          <strong>Objectif :</strong> apporter une lecture claire, directe et utile des situations professionnelles rencontrées sur le terrain.
+        </div>
+
+        <div class="resourceGrid" id="actuGrid" aria-live="polite"></div>
+
+        <div class="notice" style="margin-top:14px">
+          <strong>Mode gestion :</strong> ce pack ajoute une interface d’administration à <code>/admin</code> pour modifier les réglages du site, les cartes de ressources et les cartes articles.
+        </div>
 
         <div class="row" style="margin-top:14px">
           <a class="btn primary" href="https://propolice.fr/index.php/accueil/actu-et-agenda" target="_blank" rel="noopener">Voir toutes les actus</a>
@@ -188,7 +176,6 @@
       </div>
     </section>
 
-    
     <section class="section" id="articlesdyn">
       <div class="container">
         <div class="sectionHead">
@@ -198,6 +185,7 @@
         <div class="resourceGrid" id="articlesGrid" aria-live="polite"></div>
       </div>
     </section>
+
     <section class="section alt" id="telechargements">
       <div class="container">
         <div class="sectionHead">
@@ -214,6 +202,7 @@
               <button class="btn small" type="button" onclick="alert('À connecter : page Téléchargements du site officiel / bibliothèque PDF');">Voir</button>
             </div>
           </article>
+
           <article class="card">
             <div class="kicker">Adhérents</div>
             <h3>Espace membre</h3>
@@ -222,9 +211,11 @@
               <button class="btn small" type="button" onclick="document.getElementById('adhesion').scrollIntoView({behavior:'smooth'});">Débloquer via adhésion</button>
             </div>
           </article>
+        </div>
+
         <div class="notice">
-<strong>Pourquoi adhérer ?</strong> certaines ressources sensibles sont réservées afin de garantir un accompagnement sérieux et structuré des collègues.
-</div>
+          <strong>Pourquoi adhérer ?</strong> certaines ressources sensibles sont réservées afin de garantir un accompagnement sérieux et structuré des collègues.
+        </div>
       </div>
     </section>
 
@@ -250,7 +241,8 @@
         </div>
       </div>
     </section>
-<section class="section" id="universite">
+
+    <section class="section" id="universite">
       <div class="container">
         <div class="sectionHead">
           <h2>Université PRO POLICE</h2>
@@ -347,9 +339,7 @@
               <span class="chip">Retours terrain</span>
             </div>
           </article>
-      <div class="notice">
-<strong>Pourquoi adhérer ?</strong> certaines ressources sensibles sont réservées afin de garantir un accompagnement sérieux et structuré des collègues.
-</div>
+        </div>
 
         <div class="notice">
           <strong>Important :</strong> ces rencontres sont des <em>sessions d’information</em> (non certifiantes).
@@ -441,7 +431,6 @@
 
           <div class="toast" id="toast" role="status" aria-live="polite"></div>
         </form>
-
       </div>
     </section>
   </main>
