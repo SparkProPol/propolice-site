@@ -30,13 +30,13 @@
     "url": "#ressources",
     "category": "carriere",
     "published": true
+  },
+  {
+    "slug": "procedure-disciplinaire-reflexes",
+    "title": "Procédure disciplinaire : les 5 réflexes à avoir immédiatement",
+    "excerpt": "Une fiche simple, claire et utile pour éviter les erreurs les plus fréquentes dès les premiers échanges avec l’administration.",
+    "url": "fiche-discipline.html",
+    "category": "juridique",
+    "published": true
   }
-{
-  "slug": "procedure-disciplinaire-reflexes",
-  "title": "Procédure disciplinaire : les 5 réflexes à avoir immédiatement",
-  "excerpt": "Une fiche simple, claire et utile pour éviter les erreurs les plus fréquentes dès les premiers échanges avec l’administration.",
-  "url": "fiche-discipline.html",
-  "category": "juridique",
-  "published": true
-}
-  ]
+]
