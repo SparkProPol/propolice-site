@@ -2,10 +2,11 @@
 const resources = [
   {
     id: "fiche-discipline-001",
-    title: "Guide : procédure disciplinaire (repères)",
-    desc: "Étapes, droits, points de vigilance, check-list documentaire.",
+    title: "Procédure disciplinaire : les 5 réflexes à avoir immédiatement",
+    desc: "Une fiche simple, claire et utile pour éviter les erreurs les plus fréquentes dès les premiers échanges avec l’administration.",
     tags: ["discipline", "juridique"],
-    access: "public"
+    access: "public",
+    url: "fiche-discipline.html"
   },
   {
     id: "modele-courrier-001",
@@ -53,12 +54,13 @@ const year = $("#year");
 const toast = $("#toast");
 const planLabel = $("#planLabel");
 
-year.textContent = new Date().getFullYear();
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
 
 function thumbSvg(seed){
-  // Petit SVG “image” (local) pour éviter des dépendances externes
   const a = (seed.charCodeAt(0) * 13) % 360;
-  const b = (seed.charCodeAt(seed.length-1) * 17) % 360;
+  const b = (seed.charCodeAt(seed.length - 1) * 17) % 360;
   return `
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" preserveAspectRatio="none">
     <defs>
@@ -82,8 +84,10 @@ function thumbSvg(seed){
 }
 
 function render(list){
+  if (!grid) return;
+
   grid.innerHTML = "";
-  if(!list.length){
+  if (!list.length) {
     grid.innerHTML = `<div class="card" style="grid-column:1/-1">
       <h3>Aucun résultat</h3>
       <p>Essaie un autre mot-clé ou remets le filtre sur “Tous”.</p>
@@ -91,7 +95,7 @@ function render(list){
     return;
   }
 
-  for(const r of list){
+  for (const r of list) {
     const el = document.createElement("article");
     el.className = "card resource";
     el.innerHTML = `
@@ -103,7 +107,7 @@ function render(list){
         <span class="tag">${r.access === "membre" ? "Accès membre" : "Accès public"}</span>
       </div>
       <div class="actions">
-        <button class="linkBtn" data-open="${r.id}">Ouvrir</button>
+        ${r.url ? `<a class="linkBtn" href="${r.url}">Ouvrir</a>` : `<button class="linkBtn" data-open="${r.id}">Ouvrir</button>`}
         <button class="linkBtn" data-copy="${r.id}">Copier l’ID</button>
       </div>
     `;
@@ -123,8 +127,8 @@ function labelTag(t){
 }
 
 function applyFilters(){
-  const q = (searchInput.value || "").trim().toLowerCase();
-  const tag = tagSelect.value;
+  const q = (searchInput?.value || "").trim().toLowerCase();
+  const tag = tagSelect?.value || "all";
 
   const filtered = resources.filter(r => {
     const matchText = !q || (r.title + " " + r.desc + " " + r.tags.join(" ")).toLowerCase().includes(q);
@@ -135,75 +139,94 @@ function applyFilters(){
   render(filtered);
 }
 
-searchInput.addEventListener("input", applyFilters);
-tagSelect.addEventListener("change", applyFilters);
-resetBtn.addEventListener("click", () => {
-  searchInput.value = "";
-  tagSelect.value = "all";
-  applyFilters();
-});
+if (searchInput) {
+  searchInput.addEventListener("input", applyFilters);
+}
+if (tagSelect) {
+  tagSelect.addEventListener("change", applyFilters);
+}
+if (resetBtn) {
+  resetBtn.addEventListener("click", () => {
+    if (searchInput) searchInput.value = "";
+    if (tagSelect) tagSelect.value = "all";
+    applyFilters();
+  });
+}
 
-grid.addEventListener("click", async (e) => {
-  const btn = e.target.closest("button");
-  if(!btn) return;
+if (grid) {
+  grid.addEventListener("click", async (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
 
-  const openId = btn.getAttribute("data-open");
-  const copyId = btn.getAttribute("data-copy");
+    const openId = btn.getAttribute("data-open");
+    const copyId = btn.getAttribute("data-copy");
 
-  if(openId){
-    alert(`Démo : ouverture de la ressource "${openId}".\n\nTu pourras connecter ça à une page dédiée, un PDF, ou un espace membre.`);
-  }
-  if(copyId){
-    await navigator.clipboard.writeText(copyId);
-    showToast("ID copié dans le presse-papiers ✅");
-  }
-});
+    if (openId) {
+      alert(`Démo : ouverture de la ressource "${openId}".\n\nTu pourras connecter ça à une page dédiée, un PDF, ou un espace membre.`);
+    }
+    if (copyId) {
+      await navigator.clipboard.writeText(copyId);
+      showToast("ID copié dans le presse-papiers ✅");
+    }
+  });
+}
 
 function showToast(msg){
+  if (!toast) return;
   toast.textContent = msg;
   toast.style.display = "block";
   clearTimeout(showToast._t);
-  showToast._t = setTimeout(() => toast.style.display = "none", 2800);
+  showToast._t = setTimeout(() => {
+    toast.style.display = "none";
+  }, 2800);
 }
 
 // Mobile menu
 const menuBtn = document.getElementById("menuBtn");
 const menuMobile = document.getElementById("menuMobile");
-menuBtn.addEventListener("click", () => {
-  const expanded = menuBtn.getAttribute("aria-expanded") === "true";
-  menuBtn.setAttribute("aria-expanded", String(!expanded));
-  menuMobile.style.display = expanded ? "none" : "block";
-});
+if (menuBtn && menuMobile) {
+  menuBtn.addEventListener("click", () => {
+    const expanded = menuBtn.getAttribute("aria-expanded") === "true";
+    menuBtn.setAttribute("aria-expanded", String(!expanded));
+    menuMobile.style.display = expanded ? "none" : "block";
+  });
+}
 
 // Pricing plan selection
 let selectedPlan = "Adhérent";
 document.querySelectorAll("[data-plan]").forEach(btn => {
   btn.addEventListener("click", () => {
     selectedPlan = btn.getAttribute("data-plan");
-    planLabel.innerHTML = `Plan choisi : <strong>${selectedPlan}</strong> (modifiable)`;
-    document.getElementById("adhesion").scrollIntoView({behavior:"smooth"});
+    if (planLabel) {
+      planLabel.innerHTML = `Plan choisi : <strong>${selectedPlan}</strong> (modifiable)`;
+    }
+    const adh = document.getElementById("adhesion");
+    if (adh) {
+      adh.scrollIntoView({ behavior: "smooth" });
+    }
   });
 });
 
 // Form demo submit
-document.getElementById("adhForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const payload = Object.fromEntries(fd.entries());
-  payload.plan = selectedPlan;
+const adhForm = document.getElementById("adhForm");
+if (adhForm) {
+  adhForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fd = new FormData(adhForm);
+    const payload = Object.fromEntries(fd.entries());
+    payload.plan = selectedPlan;
 
-  // Démo : stockage local
-  const key = "propolice_adhesion_demo";
-  const existing = JSON.parse(localStorage.getItem(key) || "[]");
-  existing.push({ ...payload, ts: new Date().toISOString() });
-  localStorage.setItem(key, JSON.stringify(existing));
+    const key = "propolice_adhesion_demo";
+    const existing = JSON.parse(localStorage.getItem(key) || "[]");
+    existing.push({ ...payload, ts: new Date().toISOString() });
+    localStorage.setItem(key, JSON.stringify(existing));
 
-  e.target.reset();
-  showToast("Demande enregistrée (démo locale) ✅ — à connecter à un email/CRM.");
-});
+    adhForm.reset();
+    showToast("Demande enregistrée (démo locale) ✅ — à connecter à un email/CRM.");
+  });
+}
 
 applyFilters();
-
 
 // --- Blocs "Actualités" (liens officiels) ---
 const actus = [
@@ -226,10 +249,10 @@ const actus = [
 
 function renderActus(){
   const g = document.getElementById("actuGrid");
-  if(!g) return;
+  if (!g) return;
 
   g.innerHTML = "";
-  for(const a of actus){
+  for (const a of actus) {
     const el = document.createElement("article");
     el.className = "card resource";
     el.innerHTML = `
@@ -245,78 +268,110 @@ function renderActus(){
 }
 renderActus();
 
-
 // ---------------- Dynamic content loading (Decap-ready) ----------------
 async function getJSON(path){
-  const res = await fetch(path, {cache: "no-store"});
-  if(!res.ok) throw new Error(`Erreur chargement: ${path}`);
+  const res = await fetch(path, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Erreur chargement: ${path}`);
   return await res.json();
 }
+
 function normalizeListData(data){
-  if(Array.isArray(data)) return data;
-  if(data && Array.isArray(data.items)) return data.items;
+  if (Array.isArray(data)) return data;
+  if (data && Array.isArray(data.items)) return data.items;
   return [];
 }
+
 async function loadSiteSettings(){
-  try{
+  try {
     const site = await getJSON("content/data/site.json");
     document.title = `${site.brand.name} — Syndicat • Université PRO POLICE`;
     document.querySelectorAll(".brandname").forEach(el => el.textContent = site.brand.name || el.textContent);
-    document.querySelectorAll(".brandsub").forEach((el, i) => { if(i < 2) el.textContent = site.brand.subtitle || el.textContent; });
-    const badge = document.querySelector(".badge"); if(badge) badge.textContent = site.brand.hero_badge || badge.textContent;
-    const h1 = document.querySelector(".heroLeft h1"); if(h1) h1.textContent = site.brand.tagline || h1.textContent;
-    const lead = document.querySelector(".lead"); if(lead) lead.textContent = site.brand.hero_lead || lead.textContent;
+    document.querySelectorAll(".brandsub").forEach((el, i) => {
+      if (i < 2) el.textContent = site.brand.subtitle || el.textContent;
+    });
+
+    const badge = document.querySelector(".badge");
+    if (badge) badge.textContent = site.brand.hero_badge || badge.textContent;
+
+    const h1 = document.querySelector(".heroLeft h1");
+    if (h1) h1.textContent = site.brand.tagline || h1.textContent;
+
+    const lead = document.querySelector(".lead");
+    if (lead) lead.textContent = site.brand.hero_lead || lead.textContent;
+
     const ctas = document.querySelectorAll(".ctaRow .btn");
-    if(ctas[0]) ctas[0].textContent = site.brand.cta_primary || ctas[0].textContent;
-    if(ctas[1]) ctas[1].textContent = site.brand.cta_secondary || ctas[1].textContent;
+    if (ctas[0]) ctas[0].textContent = site.brand.cta_primary || ctas[0].textContent;
+    if (ctas[1]) ctas[1].textContent = site.brand.cta_secondary || ctas[1].textContent;
+
     const metaCards = document.querySelectorAll(".metaCard");
     (site.homepage?.meta_cards || []).forEach((card, i) => {
-      if(metaCards[i]){
+      if (metaCards[i]) {
         const t = metaCards[i].querySelector(".metaTitle");
         const d = metaCards[i].querySelector(".metaText");
-        if(t) t.textContent = card.title || "";
-        if(d) d.textContent = card.text || "";
+        if (t) t.textContent = card.title || "";
+        if (d) d.textContent = card.text || "";
       }
     });
+
     const adhTitle = document.querySelector("#adhesion .sectionHead h2");
-    if(adhTitle) adhTitle.textContent = site.adhesion?.title || adhTitle.textContent;
+    if (adhTitle) adhTitle.textContent = site.adhesion?.title || adhTitle.textContent;
+
     const adhIntro = document.querySelector("#adhesion .sectionHead p");
-    if(adhIntro) adhIntro.textContent = site.adhesion?.intro || adhIntro.textContent;
-  }catch(err){ console.warn(err); }
+    if (adhIntro) adhIntro.textContent = site.adhesion?.intro || adhIntro.textContent;
+  } catch (err) {
+    console.warn(err);
+  }
 }
+
 async function loadResourcesFromJSON(){
-  try{
+  try {
     const loaded = normalizeListData(await getJSON("content/data/resources.json"));
-    if(loaded.length){
+    if (loaded.length) {
       resources.length = 0;
       loaded.forEach(item => resources.push(item));
       applyFilters();
     }
-  }catch(err){ console.warn(err); }
+  } catch (err) {
+    console.warn(err);
+  }
 }
+
 async function loadArticlesCards(){
-  try{
+  try {
     const items = normalizeListData(await getJSON("content/data/articles.json")).filter(x => x.published !== false);
-    const grid = document.getElementById("articlesGrid");
-    if(!grid) return;
-    grid.innerHTML = "";
-    if(!items.length){
-      grid.innerHTML = `<div class="card" style="grid-column:1/-1"><h3>Aucune publication</h3><p>Ajoute des cartes depuis l'administration.</p></div>`;
+    const articlesGrid = document.getElementById("articlesGrid");
+    if (!articlesGrid) return;
+
+    // Si une carte fixe est déjà présente dans le HTML, on la garde.
+    if (articlesGrid.children.length > 0) return;
+
+    articlesGrid.innerHTML = "";
+    if (!items.length) {
+      articlesGrid.innerHTML = `<div class="card" style="grid-column:1/-1"><h3>Aucune publication</h3><p>Ajoute des cartes depuis l'administration.</p></div>`;
       return;
     }
-    for(const a of items){
+
+    for (const a of items) {
       const el = document.createElement("article");
       el.className = "card resource";
       el.innerHTML = `
         <div class="thumb" aria-hidden="true">${thumbSvg(a.title || "Article")}</div>
         <h3>${a.title || ""}</h3>
         <p>${a.excerpt || ""}</p>
-        <div class="tags"><span class="tag">${a.category || "Publication"}</span></div>
-        <div class="actions"><a class="linkBtn" href="${a.url || "#"}" target="${(a.url || "").startsWith("http") ? "_blank" : "_self"}" rel="noopener">Ouvrir</a></div>`;
-      grid.appendChild(el);
+        <div class="tags">
+          <span class="tag">${a.category || "Publication"}</span>
+        </div>
+        <div class="actions">
+          <a class="linkBtn" href="${a.url || "#"}" target="${(a.url || "").startsWith("http") ? "_blank" : "_self"}" rel="noopener">Ouvrir</a>
+        </div>
+      `;
+      articlesGrid.appendChild(el);
     }
-  }catch(err){ console.warn(err); }
+  } catch (err) {
+    console.warn(err);
+  }
 }
+
 loadSiteSettings();
 loadResourcesFromJSON();
 loadArticlesCards();
