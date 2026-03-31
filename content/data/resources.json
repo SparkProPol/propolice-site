@@ -1,62 +1,45 @@
 [
   {
     "id": "fiche-discipline-001",
-    "title": "Procédure disciplinaire : ce que vous devez savoir immédiatement",
-    "desc": "Vos droits, les étapes clés, les erreurs à éviter et les réflexes à adopter dès le premier contact avec l'administration.",
-    "tags": [
-      "discipline",
-      "juridique"
-    ],
-    "access": "public"
+    "title": "Procédure disciplinaire : les 5 réflexes à avoir immédiatement",
+    "desc": "Une fiche simple, claire et utile pour éviter les erreurs les plus fréquentes dès les premiers échanges avec l’administration.",
+    "tags": ["discipline", "juridique"],
+    "access": "public",
+    "url": "fiche-discipline.html"
   },
   {
     "id": "modele-courrier-001",
-    "title": "Modèle prêt à l’emploi : demande de communication de pièces",
-    "desc": "Un modèle structuré pour exiger vos droits face à l'administration et obtenir les documents nécessaires à votre défense.",
-    "tags": [
-      "juridique",
-      "carriere"
-    ],
+    "title": "Modèle : demande de communication de pièces",
+    "desc": "Demande structurée et courtoise pour obtenir des documents RH/administratifs.",
+    "tags": ["juridique", "carriere"],
     "access": "membre"
   },
   {
     "id": "fiche-mutation-001",
-    "title": "Mutation : stratégie et erreurs à éviter",
-    "desc": "Comment préparer efficacement votre mutation, défendre votre dossier et éviter les refus liés à une mauvaise anticipation.",
-    "tags": [
-      "mobilite",
-      "carriere"
-    ],
+    "title": "Fiche : mobilité & mutation (méthode)",
+    "desc": "Anticiper, constituer le dossier, chronologie et erreurs fréquentes.",
+    "tags": ["mobilite", "carriere"],
     "access": "public"
   },
   {
-    "id": "fiche-arret-001",
-    "title": "Arrêt maladie : droits et pièges à éviter",
-    "desc": "Ce que vous pouvez faire, ce que vous devez éviter et comment protéger votre situation administrative.",
-    "tags": [
-      "sante",
-      "juridique"
-    ],
+    "id": "fiche-conges-001",
+    "title": "Fiche : congés (cadre général)",
+    "desc": "Principes, points d’attention, questions à poser à la hiérarchie.",
+    "tags": ["conges"],
     "access": "public"
   },
   {
-    "id": "fiche-hierarchie-001",
-    "title": "Pression hiérarchique : comment réagir",
-    "desc": "Identifier les dérives, garder une posture professionnelle et protéger vos droits sans vous mettre en difficulté.",
-    "tags": [
-      "management",
-      "terrain"
-    ],
-    "access": "public"
-  },
-  {
-    "id": "modele-recours-001",
-    "title": "Modèle : recours administratif complet",
-    "desc": "Un modèle structuré pour contester une décision et faire valoir vos droits efficacement.",
-    "tags": [
-      "juridique",
-      "recours"
-    ],
+    "id": "taj-001",
+    "title": "Note : TAJ (repères administratifs)",
+    "desc": "Comprendre les enjeux, demander l’accès, organiser un dossier.",
+    "tags": ["juridique"],
     "access": "membre"
+  },
+  {
+    "id": "carriere-001",
+    "title": "Synthèse : avancement & trajectoire",
+    "desc": "Stratégie de dossier, arguments factuels, communication professionnelle.",
+    "tags": ["carriere"],
+    "access": "public"
   }
 ]
