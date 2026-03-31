@@ -1,1 +1,145 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mutation / mobilité — PRO POLICE</title>
+  <meta name="description" content="Mutation / mobilité : les erreurs à éviter et les bons réflexes pour préparer son dossier." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
 
+  <header class="header" role="banner">
+    <div class="topbar">
+      <div class="brand">
+        <img class="logo" src="assets/logo.svg" alt="Logo PRO POLICE" width="40" height="40" />
+        <div class="brandtext">
+          <div class="brandname">PRO POLICE</div>
+          <div class="brandsub">Professionnels de la Police nationale</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="index.html#contenu">Accueil</a>
+        <a href="index.html#ressources">Ressources</a>
+        <a href="index.html#simulateur">Simulateur</a>
+        <a href="index.html#universite">Université</a>
+        <a href="index.html#adhesion" class="pill">Adhérer</a>
+      </nav>
+
+      <button class="menuBtn" id="menuBtn" aria-expanded="false" aria-controls="menuMobile">
+        <span class="sr">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
+      </button>
+    </div>
+
+    <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
+      <a href="index.html#contenu">Accueil</a>
+      <a href="index.html#ressources">Ressources</a>
+      <a href="index.html#simulateur">Simulateur</a>
+      <a href="index.html#universite">Université</a>
+      <a href="index.html#adhesion">Adhérer</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="section" id="contenu">
+      <div class="container">
+        <div class="sectionHead">
+          <h1 style="margin:0 0 10px 0;">Mutation / mobilité</h1>
+          <p>Les erreurs à éviter et les bons réflexes pour construire un dossier plus solide.</p>
+        </div>
+
+        <div class="notice" style="margin-top:16px;">
+          <strong>Important :</strong> cette fiche a une vocation informative. Chaque situation doit être appréciée selon le service, l’ancienneté, la situation familiale et le contexte administratif.
+        </div>
+
+        <div class="card" style="margin-top:18px;">
+          <h2>1. Anticiper au lieu de subir</h2>
+          <p>Une mutation réussie se prépare. Attendre la dernière minute, sans vérifier les priorités, les justificatifs et le calendrier, fragilise inutilement le dossier.</p>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <h2>2. Constituer un dossier clair</h2>
+          <p>Un bon dossier doit être lisible, cohérent et complet. Il faut réunir les éléments utiles, éviter les contradictions et présenter une demande compréhensible par l’administration.</p>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <h2>3. Appuyer sa demande sur du concret</h2>
+          <p>Les arguments les plus efficaces sont factuels : situation familiale, contraintes objectives, ancienneté, réalité du poste, cohérence du projet. Les formulations trop vagues ou trop émotionnelles sont moins efficaces.</p>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <h2>4. Éviter les erreurs classiques</h2>
+          <p>Parmi les erreurs fréquentes : dossier incomplet, mauvaise lecture des règles, absence de justificatifs, ou demande mal argumentée. Une mobilité mal préparée peut entraîner un refus ou un report évitable.</p>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <h2>5. Se faire relire avant transmission</h2>
+          <p>Un regard extérieur permet souvent de repérer un oubli, une faiblesse d’argumentation ou un point administratif sous-estimé. Une relecture avant envoi est souvent déterminante.</p>
+        </div>
+
+        <div class="ctaStrip" style="margin-top:18px;">
+          <div>
+            <h3>Le conseil PRO POLICE</h3>
+            <p>Une mutation se prépare avec méthode. Plus le dossier est anticipé et structuré, plus il gagne en crédibilité.</p>
+          </div>
+          <a class="btn primary" href="index.html#adhesion">Être accompagné</a>
+        </div>
+
+        <div class="row" style="margin-top:18px;">
+          <a class="btn ghost" href="index.html#ressources">Retour aux ressources</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footGrid">
+      <div>
+        <div class="brand mini">
+          <img class="logo" src="assets/logo.svg" alt="" width="34" height="34" />
+          <div class="brandtext">
+            <div class="brandname">PRO POLICE</div>
+            <div class="brandsub">Syndicat — Université PRO POLICE</div>
+          </div>
+        </div>
+        <p class="footNote">
+          Contenus à finalité informative. © <span id="year"></span> PRO POLICE.
+        </p>
+      </div>
+
+      <div class="footLinks">
+        <a href="index.html#ressources">Ressources</a>
+        <a href="index.html#simulateur">Simulateur</a>
+        <a href="index.html#universite">Université</a>
+      </div>
+
+      <div class="footLinks">
+        <a href="index.html#adhesion">Adhérer</a>
+        <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const year = document.getElementById("year");
+    if (year) year.textContent = new Date().getFullYear();
+
+    const menuBtn = document.getElementById("menuBtn");
+    const menuMobile = document.getElementById("menuMobile");
+    if (menuBtn && menuMobile) {
+      menuBtn.addEventListener("click", () => {
+        const expanded = menuBtn.getAttribute("aria-expanded") === "true";
+        menuBtn.setAttribute("aria-expanded", String(!expanded));
+        menuMobile.style.display = expanded ? "none" : "block";
+      });
+    }
+  </script>
+</body>
+</html>
