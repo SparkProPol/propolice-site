@@ -27,6 +27,7 @@
       <nav class="nav" aria-label="Navigation principale">
         <a href="#contenu">Accueil</a>
         <a href="#ressources">Ressources</a>
+        <a href="#simulateur">Simulateur</a>
         <a href="#universite">Université</a>
         <a href="#actualites">Actualités</a>
         <a href="#bonsplans">Bons plans</a>
@@ -43,6 +44,7 @@
     <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
       <a href="#contenu">Accueil</a>
       <a href="#ressources">Ressources</a>
+      <a href="#simulateur">Simulateur</a>
       <a href="#universite">Université</a>
       <a href="#actualites">Actualités</a>
       <a href="#bonsplans">Bons plans</a>
@@ -338,34 +340,73 @@
         </div>
       </div>
     </section>
+
     <section class="section alt" id="simulateur">
-  <div class="container">
-    <div class="sectionHead">
-      <h2>Simulateur — Travail de nuit</h2>
-      <p>Estime rapidement ta rémunération liée au travail de nuit.</p>
-    </div>
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Simulateur de primes</h2>
+          <p>Calculez une estimation rapide de votre rémunération mensuelle : ITN, travail de nuit, dimanche et supplément familial.</p>
+        </div>
 
-    <div class="card">
-      <div class="formGrid">
-        <label class="field">
-          <span>Nombre de nuits par mois</span>
-          <input type="number" id="nuits" placeholder="Ex : 10" />
-        </label>
+        <div class="grid2">
+          <div class="card">
+            <div class="formGrid">
+              <label class="field">
+                <span>Grade</span>
+                <select id="grade">
+                  <option value="gpx">Gardien de la paix</option>
+                  <option value="bc">Brigadier-chef</option>
+                  <option value="major">Major</option>
+                </select>
+              </label>
 
-        <label class="field">
-          <span>Prime trimestrielle estimée (€)</span>
-          <input type="number" id="prime" placeholder="Ex : 750" />
-        </label>
+              <label class="field">
+                <span>Échelon</span>
+                <input type="number" id="echelon" min="1" max="12" value="1" />
+              </label>
+
+              <label class="field">
+                <span>Heures de nuit (21h-6h) par mois</span>
+                <input type="number" id="heuresNuit" min="0" value="0" />
+              </label>
+
+              <label class="field">
+                <span>Heures du dimanche par mois</span>
+                <input type="number" id="heuresDimanche" min="0" value="0" />
+              </label>
+
+              <label class="field">
+                <span>Nombre d’enfants à charge</span>
+                <input type="number" id="enfants" min="0" value="0" />
+              </label>
+
+              <label class="field">
+                <span>Zone géographique</span>
+                <select id="zone">
+                  <option value="1">Zone 1 — Paris / région parisienne</option>
+                  <option value="2">Zone 2 — grandes agglomérations</option>
+                  <option value="3">Zone 3 — autres secteurs</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="row" style="margin-top:16px">
+              <button class="btn primary" type="button" onclick="calculerPrimes()">Calculer mes primes</button>
+              <button class="btn ghost" type="button" onclick="reinitSimulateur()">Réinitialiser</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Résultat estimatif</h3>
+            <p class="smallmuted">Simulation indicative à vocation informative.</p>
+
+            <div id="resultatPrimeDetail" style="margin-top:18px">
+              <div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="row" style="margin-top:15px">
-        <button class="btn primary" type="button" onclick="calculerNuit()">Calculer</button>
-      </div>
-
-      <div id="resultatNuit" style="margin-top:20px; font-weight:600;"></div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <section class="section" id="webinaires">
       <div class="container">
@@ -513,6 +554,7 @@
       </div>
 
       <div class="footLinks">
+        <a href="#simulateur">Simulateur</a>
         <a href="#telechargements">Téléchargements</a>
         <a href="#boutique">Boutique</a>
         <a href="#adhesion">Adhérer</a>
