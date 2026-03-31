@@ -505,5 +505,31 @@ function renderPremiumLock(el, r){
     `;
     el.appendChild(lock);
   }
+  // 🔐 Bouton mode adhérent (simple)
+const btnMember = document.getElementById("btnMember");
+
+function updateMemberButton(){
+  if (!btnMember) return;
+
+  const isActive = localStorage.getItem("propolice_member") === "true";
+  btnMember.textContent = isActive ? "Mode adhérent ON" : "Mode adhérent OFF";
+}
+
+if (btnMember) {
+  btnMember.addEventListener("click", () => {
+    const isActive = localStorage.getItem("propolice_member") === "true";
+
+    if (isActive) {
+      localStorage.removeItem("propolice_member");
+    } else {
+      localStorage.setItem("propolice_member", "true");
+    }
+
+    updateMemberButton();
+    location.reload(); // recharge la page
+  });
+}
+
+updateMemberButton();
 }
 }
