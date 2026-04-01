@@ -58,7 +58,7 @@ if (year) {
   year.textContent = new Date().getFullYear();
 }
 
-function thumbSvg(seed){
+function thumbSvg(seed) {
   const a = (seed.charCodeAt(0) * 13) % 360;
   const b = (seed.charCodeAt(seed.length - 1) * 17) % 360;
   return `
@@ -83,7 +83,39 @@ function thumbSvg(seed){
   </svg>`;
 }
 
-function render(list){
+function labelTag(t) {
+  const map = {
+    discipline: "Discipline",
+    carriere: "Carrière",
+    mobilite: "Mobilité",
+    conges: "Congés",
+    juridique: "Juridique"
+  };
+  return map[t] || t;
+}
+
+// 🔒 Gestion contenu premium
+function isMember() {
+  return localStorage.getItem("propolice_member") === "true";
+}
+
+function renderPremiumLock(el, r) {
+  if (r.access === "membre" && !isMember()) {
+    el.classList.add("locked");
+
+    const lock = document.createElement("div");
+    lock.className = "lockOverlay";
+    lock.innerHTML = `
+      <div class="lockContent">
+        <p>🔒 Contenu réservé aux adhérents</p>
+        <a href="#adhesion" class="btn small primary">Débloquer</a>
+      </div>
+    `;
+    el.appendChild(lock);
+  }
+}
+
+function render(list) {
   if (!grid) return;
 
   grid.innerHTML = "";
@@ -112,28 +144,17 @@ function render(list){
       </div>
     `;
     renderPremiumLock(el, r);
-grid.appendChild(el);;
+    grid.appendChild(el);
   }
 }
 
-function labelTag(t){
-  const map = {
-    discipline: "Discipline",
-    carriere: "Carrière",
-    mobilite: "Mobilité",
-    conges: "Congés",
-    juridique: "Juridique"
-  };
-  return map[t] || t;
-}
-
-function applyFilters(){
+function applyFilters() {
   const q = (searchInput?.value || "").trim().toLowerCase();
   const tag = tagSelect?.value || "all";
 
   const filtered = resources.filter(r => {
     const matchText = !q || (r.title + " " + r.desc + " " + r.tags.join(" ")).toLowerCase().includes(q);
-    const matchTag = (tag === "all") || r.tags.includes(tag);
+    const matchTag = tag === "all" || r.tags.includes(tag);
     return matchText && matchTag;
   });
 
@@ -172,7 +193,7 @@ if (grid) {
   });
 }
 
-function showToast(msg){
+function showToast(msg) {
   if (!toast) return;
   toast.textContent = msg;
   toast.style.display = "block";
@@ -227,8 +248,6 @@ if (adhForm) {
   });
 }
 
-applyFilters();
-
 // --- Blocs "Actualités" (liens officiels) ---
 const actus = [
   {
@@ -248,7 +267,7 @@ const actus = [
   }
 ];
 
-function renderActus(){
+function renderActus() {
   const g = document.getElementById("actuGrid");
   if (!g) return;
 
@@ -267,22 +286,21 @@ function renderActus(){
     g.appendChild(el);
   }
 }
-renderActus();
 
 // ---------------- Dynamic content loading (Decap-ready) ----------------
-async function getJSON(path){
+async function getJSON(path) {
   const res = await fetch(path, { cache: "no-store" });
   if (!res.ok) throw new Error(`Erreur chargement: ${path}`);
   return await res.json();
 }
 
-function normalizeListData(data){
+function normalizeListData(data) {
   if (Array.isArray(data)) return data;
   if (data && Array.isArray(data.items)) return data.items;
   return [];
 }
 
-async function loadSiteSettings(){
+async function loadSiteSettings() {
   try {
     const site = await getJSON("content/data/site.json");
     document.title = `${site.brand.name} — Syndicat • Université PRO POLICE`;
@@ -324,26 +342,28 @@ async function loadSiteSettings(){
   }
 }
 
-async function loadResourcesFromJSON(){
+async function loadResourcesFromJSON() {
   try {
     const loaded = normalizeListData(await getJSON("content/data/resources.json"));
     if (loaded.length) {
       resources.length = 0;
       loaded.forEach(item => resources.push(item));
       applyFilters();
+    } else {
+      applyFilters();
     }
   } catch (err) {
     console.warn(err);
+    applyFilters();
   }
 }
 
-async function loadArticlesCards(){
+async function loadArticlesCards() {
   try {
     const items = normalizeListData(await getJSON("content/data/articles.json")).filter(x => x.published !== false);
     const articlesGrid = document.getElementById("articlesGrid");
     if (!articlesGrid) return;
 
-    // Si une carte fixe est déjà présente dans le HTML, on la garde.
     if (articlesGrid.children.length > 0) return;
 
     articlesGrid.innerHTML = "";
@@ -373,30 +393,6 @@ async function loadArticlesCards(){
   }
 }
 
-// ---------------- Simulateur travail de nuit ----------------
-function calculerNuit() {
-  const nuits = parseFloat(document.getElementById("nuits")?.value) || 0;
-  const prime = parseFloat(document.getElementById("prime")?.value) || 0;
-
-  const totalNuits = nuits * 3;
-  const moyenneMensuelle = prime / 3;
-
-  const resultat = `
-    Sur 3 mois :
-    <br>- ${totalNuits} nuits travaillées
-    <br>- Prime estimée : ${prime.toFixed(2)} €
-    <br><br>Moyenne mensuelle estimée : ${moyenneMensuelle.toFixed(2)} €
-  `;
-
-  const cible = document.getElementById("resultatNuit");
-  if (cible) {
-    cible.innerHTML = resultat;
-  }
-}
-
-loadSiteSettings();
-loadResourcesFromJSON();
-loadArticlesCards();
 // ---------------- Simulateur primes version enrichie ----------------
 function getSalaireBase(grade, echelon) {
   const grilles = {
@@ -486,38 +482,18 @@ function reinitSimulateur() {
   if (cible) {
     cible.innerHTML = `<div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>`;
   }
-  // 🔒 Gestion contenu premium (front simple)
-function isMember(){
-  return localStorage.getItem("propolice_member") === "true";
 }
 
-function renderPremiumLock(el, r){
-  if(r.access === "membre" && !isMember()){
-    el.classList.add("locked");
-
-    const lock = document.createElement("div");
-    lock.className = "lockOverlay";
-    lock.innerHTML = `
-      <div class="lockContent">
-        <p>🔒 Contenu réservé aux adhérents</p>
-        <a href="index.html#adhesion" class="btn small primary">Débloquer</a>
-      </div>
-    `;
-    el.appendChild(lock);
-  }
-  // 🔐 Bouton mode adhérent (version simple et fiable)
+// 🔐 Bouton mode adhérent
 function updateMemberButton() {
   const btnMember = document.getElementById("btnMember");
   if (!btnMember) return;
 
-  const isActive = localStorage.getItem("propolice_member") === "true";
-  btnMember.textContent = isActive ? "Mode adhérent ON" : "Mode adhérent OFF";
+  btnMember.textContent = isMember() ? "Mode adhérent ON" : "Mode adhérent OFF";
 }
 
 function toggleMemberMode() {
-  const isActive = localStorage.getItem("propolice_member") === "true";
-
-  if (isActive) {
+  if (isMember()) {
     localStorage.removeItem("propolice_member");
   } else {
     localStorage.setItem("propolice_member", "true");
@@ -527,5 +503,11 @@ function toggleMemberMode() {
   location.reload();
 }
 
-document.addEventListener("DOMContentLoaded", updateMemberButton);
-  
+// Initialisation
+document.addEventListener("DOMContentLoaded", () => {
+  updateMemberButton();
+  renderActus();
+  loadSiteSettings();
+  loadResourcesFromJSON();
+  loadArticlesCards();
+});
