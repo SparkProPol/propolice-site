@@ -533,62 +533,120 @@ document.addEventListener("DOMContentLoaded", () => {
   applyFilters(); // 🔥 IMPORTANT
 });
 
-// ---------------- Simulateur CMO / retenue sur salaire ----------------
+// ---------------- Simulateur CMO / retenue sur salaire V2 ----------------
+function parseHistoriqueCMO(valeur) {
+  if (!valeur || !valeur.trim()) return 0;
+
+  return valeur
+    .split(",")
+    .map(v => parseFloat(v.trim()))
+    .filter(v => !isNaN(v) && v > 0)
+    .reduce((acc, v) => acc + v, 0);
+}
+
 function calculerCMO() {
   const salaire = parseFloat(document.getElementById("cmoSalaire")?.value) || 0;
   const jours = parseFloat(document.getElementById("cmoJours")?.value) || 0;
   const deja = parseFloat(document.getElementById("cmoDeja")?.value) || 0;
+  const historique = parseHistoriqueCMO(document.getElementById("cmoHistorique")?.value || "");
+  const regime = document.getElementById("cmoRegime")?.value || "auto";
+  const carence = document.getElementById("cmoCarence")?.value || "non";
+  const mode = document.getElementById("cmoMode")?.value || "simple";
 
+  const dejaTotal = deja + historique;
   const baseJour = salaire / 30;
 
+  let joursPlein = 0;
   let jours90 = 0;
   let jours50 = 0;
+  let retenuePlein = 0;
+  let retenue90 = 0;
+  let retenue50 = 0;
+  let retenueCarence = 0;
 
-  const totalAvant = deja;
-  const totalApres = deja + jours;
+  if (regime === "plein") {
+    joursPlein = jours;
+    retenuePlein = 0;
+  } else if (regime === "demi") {
+    jours50 = jours;
+    retenue50 = jours50 * baseJour * 0.5;
+  } else {
+    if (dejaTotal < 90) {
+      jours90 = Math.min(jours, 90 - dejaTotal);
+    }
 
-  // Calcul tranche 90%
-  if (totalAvant < 90) {
-    jours90 = Math.min(jours, 90 - totalAvant);
+    const totalApres = dejaTotal + jours;
+    if (totalApres > 90) {
+      jours50 = totalApres - Math.max(90, dejaTotal);
+    }
+
+    retenue90 = jours90 * baseJour * 0.10;
+    retenue50 = jours50 * baseJour * 0.50;
   }
 
-  // Calcul tranche 50%
-  if (totalApres > 90) {
-    jours50 = totalApres - Math.max(90, totalAvant);
+  if (carence === "oui" && jours > 0) {
+    retenueCarence = baseJour;
   }
 
-  const retenue90 = jours90 * baseJour * 0.10;
-  const retenue50 = jours50 * baseJour * 0.50;
-
-  const retenueTotale = retenue90 + retenue50;
+  const retenueTotale = retenuePlein + retenue90 + retenue50 + retenueCarence;
   let maintien = salaire - retenueTotale;
-
   if (maintien < 0) maintien = 0;
 
-  const bloc = `
+  let bloc = `
     <div style="display:grid; gap:10px;">
       <div class="row between"><span>Salaire de référence</span><strong>${salaire.toFixed(2)} €</strong></div>
-      <div class="row between"><span>Jours saisis</span><strong>${jours}</strong></div>
+      <div class="row between"><span>Jours d’arrêt saisis</span><strong>${jours}</strong></div>
       <div class="row between"><span>Jours déjà consommés</span><strong>${deja}</strong></div>
+      <div class="row between"><span>Historique multi-arrêts pris en compte</span><strong>${historique}</strong></div>
+      <div class="row between"><span>Total antérieur retenu</span><strong>${dejaTotal}</strong></div>
+  `;
 
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
-
+  if (regime === "plein") {
+    bloc += `
+      <div class="row between"><span>Régime appliqué</span><strong>Plein traitement</strong></div>
+      <div class="row between"><span>Jours au plein traitement</span><strong>${joursPlein}</strong></div>
+    `;
+  } else if (regime === "demi") {
+    bloc += `
+      <div class="row between"><span>Régime appliqué</span><strong>Demi-traitement</strong></div>
+      <div class="row between"><span>Jours à 50%</span><strong>${jours50}</strong></div>
+      <div class="row between"><span>Retenue demi-traitement</span><strong>- ${retenue50.toFixed(2)} €</strong></div>
+    `;
+  } else {
+    bloc += `
+      <div class="row between"><span>Régime appliqué</span><strong>Calcul automatique 90% / 50%</strong></div>
       <div class="row between"><span>Jours à 90%</span><strong>${jours90}</strong></div>
       <div class="row between"><span>Jours à 50%</span><strong>${jours50}</strong></div>
-
       <div class="row between"><span>Retenue 90%</span><strong>- ${retenue90.toFixed(2)} €</strong></div>
       <div class="row between"><span>Retenue 50%</span><strong>- ${retenue50.toFixed(2)} €</strong></div>
+    `;
+  }
 
+  bloc += `
+      <div class="row between"><span>Jour de carence</span><strong>${carence === "oui" ? "Oui" : "Non"}</strong></div>
+      <div class="row between"><span>Impact carence estimé</span><strong>- ${retenueCarence.toFixed(2)} €</strong></div>
       <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
-
-      <div class="row between"><strong>Retenue totale</strong><strong>- ${retenueTotale.toFixed(2)} €</strong></div>
-
+      <div class="row between"><strong>Retenue totale estimée</strong><strong>- ${retenueTotale.toFixed(2)} €</strong></div>
       <div class="row between" style="font-size:1.15rem;">
         <strong>Montant maintenu estimé</strong>
         <strong>${maintien.toFixed(2)} €</strong>
       </div>
-    </div>
   `;
+
+  if (mode === "expert") {
+    bloc += `
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
+      <div class="notice" style="margin-top:8px;">
+        <strong>Mode expert délégué :</strong><br>
+        - Vérifier la période de référence sur 12 mois glissants<br>
+        - Contrôler l’existence d’une journée de carence ou d’une régularisation<br>
+        - Vérifier les éléments de rémunération réellement impactés sur le bulletin de paie<br>
+        - Utiliser cette estimation comme base de dialogue, pas comme liquidation définitive
+      </div>
+    `;
+  }
+
+  bloc += `</div>`;
 
   const cible = document.getElementById("resultatCMO");
   if (cible) {
@@ -600,7 +658,11 @@ function reinitCMO() {
   const defaults = {
     cmoSalaire: 2500,
     cmoJours: 1,
-    cmoDeja: 0
+    cmoDeja: 0,
+    cmoHistorique: "",
+    cmoRegime: "auto",
+    cmoCarence: "non",
+    cmoMode: "simple"
   };
 
   Object.entries(defaults).forEach(([id, value]) => {
@@ -612,4 +674,8 @@ function reinitCMO() {
   if (cible) {
     cible.innerHTML = `<div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>`;
   }
+}
+
+function exportCMOPDF() {
+  window.print();
 }
