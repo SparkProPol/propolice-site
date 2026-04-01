@@ -194,8 +194,19 @@ if (grid) {
     const copyId = btn.getAttribute("data-copy");
 
     if (openId) {
+      const found = resources.find(r => r.id === openId);
+
+      if (found?.access === "membre" && !isMember()) {
+        const adh = document.getElementById("adhesion");
+        if (adh) {
+          adh.scrollIntoView({ behavior: "smooth" });
+        }
+        return;
+      }
+
       alert(`Démo : ouverture de la ressource "${openId}".\n\nTu pourras connecter ça à une page dédiée, un PDF, ou un espace membre.`);
     }
+
     if (copyId) {
       await navigator.clipboard.writeText(copyId);
       showToast("ID copié dans le presse-papiers ✅");
