@@ -156,7 +156,6 @@ function render(list) {
     grid.appendChild(el);
   }
 }
-}
 
 function applyFilters() {
   const q = (searchInput?.value || "").trim().toLowerCase();
