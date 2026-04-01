@@ -411,6 +411,57 @@
       </div>
     </section>
 
+    <section class="section" id="simulateur-cmo">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Simulateur CMO / retenue sur salaire</h2>
+      <p>Estimez l’impact d’un arrêt maladie ordinaire sur votre rémunération mensuelle.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="formGrid">
+          <label class="field">
+            <span>Traitement mensuel estimé (€)</span>
+            <input type="number" id="cmoSalaire" min="0" value="2500" />
+          </label>
+
+          <label class="field">
+            <span>Nombre de jours d’arrêt</span>
+            <input type="number" id="cmoJours" min="0" value="1" />
+          </label>
+
+          <label class="field full">
+            <span>Régime applicable</span>
+            <select id="cmoRegime">
+              <option value="plein">Plein traitement</option>
+              <option value="demi">Demi-traitement</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row" style="margin-top:16px">
+          <button class="btn primary" type="button" onclick="calculerCMO()">Calculer la retenue</button>
+          <button class="btn ghost" type="button" onclick="reinitCMO()">Réinitialiser</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Résultat estimatif</h3>
+        <p class="smallmuted">Simulation indicative à vocation informative.</p>
+
+        <div id="resultatCMO" style="margin-top:18px">
+          <div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice" style="margin-top:16px">
+      <strong>Important :</strong> ce simulateur donne une estimation pédagogique. Le résultat réel peut varier selon votre situation administrative, votre ancienneté dans le congé, votre régime de rémunération et les textes applicables.
+    </div>
+  </div>
+</section>
+
     <section class="section" id="webinaires">
       <div class="container">
         <div class="sectionHead">
