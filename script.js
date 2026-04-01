@@ -128,6 +128,14 @@ function render(list) {
   }
 
   for (const r of list) {
+    const locked = r.access === "membre" && !isMember();
+
+    const actionButton = locked
+      ? `<a class="linkBtn" href="#adhesion">Débloquer</a>`
+      : (r.url
+          ? `<a class="linkBtn" href="${r.url}">Ouvrir</a>`
+          : `<button class="linkBtn" data-open="${r.id}">Ouvrir</button>`);
+
     const el = document.createElement("article");
     el.className = "card resource";
     el.innerHTML = `
@@ -139,13 +147,15 @@ function render(list) {
         <span class="tag">${r.access === "membre" ? "Accès membre" : "Accès public"}</span>
       </div>
       <div class="actions">
-        ${r.url ? `<a class="linkBtn" href="${r.url}">Ouvrir</a>` : `<button class="linkBtn" data-open="${r.id}">Ouvrir</button>`}
+        ${actionButton}
         <button class="linkBtn" data-copy="${r.id}">Copier l’ID</button>
       </div>
     `;
+
     renderPremiumLock(el, r);
     grid.appendChild(el);
   }
+}
 }
 
 function applyFilters() {
