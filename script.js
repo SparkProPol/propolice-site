@@ -532,3 +532,61 @@ document.addEventListener("DOMContentLoaded", () => {
   loadArticlesCards();
   applyFilters(); // 🔥 IMPORTANT
 });
+
+// ---------------- Simulateur CMO / retenue sur salaire ----------------
+function calculerCMO() {
+  const salaire = parseFloat(document.getElementById("cmoSalaire")?.value) || 0;
+  const jours = parseFloat(document.getElementById("cmoJours")?.value) || 0;
+  const regime = document.getElementById("cmoRegime")?.value || "plein";
+
+  const baseJour = salaire / 30;
+  let retenue = 0;
+  let maintien = salaire;
+
+  if (regime === "plein") {
+    retenue = 0;
+    maintien = salaire;
+  } else if (regime === "demi") {
+    retenue = (baseJour * jours) * 0.5;
+    maintien = salaire - retenue;
+  }
+
+  if (maintien < 0) maintien = 0;
+
+  const bloc = `
+    <div style="display:grid; gap:10px;">
+      <div class="row between"><span>Traitement mensuel de référence</span><strong>${salaire.toFixed(2)} €</strong></div>
+      <div class="row between"><span>Jours d’arrêt pris en compte</span><strong>${jours}</strong></div>
+      <div class="row between"><span>Régime appliqué</span><strong>${regime === "plein" ? "Plein traitement" : "Demi-traitement"}</strong></div>
+      <div class="row between"><span>Retenue estimée</span><strong>- ${retenue.toFixed(2)} €</strong></div>
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
+      <div class="row between" style="font-size:1.15rem;">
+        <strong>Montant maintenu estimé</strong>
+        <strong>${maintien.toFixed(2)} €</strong>
+      </div>
+    </div>
+  `;
+
+  const cible = document.getElementById("resultatCMO");
+  if (cible) {
+    cible.innerHTML = bloc;
+  }
+}
+
+function reinitCMO() {
+  const defaults = {
+    cmoSalaire: 2500,
+    cmoJours: 1,
+    cmoRegime: "plein"
+  };
+
+  Object.entries(defaults).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = value;
+  });
+
+  const cible = document.getElementById("resultatCMO");
+  if (cible) {
+    cible.innerHTML = `<div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>`;
+  }
+}
