@@ -565,32 +565,33 @@
       </div>
     </div>
   </footer>
-
+  <script src="script.js"></script>
   <script>
-  (function () {
-    const btn = document.getElementById("btnMember");
-    if (!btn) return;
+    (function () {
+      const btn = document.getElementById("btnMember");
+      if (!btn) return;
 
-    function refreshMemberButton() {
-      const isOn = localStorage.getItem("propolice_member") === "true";
-      btn.textContent = isOn ? "Mode adhérent ON" : "Mode adhérent OFF";
-    }
-
-    btn.addEventListener("click", function () {
-      const isOn = localStorage.getItem("propolice_member") === "true";
-
-      if (isOn) {
-        localStorage.removeItem("propolice_member");
-      } else {
-        localStorage.setItem("propolice_member", "true");
+      function refreshMemberButton() {
+        const isOn = localStorage.getItem("propolice_member") === "true";
+        btn.textContent = isOn ? "Mode adhérent ON" : "Mode adhérent OFF";
       }
 
-      refreshMemberButton();
-      window.location.reload();
-    });
+      btn.addEventListener("click", function () {
+        const isOn = localStorage.getItem("propolice_member") === "true";
 
-    refreshMemberButton();
-  })();
-</script>
+        if (isOn) {
+          localStorage.removeItem("propolice_member");
+        } else {
+          localStorage.setItem("propolice_member", "true");
+        }
+
+        refreshMemberButton();
+        window.location.reload();
+      });
+
+      refreshMemberButton();
+    })();
+  </script>
 </body>
 </html>
+  
