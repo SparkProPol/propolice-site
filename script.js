@@ -537,29 +537,52 @@ document.addEventListener("DOMContentLoaded", () => {
 function calculerCMO() {
   const salaire = parseFloat(document.getElementById("cmoSalaire")?.value) || 0;
   const jours = parseFloat(document.getElementById("cmoJours")?.value) || 0;
-  const regime = document.getElementById("cmoRegime")?.value || "plein";
+  const deja = parseFloat(document.getElementById("cmoDeja")?.value) || 0;
 
   const baseJour = salaire / 30;
-  let retenue = 0;
-  let maintien = salaire;
 
-  if (regime === "plein") {
-    retenue = 0;
-    maintien = salaire;
-  } else if (regime === "demi") {
-    retenue = (baseJour * jours) * 0.5;
-    maintien = salaire - retenue;
+  let jours90 = 0;
+  let jours50 = 0;
+
+  const totalAvant = deja;
+  const totalApres = deja + jours;
+
+  // Calcul tranche 90%
+  if (totalAvant < 90) {
+    jours90 = Math.min(jours, 90 - totalAvant);
   }
+
+  // Calcul tranche 50%
+  if (totalApres > 90) {
+    jours50 = totalApres - Math.max(90, totalAvant);
+  }
+
+  const retenue90 = jours90 * baseJour * 0.10;
+  const retenue50 = jours50 * baseJour * 0.50;
+
+  const retenueTotale = retenue90 + retenue50;
+  let maintien = salaire - retenueTotale;
 
   if (maintien < 0) maintien = 0;
 
   const bloc = `
     <div style="display:grid; gap:10px;">
-      <div class="row between"><span>Traitement mensuel de référence</span><strong>${salaire.toFixed(2)} €</strong></div>
-      <div class="row between"><span>Jours d’arrêt pris en compte</span><strong>${jours}</strong></div>
-      <div class="row between"><span>Régime appliqué</span><strong>${regime === "plein" ? "Plein traitement" : "Demi-traitement"}</strong></div>
-      <div class="row between"><span>Retenue estimée</span><strong>- ${retenue.toFixed(2)} €</strong></div>
+      <div class="row between"><span>Salaire de référence</span><strong>${salaire.toFixed(2)} €</strong></div>
+      <div class="row between"><span>Jours saisis</span><strong>${jours}</strong></div>
+      <div class="row between"><span>Jours déjà consommés</span><strong>${deja}</strong></div>
+
       <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
+
+      <div class="row between"><span>Jours à 90%</span><strong>${jours90}</strong></div>
+      <div class="row between"><span>Jours à 50%</span><strong>${jours50}</strong></div>
+
+      <div class="row between"><span>Retenue 90%</span><strong>- ${retenue90.toFixed(2)} €</strong></div>
+      <div class="row between"><span>Retenue 50%</span><strong>- ${retenue50.toFixed(2)} €</strong></div>
+
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
+
+      <div class="row between"><strong>Retenue totale</strong><strong>- ${retenueTotale.toFixed(2)} €</strong></div>
+
       <div class="row between" style="font-size:1.15rem;">
         <strong>Montant maintenu estimé</strong>
         <strong>${maintien.toFixed(2)} €</strong>
