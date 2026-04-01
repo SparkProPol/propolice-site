@@ -600,7 +600,7 @@ function reinitCMO() {
   const defaults = {
     cmoSalaire: 2500,
     cmoJours: 1,
-    cmoRegime: "plein"
+    cmoDeja: 0
   };
 
   Object.entries(defaults).forEach(([id, value]) => {
