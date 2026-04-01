@@ -531,4 +531,5 @@ document.addEventListener("DOMContentLoaded", () => {
   loadSiteSettings();
   loadResourcesFromJSON();
   loadArticlesCards();
+  applyFilters(); // 🔥 IMPORTANT
 });
