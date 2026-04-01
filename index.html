@@ -421,23 +421,90 @@
     </div>
 
     <div class="grid2">
-      <div class="notice" style="margin-top:16px">
-  <strong>Important :</strong>
-  <br><br>
-  Depuis le <strong>1er mars 2025</strong>, le régime du congé maladie ordinaire (CMO) a évolué :
-  <ul style="margin-top:8px;">
-    <li>Maintien à <strong>90 % du traitement</strong> pendant les 3 premiers mois</li>
-    <li>Puis maintien à <strong>50 % du traitement</strong> au-delà</li>
-  </ul>
+      <div class="card">
+        <div class="formGrid">
+          <label class="field">
+            <span>Traitement mensuel estimé (€)</span>
+            <input type="number" id="cmoSalaire" min="0" value="2500" />
+          </label>
 
-  Les droits sont calculés en fonction des <strong>jours de CMO déjà consommés</strong> sur une période de référence de <strong>12 mois glissants</strong>.
+          <label class="field">
+            <span>Nombre de jours d’arrêt</span>
+            <input type="number" id="cmoJours" min="0" value="1" />
+          </label>
 
-  <br><br>
-  Cette simulation est <strong>indicative</strong> et ne prend pas en compte l’ensemble des paramètres individuels (historique des arrêts, situation administrative, primes, retenues spécifiques, etc.).
+          <label class="field">
+            <span>Jours de CMO déjà consommés (12 derniers mois)</span>
+            <input type="number" id="cmoDeja" min="0" value="0" />
+          </label>
 
-  <br><br>
-  Pour un calcul précis, rapprochez-vous de votre service gestionnaire ou utilisez les outils officiels de l’administration (CISIRH).
-</div>
+          <label class="field full">
+            <span>Historique multi-arrêts (jours séparés par des virgules)</span>
+            <input type="text" id="cmoHistorique" placeholder="Ex : 3, 5, 12" />
+          </label>
+
+          <label class="field">
+            <span>Régime applicable</span>
+            <select id="cmoRegime">
+              <option value="auto">Calcul automatique 90% / 50%</option>
+              <option value="plein">Plein traitement</option>
+              <option value="demi">Demi-traitement</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Jour de carence</span>
+            <select id="cmoCarence">
+              <option value="non">Non</option>
+              <option value="oui">Oui</option>
+            </select>
+          </label>
+
+          <label class="field full">
+            <span>Mode d’affichage</span>
+            <select id="cmoMode">
+              <option value="simple">Simple</option>
+              <option value="expert">Expert délégué</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row" style="margin-top:16px; gap:10px; flex-wrap:wrap;">
+          <button class="btn primary" type="button" onclick="calculerCMO()">Calculer la retenue</button>
+          <button class="btn ghost" type="button" onclick="reinitCMO()">Réinitialiser</button>
+          <button class="btn ghost" type="button" onclick="exportCMOPDF()">Exporter PDF</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Résultat estimatif</h3>
+        <p class="smallmuted">Simulation indicative à vocation informative.</p>
+
+        <div id="resultatCMO" style="margin-top:18px">
+          <div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice" style="margin-top:16px">
+      <strong>Important :</strong>
+      <br><br>
+      Depuis le <strong>1er mars 2025</strong>, le régime du congé maladie ordinaire (CMO) a évolué :
+      <ul style="margin-top:8px;">
+        <li>Maintien à <strong>90 % du traitement</strong> pendant les 3 premiers mois</li>
+        <li>Puis maintien à <strong>50 % du traitement</strong> au-delà</li>
+      </ul>
+
+      Les droits sont calculés en fonction des <strong>jours de CMO déjà consommés</strong> sur une période de référence de <strong>12 mois glissants</strong>.
+
+      <br><br>
+      Cette simulation est <strong>indicative</strong> et ne prend pas en compte l’ensemble des paramètres individuels (historique des arrêts, situation administrative, primes, retenues spécifiques, etc.).
+
+      <br><br>
+      Pour un calcul précis, rapprochez-vous de votre service gestionnaire ou utilisez les outils officiels de l’administration (CISIRH).
+    </div>
+  </div>
+</section>
 
     <section class="section" id="webinaires">
       <div class="container">
