@@ -416,12 +416,13 @@ async function loadArticlesCards() {
 // ---------------- Simulateur primes version enrichie ----------------
 function getSalaireBase(grade, echelon) {
   const grilles = {
-    gpx: [2100, 2140, 2180, 2220, 2260, 2300, 2340, 2380, 2420, 2460, 2500, 2540],
-    bc: [2250, 2300, 2350, 2400, 2450, 2500, 2550, 2600, 2650, 2700, 2750, 2800],
-    major: [2500, 2560, 2620, 2680, 2740, 2800, 2860, 2920, 2980, 3040, 3100, 3160]
+    Gpx: [2100,2200,2300,2400,2500,2600,2700,2800],
+    Bc_norm: [2400,2500,2600,2700,2800,2900],
+    Bc_sup: [2700,2800,2900,3000,3100,3200],
+    Major: [3000,3100,3200,3300,3400,3500]
   };
 
-  const index = Math.max(1, Math.min(12, parseInt(echelon || 1, 10))) - 1;
+  const index = Math.max(0, Math.min((grilles[grade]?.length || 1)-1, echelon-1));
   return grilles[grade]?.[index] || 2100;
 }
 
