@@ -43,14 +43,7 @@ const BDD = {
       }
     },
 
-    crs: {
-      major_crs: {
-        label: "Major CRS",
-        issp: 0.285,
-        irm: 0.285,
-        echelons: {1:478,2:489,3:508,4:518,5:528,6:548,7:565}
-      }
-    },
+   crs: "actif",
 
     administratif: {},
 
