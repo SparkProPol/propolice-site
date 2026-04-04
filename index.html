@@ -68,7 +68,7 @@ window.addEventListener("load", () => {
     Object.keys(grades).forEach(g => {
       let opt = document.createElement("option");
       opt.value = g;
-      opt.textContent = grades[g].label;
+      opt.textContent = grades[g].label || g;
       gradeSelect.appendChild(opt);
     });
 
