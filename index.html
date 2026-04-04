@@ -43,10 +43,6 @@ window.addEventListener("load", () => {
   const echelonSelect = document.getElementById("echelon");
 
   // Sécurité chargement BDD
-  if (typeof BDD === "undefined") {
-    alert("ERREUR : BDD non chargée");
-    return;
-  }
 
   // Remplissage corps
   Object.keys(BDD.corps).forEach(c => {
