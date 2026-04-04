@@ -630,7 +630,54 @@
         </form>
       </div>
     </section>
+<section class="section" id="simulateur-pro">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Simulateur indiciaire PRO POLICE</h2>
+      <p>Calcul basé sur les grilles officielles Police nationale.</p>
+    </div>
 
+    <div class="card">
+      <div class="formGrid">
+
+        <label class="field">
+          <span>Corps</span>
+          <select id="corpsPro"></select>
+        </label>
+
+        <label class="field">
+          <span>Grade</span>
+          <select id="gradePro"></select>
+        </label>
+
+        <label class="field">
+          <span>Échelon</span>
+          <select id="echelonPro"></select>
+        </label>
+
+        <label class="field">
+          <span>Zone</span>
+          <select id="zonePro">
+            <option value="0">Zone 0%</option>
+            <option value="1">Zone 1%</option>
+            <option value="3">Zone 3%</option>
+          </select>
+        </label>
+
+      </div>
+
+      <div class="row" style="margin-top:16px">
+        <button class="btn primary" onclick="calculerPro()">Calculer</button>
+      </div>
+
+      <div id="resultatPro" style="margin-top:20px"></div>
+
+    </div>
+  </div>
+</section>
+    <section id="simulateur-pro">
+   ...
+</section>
   </main>
 
   <footer class="footer">
@@ -671,7 +718,9 @@
 <script src="script.js?v=1"></script>
 
 <!-- SIMULATEUR PRO POLICE -->
-
+<script>
+/* code simulateur ici */
+</script>
 
 <!-- TON SCRIPT MEMBRE -->
 <script>
