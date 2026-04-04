@@ -164,21 +164,19 @@ pts: {
   }
 
 },
-    retraite: {
+   retraite: {
 
   taux: 0.75, // taux plein fonction publique (75%)
 
   decote: 0.0125, // 1,25% par trimestre manquant
   surcote: 0.0125, // 1,25% par trimestre supplémentaire
 
-  // 🔥 minimum garanti (approximation)
   minimum: 1200,
 
-  // 🔥 coefficients selon catégorie (utile futur)
   categories: {
 
     actif: {
-      bonification: 0.2 // exemple : bonification 1/5e (à affiner)
+      bonification: 0.2
     },
 
     administratif: {
@@ -191,4 +189,8 @@ pts: {
 
   }
 
-};
+  } // 🔥 ferme "retraite"
+
+  } // 🔥 ferme "corps"
+
+}; // 🔥 ferme "BDD"
