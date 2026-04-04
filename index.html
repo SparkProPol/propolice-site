@@ -678,6 +678,17 @@
     <section id="simulateur-pro">
    ...
 </section>
+    <section style="padding:40px; background:#111; color:white;">
+  <h2>TEST SIMULATEUR PRO</h2>
+
+  <select id="corpsPro"></select>
+  <select id="gradePro"></select>
+  <select id="echelonPro"></select>
+
+  <button onclick="calculerPro()">Calculer</button>
+
+  <div id="resultatPro"></div>
+</section>
   </main>
 
   <footer class="footer">
@@ -717,12 +728,156 @@
 <!-- TON SCRIPT PRINCIPAL -->
 <script src="script.js?v=1"></script>
 
-<!-- SIMULATEUR PRO POLICE -->
+<!-- 🟢 SIMULATEUR PRO POLICE -->
 <script>
-/* code simulateur ici */
-</script>
+window.addEventListener("load", () => {
 
+  const corpsSelect = document.getElementById("corpsPro");
+  const gradeSelect = document.getElementById("gradePro");
+  const echelonSelect = document.getElementById("echelonPro");
+
+  if (!corpsSelect) return;
+
+  for (let c in BDD.corps) {
+    if (c === "retraite") continue;
+
+    let opt = document.createElement("option");
+    opt.value = c;
+    opt.textContent = c;
+    corpsSelect.appendChild(opt);
+  }
+
+  function remplirGrades() {
+    const corps = corpsSelect.value;
+    gradeSelect.innerHTML = "";
+
+    const grades = BDD.corps[corps];
+
+    for (let g in grades) {
+      if (!grades[g].label) continue;
+
+      let opt = document.createElement("option");
+      opt.value = g;
+      opt.textContent = grades[g].label;
+      gradeSelect.appendChild(opt);
+    }
+
+    remplirEchelons();
+  }
+
+  function remplirEchelons() {
+    const corps = corpsSelect.value;
+    const grade = gradeSelect.value;
+
+    echelonSelect.innerHTML = "";
+
+    const echelons = BDD.corps[corps][grade].echelons;
+
+    for (let e in echelons) {
+      let opt = document.createElement("option");
+      opt.value = e;
+      opt.textContent = "Échelon " + e;
+      echelonSelect.appendChild(opt);
+    }
+  }
+
+  window.calculerPro = function () {
+    const corps = corpsSelect.value;
+    const grade = gradeSelect.value;
+    const echelon = echelonSelect.value;
+
+    const data = BDD.corps[corps][grade];
+    const indice = data.echelons[echelon];
+
+    const brut = indice * BDD.valeur_point;
+
+    document.getElementById("resultatPro").innerHTML =
+      "💰 Brut : " + Math.round(brut) + " €";
+  };
+
+  corpsSelect.addEventListener("change", remplirGrades);
+  gradeSelect.addEventListener("change", remplirEchelons);
+
+  remplirGrades();
+});
+</script>
 <!-- TON SCRIPT MEMBRE -->
+  <script>
+window.addEventListener("load", () => {
+
+  const corpsSelect = document.getElementById("corpsPro");
+  const gradeSelect = document.getElementById("gradePro");
+  const echelonSelect = document.getElementById("echelonPro");
+
+  if (!corpsSelect) {
+    console.error("simulateur non trouvé");
+    return;
+  }
+
+  // remplir corps
+  for (let c in BDD.corps) {
+    if (c === "retraite") continue;
+
+    let opt = document.createElement("option");
+    opt.value = c;
+    opt.textContent = c;
+    corpsSelect.appendChild(opt);
+  }
+
+  function remplirGrades() {
+    const corps = corpsSelect.value;
+    gradeSelect.innerHTML = "";
+
+    const grades = BDD.corps[corps];
+
+    for (let g in grades) {
+      if (!grades[g].label) continue;
+
+      let opt = document.createElement("option");
+      opt.value = g;
+      opt.textContent = grades[g].label;
+      gradeSelect.appendChild(opt);
+    }
+
+    remplirEchelons();
+  }
+
+  function remplirEchelons() {
+    const corps = corpsSelect.value;
+    const grade = gradeSelect.value;
+
+    echelonSelect.innerHTML = "";
+
+    const echelons = BDD.corps[corps][grade].echelons;
+
+    for (let e in echelons) {
+      let opt = document.createElement("option");
+      opt.value = e;
+      opt.textContent = "Échelon " + e;
+      echelonSelect.appendChild(opt);
+    }
+  }
+
+  window.calculerPro = function () {
+    const corps = corpsSelect.value;
+    const grade = gradeSelect.value;
+    const echelon = echelonSelect.value;
+
+    const data = BDD.corps[corps][grade];
+    const indice = data.echelons[echelon];
+
+    const brut = indice * BDD.valeur_point;
+
+    document.getElementById("resultatPro").innerHTML =
+      "Brut : " + Math.round(brut) + " €";
+  };
+
+  corpsSelect.addEventListener("change", remplirGrades);
+  gradeSelect.addEventListener("change", remplirEchelons);
+
+  remplirGrades();
+});
+</script>
 <script>
 (function () {
   const btn = document.getElementById("btnMember");
