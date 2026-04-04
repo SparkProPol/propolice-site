@@ -663,32 +663,36 @@
       </div>
     </div>
   </footer>
- <script src="content/data/grilles.js"></script>
+ <!-- BDD PRO POLICE -->
+<script src="content/data/grilles.js"></script>
+
+<!-- TON SCRIPT PRINCIPAL -->
 <script src="script.js?v=1"></script>
 
+<!-- TON SCRIPT MEMBRE -->
 <script>
-  (function () {
-    const btn = document.getElementById("btnMember");
-    if (!btn) return;
+(function () {
+  const btn = document.getElementById("btnMember");
+  if (!btn) return;
 
-    function refreshMemberButton() {
-      const isOn = localStorage.getItem("propolice_member") === "true";
-      btn.textContent = isOn ? "Mode adhérent ON" : "Mode adhérent OFF";
+  function refreshMemberButton() {
+    const isOn = localStorage.getItem("propolice_member") === "true";
+    btn.textContent = isOn ? "Mode adhérent ON" : "Mode adhérent OFF";
+  }
+
+  btn.addEventListener("click", function () {
+    const isOn = localStorage.getItem("propolice_member") === "true";
+
+    if (isOn) {
+      localStorage.removeItem("propolice_member");
+    } else {
+      localStorage.setItem("propolice_member", "true");
     }
 
-    btn.addEventListener("click", function () {
-      const isOn = localStorage.getItem("propolice_member") === "true";
-
-      if (isOn) {
-        localStorage.removeItem("propolice_member");
-      } else {
-        localStorage.setItem("propolice_member", "true");
-        }
-
-      refreshMemberButton();
-      window.location.reload();
-    });
-
     refreshMemberButton();
-  })();
+    window.location.reload();
+  });
+
+  refreshMemberButton();
+})();
 </script>
