@@ -727,7 +727,7 @@ window.addEventListener("load", () => {
   const echelonSelect = document.getElementById("echelonPro");
 
   if (!corpsSelect) return;
-
+corpsSelect.innerHTML = "";
   for (let c in BDD.corps) {
     if (c === "retraite") continue;
 
