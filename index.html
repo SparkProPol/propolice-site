@@ -820,10 +820,10 @@ window.addEventListener("load", () => {
   // 🔥 éviter doublon CRS string
   if (typeof BDD.corps[c] === "string") continue;
 
-    let opt = document.createElement("option");
-    opt.value = c;
-    opt.textContent = c;
-    corpsSelect.appendChild(opt);
+    let optCrs = document.createElement("option");
+optCrs.value = "crs";
+optCrs.textContent = "crs";
+corpsSelect.appendChild(optCrs);
   }
 
   function remplirGrades() {
