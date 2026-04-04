@@ -33,8 +33,8 @@
 
 </div>
 
-<!-- BDD -->
-<!-- <script src="content/data/grilles.js"></script> -->
+<!-- ✅ CHARGEMENT BDD OBLIGATOIRE -->
+<script src="grilles.js"></script>
 
 <script>
 window.addEventListener("load", () => {
@@ -43,32 +43,30 @@ window.addEventListener("load", () => {
   const gradeSelect = document.getElementById("grade");
   const echelonSelect = document.getElementById("echelon");
 
-  // 🔥 reset
-  corpsSelect.innerHTML = "";
+  // Sécurité chargement BDD
+  if (typeof BDD === "undefined") {
+    alert("ERREUR : BDD non chargée");
+    return;
+  }
 
-  // 🔥 ajout corps
-  ["actif","crs","administratif","pts"].forEach(c => {
+  // Remplissage corps
+  Object.keys(BDD.corps).forEach(c => {
     let opt = document.createElement("option");
     opt.value = c;
     opt.textContent = c;
     corpsSelect.appendChild(opt);
   });
 
-  function getGrades(corps) {
-    if (corps === "crs") return BDD.corps["actif"];
-    return BDD.corps[corps];
-  }
-
   function remplirGrades() {
     const corps = corpsSelect.value;
-    const grades = getGrades(corps);
+    const grades = BDD.corps[corps];
 
     gradeSelect.innerHTML = "";
 
     Object.keys(grades).forEach(g => {
       let opt = document.createElement("option");
       opt.value = g;
-      opt.textContent = grades[g].label || g;
+      opt.textContent = grades[g].label;
       gradeSelect.appendChild(opt);
     });
 
@@ -79,12 +77,11 @@ window.addEventListener("load", () => {
     const corps = corpsSelect.value;
     const grade = gradeSelect.value;
 
-    const grades = getGrades(corps);
-    const echelons = grades[grade].echelons;
+    const data = BDD.corps[corps][grade];
 
     echelonSelect.innerHTML = "";
 
-    Object.keys(echelons).forEach(e => {
+    Object.keys(data.echelons).forEach(e => {
       let opt = document.createElement("option");
       opt.value = e;
       opt.textContent = "Échelon " + e;
@@ -98,19 +95,12 @@ window.addEventListener("load", () => {
     const echelon = echelonSelect.value;
     const zone = document.getElementById("zone").value;
 
-    let data = getGrades(corps)[grade];
+    const data = BDD.corps[corps][grade];
 
     let brut = data.echelons[echelon] * BDD.valeur_point;
 
-    // primes
     let issp = data.issp ? brut * data.issp : 0;
 
-    // 🔥 CRS surcharge
-    if (corps === "crs") {
-      issp = brut * 0.285;
-    }
-
-    // résidence
     let ir = brut * BDD.zones[zone];
 
     let total = brut + issp + ir;
@@ -125,11 +115,10 @@ window.addEventListener("load", () => {
   corpsSelect.addEventListener("change", remplirGrades);
   gradeSelect.addEventListener("change", remplirEchelons);
 
+  // Initialisation
   remplirGrades();
 });
 </script>
 
 </body>
 </html>
-
-
