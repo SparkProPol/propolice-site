@@ -630,29 +630,7 @@
         </form>
       </div>
     </section>
-    <div style="padding:20px; border:1px solid #ccc; margin-top:30px;">
-  <h2>💰 Simulateur PRO POLICE</h2>
 
-  <label>Corps :</label><br>
-  <select id="corps"></select><br><br>
-
-  <label>Grade :</label><br>
-  <select id="grade"></select><br><br>
-
-  <label>Échelon :</label><br>
-  <select id="echelon"></select><br><br>
-
-  <label>Zone :</label><br>
-  <select id="zone">
-    <option value="0">Zone 0%</option>
-    <option value="1">Zone 1%</option>
-    <option value="3">Zone 3%</option>
-  </select><br><br>
-
-  <button onclick="calculer()">Calculer</button>
-
-  <div id="resultat" style="margin-top:20px;"></div>
-</div>
   </main>
 
   <footer class="footer">
@@ -693,94 +671,7 @@
 <script src="script.js?v=1"></script>
 
 <!-- SIMULATEUR PRO POLICE -->
-<script>
-function remplirGrades() {
-  const corps = document.getElementById("corps").value;
-  const gradeSelect = document.getElementById("gradeSimu");
 
-  gradeSelect.innerHTML = "";
-
-  const grades = BDD.corps[corps];
-
-  Object.keys(grades).forEach(g => {
-    if (!grades[g].label) return;
-
-    let option = document.createElement("option");
-    option.value = g;
-    option.textContent = grades[g].label;
-    gradeSelect.appendChild(option);
-  });
-
-  remplirEchelons();
-}
-
-function remplirEchelons() {
-  const corps = document.getElementById("corps").value;
-  const grade = document.getElementById("gradeSimu").value;
-
-  const echelonSelect = document.getElementById("echelonSimu");
-  echelonSelect.innerHTML = "";
-
-  const data = BDD.corps[corps][grade];
-
-  Object.keys(data.echelons).forEach(e => {
-    let option = document.createElement("option");
-    option.value = e;
-    option.textContent = "Échelon " + e;
-    echelonSelect.appendChild(option);
-  });
-}
-
-function calculer() {
-  const corps = document.getElementById("corps").value;
-  const grade = document.getElementById("gradeSimu").value;
-  const echelon = document.getElementById("echelonSimu").value;
-  const zone = document.getElementById("zoneSimu").value;
-
-  const data = BDD.corps[corps][grade];
-
-  const indice = data.echelons[echelon];
-  const brut = indice * BDD.valeur_point;
-
-  let issp = data.issp ? brut * data.issp : 0;
-  let irm = data.irm ? brut * data.irm : 0;
-
-  const residence = brut * BDD.zones[zone];
-
-  const total = brut + issp + irm + residence;
-
-  const charges = total * (BDD.charges.csg + BDD.charges.crds);
-  const net = total - charges;
-
-  document.getElementById("resultatSimu").innerHTML = `
-    💰 Brut : ${brut.toFixed(0)} €<br>
-    🔥 Primes : ${(issp+irm).toFixed(0)} €<br>
-    📍 Résidence : ${residence.toFixed(0)} €<br>
-    📉 Charges : ${charges.toFixed(0)} €<br>
-    💵 Net estimé : ${net.toFixed(0)} €
-  `;
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const corpsSelect = document.getElementById("corps");
-
-  corpsSelect.innerHTML = "";
-
-  for (let c in BDD.corps) {
-    if (c === "retraite") continue;
-
-    let option = document.createElement("option");
-    option.value = c;
-    option.textContent = c.toUpperCase();
-    corpsSelect.appendChild(option);
-  }
-
-  remplirGrades();
-
-  corpsSelect.addEventListener("change", remplirGrades);
-  document.getElementById("gradeSimu").addEventListener("change", remplirEchelons);
-});
-</script>
 
 <!-- TON SCRIPT MEMBRE -->
 <script>
