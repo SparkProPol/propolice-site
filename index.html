@@ -80,7 +80,12 @@ function calculer() {
 
 document.addEventListener("DOMContentLoaded", () => {
   const corpsSelect = document.getElementById("corps");
+  const gradeSelect = document.getElementById("grade");
 
+  // 🔥 Nettoyage
+  corpsSelect.innerHTML = "";
+
+  // 🔥 Remplir les corps
   for (let c in BDD.corps) {
     if (c === "retraite") continue;
 
@@ -90,10 +95,17 @@ document.addEventListener("DOMContentLoaded", () => {
     corpsSelect.appendChild(option);
   }
 
+  // 🔥 Forcer le premier affichage
   remplirGrades();
 
-  corpsSelect.addEventListener("change", remplirGrades);
-  document.getElementById("grade").addEventListener("change", remplirEchelons);
+  // 🔥 Events fiables
+  corpsSelect.addEventListener("change", () => {
+    remplirGrades();
+  });
+
+  gradeSelect.addEventListener("change", () => {
+    remplirEchelons();
+  });
 });
 </script>
 <body>
