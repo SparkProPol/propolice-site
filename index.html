@@ -751,7 +751,12 @@ window.addEventListener("load", () => {
     const corps = corpsSelect.value;
     gradeSelect.innerHTML = "";
 
-    const grades = BDD.corps[corps];
+   let grades = BDD.corps[corps];
+
+// 🔥 si CRS → on prend actif
+if (corps === "crs") {
+  grades = BDD.corps["actif"];
+}
 
     for (let g in grades) {
       if (!grades[g].label) continue;
@@ -786,7 +791,12 @@ window.addEventListener("load", () => {
     const grade = gradeSelect.value;
     const echelon = echelonSelect.value;
 
-    const data = BDD.corps[corps][grade];
+    let data = BDD.corps[corps][grade];
+
+// 🔥 si CRS → on utilise actif
+if (corps === "crs") {
+  data = BDD.corps["actif"][grade];
+}
     const indice = data.echelons[echelon];
 
     const brut = indice * BDD.valeur_point;
