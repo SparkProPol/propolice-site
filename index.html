@@ -663,33 +663,32 @@
       </div>
     </div>
   </footer>
- <script src="script.js?v=1"></script>
-  <script>
-    (function () {
-      const btn = document.getElementById("btnMember");
-      if (!btn) return;
+ <script src="content/data/grilles.js"></script>
+<script src="script.js?v=1"></script>
 
-      function refreshMemberButton() {
-        const isOn = localStorage.getItem("propolice_member") === "true";
-        btn.textContent = isOn ? "Mode adhérent ON" : "Mode adhérent OFF";
-      }
+<script>
+  (function () {
+    const btn = document.getElementById("btnMember");
+    if (!btn) return;
 
-      btn.addEventListener("click", function () {
-        const isOn = localStorage.getItem("propolice_member") === "true";
+    function refreshMemberButton() {
+      const isOn = localStorage.getItem("propolice_member") === "true";
+      btn.textContent = isOn ? "Mode adhérent ON" : "Mode adhérent OFF";
+    }
 
-        if (isOn) {
-          localStorage.removeItem("propolice_member");
-        } else {
-          localStorage.setItem("propolice_member", "true");
+    btn.addEventListener("click", function () {
+      const isOn = localStorage.getItem("propolice_member") === "true";
+
+      if (isOn) {
+        localStorage.removeItem("propolice_member");
+      } else {
+        localStorage.setItem("propolice_member", "true");
         }
 
-        refreshMemberButton();
-        window.location.reload();
-      });
-
       refreshMemberButton();
-    })();
-  </script>
-</body>
-</html>
-  
+      window.location.reload();
+    });
+
+    refreshMemberButton();
+  })();
+</script>
