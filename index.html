@@ -1,10 +1,33 @@
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
-  <title>TEST</title>
+  <meta charset="utf-8">
+  <title>Simulateur PRO POLICE</title>
 </head>
-<body>
-  <h1>ÇA MARCHE</h1>
+
+<body style="font-family: Arial; padding:40px; background:#0b1220; color:white;">
+
+<h1>Simulateur PRO POLICE</h1>
+
+<label>Corps</label><br>
+<select id="corps"></select><br><br>
+
+<label>Grade</label><br>
+<select id="grade"></select><br><br>
+
+<label>Échelon</label><br>
+<select id="echelon"></select><br><br>
+
+<button onclick="calculer()">Calculer</button>
+
+<div id="resultat"></div>
+
+<!-- BDD -->
+<script src="content/data/grilles.js"></script>
+
+<script>
+console.log("BDD:", BDD);
+</script>
+
 </body>
 </html>
- 
