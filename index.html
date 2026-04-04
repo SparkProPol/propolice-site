@@ -2,41 +2,122 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>PRO POLICE - Simulateurs</title>
+  <title>Simulateur PRO POLICE</title>
 </head>
 
 <body style="font-family: Arial; padding:40px; background:#0b1220; color:white;">
 
-<h1>PRO POLICE - Simulateurs</h1>
+<h1>Simulateur indiciaire PRO POLICE</h1>
 
-<!-- ================= ITN ================= -->
-<div style="background:#111; padding:20px; margin-bottom:20px; border-radius:10px; max-width:400px;">
-  <h2>Simulateur ITN (Heures de nuit)</h2>
-
-  <label>Heures de nuit</label><br>
-  <input id="heures" type="number" value="100"><br><br>
-
-  <button onclick="calculITN()">Calculer</button>
-
-  <div id="resultatITN" style="margin-top:20px;"></div>
-</div>
-
-<!-- ================= CMO ================= -->
 <div style="background:#111; padding:20px; border-radius:10px; max-width:400px;">
-  <h2>Simulateur CMO</h2>
 
-  <label>Salaire mensuel brut (€)</label><br>
-  <input id="salaire" type="number" value="2000"><br><br>
+  <label>Corps</label><br>
+  <select id="corps"></select><br><br>
 
-  <label>Durée arrêt (jours)</label><br>
-  <input id="jours" type="number" value="30"><br><br>
+  <label>Grade</label><br>
+  <select id="grade"></select><br><br>
 
-  <button onclick="calculCMO()">Calculer</button>
+  <label>Échelon</label><br>
+  <select id="echelon"></select><br><br>
 
-  <div id="resultatCMO" style="margin-top:20px;"></div>
+  <label>Zone</label><br>
+  <select id="zone">
+    <option value="0">Zone 0%</option>
+    <option value="1">Zone 3%</option>
+    <option value="2">Zone 1%</option>
+  </select><br><br>
+
+  <button onclick="calculer()">Calculer</button>
+
+  <div id="resultat" style="margin-top:20px;"></div>
+
 </div>
 
-<script src="script.js"></script>
+<!-- ✅ CHARGEMENT BDD OBLIGATOIRE -->
+
+<script>
+window.addEventListener("load", () => {
+
+  const corpsSelect = document.getElementById("corps");
+  const gradeSelect = document.getElementById("grade");
+  const echelonSelect = document.getElementById("echelon");
+
+  // Sécurité chargement BDD
+  if (typeof BDD === "undefined") {
+    alert("ERREUR : BDD non chargée");
+    return;
+  }
+
+  // Remplissage corps
+  Object.keys(BDD.corps).forEach(c => {
+    let opt = document.createElement("option");
+    opt.value = c;
+    opt.textContent = c;
+    corpsSelect.appendChild(opt);
+  });
+
+  function remplirGrades() {
+    const corps = corpsSelect.value;
+    const grades = BDD.corps[corps];
+
+    gradeSelect.innerHTML = "";
+
+    Object.keys(grades).forEach(g => {
+      let opt = document.createElement("option");
+      opt.value = g;
+      opt.textContent = grades[g].label;
+      gradeSelect.appendChild(opt);
+    });
+
+    remplirEchelons();
+  }
+
+  function remplirEchelons() {
+    const corps = corpsSelect.value;
+    const grade = gradeSelect.value;
+
+    const data = BDD.corps[corps][grade];
+
+    echelonSelect.innerHTML = "";
+
+    Object.keys(data.echelons).forEach(e => {
+      let opt = document.createElement("option");
+      opt.value = e;
+      opt.textContent = "Échelon " + e;
+      echelonSelect.appendChild(opt);
+    });
+  }
+
+  window.calculer = function () {
+    const corps = corpsSelect.value;
+    const grade = gradeSelect.value;
+    const echelon = echelonSelect.value;
+    const zone = document.getElementById("zone").value;
+
+    const data = BDD.corps[corps][grade];
+
+    let brut = data.echelons[echelon] * BDD.valeur_point;
+
+    let issp = data.issp ? brut * data.issp : 0;
+
+    let ir = brut * BDD.zones[zone];
+
+    let total = brut + issp + ir;
+
+    document.getElementById("resultat").innerHTML =
+      "💰 Brut : " + Math.round(brut) + " €<br>" +
+      "🔥 ISSP : " + Math.round(issp) + " €<br>" +
+      "📍 IR : " + Math.round(ir) + " €<br>" +
+      "💵 Total : " + Math.round(total) + " €";
+  };
+
+  corpsSelect.addEventListener("change", remplirGrades);
+  gradeSelect.addEventListener("change", remplirEchelons);
+
+  // Initialisation
+  remplirGrades();
+});
+</script>
 
 </body>
 </html>
