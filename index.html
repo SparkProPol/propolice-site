@@ -11,6 +11,91 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
+  <script>
+function remplirGrades() {
+  const corps = document.getElementById("corps").value;
+  const gradeSelect = document.getElementById("grade");
+
+  gradeSelect.innerHTML = "";
+
+  const grades = BDD.corps[corps];
+
+  for (let g in grades) {
+    if (!grades[g].label) continue;
+
+    let option = document.createElement("option");
+    option.value = g;
+    option.textContent = grades[g].label;
+    gradeSelect.appendChild(option);
+  }
+
+  remplirEchelons();
+}
+
+function remplirEchelons() {
+  const corps = document.getElementById("corps").value;
+  const grade = document.getElementById("grade").value;
+
+  const echelonSelect = document.getElementById("echelon");
+  echelonSelect.innerHTML = "";
+
+  const echelons = BDD.corps[corps][grade].echelons;
+
+  for (let e in echelons) {
+    let option = document.createElement("option");
+    option.value = e;
+    option.textContent = "Échelon " + e;
+    echelonSelect.appendChild(option);
+  }
+}
+
+function calculer() {
+  const corps = document.getElementById("corps").value;
+  const grade = document.getElementById("grade").value;
+  const echelon = document.getElementById("echelon").value;
+  const zone = document.getElementById("zone").value;
+
+  const data = BDD.corps[corps][grade];
+
+  const indice = data.echelons[echelon];
+  const brut = indice * BDD.valeur_point;
+
+  const issp = data.issp ? brut * data.issp : 0;
+  const irm = data.irm ? brut * data.irm : 0;
+  const residence = brut * BDD.zones[zone];
+
+  const total = brut + issp + irm + residence;
+
+  const charges = total * (BDD.charges.csg + BDD.charges.crds);
+  const net = total - charges;
+
+  document.getElementById("resultat").innerHTML = `
+    💰 Brut : ${brut.toFixed(0)} €<br>
+    🔥 Primes : ${(issp+irm).toFixed(0)} €<br>
+    📍 Résidence : ${residence.toFixed(0)} €<br>
+    📉 Charges : ${charges.toFixed(0)} €<br>
+    💵 Net estimé : ${net.toFixed(0)} €
+  `;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const corpsSelect = document.getElementById("corps");
+
+  for (let c in BDD.corps) {
+    if (c === "retraite") continue;
+
+    let option = document.createElement("option");
+    option.value = c;
+    option.textContent = c.toUpperCase();
+    corpsSelect.appendChild(option);
+  }
+
+  remplirGrades();
+
+  corpsSelect.addEventListener("change", remplirGrades);
+  document.getElementById("grade").addEventListener("change", remplirEchelons);
+});
+</script>
 <body>
   <a class="skip" href="#contenu">Aller au contenu</a>
 
