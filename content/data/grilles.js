@@ -174,23 +174,13 @@ pts: {
   minimum: 1200,
 
   categories: {
+        actif: { bonification: 0.2 },
+        administratif: { bonification: 0 },
+        pts: { bonification: 0 }
+      }
 
-    actif: {
-      bonification: 0.2
-    },
-
-    administratif: {
-      bonification: 0
-    },
-
-    pts: {
-      bonification: 0
     }
 
-  }
+  } // ferme corps
 
-  } // 🔥 ferme "retraite"
-
-  } // 🔥 ferme "corps"
-
-}; // 🔥 ferme "BDD"
+}; // ferme BDD
