@@ -43,13 +43,13 @@ bc_cs: {
       bc_cn: {
   label: "Brigadier-chef CRS (classe normale)",
   issp: 0.285,
-  echelons: {...}
+  echelons: {1:483,2:499,3:515,4:532,5:548}
 },
 
 bc_cs: {
   label: "Brigadier-chef CRS (classe supérieure)",
   issp: 0.285,
-  echelons: {...}
+  echelons: {1:565,2:585,3:605}
 },
       major: {
         label: "Major CRS",
