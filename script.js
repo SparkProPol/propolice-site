@@ -1,3 +1,19 @@
+// ===== ACCÈS BDD PAR CORPS =====
+
+function getBDD(corps) {
+
+  switch(corps) {
+    case "CEA": return typeof BDD_CEA !== "undefined" ? BDD_CEA : null;
+    case "CRS": return typeof BDD_CRS !== "undefined" ? BDD_CRS : null;
+    case "ADMIN": return typeof BDD_ADMIN !== "undefined" ? BDD_ADMIN : null;
+    case "PTS": return typeof BDD_PTS !== "undefined" ? BDD_PTS : null;
+    case "RETRAITE": return typeof BDD_RETRAITE !== "undefined" ? BDD_RETRAITE : null;
+    case "ADJOINTS": return typeof BDD_ADJOINTS !== "undefined" ? BDD_ADJOINTS : null;
+    case "RESERVISTES": return typeof BDD_RESERVISTES !== "undefined" ? BDD_RESERVISTES : null;
+    default: return null;
+  }
+
+}
 // PRO POLICE — scripts (filtrage ressources + UX)
 const resources = [
   {
