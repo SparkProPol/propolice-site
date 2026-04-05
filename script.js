@@ -14,6 +14,11 @@ function getBDD(corps) {
   }
 
 }
+console.log("🚔 PRO POLICE INIT");
+
+if (typeof BDD_CEA === "undefined") {
+  console.warn("⚠️ BDD_CEA non chargée");
+}
 // PRO POLICE — scripts (filtrage ressources + UX)
 const resources = [
   {
