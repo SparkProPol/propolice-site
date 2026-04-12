@@ -1,7 +1,5 @@
 // ===== ACCÈS BDD PAR CORPS =====
-
 function getBDD(corps) {
-
   switch(corps) {
     case "CEA": return typeof BDD_CEA !== "undefined" ? BDD_CEA : null;
     case "CRS": return typeof BDD_CRS !== "undefined" ? BDD_CRS : null;
@@ -12,19 +10,20 @@ function getBDD(corps) {
     case "RESERVISTES": return typeof BDD_RESERVISTES !== "undefined" ? BDD_RESERVISTES : null;
     default: return null;
   }
-
 }
-console.log("🚔 PRO POLICE INIT");
+
+console.log("🚔 INITIALISATION PRO POLICE");
 
 if (typeof BDD_CEA === "undefined") {
   console.warn("⚠️ BDD_CEA non chargée");
 }
+
 // PRO POLICE — scripts (filtrage ressources + UX)
-const resources = [
+const ressources = [
   {
     id: "fiche-discipline-001",
     title: "Procédure disciplinaire : les 5 réflexes à avoir immédiatement",
-    desc: "Une fiche simple, claire et utile pour éviter les erreurs les plus fréquentes dès les premiers échanges avec l’administration.",
+    desc: "Une fiche simple, claire et utile pour éviter les erreurs les plus fréquentes dès les premiers échanges avec l'administration.",
     tags: ["discipline", "juridique"],
     access: "public",
     url: "fiche-discipline.html"
@@ -46,14 +45,14 @@ const resources = [
   {
     id: "fiche-conges-001",
     title: "Fiche : congés (cadre général)",
-    desc: "Principes, points d’attention, questions à poser à la hiérarchie.",
+    desc: "Principes, points d'attention, questions à poser à la hiérarchie.",
     tags: ["conges"],
     access: "public"
   },
   {
     id: "taj-001",
     title: "Note : TAJ (repères administratifs)",
-    desc: "Comprendre les enjeux, demander l’accès, organiser un dossier.",
+    desc: "Comprendre les enjeux, demander l'accès, organiser un dossier.",
     tags: ["juridique"],
     access: "membre"
   },
@@ -71,31 +70,30 @@ const grid = $("#resourceGrid");
 const searchInput = $("#searchInput");
 const tagSelect = $("#tagSelect");
 const resetBtn = $("#resetBtn");
-const year = $("#year");
+const yearEl = $("#year");
 const toast = $("#toast");
 const planLabel = $("#planLabel");
 
-if (year) {
-  year.textContent = new Date().getFullYear();
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
 }
 
 function thumbSvg(seed) {
   const a = (seed.charCodeAt(0) * 13) % 360;
   const b = (seed.charCodeAt(seed.length - 1) * 17) % 360;
-  return `
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" preserveAspectRatio="none">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" preserveAspectRatio="none">
     <defs>
-      <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <linearGradient id="g${seed.replace(/[^a-z0-9]/gi,'')}" x1="0" x2="1" y1="0" y2="1">
         <stop offset="0" stop-color="hsl(${a} 90% 55% / .22)"/>
         <stop offset="1" stop-color="hsl(${b} 90% 55% / .10)"/>
       </linearGradient>
-      <radialGradient id="r" cx="30%" cy="20%" r="80%">
+      <radialGradient id="r${seed.replace(/[^a-z0-9]/gi,'')}" cx="30%" cy="20%" r="80%">
         <stop offset="0" stop-color="rgba(255,255,255,.18)"/>
         <stop offset="1" stop-color="rgba(255,255,255,0)"/>
       </radialGradient>
     </defs>
-    <rect width="900" height="500" fill="url(#g)"/>
-    <circle cx="260" cy="160" r="240" fill="url(#r)"/>
+    <rect width="900" height="500" fill="url(#g${seed.replace(/[^a-z0-9]/gi,'')})"/>
+    <circle cx="260" cy="160" r="240" fill="url(#r${seed.replace(/[^a-z0-9]/gi,'')})"/>
     <path d="M-20 390 C 220 310, 420 520, 920 360 L 920 520 L -20 520 Z" fill="rgba(255,255,255,.06)"/>
     <g fill="rgba(255,255,255,.85)" font-family="Inter, system-ui" font-weight="700">
       <text x="44" y="86" font-size="28">Université PRO POLICE</text>
@@ -123,7 +121,6 @@ function isMember() {
 function renderPremiumLock(el, r) {
   if (r.access === "membre" && !isMember()) {
     el.classList.add("locked");
-
     const lock = document.createElement("div");
     lock.className = "lockOverlay";
     lock.innerHTML = `
@@ -136,21 +133,15 @@ function renderPremiumLock(el, r) {
   }
 }
 
-function render(list) {
+function render(liste) {
   if (!grid) return;
-
   grid.innerHTML = "";
-  if (!list.length) {
-    grid.innerHTML = `<div class="card" style="grid-column:1/-1">
-      <h3>Aucun résultat</h3>
-      <p>Essaie un autre mot-clé ou remets le filtre sur “Tous”.</p>
-    </div>`;
+  if (!liste.length) {
+    grid.innerHTML = `<div class="card" style="grid-column:1/-1"><h3>Aucun résultat</h3><p>Essaie un autre mot-clé ou remets le filtre sur "Tous".</p></div>`;
     return;
   }
-
-  for (const r of list) {
+  for (const r of liste) {
     const locked = r.access === "membre" && !isMember();
-
     const actionButton = locked
       ? `<a class="linkBtn" href="#adhesion">Débloquer</a>`
       : (r.url
@@ -169,10 +160,9 @@ function render(list) {
       </div>
       <div class="actions">
         ${actionButton}
-        <button class="linkBtn" data-copy="${r.id}">Copier l’ID</button>
+        <button class="linkBtn" data-copy="${r.id}">Copier l'ID</button>
       </div>
     `;
-
     renderPremiumLock(el, r);
     grid.appendChild(el);
   }
@@ -181,22 +171,16 @@ function render(list) {
 function applyFilters() {
   const q = (searchInput?.value || "").trim().toLowerCase();
   const tag = tagSelect?.value || "all";
-
-  const filtered = resources.filter(r => {
+  const filtered = ressources.filter(r => {
     const matchText = !q || (r.title + " " + r.desc + " " + r.tags.join(" ")).toLowerCase().includes(q);
     const matchTag = tag === "all" || r.tags.includes(tag);
     return matchText && matchTag;
   });
-
   render(filtered);
 }
 
-if (searchInput) {
-  searchInput.addEventListener("input", applyFilters);
-}
-if (tagSelect) {
-  tagSelect.addEventListener("change", applyFilters);
-}
+if (searchInput) searchInput.addEventListener("input", applyFilters);
+if (tagSelect) tagSelect.addEventListener("change", applyFilters);
 if (resetBtn) {
   resetBtn.addEventListener("click", () => {
     if (searchInput) searchInput.value = "";
@@ -209,24 +193,17 @@ if (grid) {
   grid.addEventListener("click", async (e) => {
     const btn = e.target.closest("button");
     if (!btn) return;
-
     const openId = btn.getAttribute("data-open");
     const copyId = btn.getAttribute("data-copy");
-
     if (openId) {
-      const found = resources.find(r => r.id === openId);
-
+      const found = ressources.find(r => r.id === openId);
       if (found?.access === "membre" && !isMember()) {
         const adh = document.getElementById("adhesion");
-        if (adh) {
-          adh.scrollIntoView({ behavior: "smooth" });
-        }
+        if (adh) adh.scrollIntoView({ behavior: "smooth" });
         return;
       }
-
-      alert(`Démo : ouverture de la ressource "${openId}".\n\nTu pourras connecter ça à une page dédiée, un PDF, ou un espace membre.`);
+      alert(`Démo : ouverture de la ressource "${openId}".`);
     }
-
     if (copyId) {
       await navigator.clipboard.writeText(copyId);
       showToast("ID copié dans le presse-papiers ✅");
@@ -239,12 +216,10 @@ function showToast(msg) {
   toast.textContent = msg;
   toast.style.display = "block";
   clearTimeout(showToast._t);
-  showToast._t = setTimeout(() => {
-    toast.style.display = "none";
-  }, 2800);
+  showToast._t = setTimeout(() => { toast.style.display = "none"; }, 2800);
 }
 
-// Mobile menu
+// Menu mobile
 const menuBtn = document.getElementById("menuBtn");
 const menuMobile = document.getElementById("menuMobile");
 if (menuBtn && menuMobile) {
@@ -255,7 +230,7 @@ if (menuBtn && menuMobile) {
   });
 }
 
-// Pricing plan selection
+// Sélection du forfait tarifaire
 let selectedPlan = "Adhérent";
 document.querySelectorAll("[data-plan]").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -264,13 +239,11 @@ document.querySelectorAll("[data-plan]").forEach(btn => {
       planLabel.innerHTML = `Plan choisi : <strong>${selectedPlan}</strong> (modifiable)`;
     }
     const adh = document.getElementById("adhesion");
-    if (adh) {
-      adh.scrollIntoView({ behavior: "smooth" });
-    }
+    if (adh) adh.scrollIntoView({ behavior: "smooth" });
   });
 });
 
-// Form demo submit
+// Soumission formulaire démo
 const adhForm = document.getElementById("adhForm");
 if (adhForm) {
   adhForm.addEventListener("submit", (e) => {
@@ -278,21 +251,19 @@ if (adhForm) {
     const fd = new FormData(adhForm);
     const payload = Object.fromEntries(fd.entries());
     payload.plan = selectedPlan;
-
     const key = "propolice_adhesion_demo";
     const existing = JSON.parse(localStorage.getItem(key) || "[]");
     existing.push({ ...payload, ts: new Date().toISOString() });
     localStorage.setItem(key, JSON.stringify(existing));
-
     adhForm.reset();
     showToast("Demande enregistrée (démo locale) ✅ — à connecter à un email/CRM.");
   });
 }
 
-// --- Blocs "Actualités" (liens officiels) ---
+// --- Blocs "Actualités" ---
 const actus = [
   {
-    title: "Actu & agenda",
+    title: "Actu et agenda",
     desc: "Historique, annonces, rubriques officielles.",
     url: "https://propolice.fr/index.php/accueil/actu-et-agenda"
   },
@@ -311,7 +282,6 @@ const actus = [
 function renderActus() {
   const g = document.getElementById("actuGrid");
   if (!g) return;
-
   g.innerHTML = "";
   for (const a of actus) {
     const el = document.createElement("article");
@@ -328,10 +298,10 @@ function renderActus() {
   }
 }
 
-// ---------------- Dynamic content loading (Decap-ready) ----------------
+// ---------------- Chargement dynamique JSON ----------------
 async function getJSON(path) {
   const res = await fetch(path, { cache: "no-store" });
-  if (!res.ok) throw new Error(`Erreur chargement: ${path}`);
+  if (!res.ok) throw new Error(`Erreur chargement : ${path}`);
   return await res.json();
 }
 
@@ -349,20 +319,15 @@ async function loadSiteSettings() {
     document.querySelectorAll(".brandsub").forEach((el, i) => {
       if (i < 2) el.textContent = site.brand.subtitle || el.textContent;
     });
-
     const badge = document.querySelector(".badge");
     if (badge) badge.textContent = site.brand.hero_badge || badge.textContent;
-
     const h1 = document.querySelector(".heroLeft h1");
     if (h1) h1.textContent = site.brand.tagline || h1.textContent;
-
     const lead = document.querySelector(".lead");
     if (lead) lead.textContent = site.brand.hero_lead || lead.textContent;
-
     const ctas = document.querySelectorAll(".ctaRow .btn");
     if (ctas[0]) ctas[0].textContent = site.brand.cta_primary || ctas[0].textContent;
     if (ctas[1]) ctas[1].textContent = site.brand.cta_secondary || ctas[1].textContent;
-
     const metaCards = document.querySelectorAll(".metaCard");
     (site.homepage?.meta_cards || []).forEach((card, i) => {
       if (metaCards[i]) {
@@ -372,10 +337,8 @@ async function loadSiteSettings() {
         if (d) d.textContent = card.text || "";
       }
     });
-
     const adhTitle = document.querySelector("#adhesion .sectionHead h2");
     if (adhTitle) adhTitle.textContent = site.adhesion?.title || adhTitle.textContent;
-
     const adhIntro = document.querySelector("#adhesion .sectionHead p");
     if (adhIntro) adhIntro.textContent = site.adhesion?.intro || adhIntro.textContent;
   } catch (err) {
@@ -387,8 +350,8 @@ async function loadResourcesFromJSON() {
   try {
     const loaded = normalizeListData(await getJSON("content/data/resources.json"));
     if (loaded.length) {
-      resources.length = 0;
-      loaded.forEach(item => resources.push(item));
+      ressources.length = 0;
+      loaded.forEach(item => ressources.push(item));
       applyFilters();
     } else {
       applyFilters();
@@ -404,15 +367,12 @@ async function loadArticlesCards() {
     const items = normalizeListData(await getJSON("content/data/articles.json")).filter(x => x.published !== false);
     const articlesGrid = document.getElementById("articlesGrid");
     if (!articlesGrid) return;
-
     if (articlesGrid.children.length > 0) return;
-
     articlesGrid.innerHTML = "";
     if (!items.length) {
       articlesGrid.innerHTML = `<div class="card" style="grid-column:1/-1"><h3>Aucune publication</h3><p>Ajoute des cartes depuis l'administration.</p></div>`;
       return;
     }
-
     for (const a of items) {
       const el = document.createElement("article");
       el.className = "card resource";
@@ -434,25 +394,20 @@ async function loadArticlesCards() {
   }
 }
 
-// ---------------- Simulateur primes version enrichie ----------------
+// ---------------- Simulateur primes ----------------
 function getSalaireBase(grade, echelon) {
   const grilles = {
-    Gpx: [2100,2200,2300,2400,2500,2600,2700,2800],
-    Bc_norm: [2400,2500,2600,2700,2800,2900],
-    Bc_sup: [2700,2800,2900,3000,3100,3200],
-    Major: [3000,3100,3200,3300,3400,3500]
+    gpx:    [2100,2200,2300,2400,2500,2600,2700,2800],
+    bc_norm:[2400,2500,2600,2700,2800,2900],
+    bc_sup: [2700,2800,2900,3000,3100,3200],
+    major:  [3000,3100,3200,3300,3400,3500]
   };
-
-  const index = Math.max(0, Math.min((grilles[grade]?.length || 1)-1, echelon-1));
+  const index = Math.max(0, Math.min((grilles[grade]?.length || 1) - 1, echelon - 1));
   return grilles[grade]?.[index] || 2100;
 }
 
 function getITN(zone) {
-  const table = {
-    "1": 185,
-    "2": 120,
-    "3": 90
-  };
+  const table = { "1": 185, "2": 120, "3": 90 };
   return table[String(zone)] || 90;
 }
 
@@ -478,71 +433,44 @@ function calculerPrimes() {
   const majorationNuit = heuresNuit * 2.2;
   const majorationDimanche = heuresDimanche * 2.8;
   const sft = getSFT(enfants);
-
   const totalEstime = salaireBase + primeITN + majorationNuit + majorationDimanche + sft;
 
   const bloc = `
     <div style="display:grid; gap:10px;">
-      <div class="row between"><span>Salaire de base estimé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
+      <div class="row between"><span>Salaire de base valorisé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
       <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
       <div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
       <div class="row between"><span>Majoration dimanche</span><strong>+ ${majorationDimanche.toFixed(2)} €</strong></div>
-      <div class="row between"><span>SFT ${enfants > 0 ? `(${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span><strong>+ ${sft.toFixed(2)} €</strong></div>
+      <div class="row between"><span>SFT${enfants > 0 ? ` (${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span><strong>+ ${sft.toFixed(2)} €</strong></div>
       <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
       <div class="row between" style="font-size:1.15rem;">
-        <strong>Total estimé</strong>
+        <strong>Estimation totale</strong>
         <strong>${totalEstime.toFixed(2)} €</strong>
       </div>
       <div class="notice" style="margin-top:10px;">
-        <strong>Note :</strong> estimation indicative à visée informative. Les règles exactes peuvent varier selon votre situation administrative, votre affectation et les textes applicables.
+        <strong>Note :</strong> estimation indicative à visée informative.
       </div>
-    </div>
-  `;
+    </div>`;
 
   const cible = document.getElementById("resultatPrimeDetail");
-  if (cible) {
-    cible.innerHTML = bloc;
-  }
+  if (cible) cible.innerHTML = bloc;
 }
 
 function reinitSimulateur() {
-  const defaults = {
-    grade: "gpx",
-    echelon: 1,
-    heuresNuit: 0,
-    heuresDimanche: 0,
-    enfants: 0,
-    zone: "1"
-  };
-
+  const defaults = { grade: "gpx", echelon: 1, heuresNuit: 0, heuresDimanche: 0, enfants: 0, zone: "1" };
   Object.entries(defaults).forEach(([id, value]) => {
     const el = document.getElementById(id);
     if (el) el.value = value;
   });
-
   const cible = document.getElementById("resultatPrimeDetail");
-  if (cible) {
-    cible.innerHTML = `<div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>`;
-  }
+  if (cible) cible.innerHTML = `<div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>`;
 }
 
 // 🔐 Bouton mode adhérent
 function updateMemberButton() {
   const btnMember = document.getElementById("btnMember");
   if (!btnMember) return;
-
   btnMember.textContent = isMember() ? "Mode adhérent ON" : "Mode adhérent OFF";
-}
-
-function toggleMemberMode() {
-  if (isMember()) {
-    localStorage.removeItem("propolice_member");
-  } else {
-    localStorage.setItem("propolice_member", "true");
-  }
-
-  updateMemberButton();
-  location.reload();
 }
 
 // Initialisation
@@ -552,14 +480,13 @@ document.addEventListener("DOMContentLoaded", () => {
   loadSiteSettings();
   loadResourcesFromJSON();
   loadArticlesCards();
-  applyFilters(); // 🔥 IMPORTANT
+  applyFilters();
 });
 
-// ---------------- Simulateur CMO / retenue sur salaire V2 ----------------
-function parseHistoriqueCMO(valeur) {
-  if (!valeur || !valeur.trim()) return 0;
-
-  return valeur
+// ---------------- Simulateur CMO V2 ----------------
+function parseHistoriqueCMO(value) {
+  if (!value || !value.trim()) return 0;
+  return value
     .split(",")
     .map(v => parseFloat(v.trim()))
     .filter(v => !isNaN(v) && v > 0)
@@ -578,13 +505,8 @@ function calculerCMO() {
   const dejaTotal = deja + historique;
   const baseJour = salaire / 30;
 
-  let joursPlein = 0;
-  let jours90 = 0;
-  let jours50 = 0;
-  let retenuePlein = 0;
-  let retenue90 = 0;
-  let retenue50 = 0;
-  let retenueCarence = 0;
+  let joursPlein = 0, jours90 = 0, jours50 = 0;
+  let retenuePlein = 0, retenue90 = 0, retenue50 = 0, retenueCarence = 0;
 
   if (regime === "plein") {
     joursPlein = jours;
@@ -596,19 +518,15 @@ function calculerCMO() {
     if (dejaTotal < 90) {
       jours90 = Math.min(jours, 90 - dejaTotal);
     }
-
     const totalApres = dejaTotal + jours;
     if (totalApres > 90) {
       jours50 = totalApres - Math.max(90, dejaTotal);
     }
-
     retenue90 = jours90 * baseJour * 0.10;
     retenue50 = jours50 * baseJour * 0.50;
   }
 
-  if (carence === "oui" && jours > 0) {
-    retenueCarence = baseJour;
-  }
+  if (carence === "oui" && jours > 0) retenueCarence = baseJour;
 
   const retenueTotale = retenuePlein + retenue90 + retenue50 + retenueCarence;
   let maintien = salaire - retenueTotale;
@@ -617,85 +535,71 @@ function calculerCMO() {
   let bloc = `
     <div style="display:grid; gap:10px;">
       <div class="row between"><span>Salaire de référence</span><strong>${salaire.toFixed(2)} €</strong></div>
-      <div class="row between"><span>Jours d’arrêt saisis</span><strong>${jours}</strong></div>
+      <div class="row between"><span>Jours d'arrêt saisis</span><strong>${jours}</strong></div>
       <div class="row between"><span>Jours déjà consommés</span><strong>${deja}</strong></div>
-      <div class="row between"><span>Historique multi-arrêts pris en compte</span><strong>${historique}</strong></div>
-      <div class="row between"><span>Total antérieur retenu</span><strong>${dejaTotal}</strong></div>
-  `;
+      <div class="row between"><span>Historique multi-arrêts</span><strong>${historique}</strong></div>
+      <div class="row between"><span>Total antérieur retenu</span><strong>${dejaTotal}</strong></div>`;
 
   if (regime === "plein") {
     bloc += `
       <div class="row between"><span>Régime appliqué</span><strong>Plein traitement</strong></div>
-      <div class="row between"><span>Jours au plein traitement</span><strong>${joursPlein}</strong></div>
-    `;
+      <div class="row between"><span>Jours au plein traitement</span><strong>${joursPlein}</strong></div>`;
   } else if (regime === "demi") {
     bloc += `
       <div class="row between"><span>Régime appliqué</span><strong>Demi-traitement</strong></div>
       <div class="row between"><span>Jours à 50%</span><strong>${jours50}</strong></div>
-      <div class="row between"><span>Retenue demi-traitement</span><strong>- ${retenue50.toFixed(2)} €</strong></div>
-    `;
+      <div class="row between"><span>Retenue demi-traitement</span><strong>- ${retenue50.toFixed(2)} €</strong></div>`;
   } else {
     bloc += `
       <div class="row between"><span>Régime appliqué</span><strong>Calcul automatique 90% / 50%</strong></div>
       <div class="row between"><span>Jours à 90%</span><strong>${jours90}</strong></div>
       <div class="row between"><span>Jours à 50%</span><strong>${jours50}</strong></div>
       <div class="row between"><span>Retenue 90%</span><strong>- ${retenue90.toFixed(2)} €</strong></div>
-      <div class="row between"><span>Retenue 50%</span><strong>- ${retenue50.toFixed(2)} €</strong></div>
-    `;
+      <div class="row between"><span>Retenue 50%</span><strong>- ${retenue50.toFixed(2)} €</strong></div>`;
   }
 
   bloc += `
-      <div class="row between"><span>Jour de carence</span><strong>${carence === "oui" ? "Oui" : "Non"}</strong></div>
-      <div class="row between"><span>Impact carence estimé</span><strong>- ${retenueCarence.toFixed(2)} €</strong></div>
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
-      <div class="row between"><strong>Retenue totale estimée</strong><strong>- ${retenueTotale.toFixed(2)} €</strong></div>
-      <div class="row between" style="font-size:1.15rem;">
-        <strong>Montant maintenu estimé</strong>
-        <strong>${maintien.toFixed(2)} €</strong>
-      </div>
-  `;
+    <div class="row between"><span>Jour de carence</span><strong>${carence === "oui" ? "Oui" : "Non"}</strong></div>
+    <div class="row between"><span>Impact carence estimé</span><strong>- ${retenueCarence.toFixed(2)} €</strong></div>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
+    <div class="row between"><strong>Retenue totale estimée</strong><strong>- ${retenueTotale.toFixed(2)} €</strong></div>
+    <div class="row between" style="font-size:1.15rem;">
+      <strong>Montant maintenu estimé</strong>
+      <strong>${maintien.toFixed(2)} €</strong>
+    </div>`;
 
   if (mode === "expert") {
     bloc += `
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
-      <div class="notice" style="margin-top:8px;">
-        <strong>Mode expert délégué :</strong><br>
-        - Vérifier la période de référence sur 12 mois glissants<br>
-        - Contrôler l’existence d’une journée de carence ou d’une régularisation<br>
-        - Vérifier les éléments de rémunération réellement impactés sur le bulletin de paie<br>
-        - Utiliser cette estimation comme base de dialogue, pas comme liquidation définitive
-      </div>
-    `;
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
+    <div class="notice" style="margin-top:8px;">
+      <strong>Mode expert délégué :</strong>
+      <ul style="margin-top:8px;">
+        <li>Vérifier la période de référence sur 12 mois glissants</li>
+        <li>Contrôler l'existence d'une journée de carence ou d'une régularisation</li>
+        <li>Vérifier les éléments de rémunération réellement impactés sur le bulletin de paie</li>
+        <li>Utiliser cette estimation comme base de dialogue, pas comme liquidation définitive</li>
+      </ul>
+    </div>`;
   }
 
   bloc += `</div>`;
 
   const cible = document.getElementById("resultatCMO");
-  if (cible) {
-    cible.innerHTML = bloc;
-  }
+  if (cible) cible.innerHTML = bloc;
 }
 
 function reinitCMO() {
   const defaults = {
-    cmoSalaire: 2500,
-    cmoJours: 1,
-    cmoDeja: 0,
-    cmoHistorique: "",
-    cmoRegime: "auto",
-    cmoCarence: "non",
-    cmoMode: "simple"
+    cmoSalaire: 2500, cmoJours: 1, cmoDeja: 0,
+    cmoHistorique: "", cmoRegime: "auto",
+    cmoCarence: "non", cmoMode: "simple"
   };
-
   Object.entries(defaults).forEach(([id, value]) => {
     const el = document.getElementById(id);
     if (el) el.value = value;
   });
-
   const cible = document.getElementById("resultatCMO");
-  if (cible) {
-    cible.innerHTML = `<div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>`;
-  }
+  if (cible) cible.innerHTML = `<div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>`;
 }
 
 function exportCMOPDF() {
