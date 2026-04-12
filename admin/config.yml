@@ -2,8 +2,6 @@ backend:
   name: github
   repo: SparkProPol/propolice-site
   branch: main
-  # Pour une vraie connexion en ligne avec GitHub Pages, il faut ajouter ensuite un proxy OAuth:
-  # base_url: https://votre-proxy-oauth.exemple.com
 
 media_folder: "uploads"
 public_folder: "/uploads"
@@ -17,106 +15,23 @@ collections:
         name: "site_settings"
         file: "content/data/site.json"
         format: "json"
-        editor:
-          preview: false
         fields:
-          - label: "Marque"
-            name: "brand"
-            widget: "object"
-            fields:
-              - { label: "Nom", name: "name", widget: "string" }
-              - { label: "Sous-titre", name: "subtitle", widget: "string" }
-              - { label: "Titre principal", name: "tagline", widget: "string" }
-              - { label: "Promesse", name: "promise", widget: "string" }
-              - { label: "Badge héro", name: "hero_badge", widget: "string" }
-              - { label: "Texte héro", name: "hero_lead", widget: "text" }
-              - { label: "Bouton primaire", name: "cta_primary", widget: "string" }
-              - { label: "Bouton secondaire", name: "cta_secondary", widget: "string" }
-          - label: "Accueil"
-            name: "homepage"
-            widget: "object"
-            fields:
-              - label: "Cartes méta"
-                name: "meta_cards"
-                widget: "list"
-                fields:
-                  - { label: "Titre", name: "title", widget: "string" }
-                  - { label: "Texte", name: "text", widget: "string" }
-              - { label: "Notice Université", name: "university_notice", widget: "text" }
-          - label: "Adhésion"
-            name: "adhesion"
-            widget: "object"
-            fields:
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Introduction", name: "intro", widget: "text" }
-
-  - name: "resources"
-    label: "Ressources"
-    files:
-      - label: "Liste des ressources"
-        name: "resources_list"
-        file: "content/data/resources.json"
-        format: "json"
-        editor:
-          preview: false
-        fields:
-          - label: "items"
-            name: "items"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields:
-              - { label: "ID", name: "id", widget: "string" }
-              - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Description", name: "desc", widget: "text" }
-              - label: "Tags"
-                name: "tags"
-                widget: "list"
-                field: { label: "Tag", name: "tag", widget: "string" }
-              - label: "Accès"
-                name: "access"
-                widget: "select"
-                options: ["public", "membre"]
+          - { label: "Nom", name: "name", widget: "string" }
 
   - name: "articles_data"
-    label: "Cartes articles"
+    label: "Articles"
     files:
-      - label: "Liste des cartes articles"
+      - label: "Liste des articles"
         name: "articles_cards"
         file: "content/data/articles.json"
         format: "json"
-        editor:
-          preview: false
         fields:
           - label: "items"
             name: "items"
             widget: "list"
-            summary: "{{fields.title}}"
             fields:
-              - { label: "Slug", name: "slug", widget: "string" }
               - { label: "Titre", name: "title", widget: "string" }
               - { label: "Extrait", name: "excerpt", widget: "text" }
               - { label: "URL", name: "url", widget: "string" }
               - { label: "Catégorie", name: "category", widget: "string" }
               - { label: "Publié", name: "published", widget: "boolean", default: true }
-
-  - name: "pages"
-    label: "Pages simples"
-    folder: "content/pages"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Titre", name: "title", widget: "string" }
-      - { label: "Slug", name: "slug", widget: "string" }
-      - { label: "Contenu", name: "body", widget: "markdown" }
-
-  - name: "blog"
-    label: "Articles complets"
-    folder: "content/articles"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Titre", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Extrait", name: "excerpt", widget: "text", required: false }
-      - { label: "Publié", name: "published", widget: "boolean", default: true }
-      - { label: "Contenu", name: "body", widget: "markdown" }
