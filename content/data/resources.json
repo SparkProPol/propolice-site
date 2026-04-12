@@ -2,45 +2,73 @@
   {
     "id": "fiche-discipline-001",
     "title": "Procédure disciplinaire : les 5 réflexes à avoir immédiatement",
-    "desc": "Une fiche simple, claire et utile pour éviter les erreurs les plus fréquentes dès les premiers échanges avec l’administration.",
+    "desc": "Une fiche simple, claire et utile pour éviter les erreurs les plus fréquentes dès les premiers échanges avec l'administration.",
     "tags": ["discipline", "juridique"],
     "access": "public",
     "url": "fiche-discipline.html"
   },
   {
-  "id": "modele-courrier-001",
-  "title": "Modèle : demande de communication de pièces (version PRO)",
-  "desc": "Version optimisée utilisée en accompagnement syndical (réservée adhérents).",
-  "tags": ["juridique", "carriere"],
-  "access": "membre"
-},
+    "id": "fiche-elections-001",
+    "title": "Élections professionnelles 2026 : guide pratique",
+    "desc": "Tout comprendre sur les élections de la fonction publique : enjeux, calendrier, comment voter et pourquoi ça compte.",
+    "tags": ["elections"],
+    "access": "public"
+  },
   {
-  "id": "fiche-mutation-001",
-  "title": "Mutation / mobilité : les erreurs à éviter",
-  "desc": "Une fiche simple pour anticiper, structurer son dossier et éviter les refus liés à une mauvaise préparation.",
-  "tags": ["mobilite", "carriere"],
-  "access": "public",
-  "url": "fiche-mutation.html"
-},
+    "id": "modele-courrier-001",
+    "title": "Modèle : demande de communication de pièces (version PRO)",
+    "desc": "Version optimisée utilisée en accompagnement syndical. Réservée aux adhérents.",
+    "tags": ["juridique", "carriere"],
+    "access": "membre"
+  },
+  {
+    "id": "fiche-mutation-001",
+    "title": "Mutation / mobilité : les erreurs à éviter",
+    "desc": "Une fiche simple pour anticiper, structurer son dossier et éviter les refus liés à une mauvaise préparation.",
+    "tags": ["mobilite", "carriere"],
+    "access": "public",
+    "url": "fiche-mutation.html"
+  },
   {
     "id": "fiche-conges-001",
     "title": "Fiche : congés (cadre général)",
-    "desc": "Principes, points d’attention, questions à poser à la hiérarchie.",
+    "desc": "Principes, points d'attention, questions à poser à la hiérarchie.",
     "tags": ["conges"],
     "access": "public"
   },
   {
     "id": "taj-001",
     "title": "Note : TAJ (repères administratifs)",
-    "desc": "Comprendre les enjeux, demander l’accès, organiser un dossier.",
+    "desc": "Comprendre les enjeux du TAJ, demander l'accès, organiser un dossier de contestation.",
     "tags": ["juridique"],
     "access": "membre"
   },
   {
     "id": "carriere-001",
-    "title": "Synthèse : avancement & trajectoire",
-    "desc": "Stratégie de dossier, arguments factuels, communication professionnelle.",
+    "title": "Synthèse : avancement & trajectoire de carrière",
+    "desc": "Stratégie de dossier, arguments factuels, communication professionnelle avec la hiérarchie.",
     "tags": ["carriere"],
     "access": "public"
+  },
+  {
+    "id": "retraite-001",
+    "title": "Retraite Police Nationale : repères essentiels",
+    "desc": "Âge de départ, bonification actif, décote/surcote, pension minimum — tout ce qu'il faut savoir.",
+    "tags": ["retraite"],
+    "access": "public"
+  },
+  {
+    "id": "cmo-001",
+    "title": "CMO depuis mars 2025 : calcul et impact sur le salaire",
+    "desc": "Le nouveau régime 90%/50% expliqué simplement avec exemples de calcul.",
+    "tags": ["juridique"],
+    "access": "public"
+  },
+  {
+    "id": "isspats-001",
+    "title": "ISSPATS : indemnité des personnels techniques et scientifiques",
+    "desc": "Montant, conditions, évolution prévue — fiche dédiée aux personnels PTS souvent oubliés.",
+    "tags": ["carriere"],
+    "access": "membre"
   }
 ]

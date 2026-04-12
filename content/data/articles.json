@@ -8,9 +8,17 @@
     "published": true
   },
   {
+    "slug": "elections-2026",
+    "title": "Élections professionnelles décembre 2026 — PRO POLICE se mobilise",
+    "excerpt": "PRO POLICE entre en campagne pour les élections professionnelles de décembre 2026. Découvrez notre programme et nos engagements pour chaque corps.",
+    "url": "#adhesion",
+    "category": "elections",
+    "published": true
+  },
+  {
     "slug": "universite-pro-police",
     "title": "Université PRO POLICE : informer pour mieux agir",
-    "excerpt": "Un espace structuré de décryptage, de diffusion des connaissances professionnelles et d’appui aux collègues confrontés aux réalités du terrain et de l’administration.",
+    "excerpt": "Un espace structuré de décryptage et de diffusion des connaissances professionnelles. Contenus alignés RS5517 Ministère du Travail.",
     "url": "#universite",
     "category": "universite",
     "published": true
@@ -18,7 +26,7 @@
   {
     "slug": "discipline-droits-reflexes",
     "title": "Discipline : connaître ses droits avant de subir",
-    "excerpt": "Face à une procédure disciplinaire, les premiers réflexes sont déterminants. PRO POLICE met à disposition des repères clairs pour sécuriser sa position dès le départ.",
+    "excerpt": "Face à une procédure disciplinaire, les premiers réflexes sont déterminants. PRO POLICE met à disposition des repères clairs.",
     "url": "#ressources",
     "category": "juridique",
     "published": true
@@ -26,25 +34,17 @@
   {
     "slug": "mutation-strategie",
     "title": "Mutation : anticiper, structurer, défendre son dossier",
-    "excerpt": "Une mobilité mal préparée peut fragiliser un parcours. Nous proposons une lecture concrète des enjeux, des méthodes et des erreurs à éviter.",
+    "excerpt": "Une mobilité mal préparée peut fragiliser un parcours. Méthodes concrètes et erreurs à éviter.",
     "url": "#ressources",
     "category": "carriere",
     "published": true
   },
   {
-    "slug": "procedure-disciplinaire-reflexes",
-    "title": "Procédure disciplinaire : les 5 réflexes à avoir immédiatement",
-    "excerpt": "Une fiche simple, claire et utile pour éviter les erreurs les plus fréquentes dès les premiers échanges avec l’administration.",
-    "url": "fiche-discipline.html",
+    "slug": "cmo-mars-2025",
+    "title": "CMO : ce qui a changé depuis le 1er mars 2025",
+    "excerpt": "Nouveau régime : 90% pendant 3 mois puis 50%. Tout ce que vous devez savoir sur le congé maladie ordinaire.",
+    "url": "#simulateur-cmo",
     "category": "juridique",
     "published": true
-  },
-  {
-  "slug": "mutation-mobilite-erreurs",
-  "title": "Mutation / mobilité : les erreurs à éviter",
-  "excerpt": "Une fiche simple et concrète pour préparer son dossier, éviter les oublis et renforcer la cohérence de sa demande.",
-  "url": "fiche-mutation.html",
-  "category": "carriere",
-  "published": true
-}
+  }
 ]
