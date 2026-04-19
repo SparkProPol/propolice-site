@@ -702,3 +702,31 @@ h1 {
   body { background: white; color: black; }
   .card { border: 1px solid #ccc; box-shadow: none; }
 }
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('police.jpg');
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.btn-primary {
+  background: #002f6c;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn-secondary {
+  border: 2px solid white;
+  padding: 15px 25px;
+  margin-left: 10px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  padding: 50px;
+}
