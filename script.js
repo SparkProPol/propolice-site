@@ -525,7 +525,9 @@ function calculerPrimes() {
       </div>
     </div>`;
 
-  const isMember = localStorage.getItem("propolice_member") === "true";
+  function isMember() {
+  return localStorage.getItem("propolice_member") === "true";
+}
 
 if (isMember) {
   document.getElementById("resultatMembre").style.display = "block";
