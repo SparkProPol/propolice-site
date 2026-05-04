@@ -562,8 +562,30 @@ if (isMember) {
   document.getElementById("resultatMembre").style.display = "block";
   document.getElementById("resultatPublic").style.display = "none";
 
+  const brut = totalEstime;
+  const net = estimerNet(brut);
+  const annuel = net * 12;
+
   document.getElementById("resultatMembre").innerHTML = `
     ${bloc}
+
+    <div style="margin-top:15px; padding:12px; background:#1e90ff22; border-radius:8px;">
+
+      <strong>🔍 Analyse avancée (adhérent)</strong>
+
+      <div style="margin-top:10px;">
+        💰 Brut estimé : <strong>${brut.toFixed(2)} €</strong><br>
+        💸 Net estimé : <strong>${net.toFixed(2)} €</strong><br>
+        📅 Projection annuelle : <strong>${annuel.toFixed(2)} €</strong>
+      </div>
+
+      <div style="margin-top:10px; font-size:0.9em; color:#ccc;">
+        Estimation indicative basée sur les données renseignées.
+      </div>
+
+    </div>
+  `;
+}
 
     <div style="margin-top:15px; padding:10px; background:#1e90ff22; border-radius:8px;">
       🔒 <strong>Version adhérent</strong><br>
