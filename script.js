@@ -470,7 +470,10 @@ function getSFT(enfants) {
   if (n === 3) return 183.56;
   return 183.56 + ((n - 3) * 130.81);
 }
-
+function estimerNet(brut) {
+  // estimation simple fonction publique ~78%
+  return brut * 0.78;
+}
 function updateEchelonMax() {
 
   const grade = document.getElementById("grade").value;
