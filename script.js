@@ -143,10 +143,17 @@ function render(liste) {
   for (const r of liste) {
     const locked = r.access === "membre" && !isMember();
     const actionButton = locked
-      ? `<a class="linkBtn" href="#adhesion">Débloquer</a>`
-      : (r.url
-          ? `<a class="linkBtn" href="${r.url}">Ouvrir</a>`
-          : `<button class="linkBtn" data-open="${r.id}">Ouvrir</button>`);
+  ? `
+    <div class="lockContent">
+      <p>🔒 Contenu réservé aux adhérents</p>
+      <a href="#adhesion" class="btn small primary" onclick="fermerPopup()">
+        Débloquer
+      </a>
+    </div>
+  `
+  : (r.url
+      ? `<a class="linkBtn" href="${r.url}" target="_blank">Ouvrir</a>`
+      : `<button class="linkBtn" data-open="${r.id}">Ouvrir</button>`);
 
     const el = document.createElement("article");
     el.className = "card resource";
