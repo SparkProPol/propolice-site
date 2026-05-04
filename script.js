@@ -523,34 +523,8 @@ function calculerPrimes() {
       </div>
     </div>`;
 
-  const isMember = localStorage.getItem("propolice_member") === "true";
-
-if (isMember) {
-  document.getElementById("resultatMembre").style.display = "block";
-  document.getElementById("resultatPublic").style.display = "none";
-
-  document.getElementById("resultatMembre").innerHTML = `
-    ${bloc}
-
-    <div style="margin-top:15px; padding:10px; background:#1e90ff22; border-radius:8px;">
-      🔒 <strong>Version adhérent</strong><br>
-      Estimation avancée + analyse personnalisée disponible.
-    </div>
-  `;
-
-} else {
-
-  document.getElementById("resultatPublic").style.display = "block";
-  document.getElementById("resultatMembre").style.display = "none";
-
-  document.getElementById("resultatPublic").innerHTML = `
-    ${bloc}
-
-    <div style="margin-top:15px; padding:10px; background:#ffaa0022; border-radius:8px;">
-      🔓 Version simplifiée<br>
-      👉 Passe en mode adhérent pour une analyse complète.
-    </div>
-  `;
+  const cible = document.getElementById("resultatPrimeDetail");
+  if (cible) cible.innerHTML = bloc;
 }
 
 function reinitSimulateur() {
