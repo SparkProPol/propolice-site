@@ -677,11 +677,18 @@ function exportCMOPDF() {
   window.print();
 }
 window.addEventListener("DOMContentLoaded", () => {
-  updateEchelonMax();
-  remplirEchelons();
-});
 
-document.getElementById("grade")?.addEventListener("change", () => {
-  updateEchelonMax();
-  remplirEchelons();
+  const gradeSelect = document.getElementById("grade");
+
+  function updateAll() {
+    updateEchelonMax();
+    remplirEchelons();
+  }
+
+  // Initialisation
+  updateAll();
+
+  // Changement de grade
+  gradeSelect?.addEventListener("change", updateAll);
+
 });
