@@ -754,3 +754,8 @@ window.addEventListener("DOMContentLoaded", () => {
   gradeSelect?.addEventListener("change", updateAll);
 
 });
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    fermerPopup();
+  }
+});
