@@ -923,7 +923,7 @@
   });
 })();
 </script>
-<div id="popupAdherent" style="
+<div id="popupAdherent" onclick="fermerPopup()" style="
   display:none;
   position:fixed;
   top:0;
@@ -936,7 +936,7 @@
   z-index:9999;
 ">
 
-  <div style="
+  <div onclick="event.stopPropagation()" style="
     background:#111;
     padding:25px;
     border-radius:10px;
@@ -965,7 +965,7 @@
         Plus tard
       </button>
 
-      <a href="#adhesion" style="
+      <a href="#adhesion" onclick="fermerPopup()" style="
         padding:10px 15px;
         background:#1e90ff;
         color:#fff;
