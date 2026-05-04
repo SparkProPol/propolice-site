@@ -467,9 +467,11 @@ function updateEchelonMax() {
   }
 }
 function remplirEchelons() {
-if (!select) return;
+
   const grade = document.getElementById("grade").value;
   const select = document.getElementById("echelon");
+
+  if (!select) return;
 
   const maxEchelons = {
     gpx: 12,
