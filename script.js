@@ -393,7 +393,24 @@ async function loadArticlesCards() {
     console.warn(err);
   }
 }
+function afficherPopup() {
 
+  const isMember = localStorage.getItem("propolice_member") === "true";
+  const popupSeen = localStorage.getItem("popupSeen");
+
+  if (!isMember && !popupSeen) {
+    const popup = document.getElementById("popupAdherent");
+    if (popup) {
+      popup.style.display = "flex";
+      localStorage.setItem("popupSeen", "true");
+    }
+  }
+}
+
+function fermerPopup() {
+  const popup = document.getElementById("popupAdherent");
+  if (popup) popup.style.display = "none";
+}
 // ---------------- Simulateur primes ----------------
 function getSalaireBase(grade, echelon) {
 
@@ -556,6 +573,9 @@ if (isMember) {
     </div>
   `;
 }
+  
+  afficherPopup();
+  
   } // ← fermeture de calculerPrimes()
 
 function reinitSimulateur() {
