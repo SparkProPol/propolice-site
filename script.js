@@ -679,27 +679,9 @@ function exportCMOPDF() {
 window.addEventListener("DOMContentLoaded", () => {
   updateEchelonMax();
   remplirEchelons();
-});;
+});
 
-document.getElementById("echelon")?.addEventListener("input", function () {
-
-  const grade = document.getElementById("grade").value;
-
-  const maxEchelons = {
-    gpx: 12,
-    bc_norm: 8,
-    bc_sup: 7,
-    major: 7
-  };
-
-  const max = maxEchelons[grade] || 12;
-
-  if (parseInt(this.value, 10) > max) {
-    this.value = max;
-  }
-
-  if (parseInt(this.value, 10) < 1) {
-    this.value = 1;
-  }
-
+document.getElementById("grade")?.addEventListener("change", () => {
+  updateEchelonMax();
+  remplirEchelons();
 });
