@@ -445,6 +445,27 @@ function getSFT(enfants) {
   return 183.56 + ((n - 3) * 130.81);
 }
 
+function updateEchelonMax() {
+
+  const grade = document.getElementById("grade").value;
+  const input = document.getElementById("echelon");
+
+  const maxEchelons = {
+    gpx: 12,
+    bc_norm: 8,
+    bc_sup: 7,
+    major: 7
+  };
+
+  const max = maxEchelons[grade] || 12;
+
+  input.max = max;
+  input.min = 1;
+
+  if (parseInt(input.value, 10) > max) {
+    input.value = max;
+  }
+}
 function calculerPrimes() {
   const grade = document.getElementById("grade")?.value || "gpx";
   const echelon = document.getElementById("echelon")?.value || 1;
@@ -630,3 +651,6 @@ function reinitCMO() {
 function exportCMOPDF() {
   window.print();
 }
+window.addEventListener("DOMContentLoaded", () => {
+  updateEchelonMax();
+});
