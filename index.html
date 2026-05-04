@@ -923,6 +923,61 @@
   });
 })();
 </script>
+<div id="popupAdherent" style="
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+">
 
+  <div style="
+    background:#111;
+    padding:25px;
+    border-radius:10px;
+    max-width:420px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.1);
+  ">
+
+    <h3>💰 Et si tu pouvais aller plus loin ?</h3>
+
+    <p style="margin-top:10px; color:#ccc;">
+      Débloque la version avancée du simulateur :
+      estimation plus précise, analyse détaillée, et gains potentiels.
+    </p>
+
+    <div style="margin-top:20px;">
+      <button onclick="fermerPopup()" style="
+        padding:8px 12px;
+        margin-right:10px;
+        background:#333;
+        color:#fff;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+      ">
+        Plus tard
+      </button>
+
+      <a href="#adhesion" style="
+        padding:10px 15px;
+        background:#1e90ff;
+        color:#fff;
+        border-radius:6px;
+        text-decoration:none;
+        font-weight:bold;
+      ">
+        🔓 Devenir adhérent
+      </a>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
