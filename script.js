@@ -393,6 +393,7 @@ async function loadArticlesCards() {
     console.warn(err);
   }
 }
+
 function afficherPopup() {
 
   const isMember = localStorage.getItem("propolice_member") === "true";
@@ -411,6 +412,7 @@ function fermerPopup() {
   const popup = document.getElementById("popupAdherent");
   if (popup) popup.style.display = "none";
 }
+
 // ---------------- Simulateur primes ----------------
 function getSalaireBase(grade, echelon) {
 
