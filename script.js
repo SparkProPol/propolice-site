@@ -466,6 +466,31 @@ function updateEchelonMax() {
     input.value = max;
   }
 }
+function remplirEchelons() {
+
+  const grade = document.getElementById("grade").value;
+  const select = document.getElementById("echelon");
+
+  const maxEchelons = {
+    gpx: 12,
+    bc_norm: 8,
+    bc_sup: 7,
+    major: 7
+  };
+
+  const max = maxEchelons[grade] || 12;
+
+  // vider la liste
+  select.innerHTML = "";
+
+  // remplir les options
+  for (let i = 1; i <= max; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = "Échelon " + i;
+    select.appendChild(option);
+  }
+}
 function calculerPrimes() {
   const grade = document.getElementById("grade")?.value || "gpx";
   const echelon = document.getElementById("echelon")?.value || 1;
@@ -653,7 +678,8 @@ function exportCMOPDF() {
 }
 window.addEventListener("DOMContentLoaded", () => {
   updateEchelonMax();
-});
+  remplirEchelons();
+});;
 
 document.getElementById("echelon")?.addEventListener("input", function () {
 
