@@ -396,14 +396,39 @@ async function loadArticlesCards() {
 
 // ---------------- Simulateur primes ----------------
 function getSalaireBase(grade, echelon) {
+
   const grilles = {
-    gpx:    [2100,2200,2300,2400,2500,2600,2700,2800],
-    bc_norm:[2400,2500,2600,2700,2800,2900],
-    bc_sup: [2700,2800,2900,3000,3100,3200],
-    major:  [3000,3100,3200,3300,3400,3500]
+
+    gpx: [
+      2100,2200,2300,2400,2500,2600,
+      2700,2800,2900,3000,3100,3200
+    ],
+
+    bc_norm: [
+      2400,2500,2600,2700,2800,2900,
+      3000,3100
+    ],
+
+    bc_sup: [
+      2700,2800,2900,3000,3100,3200,
+      3300
+    ],
+
+    major: [
+      3000,3100,3200,3300,3400,3500,
+      3600
+    ]
+
   };
-  const index = Math.max(0, Math.min((grilles[grade]?.length || 1) - 1, echelon - 1));
-  return grilles[grade]?.[index] || 2100;
+
+  const grille = grilles[grade] || grilles["gpx"];
+
+  const index = Math.max(
+    0,
+    Math.min(grille.length - 1, parseInt(echelon, 10) - 1)
+  );
+
+  return grille[index];
 }
 
 function getITN(zone) {
