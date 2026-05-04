@@ -576,7 +576,9 @@ if (isMember) {
   `;
 }
   
+  setTimeout(() => {
   afficherPopup();
+}, 800); // 0.8 seconde
   
   } // ← fermeture de calculerPrimes()
 
