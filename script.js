@@ -564,7 +564,7 @@ function reinitSimulateur() {
     const el = document.getElementById(id);
     if (el) el.value = value;
   });
-  const cible = document.getElementById("resultatPrimeDetail");
+  const cible = document.getElementById("resultatPublic");
   if (cible) cible.innerHTML = `<div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>`;
 }
 
