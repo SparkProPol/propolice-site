@@ -554,6 +554,7 @@ if (isMember) {
     </div>
   `;
 }
+  } // ← fermeture de calculerPrimes()
 
 function reinitSimulateur() {
   const defaults = { grade: "gpx", echelon: 1, heuresNuit: 0, heuresDimanche: 0, enfants: 0, zone: "1" };
