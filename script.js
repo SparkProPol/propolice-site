@@ -588,11 +588,15 @@ ${corps === "CRS" ? `
     <div class="row between" style="font-size:1.15rem;">
       <strong>Estimation totale</strong>
       <strong>${totalEstime.toFixed(2)} €</strong>
-    </div>
+</div>
 
-    <div class="notice" style="margin-top:10px;">
-      <strong>Note :</strong> estimation indicative à visée informative.
-    </div>
+<div style="margin-top:8px; font-size:0.9em; opacity:0.8;">
+  💡 Écart moyen constaté : +2% à +4% sur certains tableaux externes
+</div>
+
+<div class="notice" style="margin-top:10px;">
+  <strong>Note :</strong> estimation indicative à visée informative.
+</div>
   </div>`;
   function isMember() {
   return localStorage.getItem("propolice_member") === "true";
