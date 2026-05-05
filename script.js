@@ -597,6 +597,16 @@ ${corps === "CRS" ? `
 <div class="notice" style="margin-top:10px;">
   <strong>Note :</strong> estimation indicative à visée informative.
 </div>
+
+<div class="notice" style="margin-top:10px;">
+  <strong>🎯 Lecture PRO POLICE :</strong><br>
+  Cette simulation intègre l’ensemble des retenues réelles appliquées sur votre rémunération.
+  <br><br>
+  Les montants parfois plus élevés observés ailleurs correspondent à des estimations simplifiées ou partielles.
+  <br><br>
+  👉 Ici, vous avez une vision au plus proche de votre paie réelle.
+</div>
+
   </div>`;
   function isMember() {
   return localStorage.getItem("propolice_member") === "true";
