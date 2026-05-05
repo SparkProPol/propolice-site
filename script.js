@@ -920,9 +920,9 @@ function getIndice(corps, grade, echelon) {
 function getBrutBase(corps, grade, echelon) {
   const valeurPoint = 4.92278;
 
-  const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
+  // 🔥 TEMPORAIRE : on force CEA pour tout
+  const bdd = BDD_CEA;
 
-  // 🔥 sécurisation
   const indice = bdd?.[grade]?.[echelon];
 
   if (!indice) {
