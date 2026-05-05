@@ -747,7 +747,7 @@ function calculerCMO() {
       </div>
     `;
 
-  } else {
+    } else {
 
     // 🔓 MODE PUBLIC
     cible.innerHTML = `
@@ -761,7 +761,13 @@ function calculerCMO() {
       </div>
     `;
   }
-}
+
+  // 👇 AJOUT ICI (TRÈS IMPORTANT)
+  setTimeout(() => {
+    afficherPopup();
+  }, 800);
+
+} // ← FIN DE calculerCMO()
 
 function reinitCMO() {
   const defaults = {
