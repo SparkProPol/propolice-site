@@ -664,6 +664,7 @@ function parseHistoriqueCMO(value) {
 }
 
 function calculerCMO() {
+
   const salaire = parseFloat(document.getElementById("cmoSalaire")?.value) || 0;
   const jours = parseFloat(document.getElementById("cmoJours")?.value) || 0;
   const deja = parseFloat(document.getElementById("cmoDeja")?.value) || 0;
@@ -680,7 +681,6 @@ function calculerCMO() {
 
   if (regime === "plein") {
     joursPlein = jours;
-    retenuePlein = 0;
   } else if (regime === "demi") {
     jours50 = jours;
     retenue50 = jours50 * baseJour * 0.5;
@@ -698,64 +698,69 @@ function calculerCMO() {
 
   if (carence === "oui" && jours > 0) retenueCarence = baseJour;
 
-  const retenueTotale = retenuePlein + retenue90 + retenue50 + retenueCarence;
+  const retenueTotale = retenue90 + retenue50 + retenueCarence;
   let maintien = salaire - retenueTotale;
   if (maintien < 0) maintien = 0;
 
-  let bloc = `
-    <div style="display:grid; gap:10px;">
-      <div class="row between"><span>Salaire de référence</span><strong>${salaire.toFixed(2)} €</strong></div>
-      <div class="row between"><span>Jours d'arrêt saisis</span><strong>${jours}</strong></div>
-      <div class="row between"><span>Jours déjà consommés</span><strong>${deja}</strong></div>
-      <div class="row between"><span>Historique multi-arrêts</span><strong>${historique}</strong></div>
-      <div class="row between"><span>Total antérieur retenu</span><strong>${dejaTotal}</strong></div>`;
-
-  if (regime === "plein") {
-    bloc += `
-      <div class="row between"><span>Régime appliqué</span><strong>Plein traitement</strong></div>
-      <div class="row between"><span>Jours au plein traitement</span><strong>${joursPlein}</strong></div>`;
-  } else if (regime === "demi") {
-    bloc += `
-      <div class="row between"><span>Régime appliqué</span><strong>Demi-traitement</strong></div>
-      <div class="row between"><span>Jours à 50%</span><strong>${jours50}</strong></div>
-      <div class="row between"><span>Retenue demi-traitement</span><strong>- ${retenue50.toFixed(2)} €</strong></div>`;
-  } else {
-    bloc += `
-      <div class="row between"><span>Régime appliqué</span><strong>Calcul automatique 90% / 50%</strong></div>
-      <div class="row between"><span>Jours à 90%</span><strong>${jours90}</strong></div>
-      <div class="row between"><span>Jours à 50%</span><strong>${jours50}</strong></div>
-      <div class="row between"><span>Retenue 90%</span><strong>- ${retenue90.toFixed(2)} €</strong></div>
-      <div class="row between"><span>Retenue 50%</span><strong>- ${retenue50.toFixed(2)} €</strong></div>`;
-  }
-
-  bloc += `
-    <div class="row between"><span>Jour de carence</span><strong>${carence === "oui" ? "Oui" : "Non"}</strong></div>
-    <div class="row between"><span>Impact carence estimé</span><strong>- ${retenueCarence.toFixed(2)} €</strong></div>
-    <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
-    <div class="row between"><strong>Retenue totale estimée</strong><strong>- ${retenueTotale.toFixed(2)} €</strong></div>
-    <div class="row between" style="font-size:1.15rem;">
-      <strong>Montant maintenu estimé</strong>
-      <strong>${maintien.toFixed(2)} €</strong>
-    </div>`;
-
-  if (mode === "expert") {
-    bloc += `
-    <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
-    <div class="notice" style="margin-top:8px;">
-      <strong>Mode expert délégué :</strong>
-      <ul style="margin-top:8px;">
-        <li>Vérifier la période de référence sur 12 mois glissants</li>
-        <li>Contrôler l'existence d'une journée de carence ou d'une régularisation</li>
-        <li>Vérifier les éléments de rémunération réellement impactés sur le bulletin de paie</li>
-        <li>Utiliser cette estimation comme base de dialogue, pas comme liquidation définitive</li>
-      </ul>
-    </div>`;
-  }
-
-  bloc += `</div>`;
+  const bloc = `
+    <div class="row between"><span>Jours à 90%</span><strong>${jours90}</strong></div>
+    <div class="row between"><span>Jours à 50%</span><strong>${jours50}</strong></div>
+    <div class="row between"><span>Retenue totale estimée</span><strong>- ${retenueTotale.toFixed(2)} €</strong></div>
+    <div class="row between"><span>Montant maintenu</span><strong>${maintien.toFixed(2)} €</strong></div>
+  `;
 
   const cible = document.getElementById("resultatCMO");
-  if (cible) cible.innerHTML = bloc;
+  if (!cible) return;
+
+  // 🔐 MODE ADHERENT
+  if (isMember()) {
+
+    const journalier = baseJour;
+    const projection = retenueTotale * 12;
+
+    cible.innerHTML = `
+      <div style="display:grid; gap:10px;">
+        ${bloc}
+
+        <div style="margin-top:15px; padding:12px; background:#1e90ff22; border-radius:8px;">
+
+          <strong>🔍 Analyse avancée PRO POLICE</strong>
+
+          <div style="margin-top:10px;">
+            💰 Salaire journalier : <strong>${journalier.toFixed(2)} €</strong><br>
+            📉 Perte estimée : <strong>${retenueTotale.toFixed(2)} €</strong><br>
+            📅 Projection annuelle : <strong>${projection.toFixed(2)} €</strong>
+          </div>
+
+          <hr style="margin:12px 0; opacity:0.2;">
+
+          <div style="font-size:0.95em;">
+            ⚠️ <strong>Lecture terrain :</strong><br>
+            Après 90 jours d’arrêt, ton traitement passe à 50%, ce qui impacte fortement ton revenu réel.
+          </div>
+
+          <div style="margin-top:10px; font-size:0.85em; color:#ccc;">
+            Simulation indicative – non contractuelle – basée sur des moyennes.
+          </div>
+
+        </div>
+      </div>
+    `;
+
+  } else {
+
+    // 🔓 MODE PUBLIC
+    cible.innerHTML = `
+      <div style="display:grid; gap:10px;">
+        ${bloc}
+
+        <div style="margin-top:15px; padding:10px; background:#ffaa0022; border-radius:8px;">
+          🔓 Version simplifiée<br>
+          👉 Passe en mode adhérent pour une analyse complète.
+        </div>
+      </div>
+    `;
+  }
 }
 
 function reinitCMO() {
