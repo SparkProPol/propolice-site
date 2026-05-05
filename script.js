@@ -918,6 +918,11 @@ function getIndice(corps, grade, echelon) {
 
 // 💰 Calcul brut indiciaire réel
 function getBrutBase(corps, grade, echelon) {
-  const indice = getIndice(corps, grade, echelon);
-  return indice * VALEUR_POINT;
+  const valeurPoint = 4.92278;
+
+  const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
+
+  const indice = bdd?.[grade]?.[echelon] || 0;
+
+  return indice * valeurPoint;
 }
