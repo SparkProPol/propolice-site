@@ -566,29 +566,29 @@ if (isMember()) {
   const brut = totalEstime;
   const net = estimerNet(brut);
   const annuel = net * 12;
-  
+
   const journalier = net / 30;
   const tauxHoraire = net / 151.67;
-  
+
   document.getElementById("resultatMembre").innerHTML = `
-  ${bloc}
+    ${bloc}
 
-  <div style="margin-top:15px; padding:12px; background:#1e90ff22; border-radius:8px;">
+    <div style="margin-top:15px; padding:12px; background:#1e90ff22; border-radius:8px;">
 
-    <strong>🔍 Analyse avancée PRO POLICE</strong>
+      <strong>🔍 Analyse avancée PRO POLICE</strong>
 
-    <div style="margin-top:10px;">
-      💰 Brut estimé : <strong>${brut.toFixed(2)} €</strong><br>
-      💸 Net estimé : <strong>${net.toFixed(2)} €</strong><br>
-      📅 Projection annuelle : <strong>${annuel.toFixed(2)} €</strong>
-    </div>
+      <div style="margin-top:10px;">
+        💰 Brut estimé : <strong>${brut.toFixed(2)} €</strong><br>
+        💸 Net estimé : <strong>${net.toFixed(2)} €</strong><br>
+        📅 Projection annuelle : <strong>${annuel.toFixed(2)} €</strong>
+      </div>
 
-    <hr style="margin:12px 0; opacity:0.2;">
+      <hr style="margin:12px 0; opacity:0.2;">
 
-    <div>
-      📆 Valeur journalière : <strong>${journalier.toFixed(2)} €</strong><br>
-      ⏱️ Taux horaire estimé : <strong>${tauxHoraire.toFixed(2)} €</strong>
-    </div>
+      <div>
+        📆 Valeur journalière : <strong>${journalier.toFixed(2)} €</strong><br>
+        ⏱️ Taux horaire estimé : <strong>${tauxHoraire.toFixed(2)} €</strong>
+      </div>
 
     <hr style="margin:12px 0; opacity:0.2;">
 
