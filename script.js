@@ -530,9 +530,13 @@ if (grade === "bc_sup") gradeBDD = "bcs";
   const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
   const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
   const zone = document.getElementById("zone")?.value || "3";
+  const typeZone = document.getElementById("typeZone")?.value || "metropole";
+const zoneOM = parseFloat(document.getElementById("zoneOM")?.value || 0);
 const itnChoix = document.getElementById("itn")?.value || "non";
   const corps = document.getElementById("corps")?.value || "CEA";
 const salaireBase = getBrutBase(corps, gradeBDD, echelon);
+  // 🌍 Majoration Outre-mer
+const majorationOM = (typeZone === "outremer") ? salaireBase * zoneOM : 0;
   const primeITN = itnChoix === "oui" ? (getITN(zone) || 0) : 0;
   const majorationNuit = heuresNuit * 2.2;
   const majorationDimanche = heuresDimanche * 2.8;
@@ -551,12 +555,16 @@ const ICSS = (corps === "CRS") ? 145 : 0;
   majorationNuit +
   majorationDimanche +
   sft +
+  majorationOM +
   montantVP;
   const bloc = `
   <div style="display:grid; gap:10px;">
     <div class="row between"><span>Salaire de base valorisé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
     <div class="row between"><span>ISSP (28,5%)</span><strong>+ ${ISSP.toFixed(2)} €</strong></div>
     ${corps === "CRS" ? `
+    ${typeZone === "outremer" ? `
+<div class="row between"><span>Majoration Outre-mer</span><strong>+ ${majorationOM.toFixed(2)} €</strong></div>
+` : ""}
 <div class="row between"><span>ICSS CRS</span><strong>+ ${ICSS.toFixed(2)} €</strong></div>
 ` : ""}
     <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
