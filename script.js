@@ -616,7 +616,7 @@ if (isMember()) {
 }
   
   setTimeout(() => {
-  afficherPopup();
+  afficherPopup("primes");
 }, 800); // 0.8 seconde
   
   } // ← fermeture de calculerPrimes()
@@ -759,7 +759,7 @@ function calculerCMO() {
 
   // 👇 AJOUT ICI (TRÈS IMPORTANT)
   setTimeout(() => {
-    afficherPopup();
+    afficherPopup("cmo");
   }, 800);
 
 } // ← FIN DE calculerCMO()
