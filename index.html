@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">ero
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -347,8 +347,8 @@
   <span>Grade</span>
   <select id="grade">
     <option value="gpx">Gardien de la paix</option>
-    <option value="bcn">Brigadier-chef classe normale</option>
-    <option value="bcs">Brigadier-chef classe supérieure</option>
+   <option value="bc_norm">Brigadier-chef classe normale</option>
+<option value="bc_sup">Brigadier-chef classe supérieure</option>
     <option value="major">Major de police</option>
   </select>
 </label>
@@ -929,16 +929,19 @@
 </footer>
 
 <!-- Scripts BDD -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/bdd/bdd_CEA.js"></script>
-<script src="js/bdd/bdd_CRS.js"></script>
-<script src="js/bdd/bdd_ADMIN.js"></script>
-<script src="js/bdd/bdd_PTS.js"></script>
-<script src="js/bdd/bdd_RETRAITE.js"></script>
-<script src="js/bdd/bdd_ADJOINTS.js"></script>
-<script src="js/bdd/bdd_RESERVISTES.js"></script>
-<script src="script.js"></script>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+<script defer src="js/bdd/bdd_CEA.js"></script>
+<script defer src="js/bdd/bdd_CRS.js"></script>
+<script defer src="js/bdd/bdd_ADMIN.js"></script>
+<script defer src="js/bdd/bdd_PTS.js"></script>
+<script defer src="js/bdd/bdd_RETRAITE.js"></script>
+<script defer src="js/bdd/bdd_ADJOINTS.js"></script>
+<script defer src="js/bdd/bdd_RESERVISTES.js"></script>
+
+<script defer src="script.js"></script>
+<script defer>
 (function () {
   // Mode adhérent toggle
   const btn = document.getElementById("btnMember");
