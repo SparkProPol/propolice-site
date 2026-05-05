@@ -853,26 +853,20 @@ const VALEUR_POINT = 4.9228;
 function getIndice(corps, grade, echelon) {
 
   const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
-  
-const mapGrade = {
-  gpx: "gpx",
-  bc_norm: "bcn",
-  bc_sup: "bcs",
-  major: "major"
-};
 
-const gradeBDD = mapGrade[grade] || grade;
-  
+  // 🔥 mapping propre
+  let gradeBDD = grade;
+
+  if (grade === "bc_norm") gradeBDD = "bcn";
+  if (grade === "bc_sup") gradeBDD = "bcs";
+
   if (!bdd || !bdd[gradeBDD] || !bdd[gradeBDD][echelon]) {
-    console.error("❌ Indice introuvable :", corps, grade, echelon);
+    console.error("❌ Indice introuvable :", corps, gradeBDD, echelon);
     return 0;
   }
 
- const data = bdd[gradeBDD][echelon];
-
-  if (typeof data === "object") {
-    return data.IM;
-  }
+  return bdd[gradeBDD][echelon].IM;
+}
 
   // fallback si tableau simple
   return data;
