@@ -475,7 +475,7 @@ function updateEchelonMax() {
   const input = document.getElementById("echelon");
 
   const maxEchelons = {
-    gpx: 12,
+    gpx: 13,
     bc_norm: 8,
     bc_sup: 7,
     major: 7
@@ -498,7 +498,7 @@ function remplirEchelons() {
   if (!select) return;
 
   const maxEchelons = {
-    gpx: 12,
+    gpx: 13,
     bc_norm: 8,
     bc_sup: 7,
     major: 7
