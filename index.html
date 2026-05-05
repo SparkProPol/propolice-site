@@ -357,12 +357,31 @@
               <span>Nombre d'enfants à charge</span>
               <input type="number" id="enfants" min="0" value="0" />
             </label>
-           <label class="field">
+       <label class="field">
+  <span>Localisation</span>
+  <select id="typeZone">
+    <option value="metropole">Métropole</option>
+    <option value="outremer">Outre-mer</option>
+  </select>
+</label>
+
+<label class="field">
   <span>Indemnité de résidence</span>
   <select id="zone">
     <option value="0">0 % (zone sans indemnité)</option>
-<option value="0.01">1 % (zone intermédiaire)</option>
-<option value="0.03">3 % (zone majorée)</option>
+    <option value="0.01">1 % (zone intermédiaire)</option>
+    <option value="0.03">3 % (zone majorée)</option>
+  </select>
+</label>
+
+<label class="field" id="blocOM" style="display:none;">
+  <span>Zone Outre-mer</span>
+  <select id="zoneOM">
+    <option value="0.35">Réunion (35%)</option>
+    <option value="0.40">DOM (40%)</option>
+    <option value="0.73">Nouvelle-Calédonie (73%)</option>
+    <option value="0.40">Polynésie (approx.)</option>
+    <option value="0.40">Mayotte (approx.)</option>
   </select>
 </label>
             <label class="field">
