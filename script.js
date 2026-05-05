@@ -529,6 +529,26 @@ function calculerPrimes() {
 
   const corps = document.getElementById("corps")?.value || "CEA";
 const salaireBase = getBrutBase(corps, grade, echelon);
+  // 🔥 Gestion Métropole / Outre-mer
+const typeZone = document.getElementById("typeZone")?.value || "metropole";
+
+let brutAvecIR = salaireBase;
+let IR = 0;
+let majorationOM = 0;
+
+if (typeZone === "metropole") {
+
+  const tauxIR = parseFloat(document.getElementById("zone")?.value || 0);
+  IR = salaireBase * tauxIR;
+  brutAvecIR = salaireBase + IR;
+
+} else {
+
+  const tauxOM = parseFloat(document.getElementById("zoneOM")?.value || 0.4);
+  majorationOM = salaireBase * tauxOM;
+  brutAvecIR = salaireBase + majorationOM;
+
+}
   const primeITN = getITN(zone) || 0;
   const majorationNuit = heuresNuit * 2.2;
   const majorationDimanche = heuresDimanche * 2.8;
@@ -536,11 +556,11 @@ const salaireBase = getBrutBase(corps, grade, echelon);
   const primeVP = document.getElementById("primeVP")?.value || "non";
   const montantVP = primeVP === "oui" ? 100 : 0;
   // 🔥 ISSP 28,5 %
-const ISSP = salaireBase * 0.285;
+const ISSP = brutAvecIR * 0.285;
 // 🔥 ICSS (CRS uniquement)
 const ICSS = (corps === "CRS") ? 145 : 0;
  const totalEstime =
-  salaireBase +
+  brutAvecIR +
   ISSP +
   ICSS +
   primeITN +
