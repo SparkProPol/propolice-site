@@ -521,7 +521,7 @@ function remplirEchelons() {
 
 function calculerPrimes() {
   const grade = document.getElementById("grade")?.value || "gpx";
-  const echelon = document.getElementById("echelon")?.value || 1;
+  const echelon = parseInt(document.getElementById("echelon")?.value || 1, 10);
   const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
   const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
   const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
