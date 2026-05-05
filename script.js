@@ -529,17 +529,32 @@ function calculerPrimes() {
 
   const corps = document.getElementById("corps")?.value || "CEA";
 const salaireBase = getBrutBase(corps, grade, echelon);
-  const primeITN = getITN(zone);
+  const primeITN = getITN(zone) || 0;
   const majorationNuit = heuresNuit * 2.2;
   const majorationDimanche = heuresDimanche * 2.8;
   const sft = getSFT(enfants);
   const primeVP = document.getElementById("primeVP")?.value || "non";
   const montantVP = primeVP === "oui" ? 100 : 0;
-  const totalEstime = salaireBase + primeITN + majorationNuit + majorationDimanche + sft + montantVP;
-  
+  // 🔥 ISSP 28,5 %
+const ISSP = salaireBase * 0.285;
+// 🔥 ICSS (CRS uniquement)
+const ICSS = (corps === "CRS") ? 145 : 0;
+ const totalEstime =
+  salaireBase +
+  ISSP +
+  ICSS +
+  primeITN +
+  majorationNuit +
+  majorationDimanche +
+  sft +
+  montantVP;
   const bloc = `
   <div style="display:grid; gap:10px;">
     <div class="row between"><span>Salaire de base valorisé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
+    <div class="row between"><span>ISSP (28,5%)</span><strong>+ ${ISSP.toFixed(2)} €</strong></div>
+    ${corps === "CRS" ? `
+<div class="row between"><span>ICSS CRS</span><strong>+ ${ICSS.toFixed(2)} €</strong></div>
+` : ""}
     <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
     <div class="row between"><span>Prime voie publique (VP)</span><strong>+ ${montantVP.toFixed(2)} €</strong></div>
     <div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
