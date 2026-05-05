@@ -527,10 +527,22 @@ function calculerPrimes() {
   const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
   const zone = document.getElementById("zone")?.value || "3";
 
+  const modeTravail = document.getElementById("modeTravail")?.value || "jour";
+
+if (modeTravail === "jour") {
+  document.getElementById("heuresNuit").value = 0;
+}
   const corps = document.getElementById("corps")?.value || "CEA";
 const salaireBase = getBrutBase(corps, grade, echelon);
-  const primeITN = getITN(zone) || 0;
-  const majorationNuit = heuresNuit * 2.2;
+  const modeTravail = document.getElementById("modeTravail")?.value || "jour";
+
+let primeITN = 0;
+let majorationNuit = 0;
+
+if (modeTravail === "nuit" && heuresNuit > 0) {
+  primeITN = getITN(zone) || 0;
+  majorationNuit = heuresNuit * 2.2;
+}
   const majorationDimanche = heuresDimanche * 2.8;
   const sft = getSFT(enfants);
   const primeVP = document.getElementById("primeVP")?.value || "non";
@@ -555,9 +567,11 @@ const ICSS = (corps === "CRS") ? 145 : 0;
     ${corps === "CRS" ? `
 <div class="row between"><span>ICSS CRS</span><strong>+ ${ICSS.toFixed(2)} €</strong></div>
 ` : ""}
-    <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
+    ${primeITN > 0 ? ` <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div> ` : ""}
     <div class="row between"><span>Prime voie publique (VP)</span><strong>+ ${montantVP.toFixed(2)} €</strong></div>
-    <div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
+    ${majorationNuit > 0 ? `
+<div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
+` : ""}
     <div class="row between"><span>Majoration dimanche</span><strong>+ ${majorationDimanche.toFixed(2)} €</strong></div>
     <div class="row between"><span>SFT${enfants > 0 ? ` (${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span><strong>+ ${sft.toFixed(2)} €</strong></div>
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
