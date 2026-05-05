@@ -372,31 +372,46 @@
     <option value="non">Non</option>
   </select>
 </label>
-          </div>
-          <div class="row" style="margin-top:16px;">
-            <button class="btn primary" type="button" onclick="calculerPrimes()">💰 Calculer mes primes</button>
-            <button class="btn ghost" type="button" onclick="reinitSimulateur()">Réinitialiser</button>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Résultat estimatif</h3>
-          <p class="smallmuted">Simulation indicative à vocation informative.</p>
-          <div style="margin-top:18px;">
 
-  <div id="resultatPublic">
-    <div class="smallmuted">
-      Renseignez vos informations pour lancer le calcul.
-    </div>
-  </div>
-
-  <div id="resultatMembre" style="display:none;"></div>
+<label class="field">
+  <span>Corps</span>
+  <select id="corps">
+    <option value="CEA">CEA (Police nationale)</option>
+    <option value="CRS">CRS</option>
+  </select>
+</label>
 
 </div>
-        </div>
+
+<div class="row" style="margin-top:16px;">
+  <button class="btn primary" type="button" onclick="calculerPrimes()">💰 Calculer mes primes</button>
+  <button class="btn ghost" type="button" onclick="reinitSimulateur()">Réinitialiser</button>
+</div>
+
+</div>
+
+<div class="card">
+  <h3>Résultat estimatif</h3>
+  <p class="smallmuted">Simulation indicative à vocation informative.</p>
+
+  <div style="margin-top:18px;">
+
+    <div id="resultatPublic">
+      <div class="smallmuted">
+        Renseignez vos informations pour lancer le calcul.
       </div>
     </div>
-  </section>
 
+    <div id="resultatMembre" style="display:none;"></div>
+
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+  
   <!-- ===== SIMULATEUR CMO ===== -->
   <section class="section" id="simulateur-cmo">
     <div class="container">
