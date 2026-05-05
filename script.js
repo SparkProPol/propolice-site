@@ -858,18 +858,12 @@ function getIndice(corps, grade, echelon) {
 
   const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
 
-  // 🔥 mapping propre
-  let gradeBDD = grade;
-
-  if (grade === "bc_norm") gradeBDD = "bcn";
-  if (grade === "bc_sup") gradeBDD = "bcs";
-
-  if (!bdd || !bdd[gradeBDD] || !bdd[gradeBDD][echelon]) {
-    console.error("❌ Indice introuvable :", corps, gradeBDD, echelon);
+  if (!bdd || !bdd[grade] || !bdd[grade][echelon]) {
+    console.error("❌ Indice introuvable :", corps, grade, echelon);
     return 0;
   }
 
-  return bdd[gradeBDD][echelon].IM;
+  return bdd[grade][echelon].IM;
 }
 
   // fallback si tableau simple
