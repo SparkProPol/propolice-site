@@ -401,23 +401,18 @@ async function loadArticlesCards() {
   }
 }
 
-function afficherPopup() {
+function afficherPopup(type = "global") {
 
-  const isMember = localStorage.getItem("propolice_member") === "true";
-  const popupSeen = sessionStorage.getItem("popupSeen_global");
+  const isUserMember = isMember(); // on utilise ta fonction existante
+  const popupSeen = sessionStorage.getItem("popup_" + type);
 
-  if (!isMember && !popupSeen) {
+  if (!isUserMember && !popupSeen) {
     const popup = document.getElementById("popupAdherent");
     if (popup) {
       popup.style.display = "flex";
-      sessionStorage.setItem("popupSeen_global", "true");
+      sessionStorage.setItem("popup_" + type, "true");
     }
   }
-}
-
-function fermerPopup() {
-  const popup = document.getElementById("popupAdherent");
-  if (popup) popup.style.display = "none";
 }
 
 // ---------------- Simulateur primes ----------------
