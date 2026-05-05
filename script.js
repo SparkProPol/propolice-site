@@ -662,14 +662,27 @@ const net = detailNet.net;
       <div style="margin-top:10px;">
         💰 Brut estimé : <strong>${brut.toFixed(2)} €</strong><br>
         💸 Net estimé : <strong>${net.toFixed(2)} €</strong><br>
-        📅 Projection annuelle : <strong>${annuel.toFixed(2)} €</strong>
+        📅 Projection annuelle : <strong>${(net * 12).toFixed(2)} €</strong>
       </div>
 
       <hr style="margin:12px 0; opacity:0.2;">
+<div style="font-size:0.95em;">
+    📉 <strong>Détail des retenues :</strong><br><br>
 
+    🏦 Pension civile : - ${detailNet.pension.toFixed(2)} €<br>
+    🧾 CSG déductible : - ${detailNet.csg_deductible.toFixed(2)} €<br>
+    📄 CSG non déductible : - ${detailNet.csg_non_deductible.toFixed(2)} €<br>
+    ⚖️ CRDS : - ${detailNet.crds.toFixed(2)} €<br>
+    📊 RAFP : - ${detailNet.rafp.toFixed(2)} €<br>
+
+    <br>
+    🔻 Total retenues : <strong>- ${detailNet.totalRetenues.toFixed(2)} €</strong>
+  </div>
+
+  <hr style="margin:12px 0; opacity:0.2;">
       <div>
-        📆 Valeur journalière : <strong>${journalier.toFixed(2)} €</strong><br>
-        ⏱️ Taux horaire estimé : <strong>${tauxHoraire.toFixed(2)} €</strong>
+        📆 Valeur journalière : <strong>${(net / 30).toFixed(2)} €</strong><br>
+        ⏱️ Taux horaire estimé : <strong>${(net / 151.67).toFixed(2)} €</strong>
       </div>
 
     <hr style="margin:12px 0; opacity:0.2;">
@@ -680,8 +693,8 @@ const net = detailNet.net;
     </div>
 
     <div style="margin-top:10px; font-size:0.85em; color:#ccc;">
-  Estimation indicative basée sur les données renseignées.<br>
-  Simulation indicative – non contractuelle – basée sur des moyennes.
+  Estimation basée sur les taux moyens DGPN – non contractuelle.
+  Simulation indicative – non contractuelle.
 </div>
 `;
 
