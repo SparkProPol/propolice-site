@@ -14,9 +14,11 @@ function getBDD(corps) {
 
 console.log("🚔 INITIALISATION PRO POLICE");
 
-if (typeof BDD_CEA === "undefined") {
-  console.warn("⚠️ BDD_CEA non chargée");
-}
+["CEA","CRS","ADMIN","PTS","RETRAITE","ADJOINTS","RESERVISTES"].forEach(c => {
+  if (!getBDD(c)) {
+    console.warn("⚠️ BDD non chargée :", c);
+  }
+});
 
 // PRO POLICE — scripts (filtrage ressources + UX)
 const ressources = [
@@ -629,8 +631,7 @@ const bloc = `
       <strong>Note :</strong> estimation indicative à visée informative.
     </div>
   </div>`;
-  function isMember() {
-  return localStorage.getItem("propolice_member") === "true";
+
 }
 
 if (isMember()) {
@@ -911,7 +912,12 @@ const VALEUR_POINT = 4.9228;
 // 🔍 Récupérer indice selon corps / grade / échelon
 function getIndice(corps, grade, echelon) {
 
-  const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
+  const bdd = getBDD(corps);
+
+  if (!bdd) {
+    console.error("BDD non chargée pour :", corps);
+    return 0;
+  }
 
   if (!bdd[grade] || !bdd[grade][echelon]) {
     console.error("Indice introuvable :", corps, grade, echelon);
@@ -925,8 +931,7 @@ function getIndice(corps, grade, echelon) {
 function getBrutBase(corps, grade, echelon) {
   const valeurPoint = 4.92278;
 
-  // 🔥 TEMPORAIRE : on force CEA pour tout
-  const bdd = BDD_CEA;
+ const bdd = getBDD(corps);
 
   const indice = bdd?.[grade]?.[echelon];
 
