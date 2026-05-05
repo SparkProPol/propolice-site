@@ -854,6 +854,24 @@ function getIndice(corps, grade, echelon) {
 
   const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
 
+  if (!bdd || !bdd[grade] || !bdd[grade][echelon]) {
+    console.error("❌ Indice introuvable :", corps, grade, echelon);
+    return 0;
+  }
+
+  // 🔥 IMPORTANT : sécurisation lecture IM
+  const data = bdd[grade][echelon];
+
+  if (typeof data === "object") {
+    return data.IM;
+  }
+
+  // fallback si tableau simple
+  return data;
+}
+
+  const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
+
   if (!bdd[grade] || !bdd[grade][echelon]) {
     console.error("Indice introuvable :", corps, grade, echelon);
     return 0;
