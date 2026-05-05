@@ -866,20 +866,6 @@ function getIndice(corps, grade, echelon) {
   return bdd[grade][echelon].IM;
 }
 
-  // fallback si tableau simple
-  return data;
-}
-
-  const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
-
-  if (!bdd[grade] || !bdd[grade][echelon]) {
-    console.error("Indice introuvable :", corps, grade, echelon);
-    return 0;
-  }
-
-  return bdd[grade][echelon].IM;
-}
-
 // 💰 Calcul brut indiciaire réel
 function getBrutBase(corps, grade, echelon) {
   const indice = getIndice(corps, grade, echelon);
