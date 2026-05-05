@@ -529,7 +529,10 @@ function calculerPrimes() {
 
   const modeTravail = document.getElementById("modeTravail")?.value || "jour";
 
+let heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
+
 if (modeTravail === "jour") {
+  heuresNuit = 0;
   document.getElementById("heuresNuit").value = 0;
 }
   const corps = document.getElementById("corps")?.value || "CEA";
