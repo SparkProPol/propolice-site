@@ -591,7 +591,9 @@ const bloc = `
     <div class="row between"><span>ICSS CRS</span><strong>+ ${ICSS.toFixed(2)} €</strong></div>
     ` : ""}
 
-    <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
+    ${itn === "oui" ? `
+<div class="row between"><span>Prime ITN (travail de nuit)</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
+` : ""}
 
     ${opj === "cartographie" ? `
     <div class="row between">
