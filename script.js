@@ -549,7 +549,8 @@ if (typeZone === "metropole") {
   brutAvecIR = salaireBase + majorationOM;
 
 }
-  const primeITN = getITN(zone) || 0;
+  const itn = document.getElementById("itn")?.value || "non";
+const primeITN = (itn === "oui") ? getITN(zone) : 0;
   const majorationNuit = heuresNuit * 2.2;
   const majorationDimanche = heuresDimanche * 2.8;
   const sft = getSFT(enfants);
