@@ -66,17 +66,6 @@
       <p class="lead">
         PRO POLICE est un syndicat de professionnels. <strong>Votre délégué en poche</strong> : des repères clairs et des ressources utiles. L'<strong>Université PRO POLICE</strong> diffuse des ressources, analyses et décryptages à finalité informative.
       </p>
-      <a href="#simulateur" style="text-decoration:none;">
-  <div style="margin-top:15px; font-weight:bold; font-size:1.05em; color:#1e90ff;">
-    🔥 Le simulateur Police Nationale le plus complet du paysage syndical
-  </div>
-</a>
-<ul style="margin-top:8px; color:#ccc; font-size:0.9em; line-height:1.4;">
-  <li>✔ Métropole & Outre-mer</li>
-  <li>✔ CEA & CRS</li>
-  <li>✔ Primes réelles intégrées (ISSP, ITN, OPJ…)</li>
-  <li>✔ Estimation nette & annuelle</li>
-</ul>
       <div class="ctaRow">
         <a class="btn primary" href="#adhesion">🤝 Rejoindre PRO POLICE</a>
         <a class="btn ghost" href="#ressources">📚 Voir les ressources</a>
@@ -347,8 +336,8 @@
   <span>Grade</span>
   <select id="grade">
     <option value="gpx">Gardien de la paix</option>
-  <option value="bc_norm">Brigadier-chef classe normale</option>
-<option value="bc_sup">Brigadier-chef classe supérieure</option>
+    <option value="bcn">Brigadier-chef classe normale</option>
+    <option value="bcs">Brigadier-chef classe supérieure</option>
     <option value="major">Major de police</option>
   </select>
 </label>
@@ -356,13 +345,6 @@
               <span>Échelon</span>
               <select id="echelon"></select>
             </label>
-            <label class="field">
-  <span>Indemnité de travail de nuit (ITN)</span>
-  <select id="itn">
-    <option value="non">Non (travail de jour)</option>
-    <option value="oui">Oui (travail de nuit)</option>
-  </select>
-</label>
             <label class="field">
               <span>Heures de nuit (21h-6h) par mois</span>
               <input type="number" id="heuresNuit" min="0" value="0" />
@@ -410,14 +392,6 @@
   </select>
 </label>
 
-            <label class="field">
-  <span>Fonction OPJ</span>
-  <select id="opj">
-    <option value="non">Non</option>
-    <option value="cartographie">Oui (poste OPJ cartographié)</option>
-  </select>
-</label>
-            
 <label class="field">
   <span>Corps</span>
   <select id="corps">
@@ -929,19 +903,16 @@
 </footer>
 
 <!-- Scripts BDD -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/bdd/bdd_CEA.js"></script>
+<script src="js/bdd/bdd_CRS.js"></script>
+<script src="js/bdd/bdd_ADMIN.js"></script>
+<script src="js/bdd/bdd_PTS.js"></script>
+<script src="js/bdd/bdd_RETRAITE.js"></script>
+<script src="js/bdd/bdd_ADJOINTS.js"></script>
+<script src="js/bdd/bdd_RESERVISTES.js"></script>
+<script src="script.js"></script>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-
-<script defer src="js/bdd/bdd_CEA.js"></script>
-<script defer src="js/bdd/bdd_CRS.js"></script>
-<script defer src="js/bdd/bdd_ADMIN.js"></script>
-<script defer src="js/bdd/bdd_PTS.js"></script>
-<script defer src="js/bdd/bdd_RETRAITE.js"></script>
-<script defer src="js/bdd/bdd_ADJOINTS.js"></script>
-<script defer src="js/bdd/bdd_RESERVISTES.js"></script>
-
-<script defer src="script.js"></script>
-<script defer>
+<script>
 (function () {
   // Mode adhérent toggle
   const btn = document.getElementById("btnMember");
