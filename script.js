@@ -527,7 +527,8 @@ function calculerPrimes() {
   const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
   const zone = document.getElementById("zone")?.value || "3";
 
-  const salaireBase = getSalaireBase(grade, echelon);
+  const corps = document.getElementById("corps")?.value || "CEA";
+const salaireBase = getBrutBase(corps, grade, echelon);
   const primeITN = getITN(zone);
   const majorationNuit = heuresNuit * 2.2;
   const majorationDimanche = heuresDimanche * 2.8;
