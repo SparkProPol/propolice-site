@@ -631,8 +631,8 @@ if (isMember()) {
   document.getElementById("resultatPublic").style.display = "none";
 
   const brut = totalEstime;
-  const net = estimerNet(brut);
-  const annuel = net * 12;
+const net = estimerNet(brut);
+const annuel = net * 12;
 
   const journalier = net / 30;
   const tauxHoraire = net / 151.67;
@@ -645,10 +645,10 @@ if (isMember()) {
       <strong>🔍 Analyse avancée PRO POLICE</strong>
 
       <div style="margin-top:10px;">
-        💰 Brut estimé : <strong>${brut.toFixed(2)} €</strong><br>
-        💸 Net estimé : <strong>${net.toFixed(2)} €</strong><br>
-        📅 Projection annuelle : <strong>${annuel.toFixed(2)} €</strong>
-      </div>
+  💰 Brut estimé : <strong>${brut.toFixed(2)} €</strong><br>
+  💸 Net estimé : <strong>${net.toFixed(2)} €</strong><br>
+  📅 Projection annuelle : <strong>${annuel.toFixed(2)} €</strong>
+</div>
 
       <hr style="margin:12px 0; opacity:0.2;">
 
