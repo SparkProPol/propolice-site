@@ -520,6 +520,11 @@ function remplirEchelons() {
 }
 
 function calculerPrimes() {
+  console.log("DEBUG", {
+  grade: document.getElementById("grade")?.value,
+  echelon: document.getElementById("echelon")?.value,
+  corps: document.getElementById("corps")?.value
+});
   const grade = document.getElementById("grade")?.value || "gpx";
   const echelon = parseInt(document.getElementById("echelon")?.value || 1, 10);
   const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
