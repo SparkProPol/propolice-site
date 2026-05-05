@@ -521,6 +521,10 @@ function remplirEchelons() {
 
 function calculerPrimes() {
   const grade = document.getElementById("grade")?.value || "gpx";
+let gradeBDD = grade;
+
+if (grade === "bc_norm") gradeBDD = "bcn";
+if (grade === "bc_sup") gradeBDD = "bcs";
   const echelon = parseInt(document.getElementById("echelon")?.value || 1, 10);
   const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
   const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
