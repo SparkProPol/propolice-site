@@ -14,11 +14,9 @@ function getBDD(corps) {
 
 console.log("🚔 INITIALISATION PRO POLICE");
 
-["CEA","CRS","ADMIN","PTS","RETRAITE","ADJOINTS","RESERVISTES"].forEach(c => {
-  if (!getBDD(c)) {
-    console.warn("⚠️ BDD non chargée :", c);
-  }
-});
+if (typeof BDD_CEA === "undefined") {
+  console.warn("⚠️ BDD_CEA non chargée");
+}
 
 // PRO POLICE — scripts (filtrage ressources + UX)
 const ressources = [
@@ -522,11 +520,6 @@ function remplirEchelons() {
 }
 
 function calculerPrimes() {
-  console.log("DEBUG", {
-  grade: document.getElementById("grade")?.value,
-  echelon: document.getElementById("echelon")?.value,
-  corps: document.getElementById("corps")?.value
-});
   const grade = document.getElementById("grade")?.value || "gpx";
   const echelon = parseInt(document.getElementById("echelon")?.value || 1, 10);
   const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
@@ -536,92 +529,38 @@ function calculerPrimes() {
 
   const corps = document.getElementById("corps")?.value || "CEA";
 const salaireBase = getBrutBase(corps, grade, echelon);
-  // 🔥 Gestion Métropole / Outre-mer
-const typeZone = document.getElementById("typeZone")?.value || "metropole";
-
-let brutAvecIR = salaireBase;
-let IR = 0;
-let majorationOM = 0;
-
-if (typeZone === "metropole") {
-
-  const tauxIR = parseFloat(document.getElementById("zone")?.value || 0);
-  IR = salaireBase * tauxIR;
-  brutAvecIR = salaireBase + IR;
-
-} else {
-
-  const tauxOM = parseFloat(document.getElementById("zoneOM")?.value || 0.4);
-  majorationOM = salaireBase * tauxOM;
-  brutAvecIR = salaireBase + majorationOM;
-
-}
-  const itn = document.getElementById("itn")?.value || "non";
-const primeITN = (itn === "oui") ? getITN(zone) : 0;
+  const primeITN = getITN(zone) || 0;
   const majorationNuit = heuresNuit * 2.2;
   const majorationDimanche = heuresDimanche * 2.8;
   const sft = getSFT(enfants);
   const primeVP = document.getElementById("primeVP")?.value || "non";
   const montantVP = primeVP === "oui" ? 100 : 0;
-  // 🔥 PRIME OPJ (poste cartographié)
-const opj = document.getElementById("opj")?.value || "non";
-const primeOPJ = (opj === "cartographie") ? 125 : 0;
   // 🔥 ISSP 28,5 %
-const ISSP = brutAvecIR * 0.285;
+const ISSP = salaireBase * 0.285;
 // 🔥 ICSS (CRS uniquement)
 const ICSS = (corps === "CRS") ? 145 : 0;
  const totalEstime =
-  brutAvecIR +
+  salaireBase +
   ISSP +
   ICSS +
   primeITN +
   majorationNuit +
   majorationDimanche +
   sft +
-  montantVP +
-  primeOPJ;
-const bloc = `
+  montantVP;
+  const bloc = `
   <div style="display:grid; gap:10px;">
     <div class="row between"><span>Salaire de base valorisé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
-
-    ${typeZone === "metropole" ? `
-    <div class="row between"><span>Indemnité de résidence</span><strong>+ ${IR.toFixed(2)} €</strong></div>
-    ` : ""}
-
-    ${typeZone === "outremer" ? `
-    <div class="row between"><span>Majoration Outre-mer</span><strong>+ ${majorationOM.toFixed(2)} €</strong></div>
-    ` : ""}
-
     <div class="row between"><span>ISSP (28,5%)</span><strong>+ ${ISSP.toFixed(2)} €</strong></div>
-
     ${corps === "CRS" ? `
-    <div class="row between"><span>ICSS CRS</span><strong>+ ${ICSS.toFixed(2)} €</strong></div>
-    ` : ""}
-
-    ${itn === "oui" ? `
-<div class="row between"><span>Prime ITN (travail de nuit)</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
+<div class="row between"><span>ICSS CRS</span><strong>+ ${ICSS.toFixed(2)} €</strong></div>
 ` : ""}
-
-    ${opj === "cartographie" ? `
-    <div class="row between">
-      <span>Prime OPJ (poste cartographié)</span>
-      <strong>+ ${primeOPJ.toFixed(2)} €</strong>
-    </div>
-    <div style="font-size:0.85em; color:#aaa;">
-      Estimation basée sur annonces ministérielles 2026 — versement trimestriel
-    </div>
-    ` : ""}
-
+    <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
     <div class="row between"><span>Prime voie publique (VP)</span><strong>+ ${montantVP.toFixed(2)} €</strong></div>
-
     <div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
-
     <div class="row between"><span>Majoration dimanche</span><strong>+ ${majorationDimanche.toFixed(2)} €</strong></div>
-
     <div class="row between"><span>SFT${enfants > 0 ? ` (${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span><strong>+ ${sft.toFixed(2)} €</strong></div>
-
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
-
     <div class="row between" style="font-size:1.15rem;">
       <strong>Estimation totale</strong>
       <strong>${totalEstime.toFixed(2)} €</strong>
@@ -631,7 +570,8 @@ const bloc = `
       <strong>Note :</strong> estimation indicative à visée informative.
     </div>
   </div>`;
-
+  function isMember() {
+  return localStorage.getItem("propolice_member") === "true";
 }
 
 if (isMember()) {
@@ -640,8 +580,8 @@ if (isMember()) {
   document.getElementById("resultatPublic").style.display = "none";
 
   const brut = totalEstime;
-const net = estimerNet(brut);
-const annuel = net * 12;
+  const net = estimerNet(brut);
+  const annuel = net * 12;
 
   const journalier = net / 30;
   const tauxHoraire = net / 151.67;
@@ -654,10 +594,10 @@ const annuel = net * 12;
       <strong>🔍 Analyse avancée PRO POLICE</strong>
 
       <div style="margin-top:10px;">
-  💰 Brut estimé : <strong>${brut.toFixed(2)} €</strong><br>
-  💸 Net estimé : <strong>${net.toFixed(2)} €</strong><br>
-  📅 Projection annuelle : <strong>${annuel.toFixed(2)} €</strong>
-</div>
+        💰 Brut estimé : <strong>${brut.toFixed(2)} €</strong><br>
+        💸 Net estimé : <strong>${net.toFixed(2)} €</strong><br>
+        📅 Projection annuelle : <strong>${annuel.toFixed(2)} €</strong>
+      </div>
 
       <hr style="margin:12px 0; opacity:0.2;">
 
@@ -674,8 +614,8 @@ const annuel = net * 12;
     </div>
 
     <div style="margin-top:10px; font-size:0.85em; color:#ccc;">
-  👉 Estimation incluant primes terrain (ISSP, ITN, OPJ, etc.) selon données renseignées.<br>
-  ⚠️ Simulation indicative – non contractuelle – basée sur des moyennes.
+  Estimation indicative basée sur les données renseignées.<br>
+  Simulation indicative – non contractuelle – basée sur des moyennes.
 </div>
 `;
 
@@ -848,9 +788,9 @@ function calculerCMO() {
         ${bloc}
 
         <div style="margin-top:15px; padding:10px; background:#ffaa0022; border-radius:8px;">
-  🔓 Version simplifiée<br>
-  👉 Accède à ton estimation nette, annuelle et détaillée en mode adhérent.
-</div>
+          🔓 Version simplifiée<br>
+          👉 Passe en mode adhérent pour une analyse complète.
+        </div>
       </div>
     `;
   }
@@ -909,26 +849,21 @@ function fermerPopup() {
 // 🔥 VALEUR POINT INDICE (2026)
 const VALEUR_POINT = 4.9228;
 
-// 💰 Calcul brut indiciaire réel (VERSION PROPRE)
-function getBrutBase(corps, grade, echelon) {
-  const valeurPoint = 4.92278;
+// 🔍 Récupérer indice selon corps / grade / échelon
+function getIndice(corps, grade, echelon) {
 
-  const bdd = getBDD(corps);
+  const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
 
-  if (!bdd) {
-    console.error("BDD non chargée pour :", corps);
+  if (!bdd[grade] || !bdd[grade][echelon]) {
+    console.error("Indice introuvable :", corps, grade, echelon);
     return 0;
   }
 
-  const indice = bdd?.[grade]?.[echelon];
-
-  if (!indice) {
-    console.warn("Indice introuvable :", { corps, grade, echelon });
-    return 0;
-  }
-
-  return indice * valeurPoint;
+  return bdd[grade][echelon].IM;
 }
 
-// 🔓 accessible partout (sécurité)
-window.getBrutBase = getBrutBase;
+// 💰 Calcul brut indiciaire réel
+function getBrutBase(corps, grade, echelon) {
+  const indice = getIndice(corps, grade, echelon);
+  return indice * VALEUR_POINT;
+}
