@@ -931,7 +931,7 @@ function getIndice(corps, grade, echelon) {
 function getBrutBase(corps, grade, echelon) {
   const valeurPoint = 4.92278;
 
- const bdd = getBDD(corps);
+  const bdd = getBDD(corps);
 
   const indice = bdd?.[grade]?.[echelon];
 
@@ -942,3 +942,5 @@ function getBrutBase(corps, grade, echelon) {
 
   return indice * valeurPoint;
 }
+
+window.getBrutBase = getBrutBase;
