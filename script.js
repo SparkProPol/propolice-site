@@ -543,6 +543,10 @@ const majorationOM = (typeZone === "outremer") ? salaireBase * zoneOM : 0;
   const sft = getSFT(enfants);
   const primeVP = document.getElementById("primeVP")?.value || "non";
   const montantVP = primeVP === "oui" ? 100 : 0;
+  // 🔥 Allocation maîtrise (fixe)
+const allocationMaitrise = 319.58;
+// 🔥 Complément RTT (fixe)
+const complementRTT = 112.33;
   // 🔥 ISSP 28,5 %
 const ISSP = Math.round(salaireBase * 0.285);
 // 🔥 ICSS (CRS uniquement)
@@ -550,6 +554,8 @@ const ICSS = (corps === "CRS") ? 145 : 0;
  const totalEstime =
   salaireBase +
   ISSP +
+  allocationMaitrise +
+  complementRTT +
   ICSS +
   primeITN +
   majorationNuit +
@@ -558,10 +564,15 @@ const ICSS = (corps === "CRS") ? 145 : 0;
   majorationOM +
   montantVP;
   const bloc = `
-  <div style="display:grid; gap:10px;">
-    <div class="row between"><span>Salaire de base valorisé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
-    <div class="row between"><span>ISSP (28,5%)</span><strong>+ ${ISSP.toFixed(2)} €</strong></div>
-    ${typeZone === "outremer" ? `
+  <div class="row between"><span>Salaire de base valorisé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
+
+<div class="row between"><span>ISSP (28,5%)</span><strong>+ ${ISSP.toFixed(2)} €</strong></div>
+
+<div class="row between"><span>Allocation maîtrise</span><strong>+ ${allocationMaitrise.toFixed(2)} €</strong></div>
+
+<div class="row between"><span>Complément RTT</span><strong>+ ${complementRTT.toFixed(2)} €</strong></div>
+
+${typeZone === "outremer" ? `
 <div class="row between"><span>Majoration Outre-mer</span><strong>+ ${majorationOM.toFixed(2)} €</strong></div>
 ` : ""}
 
