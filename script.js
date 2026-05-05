@@ -560,7 +560,8 @@ function calculerPrimes() {
   return localStorage.getItem("propolice_member") === "true";
 }
 
-if (isMember) {
+if (isMember()) {
+
   document.getElementById("resultatMembre").style.display = "block";
   document.getElementById("resultatPublic").style.display = "none";
 
@@ -585,13 +586,6 @@ if (isMember) {
         Estimation indicative basée sur les données renseignées.
       </div>
 
-    </div>
-  `;
-}
-
-    <div style="margin-top:15px; padding:10px; background:#1e90ff22; border-radius:8px;">
-      🔒 <strong>Version adhérent</strong><br>
-      Estimation avancée + analyse personnalisée disponible.
     </div>
   `;
 
