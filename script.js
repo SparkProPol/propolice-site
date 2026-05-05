@@ -853,14 +853,22 @@ const VALEUR_POINT = 4.9228;
 function getIndice(corps, grade, echelon) {
 
   const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
+  
+const mapGrade = {
+  gpx: "gpx",
+  bc_norm: "bcn",
+  bc_sup: "bcs",
+  major: "major"
+};
 
-  if (!bdd || !bdd[grade] || !bdd[grade][echelon]) {
+const gradeBDD = mapGrade[grade] || grade;
+  
+  if (!bdd || !bdd[gradeBDD] || !bdd[gradeBDD][echelon]) {
     console.error("❌ Indice introuvable :", corps, grade, echelon);
     return 0;
   }
 
-  // 🔥 IMPORTANT : sécurisation lecture IM
-  const data = bdd[grade][echelon];
+ const data = bdd[gradeBDD][echelon];
 
   if (typeof data === "object") {
     return data.IM;
