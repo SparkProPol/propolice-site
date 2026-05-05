@@ -600,10 +600,9 @@ if (isMember()) {
     </div>
 
     <div style="margin-top:10px; font-size:0.85em; color:#ccc;">
-      Estimation indicative basée sur les données renseignées.
-    </div>
-
-  </div>
+  Estimation indicative basée sur les données renseignées.<br>
+  Simulation indicative – non contractuelle – basée sur des moyennes.
+</div>
 `;
 
 } else {
