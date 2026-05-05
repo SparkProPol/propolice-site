@@ -526,10 +526,10 @@ function calculerPrimes() {
   const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
   const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
   const zone = document.getElementById("zone")?.value || "3";
-
+const itnChoix = document.getElementById("itn")?.value || "non";
   const corps = document.getElementById("corps")?.value || "CEA";
 const salaireBase = getBrutBase(corps, grade, echelon);
-  const primeITN = getITN(zone) || 0;
+  const primeITN = itnChoix === "oui" ? (getITN(zone) || 0) : 0;
   const majorationNuit = heuresNuit * 2.2;
   const majorationDimanche = heuresDimanche * 2.8;
   const sft = getSFT(enfants);
