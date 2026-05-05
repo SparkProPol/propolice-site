@@ -532,25 +532,28 @@ function calculerPrimes() {
   const majorationNuit = heuresNuit * 2.2;
   const majorationDimanche = heuresDimanche * 2.8;
   const sft = getSFT(enfants);
-  const totalEstime = salaireBase + primeITN + majorationNuit + majorationDimanche + sft;
-
+  const primeVP = document.getElementById("primeVP")?.value || "non";
+  const montantVP = primeVP === "oui" ? 100 : 0;
+  const totalEstime = salaireBase + primeITN + majorationNuit + majorationDimanche + sft + montantVP;
+  
   const bloc = `
-    <div style="display:grid; gap:10px;">
-      <div class="row between"><span>Salaire de base valorisé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
-      <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
-      <div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
-      <div class="row between"><span>Majoration dimanche</span><strong>+ ${majorationDimanche.toFixed(2)} €</strong></div>
-      <div class="row between"><span>SFT${enfants > 0 ? ` (${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span><strong>+ ${sft.toFixed(2)} €</strong></div>
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
-      <div class="row between" style="font-size:1.15rem;">
-        <strong>Estimation totale</strong>
-        <strong>${totalEstime.toFixed(2)} €</strong>
-      </div>
-      <div class="notice" style="margin-top:10px;">
-        <strong>Note :</strong> estimation indicative à visée informative.
-      </div>
-    </div>`;
+  <div style="display:grid; gap:10px;">
+    <div class="row between"><span>Salaire de base valorisé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
+    <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
+    <div class="row between"><span>Prime voie publique (VP)</span><strong>+ ${montantVP.toFixed(2)} €</strong></div>
+    <div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
+    <div class="row between"><span>Majoration dimanche</span><strong>+ ${majorationDimanche.toFixed(2)} €</strong></div>
+    <div class="row between"><span>SFT${enfants > 0 ? ` (${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span><strong>+ ${sft.toFixed(2)} €</strong></div>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
+    <div class="row between" style="font-size:1.15rem;">
+      <strong>Estimation totale</strong>
+      <strong>${totalEstime.toFixed(2)} €</strong>
+    </div>
 
+    <div class="notice" style="margin-top:10px;">
+      <strong>Note :</strong> estimation indicative à visée informative.
+    </div>
+  </div>`;
   function isMember() {
   return localStorage.getItem("propolice_member") === "true";
 }
