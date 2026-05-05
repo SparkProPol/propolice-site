@@ -522,6 +522,7 @@ function remplirEchelons() {
     select.appendChild(option);
   }
 }
+
 function calculerPrimes() {
   const grade = document.getElementById("grade")?.value || "gpx";
   const echelon = document.getElementById("echelon")?.value || 1;
