@@ -544,7 +544,7 @@ const majorationOM = (typeZone === "outremer") ? salaireBase * zoneOM : 0;
   const primeVP = document.getElementById("primeVP")?.value || "non";
   const montantVP = primeVP === "oui" ? 100 : 0;
   // 🔥 ISSP 28,5 %
-const ISSP = salaireBase * 0.285;
+const ISSP = Math.round(salaireBase * 0.285);
 // 🔥 ICSS (CRS uniquement)
 const ICSS = (corps === "CRS") ? 145 : 0;
  const totalEstime =
