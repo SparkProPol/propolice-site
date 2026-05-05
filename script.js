@@ -909,8 +909,9 @@ function fermerPopup() {
 // 🔥 VALEUR POINT INDICE (2026)
 const VALEUR_POINT = 4.9228;
 
-// 🔍 Récupérer indice selon corps / grade / échelon
-function getIndice(corps, grade, echelon) {
+// 💰 Calcul brut indiciaire réel (VERSION PROPRE)
+function getBrutBase(corps, grade, echelon) {
+  const valeurPoint = 4.92278;
 
   const bdd = getBDD(corps);
 
@@ -918,20 +919,6 @@ function getIndice(corps, grade, echelon) {
     console.error("BDD non chargée pour :", corps);
     return 0;
   }
-
-  if (!bdd[grade] || !bdd[grade][echelon]) {
-    console.error("Indice introuvable :", corps, grade, echelon);
-    return 0;
-  }
-
-  return bdd[grade][echelon].IM;
-}
-
-// 💰 Calcul brut indiciaire réel
-function getBrutBase(corps, grade, echelon) {
-  const valeurPoint = 4.92278;
-
-  const bdd = getBDD(corps);
 
   const indice = bdd?.[grade]?.[echelon];
 
@@ -943,4 +930,5 @@ function getBrutBase(corps, grade, echelon) {
   return indice * valeurPoint;
 }
 
+// 🔓 accessible partout (sécurité)
 window.getBrutBase = getBrutBase;
