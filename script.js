@@ -665,8 +665,8 @@ const annuel = net * 12;
     </div>
 
     <div style="margin-top:10px; font-size:0.85em; color:#ccc;">
-  Estimation indicative basée sur les données renseignées.<br>
-  Simulation indicative – non contractuelle – basée sur des moyennes.
+  👉 Estimation incluant primes terrain (ISSP, ITN, OPJ, etc.) selon données renseignées.<br>
+  ⚠️ Simulation indicative – non contractuelle – basée sur des moyennes.
 </div>
 `;
 
@@ -839,9 +839,9 @@ function calculerCMO() {
         ${bloc}
 
         <div style="margin-top:15px; padding:10px; background:#ffaa0022; border-radius:8px;">
-          🔓 Version simplifiée<br>
-          👉 Passe en mode adhérent pour une analyse complète.
-        </div>
+  🔓 Version simplifiée<br>
+  👉 Accède à ton estimation nette, annuelle et détaillée en mode adhérent.
+</div>
       </div>
     `;
   }
