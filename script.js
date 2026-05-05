@@ -521,6 +521,7 @@ function remplirEchelons() {
     option.textContent = "Échelon " + i;
     select.appendChild(option);
   }
+  
 }
 
 function calculerPrimes() {
