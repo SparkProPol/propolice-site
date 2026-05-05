@@ -404,13 +404,13 @@ async function loadArticlesCards() {
 function afficherPopup() {
 
   const isMember = localStorage.getItem("propolice_member") === "true";
-  const popupSeen = sessionStorage.getItem("popupSeen");
+  const popupSeen = sessionStorage.getItem("popupSeen_global");
 
   if (!isMember && !popupSeen) {
     const popup = document.getElementById("popupAdherent");
     if (popup) {
       popup.style.display = "flex";
-      sessionStorage.setItem("popupSeen", "true");
+      sessionStorage.setItem("popupSeen_global", "true");
     }
   }
 }
