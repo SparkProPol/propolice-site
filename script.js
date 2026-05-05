@@ -922,7 +922,13 @@ function getBrutBase(corps, grade, echelon) {
 
   const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
 
-  const indice = bdd?.[grade]?.[echelon] || 0;
+  // 🔥 sécurisation
+  const indice = bdd?.[grade]?.[echelon];
+
+  if (!indice) {
+    console.warn("Indice introuvable :", { corps, grade, echelon });
+    return 0;
+  }
 
   return indice * valeurPoint;
 }
