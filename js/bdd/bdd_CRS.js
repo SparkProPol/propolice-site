@@ -1,7 +1,7 @@
-// 🔥 BDD CEA — Police Nationale (Base indiciaire réelle)
+// 🔥 BDD CRS — Police Nationale (Base indiciaire réelle)
 // Source : grilles 2026 validées (IM uniquement)
 
-const BDD_CEA = {
+const BDD_CRS = {
 
   gpx: {
     1: { IM: 375 },
