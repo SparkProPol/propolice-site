@@ -665,6 +665,25 @@ document.addEventListener("DOMContentLoaded", () => {
   loadResourcesFromJSON();
   loadArticlesCards();
   applyFilters();
+  // 🔥 Gestion affichage Outre-mer
+const typeZone = document.getElementById("typeZone");
+const blocOM = document.getElementById("blocOM");
+const blocIR = document.getElementById("zone");
+
+function toggleZone() {
+  if (!typeZone || !blocOM || !blocIR) return;
+
+  if (typeZone.value === "outremer") {
+    blocOM.style.display = "block";
+    blocIR.parentElement.style.display = "none";
+  } else {
+    blocOM.style.display = "none";
+    blocIR.parentElement.style.display = "block";
+  }
+}
+
+typeZone?.addEventListener("change", toggleZone);
+toggleZone();
 });
 
 // ---------------- Simulateur CMO V2 ----------------
