@@ -802,3 +802,9 @@ document.addEventListener("keydown", function(e) {
     fermerPopup();
   }
 });
+function fermerPopup() {
+  const popup = document.getElementById("popupAdherent");
+  if (popup) {
+    popup.style.display = "none";
+  }
+}
