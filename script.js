@@ -466,8 +466,35 @@ function getSFT(enfants) {
   return 183.56 + ((n - 3) * 130.81);
 }
 function estimerNet(brut) {
-  // estimation simple fonction publique ~78%
   return brut * 0.78;
+}
+
+function calculerNetReel(brut) {
+
+  const pension = brut * 0.111;
+  const csg_deductible = brut * 0.068;
+  const csg_non_deductible = brut * 0.024;
+  const crds = brut * 0.005;
+  const rafp = brut * 0.05 * 0.10;
+
+  const totalRetenues =
+    pension +
+    csg_deductible +
+    csg_non_deductible +
+    crds +
+    rafp;
+
+  const net = brut - totalRetenues;
+
+  return {
+    net,
+    pension,
+    csg_deductible,
+    csg_non_deductible,
+    crds,
+    rafp,
+    totalRetenues
+  };
 }
 function updateEchelonMax() {
 
@@ -618,7 +645,8 @@ if (isMember()) {
   document.getElementById("resultatPublic").style.display = "none";
 
   const brut = totalEstime;
-  const net = estimerNet(brut);
+ const detailNet = calculerNetReel(brut);
+const net = detailNet.net;
   const annuel = net * 12;
 
   const journalier = net / 30;
