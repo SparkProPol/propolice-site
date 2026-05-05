@@ -555,6 +555,9 @@ if (typeZone === "metropole") {
   const sft = getSFT(enfants);
   const primeVP = document.getElementById("primeVP")?.value || "non";
   const montantVP = primeVP === "oui" ? 100 : 0;
+  // 🔥 PRIME OPJ (poste cartographié)
+const opj = document.getElementById("opj")?.value || "non";
+const primeOPJ = (opj === "cartographie") ? 125 : 0;
   // 🔥 ISSP 28,5 %
 const ISSP = brutAvecIR * 0.285;
 // 🔥 ICSS (CRS uniquement)
@@ -567,27 +570,48 @@ const ICSS = (corps === "CRS") ? 145 : 0;
   majorationNuit +
   majorationDimanche +
   sft +
-  montantVP;
-  const bloc = `
+  montantVP +
+  primeOPJ;
+const bloc = `
   <div style="display:grid; gap:10px;">
     <div class="row between"><span>Salaire de base valorisé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
-    ${typeZone === "metropole" ? `
-<div class="row between"><span>Indemnité de résidence</span><strong>+ ${IR.toFixed(2)} €</strong></div>
-` : ""}
 
-${typeZone === "outremer" ? `
-<div class="row between"><span>Majoration Outre-mer</span><strong>+ ${majorationOM.toFixed(2)} €</strong></div>
-` : ""}
+    ${typeZone === "metropole" ? `
+    <div class="row between"><span>Indemnité de résidence</span><strong>+ ${IR.toFixed(2)} €</strong></div>
+    ` : ""}
+
+    ${typeZone === "outremer" ? `
+    <div class="row between"><span>Majoration Outre-mer</span><strong>+ ${majorationOM.toFixed(2)} €</strong></div>
+    ` : ""}
+
     <div class="row between"><span>ISSP (28,5%)</span><strong>+ ${ISSP.toFixed(2)} €</strong></div>
+
     ${corps === "CRS" ? `
-<div class="row between"><span>ICSS CRS</span><strong>+ ${ICSS.toFixed(2)} €</strong></div>
-` : ""}
+    <div class="row between"><span>ICSS CRS</span><strong>+ ${ICSS.toFixed(2)} €</strong></div>
+    ` : ""}
+
     <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
+
+    ${opj === "cartographie" ? `
+    <div class="row between">
+      <span>Prime OPJ (poste cartographié)</span>
+      <strong>+ ${primeOPJ.toFixed(2)} €</strong>
+    </div>
+    <div style="font-size:0.85em; color:#aaa;">
+      Estimation basée sur annonces ministérielles 2026 — versement trimestriel
+    </div>
+    ` : ""}
+
     <div class="row between"><span>Prime voie publique (VP)</span><strong>+ ${montantVP.toFixed(2)} €</strong></div>
+
     <div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
+
     <div class="row between"><span>Majoration dimanche</span><strong>+ ${majorationDimanche.toFixed(2)} €</strong></div>
+
     <div class="row between"><span>SFT${enfants > 0 ? ` (${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span><strong>+ ${sft.toFixed(2)} €</strong></div>
+
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
+
     <div class="row between" style="font-size:1.15rem;">
       <strong>Estimation totale</strong>
       <strong>${totalEstime.toFixed(2)} €</strong>
