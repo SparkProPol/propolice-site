@@ -466,18 +466,34 @@ function getSFT(enfants) {
   return 183.56 + ((n - 3) * 130.81);
 }
 function estimerNet(brut) {
-  return brut * 0.90;
+  return brut * 0.78;
 }
 
 function calculerNetReel(brut) {
 
-  const taux = 0.93; // calibrage terrain police
+  const pension = brut * 0.111;
+  const csg_deductible = brut * 0.068;
+  const csg_non_deductible = brut * 0.024;
+  const crds = brut * 0.005;
+  const rafp = brut * 0.05 * 0.10;
 
-  const net = brut * taux;
+  const totalRetenues =
+    pension +
+    csg_deductible +
+    csg_non_deductible +
+    crds +
+    rafp;
+
+  const net = brut - totalRetenues;
 
   return {
     net,
-    totalRetenues: brut - net
+    pension,
+    csg_deductible,
+    csg_non_deductible,
+    crds,
+    rafp,
+    totalRetenues
   };
 }
 function updateEchelonMax() {
@@ -559,7 +575,7 @@ const allocationMaitrise = 319.58;
 // 🔥 Complément RTT (fixe)
 const complementRTT = 112.33;
   // 🔥 ISSP 28,5 %
-const ISSP = Math.round(salaireBase * 0.12);
+const ISSP = Math.round(salaireBase * 0.285);
 // 🔥 ICSS (CRS uniquement)
 const ICSS = (corps === "CRS") ? 145 : 0;
  const totalEstime =
@@ -598,7 +614,7 @@ ${corps === "CRS" ? `
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
     <div class="row between" style="font-size:1.15rem;">
       <strong>Estimation totale</strong>
-      <strong>${totalEstime.toFixed(2)} € BRUT estimé</strong>
+      <strong>${totalEstime.toFixed(2)} €</strong>
 </div>
 
 <div style="margin-top:8px; font-size:0.9em; opacity:0.8;">
@@ -616,9 +632,10 @@ ${corps === "CRS" ? `
   Les montants parfois plus élevés observés ailleurs correspondent à des estimations simplifiées ou partielles.
   <br><br>
   👉 Ici, vous avez une vision au plus proche de votre paie réelle.
+</div>
 
   </div>`;
- 
+
 if (isMember()) {
 
   document.getElementById("resultatMembre").style.display = "block";
@@ -647,9 +664,18 @@ const net = detailNet.net;
 
       <hr style="margin:12px 0; opacity:0.2;">
 <div style="font-size:0.95em;">
-  📉 <strong>Retenues estimées :</strong><br>
-  🔻 Total retenues : <strong>- ${detailNet.totalRetenues.toFixed(2)} €</strong>
-</div>
+    📉 <strong>Détail des retenues :</strong><br><br>
+
+    🏦 Pension civile : - ${detailNet.pension.toFixed(2)} €<br>
+    🧾 CSG déductible : - ${detailNet.csg_deductible.toFixed(2)} €<br>
+    📄 CSG non déductible : - ${detailNet.csg_non_deductible.toFixed(2)} €<br>
+    ⚖️ CRDS : - ${detailNet.crds.toFixed(2)} €<br>
+    📊 RAFP : - ${detailNet.rafp.toFixed(2)} €<br>
+
+    <br>
+    🔻 Total retenues : <strong>- ${detailNet.totalRetenues.toFixed(2)} €</strong>
+  </div>
+
   <hr style="margin:12px 0; opacity:0.2;">
       <div>
         📆 Valeur journalière : <strong>${(net / 30).toFixed(2)} €</strong><br>
@@ -677,21 +703,13 @@ const net = detailNet.net;
   document.getElementById("resultatPublic").innerHTML = `
     ${bloc}
 
-    <div style="margin-top:15px; padding:12px; background:#ffaa0022; border-radius:8px;">
-
-  🔓 <strong>Version simplifiée</strong><br><br>
-
-  👉 Ce montant correspond à une estimation <strong>BRUT</strong> basée sur les grilles indiciaires.<br><br>
-
-  💡 Passe en mode adhérent pour accéder à :<br>
-  • ton <strong>net réel estimé</strong><br>
-  • le <strong>détail des retenues</strong><br>
-  • une analyse complète de ta rémunération<br><br>
-
-  <strong>🎯 Vision PRO POLICE : comprendre ta paie réelle.</strong>
-
-</div>
-`;
+    <div style="margin-top:15px; padding:10px; background:#ffaa0022; border-radius:8px;">
+      🔓 Version simplifiée<br>
+      👉 Passe en mode adhérent pour une analyse complète.
+    </div>
+  `;
+}
+  
   setTimeout(() => {
   afficherPopup("primes");
 }, 800); // 0.8 seconde
