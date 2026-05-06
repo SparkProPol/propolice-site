@@ -695,6 +695,9 @@ const net = detailNet.net;
     <div style="margin-top:10px; font-size:0.85em; color:#ccc;">
   Estimation basée sur les taux moyens DGPN – non contractuelle.
   Simulation indicative – non contractuelle.
+  <br><br>
+  💡 Le net affiché est avant prélèvement à la source.<br>
+  📉 Impôt estimé non inclus (variable selon situation fiscale)
 </div>
 `;
 
