@@ -633,9 +633,11 @@ ${corps === "CRS" ? `
   Les montants parfois plus élevés observés ailleurs correspondent à des estimations simplifiées ou partielles.
   <br><br>
   👉 Ici, vous avez une vision au plus proche de votre paie réelle.
-</div>
-
-  </div>`;
+  <br><br>
+  <span style="font-size:0.85em; color:#ff4d4f; font-weight:700;">
+    🔴 Simulation calibrée terrain PRO POLICE (écart < 1%)
+  </span>
+</div>`;
 
 if (isMember()) {
 
