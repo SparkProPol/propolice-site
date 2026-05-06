@@ -695,7 +695,7 @@ const net = detailNet.net;
   <strong>🎯 Vision PRO POLICE : comprendre ta paie réelle.</strong>
 
 </div>
-  ;
+`;
   setTimeout(() => {
   afficherPopup("primes");
 }, 800); // 0.8 seconde
