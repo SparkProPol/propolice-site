@@ -651,18 +651,9 @@ const net = detailNet.net;
 
       <hr style="margin:12px 0; opacity:0.2;">
 <div style="font-size:0.95em;">
-    📉 <strong>Détail des retenues :</strong><br><br>
-
-    🏦 Pension civile : - ${detailNet.pension.toFixed(2)} €<br>
-    🧾 CSG déductible : - ${detailNet.csg_deductible.toFixed(2)} €<br>
-    📄 CSG non déductible : - ${detailNet.csg_non_deductible.toFixed(2)} €<br>
-    ⚖️ CRDS : - ${detailNet.crds.toFixed(2)} €<br>
-    📊 RAFP : - ${detailNet.rafp.toFixed(2)} €<br>
-
-    <br>
-    🔻 Total retenues : <strong>- ${detailNet.totalRetenues.toFixed(2)} €</strong>
-  </div>
-
+  📉 <strong>Retenues estimées :</strong><br>
+  🔻 Total retenues : <strong>- ${detailNet.totalRetenues.toFixed(2)} €</strong>
+</div>
   <hr style="margin:12px 0; opacity:0.2;">
       <div>
         📆 Valeur journalière : <strong>${(net / 30).toFixed(2)} €</strong><br>
