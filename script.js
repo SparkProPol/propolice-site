@@ -683,6 +683,33 @@ const net = detailNet.net;
 
   document.getElementById("resultatMembre").innerHTML = `
     ${bloc}
+    <div style="
+  margin-top:15px;
+  padding:18px;
+  background:linear-gradient(135deg, #0f172a, #1e293b);
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+">
+
+  <div style="font-size:0.9em; color:#94a3b8; margin-bottom:5px;">
+    💰 TON SALAIRE RÉEL ESTIMÉ
+  </div>
+
+  <div style="
+    font-size:2.2em;
+    font-weight:800;
+    color:#22c55e;
+    letter-spacing:1px;
+  ">
+    ${net.toFixed(2)} €
+  </div>
+
+  <div style="margin-top:8px; font-size:0.85em; color:#94a3b8;">
+    Brut : ${brut.toFixed(2)} € • Annuel : ${(net*12).toFixed(0)} €
+  </div>
+
+</div>
 
     <div style="margin-top:15px; padding:12px; background:#1e90ff22; border-radius:8px;">
 
