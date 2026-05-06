@@ -485,7 +485,32 @@ function calculerNetReel(brut) {
     rafp;
 
   const coefficientCorrection = 1.05; // ajustement terrain 
-  const net = (brut - totalRetenues) * coefficientCorrection;
+  let net;
+
+if (typeZone === "outremer") {
+
+  let ratioNet;
+
+  if (zoneOM >= 0.70) {
+    ratioNet = 0.98; // Nouvelle-Calédonie / Polynésie
+  } 
+  else if (zoneOM >= 0.40) {
+    ratioNet = 0.94; // DOM / Mayotte
+  } 
+  else if (zoneOM >= 0.30) {
+    ratioNet = 0.92; // Réunion
+  } 
+  else {
+    ratioNet = 0.93;
+  }
+
+  net = brut * ratioNet;
+
+} else {
+
+  net = (brut - totalRetenues) * coefficientCorrection;
+
+}
 
   return {
     net,
