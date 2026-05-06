@@ -575,7 +575,7 @@ const allocationMaitrise = 319.58;
 // 🔥 Complément RTT (fixe)
 const complementRTT = 112.33;
   // 🔥 ISSP 28,5 %
-const ISSP = Math.round(salaireBase * 0.285);
+const ISSP = Math.round(salaireBase * 0.12);
 // 🔥 ICSS (CRS uniquement)
 const ICSS = (corps === "CRS") ? 145 : 0;
  const totalEstime =
