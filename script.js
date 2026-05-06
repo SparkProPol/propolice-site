@@ -471,29 +471,13 @@ function estimerNet(brut) {
 
 function calculerNetReel(brut) {
 
-  const pension = brut * 0.111;
-  const csg_deductible = brut * 0.068;
-  const csg_non_deductible = brut * 0.024;
-  const crds = brut * 0.005;
-  const rafp = brut * 0.05 * 0.10;
+  const taux = 0.89; // calibrage terrain police
 
-  const totalRetenues =
-    pension +
-    csg_deductible +
-    csg_non_deductible +
-    crds +
-    rafp;
-
-  const net = brut - totalRetenues;
+  const net = brut * taux;
 
   return {
     net,
-    pension,
-    csg_deductible,
-    csg_non_deductible,
-    crds,
-    rafp,
-    totalRetenues
+    totalRetenues: brut - net
   };
 }
 function updateEchelonMax() {
