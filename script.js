@@ -484,7 +484,8 @@ function calculerNetReel(brut) {
     crds +
     rafp;
 
-  const net = brut - totalRetenues;
+  const coefficientCorrection = 1.05; // ajustement terrain 
+  const net = (brut - totalRetenues) * coefficientCorrection;
 
   return {
     net,
