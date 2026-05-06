@@ -466,7 +466,7 @@ function getSFT(enfants) {
   return 183.56 + ((n - 3) * 130.81);
 }
 function estimerNet(brut) {
-  return brut * 0.78;
+  return brut * 0.90;
 }
 
 function calculerNetReel(brut) {
