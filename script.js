@@ -471,6 +471,9 @@ function estimerNet(brut) {
 
 function calculerNetReel(brut) {
 
+  const typeZone = document.getElementById("typeZone")?.value || "metropole";
+  const zoneOM = parseFloat(document.getElementById("zoneOM")?.value || 0);
+
   const pension = brut * 0.111;
   const csg_deductible = brut * 0.068;
   const csg_non_deductible = brut * 0.024;
@@ -484,33 +487,34 @@ function calculerNetReel(brut) {
     crds +
     rafp;
 
-  const coefficientCorrection = 1.05; // ajustement terrain 
+  const coefficientCorrection = 1.05;
+
   let net;
 
-if (typeZone === "outremer") {
+  if (typeZone === "outremer") {
 
-  let ratioNet;
+    let ratioNet;
 
-  if (zoneOM >= 0.70) {
-    ratioNet = 0.98; // Nouvelle-Calédonie / Polynésie
-  } 
-  else if (zoneOM >= 0.40) {
-    ratioNet = 0.94; // DOM / Mayotte
-  } 
-  else if (zoneOM >= 0.30) {
-    ratioNet = 0.92; // Réunion
-  } 
-  else {
-    ratioNet = 0.93;
+    if (zoneOM >= 0.70) {
+      ratioNet = 0.98;
+    } 
+    else if (zoneOM >= 0.40) {
+      ratioNet = 0.94;
+    } 
+    else if (zoneOM >= 0.30) {
+      ratioNet = 0.92;
+    } 
+    else {
+      ratioNet = 0.93;
+    }
+
+    net = brut * ratioNet;
+
+  } else {
+
+    net = (brut - totalRetenues) * coefficientCorrection;
+
   }
-
-  net = brut * ratioNet;
-
-} else {
-
-  net = (brut - totalRetenues) * coefficientCorrection;
-
-}
 
   return {
     net,
