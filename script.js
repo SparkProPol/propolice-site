@@ -644,7 +644,7 @@ ${corps === "CRS" ? `
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
     <div class="row between" style="font-size:1.15rem;">
       <strong>Estimation totale</strong>
-      <strong>${totalEstime.toFixed(2)} €</strong>
+      <strong>${totalEstime.toFixed(2)} € BRUT estimé</strong>
 </div>
 
 <div style="margin-top:8px; font-size:0.9em; opacity:0.8;">
@@ -683,14 +683,19 @@ const net = detailNet.net;
 
   document.getElementById("resultatMembre").innerHTML = `
     ${bloc}
-    <div style="
-  margin-top:15px;
-  padding:18px;
-  background:linear-gradient(135deg, #0f172a, #1e293b);
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,0.08);
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
-">
+ <div 
+  onmouseover="this.style.transform='translateY(-3px)'"
+  onmouseout="this.style.transform='translateY(0)'"
+  style="
+    margin-top:15px;
+    padding:18px;
+    background:linear-gradient(135deg, #0f172a, #1e293b);
+    transform:translateY(0);
+    transition:all 0.3s ease;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  ">
 
   <div style="font-size:0.9em; color:#94a3b8; margin-bottom:5px;">
     💰 TON SALAIRE RÉEL ESTIMÉ
@@ -708,6 +713,10 @@ const net = detailNet.net;
   <div style="margin-top:8px; font-size:0.85em; color:#94a3b8;">
     Brut : ${brut.toFixed(2)} € • Annuel : ${(net*12).toFixed(0)} €
   </div>
+
+<div style="margin-top:8px; font-size:0.85em; color:#facc15;">
+  📊 Équivalent terrain : ~${(net / 151.67).toFixed(2)} €/h
+</div>
 
 </div>
 
