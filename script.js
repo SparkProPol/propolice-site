@@ -619,10 +619,7 @@ ${corps === "CRS" ? `
 </div>
 
   </div>`;
-  function isMember() {
-  return localStorage.getItem("propolice_member") === "true";
-}
-
+ 
 if (isMember()) {
 
   document.getElementById("resultatMembre").style.display = "block";
