@@ -616,7 +616,6 @@ ${corps === "CRS" ? `
   Les montants parfois plus élevés observés ailleurs correspondent à des estimations simplifiées ou partielles.
   <br><br>
   👉 Ici, vous avez une vision au plus proche de votre paie réelle.
-</div>
 
   </div>`;
  
