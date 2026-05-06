@@ -598,7 +598,7 @@ ${corps === "CRS" ? `
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
     <div class="row between" style="font-size:1.15rem;">
       <strong>Estimation totale</strong>
-      <strong>${totalEstime.toFixed(2)} €</strong>
+      <strong>${totalEstime.toFixed(2)} € BRUT estimé</strong>
 </div>
 
 <div style="margin-top:8px; font-size:0.9em; opacity:0.8;">
@@ -681,12 +681,20 @@ const net = detailNet.net;
   document.getElementById("resultatPublic").innerHTML = `
     ${bloc}
 
-    <div style="margin-top:15px; padding:10px; background:#ffaa0022; border-radius:8px;">
-      🔓 Version simplifiée<br>
-      👉 Passe en mode adhérent pour une analyse complète.
-    </div>
-  `;
-}
+    <div style="margin-top:15px; padding:12px; background:#ffaa0022; border-radius:8px;">
+
+  🔓 <strong>Version simplifiée</strong><br><br>
+
+  👉 Ce montant correspond à une estimation <strong>BRUT</strong> basée sur les grilles indiciaires.<br><br>
+
+  💡 Passe en mode adhérent pour accéder à :<br>
+  • ton <strong>net réel estimé</strong><br>
+  • le <strong>détail des retenues</strong><br>
+  • une analyse complète de ta rémunération<br><br>
+
+  <strong>🎯 Vision PRO POLICE : comprendre ta paie réelle.</strong>
+
+</div>
   
   setTimeout(() => {
   afficherPopup("primes");
