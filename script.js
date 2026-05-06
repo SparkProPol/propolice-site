@@ -502,7 +502,7 @@ function calculerNetReel(brut) {
       ratioNet = 0.94;
     } 
     else if (zoneOM >= 0.30) {
-      ratioNet = 0.92;
+      ratioNet = 0.915;
     } 
     else {
       ratioNet = 0.93;
