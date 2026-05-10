@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-mode="public">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,14 +9,269 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ===== SWITCH VISUEL PARETO ===== */
+    /* PUBLIC (80%) — Bleu */
+    [data-mode="public"] {
+      --theme-accent: #3b82f6;
+      --theme-accent2: #60a5fa;
+      --theme-glow: rgba(59,130,246,.18);
+      --theme-badge-bg: rgba(59,130,246,.12);
+      --theme-badge-border: rgba(59,130,246,.3);
+      --theme-panel: rgba(59,130,246,.06);
+    }
+    /* MEMBRE (17%) — Orange/Pro */
+    [data-mode="membre"] {
+      --theme-accent: #f59e0b;
+      --theme-accent2: #fbbf24;
+      --theme-glow: rgba(245,158,11,.15);
+      --theme-badge-bg: rgba(245,158,11,.10);
+      --theme-badge-border: rgba(245,158,11,.3);
+      --theme-panel: rgba(245,158,11,.05);
+    }
+    [data-mode="membre"] body {
+      background:
+        radial-gradient(ellipse 1400px 700px at 10% 0%, rgba(245,158,11,.10), transparent 60%),
+        radial-gradient(ellipse 900px 600px at 90% 5%, rgba(251,191,36,.08), transparent 55%),
+        radial-gradient(ellipse 1100px 800px at 50% 100%, rgba(34,197,94,.06), transparent 55%),
+        #060d1a;
+    }
+    [data-mode="membre"] .topbar { border-bottom-color: rgba(245,158,11,.2); }
+    [data-mode="membre"] .sectionBadge { background: rgba(245,158,11,.10); border-color: rgba(245,158,11,.25); color: #fbbf24; }
+    [data-mode="membre"] .btn.primary { background: linear-gradient(135deg, #d97706, #f59e0b); box-shadow: 0 4px 20px rgba(245,158,11,.3); }
+    [data-mode="membre"] .card:hover { border-color: rgba(245,158,11,.3); }
+    [data-mode="membre"] .badge { background: rgba(245,158,11,.12); border-color: rgba(245,158,11,.3); color: #fbbf24; }
+    [data-mode="membre"] .modeBanner { background: linear-gradient(135deg, rgba(245,158,11,.12), rgba(245,158,11,.06)); border-color: rgba(245,158,11,.3); display:flex !important; }
+    [data-mode="membre"] .heroStatNum { color: #fbbf24; }
+    [data-mode="membre"] .statNum { color: #fbbf24; }
+    [data-mode="membre"] .navDesktop a:hover { color: #fbbf24; }
+
+    /* ===== BANNER MODE ===== */
+    .modeBanner {
+      display: none;
+      align-items: center; justify-content: space-between;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, rgba(245,158,11,.10), rgba(245,158,11,.05));
+      border-bottom: 1px solid rgba(245,158,11,.25);
+      font-size: 13px; font-weight: 600; color: #fbbf24;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .modeBanner span { display:flex; align-items:center; gap:8px; }
+    .modeBanner button {
+      padding: 5px 12px; border-radius: 8px;
+      background: rgba(245,158,11,.15); border: 1px solid rgba(245,158,11,.3);
+      color: #fbbf24; font-size: 12px; font-weight: 600; cursor: pointer;
+      font-family: inherit; transition: background .2s;
+    }
+    .modeBanner button:hover { background: rgba(245,158,11,.25); }
+
+    /* ===== HERO SPLIT ===== */
+    .heroSplit {
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      gap: 40px; align-items: center;
+      max-width: 1140px; margin: 0 auto; padding: 0 20px;
+      position: relative; z-index: 1;
+    }
+
+    /* ===== SIMULATEUR INLINE HERO ===== */
+    .heroSimCard {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 24px;
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 32px 80px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.06);
+      animation: fadeInRight .8s ease .2s both;
+    }
+    .heroSimTitle {
+      font-size: 14px; font-weight: 800; color: #fff;
+      margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+    }
+    .heroSimTitle span {
+      padding: 3px 10px; border-radius: 999px;
+      background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.25);
+      color: var(--accent2); font-size: 11px;
+    }
+    .heroSimGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .heroField { display: flex; flex-direction: column; gap: 5px; }
+    .heroField label { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
+    .heroField select, .heroField input {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 9px; color: var(--text); padding: 9px 11px;
+      font-size: 13px; font-family: inherit; outline: none; width: 100%;
+      transition: border-color .2s;
+    }
+    .heroField select:focus, .heroField input:focus { border-color: rgba(59,130,246,.5); }
+    .heroField select option { background: #0f1a2f; }
+    .heroSimBtn {
+      width: 100%; margin-top: 14px; padding: 13px;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      border: none; border-radius: 12px; color: #fff;
+      font-size: 15px; font-weight: 800; cursor: pointer;
+      font-family: inherit; transition: all .2s;
+      box-shadow: 0 4px 20px rgba(59,130,246,.35);
+    }
+    .heroSimBtn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(59,130,246,.5); }
+    .heroSimResult {
+      margin-top: 14px; padding: 14px;
+      background: rgba(34,197,94,.06); border: 1px solid rgba(34,197,94,.2);
+      border-radius: 14px; display: none;
+    }
+    .heroSimResult.visible { display: block; animation: fadeInUp .4s ease; }
+    .heroSimResultNum { font-size: 28px; font-weight: 900; color: #22c55e; }
+    .heroSimResultSub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .heroSimResultLock {
+      margin-top: 10px; padding: 10px 12px;
+      background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.2);
+      border-radius: 10px; font-size: 12px; color: #fde7be;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* ===== STATS CHOC ===== */
+    .statsChoc {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-top: 28px;
+    }
+    .statChocCard {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line); border-radius: 14px;
+      padding: 14px 12px; text-align: center;
+      transition: transform .2s, border-color .2s;
+    }
+    .statChocCard:hover { transform: translateY(-3px); border-color: rgba(59,130,246,.25); }
+    .statChocNum { font-size: 20px; font-weight: 900; color: var(--accent2); }
+    .statChocLabel { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+    /* ===== SECTION TABS ===== */
+    .tabsNav {
+      display: flex; gap: 6px; flex-wrap: wrap;
+      padding: 6px; background: rgba(255,255,255,.03);
+      border: 1px solid var(--line); border-radius: 16px;
+      margin-bottom: 24px; width: fit-content;
+    }
+    .tabBtn {
+      padding: 9px 18px; border-radius: 11px;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      border: none; background: transparent; color: var(--muted);
+      font-family: inherit; transition: all .2s;
+    }
+    .tabBtn.active { background: rgba(59,130,246,.15); color: var(--accent2); border: 1px solid rgba(59,130,246,.25); }
+    .tabBtn:hover:not(.active) { background: rgba(255,255,255,.06); color: var(--text); }
+    .tabPanel { display: none; animation: fadeInUp .3s ease; }
+    .tabPanel.active { display: block; }
+
+    /* ===== SECTION MEMBRE ENRICHIE ===== */
+    .membreOnly { display: none; }
+    [data-mode="membre"] .membreOnly { display: block; }
+    [data-mode="membre"] .publicOnly { display: none; }
+
+    /* ===== TUNNEL CTA ===== */
+    .tunnelCTA {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 24px; border-radius: 18px;
+      background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(34,197,94,.05));
+      border: 1px solid rgba(59,130,246,.2);
+      margin-top: 32px; flex-wrap: wrap;
+    }
+    .tunnelCTA .tunnelText { flex: 1; min-width: 200px; }
+    .tunnelCTA .tunnelTitle { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .tunnelCTA .tunnelSub { font-size: 13px; color: var(--muted); }
+
+    /* ===== UNIVERSITÉ CTA ===== */
+    .univTeaser {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, rgba(239,68,68,.08), rgba(245,158,11,.06));
+      border: 1px solid rgba(239,68,68,.25);
+      border-radius: 20px; padding: 32px 28px;
+      margin-top: 32px;
+    }
+    .univTeaser::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #ef4444, #f59e0b, #ef4444);
+    }
+    .univTeaserBadge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 13px; border-radius: 999px;
+      background: rgba(239,68,68,.12); border: 1px solid rgba(239,68,68,.3);
+      color: #fca5a5; font-size: 11px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .univTeaserTitle { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+    .univTeaserSub { font-size: 14px; color: var(--muted); margin-bottom: 20px; max-width: 60ch; }
+    .univFeatures { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    .univFeatureChip {
+      padding: 6px 12px; border-radius: 999px;
+      background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.2);
+      color: #fca5a5; font-size: 12px; font-weight: 600;
+    }
+
+    /* ===== RESSOURCES RAPIDES ===== */
+    .ressourcesRapides {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+    }
+    .ressCard {
+      padding: 16px; border-radius: 14px;
+      background: rgba(255,255,255,.03); border: 1px solid var(--line);
+      transition: transform .2s, border-color .2s; cursor: pointer;
+    }
+    .ressCard:hover { transform: translateY(-3px); border-color: rgba(59,130,246,.25); }
+    .ressCardIcon { font-size: 22px; margin-bottom: 8px; }
+    .ressCardTitle { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .ressCardMeta { font-size: 11px; color: var(--muted); }
+    .ressCardLock { font-size: 11px; color: var(--gold); margin-top: 6px; }
+
+    /* ===== FLOATING NAV ===== */
+    .floatingNav {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px; align-items: center;
+      background: rgba(6,13,26,.92); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px; padding: 8px 12px;
+      backdrop-filter: blur(16px); z-index: 50;
+      box-shadow: 0 8px 32px rgba(0,0,0,.4);
+      animation: fadeInUp .6s ease .5s both;
+    }
+    .floatingNavBtn {
+      padding: 7px 14px; border-radius: 999px;
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      border: none; background: transparent; color: var(--muted);
+      font-family: inherit; transition: all .2s; white-space: nowrap;
+    }
+    .floatingNavBtn:hover { background: rgba(255,255,255,.08); color: var(--text); }
+    .floatingNavBtn.cta {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: #fff; box-shadow: 0 2px 12px rgba(59,130,246,.3);
+    }
+    .floatingNavBtn.cta:hover { transform: scale(1.04); }
+    .floatSep { width: 1px; height: 20px; background: rgba(255,255,255,.12); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .heroSplit { grid-template-columns: 1fr; }
+      .heroSimCard { display: none; }
+      .statsChoc { grid-template-columns: repeat(3,1fr); }
+      .ressourcesRapides { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .statsChoc { grid-template-columns: 1fr 1fr; }
+      .ressourcesRapides { grid-template-columns: 1fr; }
+      .floatingNav { width: calc(100% - 32px); justify-content: center; }
+    }
+  </style>
 </head>
+
 <body>
+<a class="skip" href="#simulateur">Aller au simulateur</a>
 
-<a class="skip" href="#contenu">Aller au contenu</a>
+<!-- ===== BANNER MODE MEMBRE ===== -->
+<div class="modeBanner" id="modeBanner">
+  <span>⭐ Mode Adhérent activé — accès complet déverrouillé</span>
+  <button onclick="toggleMembre()">Désactiver</button>
+</div>
 
-<!-- ===== HEADER ===== -->
+<!-- ===== TOPBAR ===== -->
 <header class="header">
-
   <div class="topbar">
     <div class="topbar-left">
       <div class="brand">
@@ -28,299 +283,333 @@
       </div>
     </div>
 
-    <nav class="navDesktop" aria-label="Navigation principale">
-      <a href="#ressources">Ressources</a>
-      <a href="#simulateur">Simulateur</a>
-      <a href="#simulateur-cmo">CMO</a>
-      <a href="#universite">Université</a>
-      <a href="#actualites">Actualités</a>
-      <a href="#bonsplans">Bons plans</a>
-      <a href="#telechargements">Téléchargements</a>
+    <nav class="navDesktop" aria-label="Navigation">
+      <a href="#simulateur">💰 Simulateur</a>
+      <a href="#ressources">📚 Ressources</a>
+      <a href="#actions">⚡ Actions</a>
+      <a href="universite.html" style="color:var(--accent2); font-weight:700;">🎓 Université</a>
     </nav>
 
     <div class="topbar-right">
-      <button class="btn small ghost" id="btnMember" type="button" aria-label="Basculer mode adhérent">Mode adhérent OFF</button>
+      <button class="btn small ghost" id="btnMember" onclick="toggleMembre()" type="button">
+        Mode adhérent OFF
+      </button>
       <a class="btn small primary" href="#adhesion">🤝 Adhérer</a>
-      <button class="menuBtn" id="menuBtn" aria-expanded="false" aria-controls="menuMobile" aria-label="Ouvrir le menu">
-        <span class="sr">Ouvrir le menu</span>
-        <span aria-hidden="true">☰</span>
+      <button class="menuBtn" id="menuBtn" aria-expanded="false" aria-controls="menuMobile">
+        <span class="sr">Menu</span><span aria-hidden="true">☰</span>
       </button>
     </div>
   </div>
 
   <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
-    <a href="#contenu">Accueil</a>
-    <a href="#ressources">Ressources</a>
-    <a href="#simulateur">Simulateur</a>
-    <a href="#simulateur-cmo">CMO</a>
-    <a href="#universite">Université</a>
-    <a href="#actualites">Actualités</a>
-    <a href="#bonsplans">Bons plans</a>
-    <a href="#telechargements">Téléchargements</a>
-    <a href="#adhesion">Adhérer</a>
+    <a href="#simulateur">💰 Simulateur</a>
+    <a href="#ressources">📚 Ressources</a>
+    <a href="#actions">⚡ Actions</a>
+    <a href="universite.html">🎓 Université PRO POLICE</a>
+    <a href="#adhesion">🤝 Adhérer</a>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero" id="contenu">
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="contenu" style="padding: 64px 0 56px;">
     <div class="heroBg" aria-hidden="true"></div>
-    <div class="heroInner">
+    <div class="heroSplit">
+
+      <!-- GAUCHE — Accroche -->
       <div class="heroLeft">
-        <div class="badge">⚡ Défense • Information • Action</div>
-        <h1>Défendre ceux qui protègent.<br><span>Informer ceux qui agissent.</span><br>Comprendre vos droits.</h1>
-        <p class="lead">
-          PRO POLICE est un syndicat de professionnels. <strong>Votre délégué en poche</strong> : des repères clairs et des ressources utiles. L'<strong>Université PRO POLICE</strong> diffuse des ressources, analyses et décryptages à finalité informative.
+        <div class="badge" style="animation: fadeInDown .6s ease both;">
+          ⚡ Défense • Information • Action
+        </div>
+        <h1 style="animation: fadeInUp .7s ease .1s both; font-size: clamp(26px,4vw,46px); font-weight:900; line-height:1.15; color:#fff; margin: 16px 0;">
+          Ton salaire réel.<br>
+          <span style="color:var(--accent2);">Tes droits. Maintenant.</span>
+        </h1>
+        <p class="lead" style="animation: fadeInUp .7s ease .2s both; margin:0 0 20px;">
+          PRO POLICE — le seul syndicat policier avec un simulateur de rémunération calibré terrain, une base documentaire complète et une université de formation certifiée.
         </p>
-        <div class="heroHighlight">
-          <div class="hh-icon">🔥</div>
-          <div>
-            <div class="hh-title">Le simulateur Police Nationale le plus complet du paysage syndical</div>
-            <ul>
-              <li>Métropole & Outre-mer</li>
-              <li>CEA & CRS</li>
-              <li>Primes réelles intégrées (ISSP, ITN, OPJ…)</li>
-              <li>Estimation nette & annuelle</li>
-            </ul>
+
+        <!-- Stats choc -->
+        <div class="statsChoc" style="animation: fadeInUp .7s ease .3s both;">
+          <div class="statChocCard">
+            <div class="statChocNum">~320€</div>
+            <div class="statChocLabel">perdus/mois sans ITN optimisée</div>
+          </div>
+          <div class="statChocCard">
+            <div class="statChocNum">90j</div>
+            <div class="statChocLabel">avant passage à 50% en CMO</div>
+          </div>
+          <div class="statChocCard">
+            <div class="statChocNum">45k€+</div>
+            <div class="statChocLabel">récupérés pour les collègues</div>
           </div>
         </div>
-        <div class="ctaRow">
-          <a class="btn primary" href="#adhesion">🤝 Rejoindre PRO POLICE</a>
-          <a class="btn ghost" href="#ressources">📚 Voir les ressources</a>
+
+        <!-- CTA row -->
+        <div class="ctaRow" style="animation: fadeInUp .7s ease .35s both; margin-top:24px;">
+          <a class="btn primary" href="#simulateur">💰 Calculer mon salaire</a>
+          <a class="btn ghost" href="#ressources">📚 Ressources gratuites</a>
         </div>
-        <div class="metaRow">
-          <div class="metaCard">
-            <div class="metaIcon">🛡️</div>
-            <div>
-              <div class="metaTitle">Défense</div>
-              <div class="metaText">Accompagnement individuel & collectif</div>
-            </div>
+
+        <!-- Tunnel adhérent — visible public uniquement -->
+        <div class="publicOnly" style="animation: fadeInUp .7s ease .4s both;">
+          <div style="margin-top:16px; display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted);">
+            <span>🔒 Simulation complète + analyse nette + projection annuelle</span>
+            <a href="#adhesion" style="color:var(--accent2); font-weight:700; white-space:nowrap;">→ Adhérer</a>
           </div>
-          <div class="metaCard">
-            <div class="metaIcon">📖</div>
-            <div>
-              <div class="metaTitle">Information</div>
-              <div class="metaText">Fiches pratiques & décryptages</div>
-            </div>
-          </div>
-          <div class="metaCard">
-            <div class="metaIcon">⚡</div>
-            <div>
-              <div class="metaTitle">Action</div>
-              <div class="metaText">Présence terrain & représentation</div>
-            </div>
+        </div>
+
+        <!-- Message membre -->
+        <div class="membreOnly" style="margin-top:16px;">
+          <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:#fbbf24; font-weight:600;">
+            ⭐ Accès complet activé — simulateur avancé, ressources membres, analyse détaillée
           </div>
         </div>
       </div>
 
-      <div class="heroRight heroVisual">
-        <div class="heroVisualInner">
-          <div class="heroStat">
-            <div class="heroStatNum">150+</div>
-            <div class="heroStatLabel">collègues accompagnés</div>
+      <!-- DROITE — Simulateur inline -->
+      <div class="heroSimCard" id="heroSimCard">
+        <div class="heroSimTitle">
+          💰 Simulateur rapide
+          <span class="publicOnly">Version publique</span>
+          <span class="membreOnly" style="background:rgba(245,158,11,.15); border-color:rgba(245,158,11,.3); color:#fbbf24;">⭐ Version avancée</span>
+        </div>
+
+        <div class="heroSimGrid">
+          <div class="heroField">
+            <label>Corps</label>
+            <select id="hCorps">
+              <option value="CEA">CEA</option>
+              <option value="CRS">CRS</option>
+            </select>
           </div>
-          <div class="heroStat">
-            <div class="heroStatNum">80+</div>
-            <div class="heroStatLabel">dossiers traités</div>
+          <div class="heroField">
+            <label>Grade</label>
+            <select id="hGrade">
+              <option value="gpx">Gardien de la Paix</option>
+              <option value="bc_norm">Brigadier / B-Chef</option>
+              <option value="bc_sup">B-Chef sup.</option>
+              <option value="major">Major</option>
+            </select>
           </div>
-          <div class="heroStat">
-            <div class="heroStatNum">45 000€+</div>
-            <div class="heroStatLabel">récupérés pour les collègues</div>
+          <div class="heroField">
+            <label>Échelon</label>
+            <select id="hEchelon"></select>
           </div>
-          <div class="heroStat">
-            <div class="heroStatNum">100%</div>
-            <div class="heroStatLabel">indépendant</div>
+          <div class="heroField">
+            <label>Zone</label>
+            <select id="hZone">
+              <option value="1">Zone 1 — Paris/IDF</option>
+              <option value="2">Zone 2</option>
+              <option value="3" selected>Zone 3</option>
+            </select>
           </div>
-          <div class="heroBadgePN">
-            <span>🇫🇷</span>
-            <span>Police Nationale Française</span>
+          <div class="heroField">
+            <label>Heures nuit/mois</label>
+            <input type="number" id="hNuit" value="0" min="0" max="200" />
           </div>
-          <div class="heroBadgeSlogan">"Le syndicat qui manquait dans la police"</div>
+          <div class="heroField">
+            <label>Heures dimanche/mois</label>
+            <input type="number" id="hDim" value="0" min="0" max="100" />
+          </div>
+        </div>
+
+        <!-- Champs avancés membres -->
+        <div class="membreOnly" style="margin-top:10px;">
+          <div class="heroSimGrid">
+            <div class="heroField">
+              <label>Enfants à charge</label>
+              <input type="number" id="hEnfants" value="0" min="0" max="10" />
+            </div>
+            <div class="heroField">
+              <label>Prime VP</label>
+              <select id="hVP">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+              </select>
+            </div>
+            <div class="heroField">
+              <label>OPJ cartographié</label>
+              <select id="hOPJ">
+                <option value="non">Non</option>
+                <option value="oui">Oui</option>
+              </select>
+            </div>
+            <div class="heroField">
+              <label>ITN</label>
+              <select id="hITN">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button class="heroSimBtn" onclick="calculerHero()">
+          💰 Calculer mon estimation
+        </button>
+
+        <div class="heroSimResult" id="heroSimResult">
+          <div class="heroSimResultNum" id="heroSimBrut">—</div>
+          <div class="heroSimResultSub">Estimation BRUT mensuelle</div>
+          <div class="membreOnly" style="margin-top:8px;">
+            <div style="font-size:18px; font-weight:800; color:#22c55e;" id="heroSimNet">—</div>
+            <div style="font-size:11px; color:var(--muted);">Estimation NET • <span id="heroSimAnnuel"></span> annuel</div>
+          </div>
+          <div class="publicOnly">
+            <div class="heroSimResultLock">
+              🔒 Net réel + projection annuelle + détail des retenues
+              <a href="#adhesion" style="color:#fbbf24; font-weight:700; margin-left:auto;">Adhérer →</a>
+            </div>
+          </div>
+          <div style="font-size:11px; color:var(--muted); margin-top:8px;">Simulation indicative — non contractuelle</div>
         </div>
       </div>
+
     </div>
   </section>
 </header>
 
 <main class="main">
-    <!-- ===== SIMULATEUR PRIMES ===== -->
+
+  <!-- ===== SIMULATEUR COMPLET ===== -->
   <section class="section alt" id="simulateur">
     <div class="container">
       <div class="sectionHead">
-        <div class="sectionBadge">💰 Simulateur</div>
-        <h2>Simulateur de primes</h2>
-        <p>Calculez une estimation rapide de votre rémunération mensuelle : ITN, travail de nuit, dimanche et supplément familial.</p>
+        <div class="sectionBadge">💰 Simulateurs</div>
+        <h2>Calculez votre rémunération réelle</h2>
+        <p class="publicOnly">Version simplifiée — <a href="#adhesion" style="color:var(--accent2);">adhérez</a> pour l'analyse complète avec net réel et projection annuelle.</p>
+        <p class="membreOnly" style="color:#fbbf24; font-weight:600;">⭐ Version avancée — analyse complète activée</p>
       </div>
 
-      <div class="simulateurWrap">
-        <div class="card">
-          <div class="formGrid">
-            <label class="field">
-              <span>Grade</span>
-              <select id="grade">
-                <option value="gpx">Gardien de la Paix</option>
-                <option value="bc_norm">Brigadier / Brigadier-chef</option>
-                <option value="bc_sup">Brigadier-chef (sup.)</option>
-                <option value="major">Major</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Échelon</span>
-              <select id="echelon"></select>
-            </label>
-            <label class="field">
-              <span>Indemnité de travail de nuit (ITN)</span>
-              <select id="itn">
-                <option value="oui">Oui</option>
-                <option value="non">Non</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Heures de nuit (21h-6h) par mois</span>
-              <input type="number" id="heuresNuit" min="0" max="200" value="0" />
-            </label>
-            <label class="field">
-              <span>Heures du dimanche par mois</span>
-              <input type="number" id="heuresDimanche" min="0" max="100" value="0" />
-            </label>
-            <label class="field">
-              <span>Nombre d'enfants à charge</span>
-              <input type="number" id="enfants" min="0" max="10" value="0" />
-            </label>
-            <label class="field">
-              <span>Localisation</span>
-              <select id="typeZone" onchange="toggleZoneOM()">
-                <option value="metropole">Métropole</option>
-                <option value="outremer">Outre-mer</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Indemnité de résidence</span>
-              <select id="zone">
-                <option value="1">Zone 1 (Paris/IDF) — 185€</option>
-                <option value="2">Zone 2 — 120€</option>
-                <option value="3" selected>Zone 3 — 90€</option>
-              </select>
-            </label>
-            <label class="field" id="blocOM" style="display:none;">
-              <span>Zone Outre-mer</span>
-              <select id="zoneOM">
-                <option value="0.35">Réunion (35%)</option>
-                <option value="0.40">DOM (40%)</option>
-                <option value="0.73">Nouvelle-Calédonie (73%)</option>
-                <option value="0.40">Polynésie (approx.)</option>
-                <option value="0.40">Mayotte (approx.)</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Prime voie publique (VP)</span>
-              <select id="primeVP">
-                <option value="oui">Oui</option>
-                <option value="non">Non</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Fonction OPJ</span>
-              <select id="opj">
-                <option value="non">Non</option>
-                <option value="cartographie">Oui (poste OPJ cartographié)</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Corps</span>
-              <select id="corps">
-                <option value="CEA">CEA (Police nationale)</option>
-                <option value="CRS">CRS</option>
-              </select>
-            </label>
-          </div>
-          <div class="row" style="margin-top:18px;">
-            <button class="btn primary" type="button" onclick="calculerPrimes()">💰 Calculer mes primes</button>
-            <button class="btn ghost" type="button" onclick="reinitSimulateur()">Réinitialiser</button>
-          </div>
-        </div>
+      <!-- ONGLETS SIMULATEURS -->
+      <div class="tabsNav">
+        <button class="tabBtn active" onclick="switchTab('primes', this)">💰 Primes & salaire</button>
+        <button class="tabBtn" onclick="switchTab('cmo', this)">🏥 CMO / Arrêt maladie</button>
+        <button class="tabBtn membreOnly" onclick="switchTab('retraite', this)">🏛️ Retraite</button>
+      </div>
 
-        <div class="card">
-          <h3>Résultat estimatif</h3>
-          <p class="smallmuted">Simulation indicative à vocation informative.</p>
-          <div style="margin-top:18px;">
-            <div id="resultatPublic">
-              <div class="smallmuted" style="padding:24px 0; text-align:center; opacity:.6;">
-                Renseignez vos informations pour lancer le calcul.
-              </div>
+      <!-- TAB PRIMES -->
+      <div class="tabPanel active" id="tab-primes">
+        <div class="simulateurWrap">
+          <div class="card">
+            <div class="formGrid">
+              <label class="field"><span>Grade</span>
+                <select id="grade" onchange="updateEchelonMax(); remplirEchelons();">
+                  <option value="gpx">Gardien de la Paix</option>
+                  <option value="bc_norm">Brigadier / Brigadier-chef</option>
+                  <option value="bc_sup">Brigadier-chef (sup.)</option>
+                  <option value="major">Major</option>
+                </select>
+              </label>
+              <label class="field"><span>Échelon</span><select id="echelon"></select></label>
+              <label class="field"><span>ITN</span>
+                <select id="itn"><option value="oui">Oui</option><option value="non">Non</option></select>
+              </label>
+              <label class="field"><span>Heures nuit (21h-6h)/mois</span>
+                <input type="number" id="heuresNuit" min="0" max="200" value="0" />
+              </label>
+              <label class="field"><span>Heures dimanche/mois</span>
+                <input type="number" id="heuresDimanche" min="0" max="100" value="0" />
+              </label>
+              <label class="field"><span>Enfants à charge</span>
+                <input type="number" id="enfants" min="0" max="10" value="0" />
+              </label>
+              <label class="field"><span>Localisation</span>
+                <select id="typeZone" onchange="toggleZoneOM()">
+                  <option value="metropole">Métropole</option>
+                  <option value="outremer">Outre-mer</option>
+                </select>
+              </label>
+              <label class="field"><span>Zone résidence</span>
+                <select id="zone">
+                  <option value="1">Zone 1 (Paris/IDF)</option>
+                  <option value="2">Zone 2</option>
+                  <option value="3" selected>Zone 3</option>
+                </select>
+              </label>
+              <label class="field" id="blocOM" style="display:none;"><span>Zone Outre-mer</span>
+                <select id="zoneOM">
+                  <option value="0.35">Réunion (35%)</option>
+                  <option value="0.40">DOM (40%)</option>
+                  <option value="0.73">Nouvelle-Calédonie (73%)</option>
+                  <option value="0.40">Polynésie</option>
+                  <option value="0.40">Mayotte</option>
+                </select>
+              </label>
+              <label class="field"><span>Prime VP</span>
+                <select id="primeVP"><option value="oui">Oui</option><option value="non">Non</option></select>
+              </label>
+              <label class="field"><span>Fonction OPJ</span>
+                <select id="opj"><option value="non">Non</option><option value="cartographie">Oui (cartographié)</option></select>
+              </label>
+              <label class="field"><span>Corps</span>
+                <select id="corps"><option value="CEA">CEA</option><option value="CRS">CRS</option></select>
+              </label>
             </div>
-            <div id="resultatMembre" style="display:none;"></div>
+            <div class="row" style="margin-top:18px;">
+              <button class="btn primary" onclick="calculerPrimes()">💰 Calculer</button>
+              <button class="btn ghost" onclick="reinitSimulateur()">Réinitialiser</button>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Résultat estimatif</h3>
+            <p class="smallmuted">Simulation indicative à vocation informative.</p>
+            <div style="margin-top:18px;">
+              <div id="resultatPublic"><div class="smallmuted" style="padding:24px 0; text-align:center; opacity:.6;">Renseignez vos informations pour lancer le calcul.</div></div>
+              <div id="resultatMembre" style="display:none;"></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
+      <!-- TAB CMO -->
+      <div class="tabPanel" id="tab-cmo">
+        <div class="simulateurWrap">
+          <div class="card">
+            <div class="formGrid">
+              <label class="field"><span>Traitement NET mensuel</span><input type="number" id="cmoSalaire" value="2500" min="0" /></label>
+              <label class="field"><span>Jours d'arrêt</span><input type="number" id="cmoJours" value="1" min="0" /></label>
+              <label class="field"><span>CMO déjà consommés (12 mois)</span><input type="number" id="cmoDeja" value="0" min="0" /></label>
+              <label class="field full"><span>Historique multi-arrêts (virgules)</span><input type="text" id="cmoHistorique" placeholder="Ex : 3, 5, 12" /></label>
+              <label class="field"><span>Régime</span>
+                <select id="cmoRegime">
+                  <option value="auto">Auto 90% / 50%</option>
+                  <option value="plein">Plein traitement</option>
+                  <option value="demi">Demi-traitement</option>
+                </select>
+              </label>
+              <label class="field"><span>Jour de carence</span>
+                <select id="cmoCarence"><option value="non">Non</option><option value="oui">Oui</option></select>
+              </label>
+            </div>
+            <div class="row" style="margin-top:18px;">
+              <button class="btn primary" onclick="calculerCMO()">🏥 Calculer</button>
+              <button class="btn ghost" onclick="reinitCMO()">Réinitialiser</button>
+              <button class="btn outline" onclick="exportCMOPDF()">📄 PDF</button>
+            </div>
+            <div class="notice" style="margin-top:14px;"><strong>⚠️ Mars 2025 :</strong> 90% les 3 premiers mois, puis 50%. Calcul sur 12 mois glissants.</div>
+          </div>
+          <div class="card">
+            <h3>Résultat CMO</h3>
+            <p class="smallmuted">Simulation indicative à vocation informative.</p>
+            <div style="margin-top:18px;">
+              <div id="resultatCMO"><div class="smallmuted" style="padding:24px 0; text-align:center; opacity:.6;">Renseignez vos informations pour lancer le calcul.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- ===== CHIFFRES CLÉS ===== -->
-  <section class="section sectionStats" id="chiffres">
-    <div class="container">
-      <div class="statsGrid">
-        <div class="statCard"><div class="statIcon">👮</div><div class="statNum">CEA</div><div class="statLabel">Corps encadrement & application</div></div>
-        <div class="statCard"><div class="statIcon">🚔</div><div class="statNum">CRS</div><div class="statLabel">Compagnies républicaines de sécurité</div></div>
-        <div class="statCard"><div class="statIcon">🏛️</div><div class="statNum">ADMIN</div><div class="statLabel">Corps administratifs</div></div>
-        <div class="statCard"><div class="statIcon">🔬</div><div class="statNum">PTS</div><div class="statLabel">Personnels techniques & scientifiques</div></div>
-        <div class="statCard"><div class="statIcon">🎓</div><div class="statNum">RS5517</div><div class="statLabel">Certification Ministère du Travail</div></div>
-        <div class="statCard"><div class="statIcon">⚖️</div><div class="statNum">100%</div><div class="statLabel">Indépendant & apolitique</div></div>
+      <!-- TAB RETRAITE (membres) -->
+      <div class="tabPanel membreOnly" id="tab-retraite">
+        <div class="card" style="text-align:center; padding:48px 32px;">
+          <div style="font-size:48px; margin-bottom:16px;">🏛️</div>
+          <h3 style="font-size:22px; margin-bottom:12px;">Simulateur Retraite</h3>
+          <p style="color:var(--muted); max-width:50ch; margin:0 auto 20px;">Estimez votre pension de retraite selon votre corps, grade, durée de service et bonifications.</p>
+          <div style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px; background:rgba(245,158,11,.10); border:1px solid rgba(245,158,11,.25); border-radius:12px; color:#fbbf24; font-size:13px; font-weight:600;">
+            ⭐ Disponible prochainement pour les adhérents
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ===== FONCTIONNALITÉS ===== -->
-  <section class="section alt" id="fonctionnalites">
-    <div class="container">
-      <div class="sectionHead">
-        <div class="sectionBadge">⚡ Nos atouts</div>
-        <h2>Unique en France</h2>
-        <p>Des outils et services qu'aucun autre syndicat policier ne propose.</p>
-      </div>
-      <div class="grid3">
-        <article class="card cardFeature">
-          <div class="cardFeatureIcon">🎓</div>
-          <div class="kicker">Exclusif</div>
-          <h3>Université PRO POLICE</h3>
-          <p>Un espace de formation unique : contenus alignés sur la certification RS5517 du Ministère du Travail.</p>
-          <div class="cardTag">Innovant</div>
-        </article>
-        <article class="card cardFeature">
-          <div class="cardFeatureIcon">🧠</div>
-          <div class="kicker">Exclusif</div>
-          <h3>PRO POLICE Mentorat</h3>
-          <p>Accompagnement individuel par des experts certifiés. Coaching, closing, leadership syndical.</p>
-          <div class="cardTag">Innovant</div>
-        </article>
-        <article class="card cardFeature">
-          <div class="cardFeatureIcon">📊</div>
-          <div class="kicker">Outil terrain</div>
-          <h3>Simulateurs exclusifs</h3>
-          <p>Calculez vos primes, votre CMO, votre retraite. Des outils concrets qu'aucun autre syndicat ne propose.</p>
-          <div class="cardTag">Outil terrain</div>
-        </article>
-        <article class="card cardFeature">
-          <div class="cardFeatureIcon">🤝</div>
-          <div class="kicker">Mobile first</div>
-          <h3>Délégué en poche</h3>
-          <p>Accédez à votre délégué virtuel 24h/24. Ressources, fiches, modèles — tout ce dont vous avez besoin.</p>
-          <div class="cardTag">Mobile first</div>
-        </article>
-        <article class="card cardFeature">
-          <div class="cardFeatureIcon">⚡</div>
-          <div class="kicker">Stratégie valeur</div>
-          <h3>Loi Pareto 80/17/3</h3>
-          <p>80% de contenu gratuit. 17% exclusif adhérents. 3% réservé délégués formés — progression par la valeur.</p>
-          <div class="cardTag">Stratégie valeur</div>
-        </article>
-        <article class="card cardFeature">
-          <div class="cardFeatureIcon">🛡️</div>
-          <div class="kicker">Terrain</div>
-          <h3>Défense individuelle</h3>
-          <p>Accompagnement des collègues en difficulté — procédures disciplinaires, contentieux, recours.</p>
-          <div class="cardTag">Prioritaire</div>
-        </article>
-      </div>
     </div>
   </section>
 
@@ -330,253 +619,110 @@
       <div class="sectionHead">
         <div class="sectionBadge">📚 Ressources</div>
         <h2>Base documentaire</h2>
-        <p>Fiches pratiques, décryptages juridiques et éclairage des textes — accessibles à tous.</p>
+        <p>Fiches pratiques, décryptages juridiques — accessibles à tous. <span class="membreOnly" style="color:#fbbf24; font-weight:600;">⭐ + ressources membres déverrouillées</span></p>
       </div>
 
-      <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; align-items:center;">
-        <input type="search" id="searchInput" placeholder="Rechercher une fiche…" style="padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.05); color:#e9eefb; font-size:14px; font-family:inherit; outline:none; flex:1; min-width:200px;" />
-        <select id="filterTheme" style="padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(15,26,47,.9); color:#e9eefb; font-size:14px; font-family:inherit; outline:none;">
-          <option value="">Thème</option>
-          <option value="Carrière">Carrière</option>
-          <option value="retraite">Retraite</option>
-          <option value="Juridique">Juridique</option>
-          <option value="Rémunération">Rémunération</option>
-        </select>
-        <button class="btn ghost small" onclick="document.getElementById('searchInput').value=''; document.getElementById('filterTheme').value=''; renderArticles();">Réinitialiser</button>
-      </div>
-
-      <div class="grid3" id="articlesGrid">
-        <!-- injecté par script -->
-      </div>
-
-      <div class="grid2" style="margin-top:16px;">
-        <article class="card">
-          <div class="kicker">🔒 Adhérents</div>
-          <h3>Espace membre</h3>
-          <p>Ressources avancées, modèles prêts à l'emploi, fiches mémos exclusives réservées aux adhérents PRO POLICE.</p>
-          <div class="row">
-            <button class="btn small primary" type="button" onclick="document.getElementById('adhesion').scrollIntoView({behavior:'smooth'})">Débloquer via adhésion</button>
-          </div>
-        </article>
-        <article class="card" style="background:rgba(59,130,246,.04); border-color:rgba(59,130,246,.2);">
-          <div class="kicker" style="color:var(--accent2);">🔓 Accès public</div>
-          <h3>Accédez aux ressources gratuites</h3>
-          <p>Modèles, fiches pratiques, simulateurs — tout ce qui est accessible librement à tous les visiteurs.</p>
-          <div class="row">
-            <a class="btn small ghost" href="#simulateur">💰 Simulateur primes</a>
-            <a class="btn small ghost" href="#simulateur-cmo">🏥 Simulateur CMO</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===== SIMULATEUR CMO ===== -->
-  <section class="section" id="simulateur-cmo">
-    <div class="container">
-      <div class="sectionHead">
-        <div class="sectionBadge">🏥 Simulateur CMO</div>
-        <h2>Simulateur CMO / retenue sur salaire</h2>
-        <p>Estimez l'impact d'un arrêt maladie ordinaire sur votre rémunération mensuelle.</p>
-      </div>
-
-      <div class="simulateurWrap">
-        <div class="card">
-          <div class="formGrid">
-            <label class="field">
-              <span>Traitement mensuel estimé (NET)</span>
-              <input type="number" id="cmoSalaire" min="0" value="2500" />
-            </label>
-            <label class="field">
-              <span>Nombre de jours d'arrêt</span>
-              <input type="number" id="cmoJours" min="0" value="1" />
-            </label>
-            <label class="field">
-              <span>Jours de CMO déjà consommés (12 derniers mois)</span>
-              <input type="number" id="cmoDeja" min="0" value="0" />
-            </label>
-            <label class="field full">
-              <span>Historique multi-arrêts (jours séparés par des virgules)</span>
-              <input type="text" id="cmoHistorique" placeholder="Ex : 3, 5, 12" />
-            </label>
-            <label class="field">
-              <span>Régime applicable</span>
-              <select id="cmoRegime">
-                <option value="auto">Calcul automatique 90% / 50%</option>
-                <option value="plein">Plein traitement</option>
-                <option value="demi">Demi-traitement</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Jour de carence</span>
-              <select id="cmoCarence">
-                <option value="non">Non</option>
-                <option value="oui">Oui</option>
-              </select>
-            </label>
-            <label class="field full">
-              <span>Mode d'affichage</span>
-              <select id="cmoMode">
-                <option value="simple">Simple</option>
-                <option value="detail">Détaillé</option>
-              </select>
-            </label>
-          </div>
-          <div class="row" style="margin-top:18px;">
-            <button class="btn primary" type="button" onclick="calculerCMO()">🏥 Calculer la retenue</button>
-            <button class="btn ghost" type="button" onclick="reinitCMO()">Réinitialiser</button>
-            <button class="btn outline" type="button" onclick="exportCMOPDF()">📄 Exporter PDF</button>
-          </div>
-          <div class="notice" style="margin-top:16px;">
-            <strong>⚠️ Depuis le 1er mars 2025 :</strong> maintien à 90% pendant les 3 premiers mois, puis 50% au-delà. Calcul sur 12 mois glissants.
-          </div>
+      <div class="ressourcesRapides">
+        <!-- PUBLIC -->
+        <div class="ressCard" onclick="window.location='#ressources'">
+          <div class="ressCardIcon">📋</div>
+          <div class="ressCardTitle">CMO & arrêt maladie</div>
+          <div class="ressCardMeta">Régime 90%/50% — mars 2025</div>
         </div>
-
-        <div class="card">
-          <h3>Résultat estimatif</h3>
-          <p class="smallmuted">Simulation indicative à vocation informative.</p>
-          <div style="margin-top:18px;">
-            <div id="resultatCMO">
-              <div class="smallmuted" style="padding:24px 0; text-align:center; opacity:.6;">
-                Renseignez vos informations pour lancer le calcul.
-              </div>
+        <div class="ressCard">
+          <div class="ressCardIcon">⚖️</div>
+          <div class="ressCardTitle">Procédure disciplinaire</div>
+          <div class="ressCardMeta">Vos droits étape par étape</div>
+        </div>
+        <div class="ressCard">
+          <div class="ressCardIcon">💰</div>
+          <div class="ressCardTitle">Grilles indiciaires 2026</div>
+          <div class="ressCardMeta">CEA, CRS, ADMIN, PTS</div>
+        </div>
+        <!-- MEMBRES ONLY -->
+        <div class="ressCard membreOnly">
+          <div class="ressCardIcon">📝</div>
+          <div class="ressCardTitle">Modèles de courriers</div>
+          <div class="ressCardMeta">Recours, demandes, procédures</div>
+          <div class="ressCardLock">⭐ Adhérents</div>
+        </div>
+        <div class="ressCard membreOnly">
+          <div class="ressCardIcon">🗂️</div>
+          <div class="ressCardTitle">Fiches mémos avancées</div>
+          <div class="ressCardMeta">Synthèses terrain exclusives</div>
+          <div class="ressCardLock">⭐ Adhérents</div>
+        </div>
+        <div class="ressCard membreOnly">
+          <div class="ressCardIcon">🎥</div>
+          <div class="ressCardTitle">Webinaires & replays</div>
+          <div class="ressCardMeta">Sessions live & archives</div>
+          <div class="ressCardLock">⭐ Adhérents</div>
+        </div>
+        <!-- CTA public -->
+        <div class="publicOnly" style="grid-column:1/-1;">
+          <div class="tunnelCTA">
+            <div class="tunnelText">
+              <div class="tunnelTitle">🔒 3 ressources supplémentaires réservées aux adhérents</div>
+              <div class="tunnelSub">Modèles de courriers, fiches mémos avancées, webinaires — débloqués en adhérant.</div>
             </div>
+            <a class="btn primary" href="#adhesion">Adhérer — 10€/mois</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== UNIVERSITÉ ===== -->
-  <section class="section sectionUniversite" id="universite">
+  <!-- ===== ACTIONS ===== -->
+  <section class="section alt" id="actions">
     <div class="container">
       <div class="sectionHead">
-        <div class="sectionBadge">🎓 Formation</div>
-        <h2>🎓 Université PRO POLICE</h2>
-        <p>Un espace d'information, d'analyse et de transmission des connaissances professionnelles.</p>
-        <div class="certifBadge">🏅 Contenus alignés sur la certification RS5517 — Ministère du Travail</div>
-      </div>
-      <div class="niveauxGrid">
-        <article class="niveauCard niveauPublic">
-          <div class="niveauPct">80%</div>
-          <div class="niveauTitle">Grand Public</div>
-          <p class="niveauDesc">Fiches pratiques, simulateurs, actualités, ressources générales — accessibles à tous les visiteurs.</p>
-          <div class="niveauAcces">🌐 Accès libre</div>
-        </article>
-        <article class="niveauCard niveauMembre">
-          <div class="niveauPct">17%</div>
-          <div class="niveauTitle">Adhérents</div>
-          <p class="niveauDesc">Vidéos professionnelles, téléchargements exclusifs, fiches mémos avancées, accompagnement personnalisé.</p>
-          <div class="niveauAcces">🔒 Adhérents</div>
-        </article>
-        <article class="niveauCard niveauStaff">
-          <div class="niveauPct">3%</div>
-          <div class="niveauTitle">Délégués & Staff</div>
-          <p class="niveauDesc">Contenus de formation avancée, outils de terrain, ressources internes réservées aux délégués formés.</p>
-          <div class="niveauAcces">⭐ Délégués</div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== ACTUALITÉS ===== -->
-  <section class="section alt" id="actualites">
-    <div class="container">
-      <div class="sectionHead">
-        <div class="sectionBadge">📰 Actualités</div>
-        <h2>Dernières actualités</h2>
-        <p>Veille sociale, juridique et syndicale pour les professionnels de la Police Nationale.</p>
-      </div>
-      <div class="grid3" id="actualitesGrid">
-        <article class="card articleCard">
-          <div class="articleMeta"><span class="articleTag">retraite</span><span class="articleDate">Accès public</span></div>
-          <div class="articleTitle">CMO depuis mars 2025 : calcul et impact sur le salaire</div>
-          <p class="articleExcerpt">Le nouveau régime 90%/50% expliqué simplement avec exemples de calcul.</p>
-        </article>
-        <article class="card articleCard">
-          <div class="articleMeta"><span class="articleTag">Juridique</span><span class="articleDate">Accès public</span></div>
-          <div class="articleTitle">ISSPATS : indemnité des personnels techniques et scientifiques</div>
-          <p class="articleExcerpt">Montant, conditions, évolution prévue — fiche dédiée aux personnels PTS souvent oubliés.</p>
-        </article>
-        <article class="card articleCard">
-          <div class="articleMeta"><span class="articleTag locked">Carrière</span><span class="articleDate">🔒 Adhérents</span></div>
-          <div class="articleTitle">🔒 Contenu réservé aux adhérents</div>
-          <p class="articleExcerpt">Accédez aux ressources avancées en devenant adhérent PRO POLICE.</p>
-          <div class="row" style="margin-top:12px;">
-            <button class="btn small primary" onclick="document.getElementById('adhesion').scrollIntoView({behavior:'smooth'})">Débloquer</button>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== BONS PLANS ===== -->
-  <section class="section" id="bonsplans">
-    <div class="container">
-      <div class="sectionHead">
-        <div class="sectionBadge">🎁 Bons plans</div>
-        <h2>Avantages & bons plans</h2>
-        <p>Des offres exclusives négociées pour les membres PRO POLICE.</p>
+        <div class="sectionBadge">⚡ Nos actions</div>
+        <h2>Ce que nous faisons concrètement</h2>
+        <p>Pas de discours. Des résultats terrain.</p>
       </div>
       <div class="grid3">
-        <article class="card cardFeature">
-          <div class="cardFeatureIcon">🛒</div>
-          <h3>Réductions partenaires</h3>
-          <p>Accédez aux offres négociées par PRO POLICE auprès de nos partenaires.</p>
-          <div class="cardTag">Adhérents</div>
-        </article>
-        <article class="card cardFeature">
-          <div class="cardFeatureIcon">📦</div>
-          <h3>Boutique PRO POLICE</h3>
-          <p>Équipement, tenues, accessoires — la boutique officielle du syndicat.</p>
-          <div class="row" style="margin-top:14px;">
-            <a class="btn small outline" href="https://propolice.tunetoo.com/" target="_blank" rel="noopener">Voir la boutique</a>
-          </div>
-        </article>
-        <article class="card cardFeature">
-          <div class="cardFeatureIcon">🎓</div>
-          <h3>Formations & webinaires</h3>
-          <p>Accédez aux replays et sessions live réservés aux adhérents PRO POLICE.</p>
-          <div class="cardTag">Adhérents</div>
-        </article>
+        <div class="card cardFeature">
+          <div class="cardFeatureIcon">🛡️</div>
+          <h3>Défense individuelle</h3>
+          <p>Accompagnement en procédures disciplinaires, contentieux, recours — présence terrain réelle.</p>
+          <div class="cardTag">Prioritaire</div>
+        </div>
+        <div class="card cardFeature">
+          <div class="cardFeatureIcon">📖</div>
+          <h3>Information & veille</h3>
+          <p>Décryptages juridiques, actualités réglementaires, fiches pratiques mises à jour en continu.</p>
+          <div class="cardTag">Continu</div>
+        </div>
+        <div class="card cardFeature">
+          <div class="cardFeatureIcon">🤝</div>
+          <h3>Représentation</h3>
+          <p>Présence dans les instances, négociation des conditions de travail, dialogue social structuré.</p>
+          <div class="cardTag">National</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== TÉLÉCHARGEMENTS ===== -->
-  <section class="section alt" id="telechargements">
+  <!-- ===== UNIVERSITÉ TEASER ===== -->
+  <section class="section" id="universite-teaser">
     <div class="container">
-      <div class="sectionHead">
-        <div class="sectionBadge">📥 Téléchargements</div>
-        <h2>Ressources à télécharger</h2>
-        <p>Fiches mémos, modèles de courriers, guides pratiques.</p>
-      </div>
-      <div class="grid3">
-        <article class="card">
-          <div class="icon">📄</div>
-          <h3>Fiches mémos</h3>
-          <p>Synthèses pratiques sur les droits, procédures et réglementations.</p>
-          <div class="row" style="margin-top:14px;">
-            <button class="btn small ghost" onclick="document.getElementById('adhesion').scrollIntoView({behavior:'smooth'})">🔒 Adhérents</button>
-          </div>
-        </article>
-        <article class="card">
-          <div class="icon">📝</div>
-          <h3>Modèles de courriers</h3>
-          <p>Modèles prêts à l'emploi pour vos recours, demandes et procédures.</p>
-          <div class="row" style="margin-top:14px;">
-            <button class="btn small ghost" onclick="document.getElementById('adhesion').scrollIntoView({behavior:'smooth'})">🔒 Adhérents</button>
-          </div>
-        </article>
-        <article class="card">
-          <div class="icon">📊</div>
-          <h3>Grilles indiciaires</h3>
-          <p>Tableaux de référence des grilles de rémunération par corps et grade.</p>
-          <div class="row" style="margin-top:14px;">
-            <button class="btn small primary" onclick="document.getElementById('adhesion').scrollIntoView({behavior:'smooth'})">Accéder</button>
-          </div>
-        </article>
+      <div class="univTeaser">
+        <div class="univTeaserBadge">🔴 Zone Élite — 3%</div>
+        <div class="univTeaserTitle">🎓 Université PRO POLICE</div>
+        <div class="univTeaserSub">La seule université syndicale policière en France. Parcours pédagogiques immersifs, certification RS5517, coaching individuel et délégué virtuel avancé.</div>
+        <div class="univFeatures">
+          <span class="univFeatureChip">🎮 Serious Games</span>
+          <span class="univFeatureChip">📜 Certification RS5517</span>
+          <span class="univFeatureChip">🧠 Coach virtuel</span>
+          <span class="univFeatureChip">🤖 Délégué virtuel</span>
+          <span class="univFeatureChip">📊 Suivi de progression</span>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn primary" href="universite.html" style="background:linear-gradient(135deg,#b91c1c,#ef4444); box-shadow:0 4px 20px rgba(239,68,68,.3);">
+            🎓 Accéder à l'Université
+          </a>
+          <a class="btn ghost" href="#adhesion">En savoir plus</a>
+        </div>
       </div>
     </div>
   </section>
@@ -587,7 +733,7 @@
       <div class="sectionHead">
         <div class="sectionBadge">🤝 Rejoindre</div>
         <h2>Adhérer à PRO POLICE</h2>
-        <p>Adhérer à PRO POLICE, c'est rejoindre un collectif engagé, structuré et présent pour défendre vos droits, vous informer et vous accompagner tout au long de votre carrière.</p>
+        <p>Rejoindre un collectif engagé, structuré et présent pour défendre vos droits.</p>
       </div>
       <div class="pricing">
         <article class="priceCard">
@@ -595,7 +741,7 @@
           <div class="price">5€<span>/mois</span></div>
           <ul>
             <li>✅ Actualités & veille</li>
-            <li>✅ Accès articles publics</li>
+            <li>✅ Articles publics</li>
             <li>✅ Newsletter</li>
           </ul>
           <button class="btn outline" data-plan="Soutien">Choisir</button>
@@ -605,36 +751,37 @@
           <h3>Adhérent</h3>
           <div class="price">10€<span>/mois</span></div>
           <ul>
+            <li>✅ Simulateur avancé complet</li>
             <li>✅ Assistance syndicale</li>
-            <li>✅ Accès ressources membres</li>
-            <li>✅ Invitations webinaires</li>
-            <li>✅ Téléchargements exclusifs</li>
+            <li>✅ Ressources membres</li>
+            <li>✅ Webinaires & téléchargements</li>
           </ul>
           <button class="btn primary" data-plan="Adhérent">Choisir</button>
         </article>
-        <article class="priceCard">
-          <h3>Premium</h3>
+        <article class="priceCard" style="border-color:rgba(239,68,68,.25); background:rgba(239,68,68,.04);">
+          <div class="flag" style="background:rgba(239,68,68,.15); color:#fca5a5;">🔴 Élite</div>
+          <h3>Université</h3>
           <div class="price">20€<span>/mois</span></div>
           <ul>
-            <li>✅ Accès complet Université</li>
-            <li>✅ Modèles & dossiers avancés</li>
-            <li>✅ Priorité questions</li>
-            <li>✅ Coaching individuel</li>
+            <li>✅ Tout Adhérent inclus</li>
+            <li>✅ Accès Université complète</li>
+            <li>✅ Parcours VTS immersifs</li>
+            <li>✅ Coach virtuel & mentorat</li>
           </ul>
-          <button class="btn outline" data-plan="Premium">Choisir</button>
+          <button class="btn outline" data-plan="Université" style="border-color:rgba(239,68,68,.3); color:#fca5a5;">Choisir</button>
         </article>
       </div>
 
       <form class="form card" id="adhForm" style="margin-top:28px;">
         <div class="formHead">
           <h3>Demande d'adhésion</h3>
-          <p>Remplissez ce formulaire — notre équipe vous contacte sous 48h.</p>
+          <p>Notre équipe vous contacte sous 48h.</p>
         </div>
         <div class="formGrid">
-          <label class="field"><span>Nom</span><input required name="nom" type="text" autocomplete="family-name" placeholder="Votre nom" /></label>
-          <label class="field"><span>Prénom</span><input required name="prenom" type="text" autocomplete="given-name" placeholder="Votre prénom" /></label>
-          <label class="field"><span>Email</span><input required name="email" type="email" autocomplete="email" placeholder="votre@email.fr" /></label>
-          <label class="field"><span>Département (optionnel)</span><input name="dept" type="text" placeholder="Ex : 75, 92, 93..." /></label>
+          <label class="field"><span>Nom</span><input required name="nom" type="text" placeholder="Votre nom" /></label>
+          <label class="field"><span>Prénom</span><input required name="prenom" type="text" placeholder="Votre prénom" /></label>
+          <label class="field"><span>Email</span><input required name="email" type="email" placeholder="votre@email.fr" /></label>
+          <label class="field"><span>Département</span><input name="dept" type="text" placeholder="Ex : 75, 92..." /></label>
           <label class="field">
             <span>Corps</span>
             <select name="corps">
@@ -650,72 +797,30 @@
               <option>Retraité</option>
             </select>
           </label>
-          <label class="field"><span>Téléphone (optionnel)</span><input name="tel" type="tel" placeholder="06 XX XX XX XX" /></label>
+          <label class="field"><span>Téléphone</span><input name="tel" type="tel" placeholder="06 XX XX XX XX" /></label>
           <label class="field full"><span>Message (optionnel)</span><textarea name="message" rows="3" placeholder="Contexte, demande, objectifs…"></textarea></label>
         </div>
         <div class="row between" style="margin-top:18px;">
-          <div class="smallmuted" id="planLabel">Plan choisi : <strong>Adhérent</strong> (modifiable)</div>
+          <div class="smallmuted" id="planLabel">Plan choisi : <strong>Adhérent</strong></div>
           <button class="btn primary" type="submit">✅ Envoyer ma demande</button>
         </div>
-        <p class="tiny">En soumettant, vous acceptez que vos informations soient utilisées pour le traitement de votre demande. Conformément au RGPD, vous disposez d'un droit d'accès et de suppression de vos données.</p>
+        <p class="tiny">Conformément au RGPD, vos données sont utilisées uniquement pour le traitement de votre demande.</p>
         <div class="toast" id="toast" role="status" aria-live="polite"></div>
       </form>
     </div>
   </section>
 
-  <!-- ===== À PROPOS ===== -->
-  <section class="section alt" id="apropos">
-    <div class="container">
-      <div class="sectionHead">
-        <div class="sectionBadge">👥 Notre équipe</div>
-        <h2>À propos de PRO POLICE</h2>
-        <p>"Le syndicat qui manquait dans la police"</p>
-      </div>
-      <div class="grid2">
-        <div class="card cardProfil">
-          <div class="profilAvatar">SC</div>
-          <div class="profilInfo">
-            <h3>Stéphane CIRACIYAN</h3>
-            <div class="profilRole">Responsable National — Développement</div>
-            <p style="font-size:14px; color:var(--muted);">Fondateur et animateur principal du syndicat PRO POLICE. Engagement terrain et structuration nationale.</p>
-          </div>
-        </div>
-        <div class="card" style="background:rgba(59,130,246,.04); border-color:rgba(59,130,246,.2);">
-          <div class="icon">🏴‍☠️</div>
-          <h3>Notre mission</h3>
-          <p>Défendre les droits des policiers, informer sur les évolutions réglementaires et former les délégués syndicaux à un niveau d'excellence.</p>
-          <div class="row" style="margin-top:14px;">
-            <a class="btn small outline" href="https://www.propolice.fr" target="_blank" rel="noopener">Site officiel</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== CONTACT ===== -->
-  <section class="section" id="contact">
+  <section class="section alt" id="contact">
     <div class="container">
       <div class="sectionHead">
         <div class="sectionBadge">📞 Contact</div>
         <h2>Nous contacter</h2>
-        <p>Une question, une urgence, besoin d'un délégué ? On est là.</p>
       </div>
       <div class="grid3">
-        <div class="card contactCard">
-          <div class="icon">📞</div>
-          <h3>Téléphone</h3>
-          <p>06 31 13 39 56<br>06 03 43 15 57</p>
-        </div>
-        <div class="card contactCard">
-          <div class="icon">✉️</div>
-          <h3>Email</h3>
-          <p><a href="/cdn-cgi/l/email-protection#7b0802151f12181a0f550b09140b141712181e3b1c161a121755181416"><span class="__cf_email__" data-cfemail="d1a2a8bfb5b8b2b0a5ffa1a3bea1bebdb8b2b491b6bcb0b8bdffb2bebc">[email&#160;protected]</span></a></p>
-        </div>
-        <div class="card contactCard">
-          <div class="icon">🌐</div>
-          <h3>Site officiel</h3>
-          <p><a href="https://www.propolice.fr" target="_blank" rel="noopener">www.propolice.fr</a></p>
-        </div>
+        <div class="card contactCard"><div class="icon">📞</div><h3>Téléphone</h3><p>06 31 13 39 56<br>06 03 43 15 57</p></div>
+        <div class="card contactCard"><div class="icon">✉️</div><h3>Email</h3><p><a href="/cdn-cgi/l/email-protection#63101a0d070a0002174d13110c130c0f0a000623040e020a0f4d000c0e"><span class="__cf_email__" data-cfemail="e89b91868c818b899cc6989a87988784818b8da88f85898184c68b8785">[email&#160;protected]</span></a></p></div>
+        <div class="card contactCard"><div class="icon">🌐</div><h3>Site officiel</h3><p><a href="https://www.propolice.fr" target="_blank" rel="noopener">www.propolice.fr</a></p></div>
       </div>
       <div class="socialRow">
         <a class="socialBtn" href="https://www.youtube.com/channel/UCwrHapKKDi148kto8jOTv4A" target="_blank" rel="noopener">▶️ YouTube</a>
@@ -739,31 +844,52 @@
           <div class="brandsub">Syndicat — Université PRO POLICE</div>
         </div>
       </div>
-      <p class="footNote">Contenus à finalité informative. © <span id="year"></span> PRO POLICE.</p>
-      <p class="footNote">Société de représentants du personnel — SIRET disponible sur <a href="https://www.pappers.fr" target="_blank" rel="noopener">pappers.fr</a></p>
-    </div>
-    <div class="footLinks">
-      <strong>Navigation</strong>
-      <a href="#ressources">Ressources</a>
-      <a href="#universite">Université</a>
-      <a href="#actualites">Actualités</a>
-      <a href="#bonsplans">Bons plans</a>
+      <p class="footNote">© <span id="year"></span> PRO POLICE — Contenus à finalité informative.</p>
+      <p class="footNote">SIRET disponible sur <a href="https://www.pappers.fr" target="_blank" rel="noopener">pappers.fr</a></p>
     </div>
     <div class="footLinks">
       <strong>Outils</strong>
       <a href="#simulateur">Simulateur primes</a>
-      <a href="#simulateur-cmo">Simulateur CMO</a>
-      <a href="#telechargements">Téléchargements</a>
+      <a href="#simulateur">Simulateur CMO</a>
+      <a href="universite.html">Université</a>
+    </div>
+    <div class="footLinks">
+      <strong>Syndicat</strong>
+      <a href="#ressources">Ressources</a>
+      <a href="#actions">Nos actions</a>
       <a href="#adhesion">Adhérer</a>
     </div>
     <div class="footLinks">
       <strong>Contact</strong>
-      <a href="/cdn-cgi/l/email-protection#1063697e74797371643e60627f607f7c79737550777d71797c3e737f7d">Email</a>
+      <a href="/cdn-cgi/l/email-protection#dfaca6b1bbb6bcbeabf1afadb0afb0b3b6bcba9fb8b2beb6b3f1bcb0b2">Email</a>
       <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
-      <a href="#apropos">À propos</a>
     </div>
   </div>
 </footer>
+
+<!-- ===== FLOATING NAV ===== -->
+<div class="floatingNav">
+  <button class="floatingNavBtn" onclick="scrollTo('#simulateur')">💰 Simulateur</button>
+  <div class="floatSep"></div>
+  <button class="floatingNavBtn" onclick="scrollTo('#ressources')">📚 Ressources</button>
+  <div class="floatSep"></div>
+  <a class="floatingNavBtn" href="universite.html">🎓 Université</a>
+  <div class="floatSep"></div>
+  <a class="floatingNavBtn cta" href="#adhesion">🤝 Adhérer</a>
+</div>
+
+<!-- ===== POPUP ADHÉRENT ===== -->
+<div id="popupAdherent" onclick="fermerPopup()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);justify-content:center;align-items:center;z-index:9999;backdrop-filter:blur(4px);">
+  <div onclick="event.stopPropagation()" style="background:linear-gradient(135deg,#0c1628,#0f1e38);padding:32px 28px;border-radius:20px;max-width:440px;width:90%;text-align:center;border:1px solid rgba(59,130,246,.3);box-shadow:0 32px 80px rgba(0,0,0,.6);">
+    <div style="font-size:36px;margin-bottom:12px;">💰</div>
+    <h3 style="font-size:20px;font-weight:800;margin-bottom:10px;">Et si tu pouvais aller plus loin ?</h3>
+    <p style="color:#8a9bbf;font-size:14px;line-height:1.6;margin-bottom:20px;">Débloque la version avancée : net réel, projection annuelle, analyse complète des retenues.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <button onclick="fermerPopup()" style="padding:10px 18px;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.15);border-radius:12px;cursor:pointer;font-size:14px;font-weight:600;font-family:inherit;">Plus tard</button>
+      <a href="#adhesion" onclick="fermerPopup()" style="padding:10px 18px;background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border-radius:12px;font-size:14px;font-weight:700;box-shadow:0 4px 16px rgba(59,130,246,.35);">🔓 Devenir adhérent</a>
+    </div>
+  </div>
+</div>
 
 <!-- Scripts BDD -->
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script defer src="js/bdd/bdd_CEA.js"></script>
@@ -775,89 +901,133 @@
 <script defer src="js/bdd/bdd_RESERVISTES.js"></script>
 <script defer src="script.js"></script>
 
-<script defer>
-(function () {
-  // Mode adhérent toggle
-  const btn = document.getElementById("btnMember");
-  if (!btn) return;
-  function refreshMemberButton() {
-    const isOn = localStorage.getItem("propolice_member") === "true";
-    btn.textContent = isOn ? "Mode adhérent ON ✅" : "Mode adhérent OFF";
-    btn.classList.toggle("active", isOn);
+<script>
+// ===== SWITCH MODE PARETO =====
+function toggleMembre() {
+  const isOn = localStorage.getItem("propolice_member") === "true";
+  if (isOn) {
+    localStorage.removeItem("propolice_member");
+  } else {
+    localStorage.setItem("propolice_member", "true");
   }
-  btn.addEventListener("click", function () {
-    const isOn = localStorage.getItem("propolice_member") === "true";
-    if (isOn) { localStorage.removeItem("propolice_member"); }
-    else { localStorage.setItem("propolice_member", "true"); }
-    refreshMemberButton();
-    window.location.reload();
-  });
-  refreshMemberButton();
+  applyMode();
+}
+
+function applyMode() {
+  const isOn = localStorage.getItem("propolice_member") === "true";
+  const html = document.documentElement;
+  const btn = document.getElementById("btnMember");
+  html.setAttribute("data-mode", isOn ? "membre" : "public");
+  if (btn) btn.textContent = isOn ? "⭐ Mode adhérent ON" : "Mode adhérent OFF";
+  // Onglet retraite
+  const tabRetraite = document.querySelector('[onclick="switchTab(\'retraite\', this)"]');
+  if (tabRetraite) tabRetraite.style.display = isOn ? "block" : "none";
+}
+
+// ===== TABS =====
+function switchTab(id, btn) {
+  document.querySelectorAll(".tabPanel").forEach(p => p.classList.remove("active"));
+  document.querySelectorAll(".tabBtn").forEach(b => b.classList.remove("active"));
+  const panel = document.getElementById("tab-" + id);
+  if (panel) panel.classList.add("active");
+  if (btn) btn.classList.add("active");
+}
+
+// ===== SCROLL HELPER =====
+function scrollTo(selector) {
+  const el = document.querySelector(selector);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+}
+
+// ===== HERO SIMULATEUR RAPIDE =====
+function initHeroEchelons() {
+  const grade = document.getElementById("hGrade")?.value || "gpx";
+  const select = document.getElementById("hEchelon");
+  if (!select) return;
+  const max = { gpx:13, bc_norm:8, bc_sup:7, major:7 }[grade] || 12;
+  select.innerHTML = "";
+  for (let i = 1; i <= max; i++) {
+    const o = document.createElement("option");
+    o.value = i; o.textContent = "Échelon " + i;
+    select.appendChild(o);
+  }
+}
+
+function calculerHero() {
+  const grade = document.getElementById("hGrade")?.value || "gpx";
+  const echelon = parseInt(document.getElementById("hEchelon")?.value || 1);
+  const zone = document.getElementById("hZone")?.value || "3";
+  const nuit = parseFloat(document.getElementById("hNuit")?.value) || 0;
+  const dim = parseFloat(document.getElementById("hDim")?.value) || 0;
+  const corps = document.getElementById("hCorps")?.value || "CEA";
+  const isMem = localStorage.getItem("propolice_member") === "true";
+
+  // Calcul simplifié
+  const grilles = { gpx:[2100,2200,2300,2400,2500,2600,2700,2800,2900,3000,3100,3200,3300], bc_norm:[2400,2500,2600,2700,2800,2900,3000,3100], bc_sup:[2700,2800,2900,3000,3100,3200,3300], major:[3000,3100,3200,3300,3400,3500,3600] };
+  const g = grilles[grade] || grilles.gpx;
+  const base = g[Math.min(echelon-1, g.length-1)];
+  const itn = { "1":185, "2":120, "3":90 }[zone] || 90;
+  const issp = Math.round(base * 0.285);
+  const brut = base + issp + 319.58 + 112.33 + itn + (nuit*2.2) + (dim*2.8) + (corps==="CRS"?145:0);
+
+  const resultEl = document.getElementById("heroSimResult");
+  const brutEl = document.getElementById("heroSimBrut");
+  const netEl = document.getElementById("heroSimNet");
+  const annuelEl = document.getElementById("heroSimAnnuel");
+
+  if (brutEl) brutEl.textContent = brut.toFixed(2) + " €";
+  if (isMem && netEl) {
+    const net = brut * 0.82;
+    netEl.textContent = net.toFixed(2) + " €";
+    if (annuelEl) annuelEl.textContent = (net*12).toFixed(0) + " €";
+  }
+  if (resultEl) resultEl.classList.add("visible");
+}
+
+// ===== INIT =====
+window.addEventListener("DOMContentLoaded", () => {
+  applyMode();
+  initHeroEchelons();
+  document.getElementById("hGrade")?.addEventListener("change", initHeroEchelons);
 
   // Année footer
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  const y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
 
   // Menu mobile
   const menuBtn = document.getElementById("menuBtn");
   const menuMobile = document.getElementById("menuMobile");
   if (menuBtn && menuMobile) {
-    menuBtn.addEventListener("click", function () {
-      const expanded = menuBtn.getAttribute("aria-expanded") === "true";
-      menuBtn.setAttribute("aria-expanded", String(!expanded));
-      menuMobile.classList.toggle("open", !expanded);
+    menuBtn.addEventListener("click", () => {
+      const exp = menuBtn.getAttribute("aria-expanded") === "true";
+      menuBtn.setAttribute("aria-expanded", String(!exp));
+      menuMobile.classList.toggle("open", !exp);
     });
-    menuMobile.querySelectorAll("a").forEach(function(link) {
-      link.addEventListener("click", function() {
-        menuBtn.setAttribute("aria-expanded", "false");
-        menuMobile.classList.remove("open");
-      });
-    });
+    menuMobile.querySelectorAll("a").forEach(l => l.addEventListener("click", () => {
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuMobile.classList.remove("open");
+    }));
   }
 
-  // Plan sélectionné via les boutons pricing
-  document.querySelectorAll(".priceCard button[data-plan]").forEach(function(btn) {
+  // Pricing plans
+  document.querySelectorAll(".priceCard button[data-plan]").forEach(btn => {
     btn.addEventListener("click", function() {
       const plan = this.getAttribute("data-plan");
       const label = document.getElementById("planLabel");
-      if (label) label.innerHTML = 'Plan choisi : <strong>' + plan + '</strong> (modifiable)';
-      document.getElementById("adhesion").scrollIntoView({ behavior: "smooth" });
+      if (label) label.innerHTML = 'Plan choisi : <strong>' + plan + '</strong>';
+      document.getElementById("adhesion")?.scrollIntoView({ behavior: "smooth" });
     });
   });
-})();
-</script>
 
-<!-- Popup adhérent -->
-<div id="popupAdherent" onclick="fermerPopup()" style="
-  display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,.75); justify-content:center; align-items:center; z-index:9999;
-  backdrop-filter:blur(4px);
-">
-  <div onclick="event.stopPropagation()" style="
-    background:linear-gradient(135deg, #0c1628, #0f1e38);
-    padding:32px 28px; border-radius:20px; max-width:440px; width:90%;
-    text-align:center; border:1px solid rgba(59,130,246,.3);
-    box-shadow:0 32px 80px rgba(0,0,0,.6);
-  ">
-    <div style="font-size:36px; margin-bottom:12px;">💰</div>
-    <h3 style="font-size:20px; font-weight:800; margin-bottom:10px;">Et si tu pouvais aller plus loin ?</h3>
-    <p style="color:#8a9bbf; font-size:14px; line-height:1.6; margin-bottom:20px;">
-      Débloque la version avancée du simulateur : estimation plus précise, analyse détaillée, et gains potentiels.
-    </p>
-    <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-      <button onclick="fermerPopup()" style="
-        padding:10px 18px; background:rgba(255,255,255,.08); color:#fff;
-        border:1px solid rgba(255,255,255,.15); border-radius:12px; cursor:pointer;
-        font-size:14px; font-weight:600; font-family:inherit;
-      ">Plus tard</button>
-      <a href="#adhesion" onclick="fermerPopup()" style="
-        padding:10px 18px; background:linear-gradient(135deg,#2563eb,#3b82f6);
-        color:#fff; border-radius:12px; font-size:14px; font-weight:700;
-        box-shadow:0 4px 16px rgba(59,130,246,.35);
-      ">🔓 Devenir adhérent</a>
-    </div>
-  </div>
-</div>
+  // Cacher tab retraite si public
+  const tabRetraite = document.querySelector('[onclick="switchTab(\'retraite\', this)"]');
+  if (tabRetraite && localStorage.getItem("propolice_member") !== "true") {
+    tabRetraite.style.display = "none";
+  }
+});
+
+document.addEventListener("keydown", e => { if (e.key === "Escape") fermerPopup(); });
+</script>
 
 </body>
 </html>
