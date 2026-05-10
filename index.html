@@ -141,6 +141,119 @@
 </header>
 
 <main class="main">
+    <!-- ===== SIMULATEUR PRIMES ===== -->
+  <section class="section alt" id="simulateur">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">💰 Simulateur</div>
+        <h2>Simulateur de primes</h2>
+        <p>Calculez une estimation rapide de votre rémunération mensuelle : ITN, travail de nuit, dimanche et supplément familial.</p>
+      </div>
+
+      <div class="simulateurWrap">
+        <div class="card">
+          <div class="formGrid">
+            <label class="field">
+              <span>Grade</span>
+              <select id="grade">
+                <option value="gpx">Gardien de la Paix</option>
+                <option value="bc_norm">Brigadier / Brigadier-chef</option>
+                <option value="bc_sup">Brigadier-chef (sup.)</option>
+                <option value="major">Major</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Échelon</span>
+              <select id="echelon"></select>
+            </label>
+            <label class="field">
+              <span>Indemnité de travail de nuit (ITN)</span>
+              <select id="itn">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Heures de nuit (21h-6h) par mois</span>
+              <input type="number" id="heuresNuit" min="0" max="200" value="0" />
+            </label>
+            <label class="field">
+              <span>Heures du dimanche par mois</span>
+              <input type="number" id="heuresDimanche" min="0" max="100" value="0" />
+            </label>
+            <label class="field">
+              <span>Nombre d'enfants à charge</span>
+              <input type="number" id="enfants" min="0" max="10" value="0" />
+            </label>
+            <label class="field">
+              <span>Localisation</span>
+              <select id="typeZone" onchange="toggleZoneOM()">
+                <option value="metropole">Métropole</option>
+                <option value="outremer">Outre-mer</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Indemnité de résidence</span>
+              <select id="zone">
+                <option value="1">Zone 1 (Paris/IDF) — 185€</option>
+                <option value="2">Zone 2 — 120€</option>
+                <option value="3" selected>Zone 3 — 90€</option>
+              </select>
+            </label>
+            <label class="field" id="blocOM" style="display:none;">
+              <span>Zone Outre-mer</span>
+              <select id="zoneOM">
+                <option value="0.35">Réunion (35%)</option>
+                <option value="0.40">DOM (40%)</option>
+                <option value="0.73">Nouvelle-Calédonie (73%)</option>
+                <option value="0.40">Polynésie (approx.)</option>
+                <option value="0.40">Mayotte (approx.)</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Prime voie publique (VP)</span>
+              <select id="primeVP">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Fonction OPJ</span>
+              <select id="opj">
+                <option value="non">Non</option>
+                <option value="cartographie">Oui (poste OPJ cartographié)</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Corps</span>
+              <select id="corps">
+                <option value="CEA">CEA (Police nationale)</option>
+                <option value="CRS">CRS</option>
+              </select>
+            </label>
+          </div>
+          <div class="row" style="margin-top:18px;">
+            <button class="btn primary" type="button" onclick="calculerPrimes()">💰 Calculer mes primes</button>
+            <button class="btn ghost" type="button" onclick="reinitSimulateur()">Réinitialiser</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Résultat estimatif</h3>
+          <p class="smallmuted">Simulation indicative à vocation informative.</p>
+          <div style="margin-top:18px;">
+            <div id="resultatPublic">
+              <div class="smallmuted" style="padding:24px 0; text-align:center; opacity:.6;">
+                Renseignez vos informations pour lancer le calcul.
+              </div>
+            </div>
+            <div id="resultatMembre" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- ===== CHIFFRES CLÉS ===== -->
   <section class="section sectionStats" id="chiffres">
@@ -258,118 +371,6 @@
     </div>
   </section>
 
-  <!-- ===== SIMULATEUR PRIMES ===== -->
-  <section class="section alt" id="simulateur">
-    <div class="container">
-      <div class="sectionHead">
-        <div class="sectionBadge">💰 Simulateur</div>
-        <h2>Simulateur de primes</h2>
-        <p>Calculez une estimation rapide de votre rémunération mensuelle : ITN, travail de nuit, dimanche et supplément familial.</p>
-      </div>
-
-      <div class="simulateurWrap">
-        <div class="card">
-          <div class="formGrid">
-            <label class="field">
-              <span>Grade</span>
-              <select id="grade">
-                <option value="gpx">Gardien de la Paix</option>
-                <option value="bc_norm">Brigadier / Brigadier-chef</option>
-                <option value="bc_sup">Brigadier-chef (sup.)</option>
-                <option value="major">Major</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Échelon</span>
-              <select id="echelon"></select>
-            </label>
-            <label class="field">
-              <span>Indemnité de travail de nuit (ITN)</span>
-              <select id="itn">
-                <option value="oui">Oui</option>
-                <option value="non">Non</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Heures de nuit (21h-6h) par mois</span>
-              <input type="number" id="heuresNuit" min="0" max="200" value="0" />
-            </label>
-            <label class="field">
-              <span>Heures du dimanche par mois</span>
-              <input type="number" id="heuresDimanche" min="0" max="100" value="0" />
-            </label>
-            <label class="field">
-              <span>Nombre d'enfants à charge</span>
-              <input type="number" id="enfants" min="0" max="10" value="0" />
-            </label>
-            <label class="field">
-              <span>Localisation</span>
-              <select id="typeZone" onchange="toggleZoneOM()">
-                <option value="metropole">Métropole</option>
-                <option value="outremer">Outre-mer</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Indemnité de résidence</span>
-              <select id="zone">
-                <option value="1">Zone 1 (Paris/IDF) — 185€</option>
-                <option value="2">Zone 2 — 120€</option>
-                <option value="3" selected>Zone 3 — 90€</option>
-              </select>
-            </label>
-            <label class="field" id="blocOM" style="display:none;">
-              <span>Zone Outre-mer</span>
-              <select id="zoneOM">
-                <option value="0.35">Réunion (35%)</option>
-                <option value="0.40">DOM (40%)</option>
-                <option value="0.73">Nouvelle-Calédonie (73%)</option>
-                <option value="0.40">Polynésie (approx.)</option>
-                <option value="0.40">Mayotte (approx.)</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Prime voie publique (VP)</span>
-              <select id="primeVP">
-                <option value="oui">Oui</option>
-                <option value="non">Non</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Fonction OPJ</span>
-              <select id="opj">
-                <option value="non">Non</option>
-                <option value="cartographie">Oui (poste OPJ cartographié)</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Corps</span>
-              <select id="corps">
-                <option value="CEA">CEA (Police nationale)</option>
-                <option value="CRS">CRS</option>
-              </select>
-            </label>
-          </div>
-          <div class="row" style="margin-top:18px;">
-            <button class="btn primary" type="button" onclick="calculerPrimes()">💰 Calculer mes primes</button>
-            <button class="btn ghost" type="button" onclick="reinitSimulateur()">Réinitialiser</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Résultat estimatif</h3>
-          <p class="smallmuted">Simulation indicative à vocation informative.</p>
-          <div style="margin-top:18px;">
-            <div id="resultatPublic">
-              <div class="smallmuted" style="padding:24px 0; text-align:center; opacity:.6;">
-                Renseignez vos informations pour lancer le calcul.
-              </div>
-            </div>
-            <div id="resultatMembre" style="display:none;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ===== SIMULATEUR CMO ===== -->
   <section class="section" id="simulateur-cmo">
