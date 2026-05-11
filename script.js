@@ -173,7 +173,7 @@ let ratioNet;
 
 if (zoneLabel.includes("Polynésie")) {
 
-  ratioNet = 1.00;
+  ratioNet = 1.18;
 
 } 
 else if (zoneLabel.includes("Nouvelle-Calédonie")) {
@@ -183,7 +183,7 @@ else if (zoneLabel.includes("Nouvelle-Calédonie")) {
 } 
 else if (zoneLabel.includes("Mayotte")) {
 
-  ratioNet = 0.74;
+  ratioNet = 0.90;
 
 } 
 else if (zoneOM >= 0.40) {
@@ -303,40 +303,7 @@ function calculerPrimes() {
 
   // ── Calculs de base ───────────────────────────────────────
   const salaireBase         = getBrutBase(corps, gradeBDD, echelon);
-  let majorationOM = 0;
-
-if (typeZone === "outremer") {
-
-  const zoneLabel = document.getElementById("zoneOM").selectedOptions[0].text;
-
-  if (zoneLabel.includes("Polynésie")) {
-
-    majorationOM = salaireBase * 1.20; 
-    // 🔥 ajustement réel terrain (≈ +120%)
-
-  } 
-  else if (zoneLabel.includes("Nouvelle-Calédonie")) {
-
-    majorationOM = salaireBase * 0.73;
-
-  } 
-  else if (zoneLabel.includes("Mayotte")) {
-
-    majorationOM = salaireBase * 0.40;
-
-  } 
-  else if (zoneOM >= 0.40) {
-
-    majorationOM = salaireBase * 0.40;
-
-  } 
-  else if (zoneOM >= 0.30) {
-
-    majorationOM = salaireBase * 0.30;
-
-  }
-
-}
+  const majorationOM = (typeZone === "outremer") ? salaireBase * zoneOM : 0;
   const primeITN            = itnChoix === "oui" ? (getITN(zone) || 0) : 0;
   const majorationNuit      = heuresNuit * 2.2;
   const majorationDimanche  = heuresDimanche * 2.8;
