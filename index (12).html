@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PRO POLICE — Syndicat • Université PRO POLICE</title>
+  <meta name="description" content="PRO POLICE : syndicat indépendant de la Police nationale. Défendre, Informer, Représenter. Simulateurs primes, ressources, université syndicale." />
+  <meta property="og:title" content="PRO POLICE — Syndicat indépendant Police Nationale" />
+  <meta property="og:description" content="Défendre. Informer. Représenter. Le syndicat qui manquait dans la police." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<!-- ===== HEADER ===== -->
+<header class="header" role="banner">
+  <div class="topbar">
+    <div class="topbar-left">
+      <button id="btnMember" class="btn small outline" type="button">Mode adhérent OFF</button>
+    </div>
+    <div class="brand">
+      <div class="logo-placeholder" aria-label="Logo PRO POLICE">🏴‍☠️</div>
+      <div class="brandtext">
+        <div class="brandname">PRO POLICE</div>
+        <div class="brandsub">Professionnels de la Police nationale</div>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#contenu">Accueil</a>
+      <a href="#ressources">Ressources</a>
+      <a href="#simulateur">Simulateur</a>
+      <a href="#simulateur-cmo">CMO</a>
+      <a href="#universite">Université</a>
+      <a href="#actualites">Actualités</a>
+      <a href="#bonsplans">Bons plans</a>
+      <a href="#telechargements">Téléchargements</a>
+      <a href="#adhesion" class="pill">Adhérer</a>
+    </nav>
+    <button class="menuBtn" id="menuBtn" aria-expanded="false" aria-controls="menuMobile">
+      <span class="sr">Ouvrir le menu</span>
+      <span aria-hidden="true">☰</span>
+    </button>
+  </div>
+
+  <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
+    <a href="#contenu">Accueil</a>
+    <a href="#ressources">Ressources</a>
+    <a href="#simulateur">Simulateur</a>
+    <a href="#simulateur-cmo">CMO</a>
+    <a href="#universite">Université</a>
+    <a href="#actualites">Actualités</a>
+    <a href="#bonsplans">Bons plans</a>
+    <a href="#telechargements">Téléchargements</a>
+    <a href="#adhesion">Adhérer</a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="contenu">
+    <div class="heroBg" aria-hidden="true"></div>
+    <div class="heroInner heroLeft">
+
+      <!-- Badge pill -->
+      <div class="badge">⚡ SYNDICAT • TERRAIN • ENGAGEMENT</div>
+
+      <!-- Titre principal -->
+      <h1>Défendre.<br>Informer.<br>Représenter.</h1>
+
+      <!-- Accroche simulateur -->
+      <a href="#simulateur" style="text-decoration:none;">
+        <div style="margin-top:14px; font-weight:700; font-size:1.05em; color:#60a5fa;">
+          🔥 Le simulateur Police Nationale le plus complet du paysage syndical
+        </div>
+      </a>
+      <ul style="margin-top:8px; color:#94a3b8; font-size:0.9em; line-height:1.6; list-style:none; padding:0;">
+        <li>✔ Métropole &amp; Outre-mer</li>
+        <li>✔ CEA &amp; CRS — primes réelles intégrées (ISSP, ITN, OPJ…)</li>
+        <li>✔ Estimation nette &amp; annuelle — calibré sur grilles 2026</li>
+      </ul>
+
+      <!-- CTA -->
+      <div class="ctaRow">
+        <a class="btn primary" href="#adhesion">🤝 Rejoindre PRO POLICE</a>
+        <a class="btn ghost" href="#ressources">📚 Voir les ressources</a>
+      </div>
+
+      <!-- 3 Meta-cards -->
+      <div class="metaRow">
+        <div class="metaCard">
+          <div class="metaIcon">🛡️</div>
+          <div class="metaTitle">Défense</div>
+          <div class="metaText">Accompagnement individuel &amp; collectif</div>
+        </div>
+        <div class="metaCard">
+          <div class="metaIcon">📖</div>
+          <div class="metaTitle">Information</div>
+          <div class="metaText">Fiches pratiques &amp; décryptages</div>
+        </div>
+        <div class="metaCard">
+          <div class="metaIcon">⚡</div>
+          <div class="metaTitle">Action</div>
+          <div class="metaText">Présence terrain &amp; représentation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panneau droit — stats visuelles -->
+    <div class="heroRight heroVisual">
+      <div class="heroVisualInner">
+        <div class="heroStat">
+          <div class="heroStatNum">150+</div>
+          <div class="heroStatLabel">collègues accompagnés</div>
+        </div>
+        <div class="heroStat">
+          <div class="heroStatNum">80+</div>
+          <div class="heroStatLabel">dossiers traités</div>
+        </div>
+        <div class="heroStat">
+          <div class="heroStatNum">45 000€+</div>
+          <div class="heroStatLabel">récupérés pour les collègues</div>
+        </div>
+        <div class="heroStat">
+          <div class="heroStatNum">100%</div>
+          <div class="heroStatLabel">indépendant</div>
+        </div>
+        <div class="heroBadgePN">
+          <span>🇫🇷</span>
+          <span>Police Nationale Française</span>
+        </div>
+        <div class="heroBadgeSlogan">"Le syndicat qui manquait dans la police"</div>
+      </div>
+    </div>
+  </section>
+</header>
+
+<main class="main">
+
+  <!-- ===== CHIFFRES CLÉS / BARRE DES CORPS ===== -->
+  <section class="section sectionStats" id="chiffres">
+    <div class="container">
+      <div class="statsGrid">
+        <div class="statCard">
+          <div class="statIcon">👮</div>
+          <div class="statNum">CEA</div>
+          <div class="statLabel">Corps d'encadrement et d'application</div>
+        </div>
+        <div class="statCard">
+          <div class="statIcon">🚔</div>
+          <div class="statNum">CRS</div>
+          <div class="statLabel">Compagnies Républicaines de Sécurité</div>
+        </div>
+        <div class="statCard">
+          <div class="statIcon">🔬</div>
+          <div class="statNum">PTS</div>
+          <div class="statLabel">Personnels techniques &amp; scientifiques</div>
+        </div>
+        <div class="statCard">
+          <div class="statIcon">🗂️</div>
+          <div class="statNum">ADMIN</div>
+          <div class="statLabel">Personnels administratifs</div>
+        </div>
+        <div class="statCard">
+          <div class="statIcon">🪪</div>
+          <div class="statNum">P.A</div>
+          <div class="statLabel">Policier Adjoint</div>
+        </div>
+        <div class="statCard">
+          <div class="statIcon">🎖️</div>
+          <div class="statNum">RES.</div>
+          <div class="statLabel">Réservistes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== POURQUOI PRO POLICE ===== -->
+  <section class="section alt" id="pourquoi">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">🎯 Notre différence</div>
+        <h2>Pourquoi PRO POLICE ?</h2>
+        <p>Un syndicat qui pense autrement — indépendant, innovant, orienté terrain.</p>
+      </div>
+      <div class="grid3">
+
+        <article class="card cardFeature">
+          <div class="cardFeatureIcon">🏴‍☠️</div>
+          <h3>100% Indépendant</h3>
+          <p>Ni confédération, ni fédération. PRO POLICE est une société de représentants du personnel — libre de toute pression politique ou syndicale extérieure.</p>
+          <div class="cardTag">Unique en France</div>
+        </article>
+
+        <article class="card cardFeature">
+          <div class="cardFeatureIcon">🎓</div>
+          <h3>Université PRO POLICE</h3>
+          <p>Un espace de formation unique : contenus alignés sur la certification RS5517 du Ministère du Travail. Vos délégués deviennent de vrais professionnels.</p>
+          <div class="cardTag">Exclusif</div>
+        </article>
+
+        <article class="card cardFeature">
+          <div class="cardFeatureIcon">🧠</div>
+          <h3>PRO POLICE Mentorat</h3>
+          <p>Accompagnement individuel par des experts certifiés. Coaching, leadership syndical — des compétences que personne d'autre ne vous enseigne.</p>
+          <div class="cardTag">Innovant</div>
+        </article>
+
+        <article class="card cardFeature">
+          <div class="cardFeatureIcon">📊</div>
+          <h3>Simulateurs exclusifs</h3>
+          <p>Calculez vos primes, votre CMO, votre retraite. Des outils concrets calibrés sur les grilles officielles 2026 — qu'aucun autre syndicat ne propose.</p>
+          <div class="cardTag">Outil terrain</div>
+        </article>
+
+        <article class="card cardFeature">
+          <div class="cardFeatureIcon">🤝</div>
+          <h3>Délégué en poche</h3>
+          <p>Accédez à votre délégué virtuel 24h/24. Ressources, fiches, modèles — tout ce dont vous avez besoin, quand vous en avez besoin.</p>
+          <div class="cardTag">Mobile first</div>
+        </article>
+
+        <article class="card cardFeature">
+          <div class="cardFeatureIcon">📈</div>
+          <h3>Modèle 80/17/3</h3>
+          <p>80% de contenu gratuit pour tous. 17% exclusif adhérents. 3% réservé aux délégués formés — une progression par la valeur, pas par l'ancienneté.</p>
+          <div class="cardTag">Stratégie valeur</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NOS ACTIONS ===== -->
+  <section class="section" id="actions">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">⚡ Nos actions</div>
+        <h2>Ce que nous faisons concrètement</h2>
+        <p>Pas de discours politique. Des actions réelles pour les collègues.</p>
+      </div>
+      <div class="grid2">
+
+        <article class="card cardFeature">
+          <div class="cardFeatureIcon">🛡️</div>
+          <h3>Défense individuelle</h3>
+          <p>Accompagnement des collègues en difficulté — procédures disciplinaires, contentieux, recours. Présence à chaque étape.</p>
+        </article>
+
+        <article class="card cardFeature">
+          <div class="cardFeatureIcon">📋</div>
+          <h3>Accompagnement administratif</h3>
+          <p>Mutations, avancements, droits à la retraite, CMO — nous décryptons les textes et vous aidons à agir efficacement.</p>
+        </article>
+
+        <article class="card cardFeature">
+          <div class="cardFeatureIcon">📣</div>
+          <h3>Représentation &amp; négociation</h3>
+          <p>Présence dans les instances paritaires, suivi des protocoles, interpellation de l'administration sur les sujets qui comptent.</p>
+        </article>
+
+        <article class="card cardFeature">
+          <div class="cardFeatureIcon">🎓</div>
+          <h3>Formation &amp; montée en compétences</h3>
+          <p>Université PRO POLICE — certification RS5517, ressources en ligne, parcours délégués. La formation comme levier d'action.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESSOURCES ===== -->
+  <section class="section" id="ressources">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">📚 Ressources</div>
+        <h2>Fiches, modèles &amp; décryptages</h2>
+        <p>Des ressources pratiques pour comprendre et agir — accessibles 24h/24.</p>
+      </div>
+
+      <div class="filterBar">
+        <input type="search" id="resourceSearchInput" placeholder="Rechercher une ressource…" class="searchInput" />
+        <select id="resourceTagSelect" class="tagSelect">
+          <option value="all">Tous les thèmes</option>
+          <option value="discipline">Discipline</option>
+          <option value="carriere">Carrière</option>
+          <option value="mobilite">Mobilité</option>
+          <option value="conges">Congés</option>
+          <option value="juridique">Juridique</option>
+        </select>
+        <button id="resourceResetBtn" class="btn ghost small">Réinitialiser</button>
+      </div>
+
+      <div id="resourceGrid" class="grid3" style="margin-top:20px;"></div>
+      <div id="resourceToast" class="toast" role="alert" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ===== SIMULATEUR PRIMES ===== -->
+  <section class="section alt" id="simulateur">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">💰 Simulateur</div>
+        <h2>Simulateur de rémunération nette</h2>
+        <p>Estimation indicative basée sur les grilles officielles 2026. Résultat en quelques secondes.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Vos informations</h3>
+          <div class="formGrid">
+
+            <label class="field">
+              <span>Corps</span>
+              <select id="corps">
+                <option value="CEA">CEA (Police nationale)</option>
+                <option value="CRS">CRS</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Grade</span>
+              <select id="grade">
+                <option value="gpx">Gardien de la Paix</option>
+                <option value="bc_norm">Brigadier / Brigadier Chef Classe Normale</option>
+                <option value="bc_sup">Brigadier Chef Classe Supérieure</option>
+                <option value="major">Major</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Échelon</span>
+              <select id="echelon"></select>
+            </label>
+
+            <label class="field">
+              <span>Enfants à charge</span>
+              <select id="enfants">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4+</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Type de zone</span>
+              <select id="typeZone">
+                <option value="metropole">Métropole</option>
+                <option value="outremer">Outre-mer</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Indemnité de résidence</span>
+              <select id="zone">
+                <option value="0">0%</option>
+                <option value="1">1%</option>
+                <option value="3">3% (IDF)</option>
+              </select>
+            </label>
+
+            <label class="field" id="blocOM" style="display:none;">
+              <span>Zone Outre-mer</span>
+              <select id="zoneOM">
+                <option value="0.35">Réunion (35%)</option>
+                <option value="0.40">DOM (40%)</option>
+                <option value="0.73">Nouvelle-Calédonie (73%)</option>
+                <option value="0.40">Polynésie (approx.)</option>
+                <option value="0.40">Mayotte (approx.)</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Indemnité de Technicité Nocturne (ITN)</span>
+              <select id="itn">
+                <option value="non">Non</option>
+                <option value="oui">Oui</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Prime voie publique (VP)</span>
+              <select id="primeVP">
+                <option value="non">Non</option>
+                <option value="oui">Oui</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Fonction OPJ</span>
+              <select id="opj">
+                <option value="non">Non</option>
+                <option value="cartographie">Oui (poste OPJ cartographié)</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Heures de nuit (mois)</span>
+              <input type="number" id="heuresNuit" value="0" min="0" max="200" step="1" />
+            </label>
+
+            <label class="field">
+              <span>Heures dimanche / férié (mois)</span>
+              <input type="number" id="heuresDimanche" value="0" min="0" max="200" step="1" />
+            </label>
+
+          </div>
+
+          <div class="row" style="margin-top:16px;">
+            <button class="btn primary" type="button" onclick="calculerPrimes()">💰 Calculer mes primes</button>
+            <button class="btn ghost" type="button" onclick="reinitSimulateur()">Réinitialiser</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Résultat estimatif</h3>
+          <p class="smallmuted">Simulation indicative à vocation informative.</p>
+          <div style="margin-top:18px;">
+            <div id="resultatPublic">
+              <div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>
+            </div>
+            <div id="resultatMembre" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SIMULATEUR CMO ===== -->
+  <section class="section" id="simulateur-cmo">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">🏥 Simulateur CMO</div>
+        <h2>Simulateur CMO / retenue sur salaire</h2>
+        <p>Calculez l'impact d'un congé maladie ordinaire sur votre rémunération.</p>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <h3>Vos données CMO</h3>
+          <div class="formGrid">
+            <label class="field">
+              <span>Salaire brut mensuel (€)</span>
+              <input type="number" id="cmoSalaire" placeholder="ex : 2800" min="0" step="1" />
+            </label>
+            <label class="field">
+              <span>Nombre de jours CMO</span>
+              <input type="number" id="cmoJours" placeholder="ex : 10" min="0" step="1" />
+            </label>
+            <label class="field" style="grid-column:1/-1;">
+              <span>Historique CMO 12 derniers mois (jours, séparés par virgule)</span>
+              <input type="text" id="cmoHistorique" placeholder="ex : 5, 3, 8" />
+            </label>
+          </div>
+          <div class="row" style="margin-top:16px;">
+            <button class="btn primary" type="button" onclick="calculerCMO()">🏥 Calculer l'impact CMO</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Résultat CMO</h3>
+          <p class="smallmuted">Estimation indicative.</p>
+          <div id="resultatCMO" style="margin-top:18px;">
+            <div class="smallmuted">Renseignez vos données pour lancer le calcul.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== UNIVERSITÉ PRO POLICE ===== -->
+  <section class="section sectionUniversite alt" id="universite">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">🎓 Université</div>
+        <h2>Université PRO POLICE</h2>
+        <p>Formation, ressources, certification — un espace unique dans le paysage syndical policier.</p>
+        <div class="certifBadge">🏅 Certification RS5517 — Ministère du Travail</div>
+      </div>
+      <div class="niveauxGrid">
+        <div class="niveauCard niveauPublic">
+          <div style="font-size:32px;margin-bottom:8px;">🌐</div>
+          <h3>Niveau Public</h3>
+          <p style="font-size:13px;color:var(--muted);margin-top:8px;">80% du contenu — accès libre, sans inscription. Fiches, décryptages, simulateurs.</p>
+          <div class="cardTag" style="margin-top:12px;">Gratuit</div>
+        </div>
+        <div class="niveauCard niveauMembre" style="background:rgba(59,130,246,.06);border-color:rgba(59,130,246,.2);">
+          <div style="font-size:32px;margin-bottom:8px;">🔑</div>
+          <h3>Niveau Adhérent</h3>
+          <p style="font-size:13px;color:var(--muted);margin-top:8px;">17% exclusif — modèles de courriers, analyses approfondies, accompagnement personnalisé.</p>
+          <div class="cardTag" style="margin-top:12px;">Adhérent</div>
+        </div>
+        <div class="niveauCard niveauDelegue" style="background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.2);">
+          <div style="font-size:32px;margin-bottom:8px;">⭐</div>
+          <h3>Niveau Délégué</h3>
+          <p style="font-size:13px;color:var(--muted);margin-top:8px;">3% réservé aux délégués formés — parcours certifiant, mentorat, leadership syndical.</p>
+          <div class="cardTag" style="margin-top:12px;background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.3);color:#fde7be;">Certifié</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ARTICLES / ACTUALITÉS ===== -->
+  <section class="section" id="actualites">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">📰 Actualités</div>
+        <h2>Articles &amp; décryptages</h2>
+        <p>Restez informé — analyses, tracts, communiqués PRO POLICE.</p>
+      </div>
+
+      <div class="filterBar">
+        <input type="search" id="searchInput" placeholder="Rechercher un article…" class="searchInput" />
+        <select id="filterTheme" class="tagSelect">
+          <option value="">Tous les thèmes</option>
+          <option value="Rémunération">Rémunération</option>
+          <option value="Juridique">Juridique</option>
+          <option value="Carrière">Carrière</option>
+          <option value="retraite">Retraite</option>
+        </select>
+      </div>
+
+      <div id="articlesGrid" class="grid3" style="margin-top:20px;"></div>
+
+      <div id="actuGrid" class="grid3" style="margin-top:32px;"></div>
+    </div>
+  </section>
+
+  <!-- ===== BONS PLANS ===== -->
+  <section class="section alt" id="bonsplans">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">🎁 Bons plans</div>
+        <h2>Avantages adhérents</h2>
+        <p>Des partenariats sélectionnés pour les professionnels de la Police nationale.</p>
+      </div>
+      <div class="notice">
+        🔒 <strong>Contenu réservé aux adhérents.</strong> Rejoignez PRO POLICE pour accéder à l'ensemble des avantages et bons plans négociés pour vous.
+        <div style="margin-top:12px;"><a href="#adhesion" class="btn small primary">Voir les avantages</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TÉLÉCHARGEMENTS ===== -->
+  <section class="section" id="telechargements">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">📥 Téléchargements</div>
+        <h2>Documents &amp; formulaires</h2>
+        <p>Accédez aux textes officiels, grilles indiciaires et formulaires utiles.</p>
+      </div>
+      <div class="grid3">
+        <article class="card">
+          <div class="icon">📄</div>
+          <h3>Grilles indiciaires 2026</h3>
+          <p>CEA, CRS, PTS, ADMIN — toutes les grilles au format PDF.</p>
+          <div class="actions" style="margin-top:12px;">
+            <a class="linkBtn" href="#ressources">Accéder</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="icon">📋</div>
+          <h3>Textes réglementaires</h3>
+          <p>Usage des armes, sécurité publique, laïcité — les textes de référence.</p>
+          <div class="actions" style="margin-top:12px;">
+            <a class="linkBtn" href="#ressources">Accéder</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="icon">📊</div>
+          <h3>Simulateurs Excel</h3>
+          <p>Simulateurs travail de nuit et CMO en format tableur.</p>
+          <div class="actions" style="margin-top:12px;">
+            <a class="linkBtn" href="#ressources">Accéder</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ADHÉSION ===== -->
+  <section class="section alt" id="adhesion">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">🤝 Adhésion</div>
+        <h2>Rejoindre PRO POLICE</h2>
+        <p>Un syndicat indépendant, apolitique, au service de tous les professionnels de la Police nationale.</p>
+      </div>
+
+      <div class="grid3" style="margin-bottom:32px;">
+        <div class="priceCard card" style="text-align:center;">
+          <div style="font-size:28px;margin-bottom:8px;">🌐</div>
+          <h3>Accès Public</h3>
+          <div style="font-size:32px;font-weight:800;margin:12px 0;">Gratuit</div>
+          <p style="font-size:13px;color:var(--muted);">80% des ressources, simulateurs, fiches pratiques.</p>
+          <button class="btn ghost" style="margin-top:16px;width:100%;" data-plan="Public">Commencer</button>
+        </div>
+        <div class="priceCard card" style="text-align:center;border-color:rgba(59,130,246,.4);background:rgba(59,130,246,.06);">
+          <div style="font-size:28px;margin-bottom:8px;">🔑</div>
+          <h3>Adhérent</h3>
+          <div style="font-size:32px;font-weight:800;margin:12px 0;">10€<span style="font-size:16px;font-weight:400;color:var(--muted);">/mois</span></div>
+          <p style="font-size:13px;color:var(--muted);">Accès complet + accompagnement + modèles exclusifs.</p>
+          <button class="btn primary" style="margin-top:16px;width:100%;" data-plan="Adhérent">Adhérer</button>
+        </div>
+        <div class="priceCard card" style="text-align:center;border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.04);">
+          <div style="font-size:28px;margin-bottom:8px;">⭐</div>
+          <h3>Délégué</h3>
+          <div style="font-size:32px;font-weight:800;margin:12px 0;">Sur<span style="font-size:16px;font-weight:400;color:var(--muted);"> candidature</span></div>
+          <p style="font-size:13px;color:var(--muted);">Parcours certifiant RS5517 + mentorat + accès délégué.</p>
+          <button class="btn ghost" style="margin-top:16px;width:100%;border-color:rgba(245,158,11,.4);color:#fde7be;" data-plan="Délégué">Candidater</button>
+        </div>
+      </div>
+
+      <!-- Formulaire -->
+      <div class="card form">
+        <div class="formHead">
+          <h3>Formulaire d'adhésion</h3>
+          <p>Plan choisi : <span id="planLabel"><strong>Adhérent</strong> (modifiable)</span></p>
+        </div>
+        <form id="adhForm" novalidate>
+          <div class="formGrid">
+            <label class="field">
+              <span>Prénom</span>
+              <input type="text" name="prenom" placeholder="Votre prénom" required />
+            </label>
+            <label class="field">
+              <span>Nom</span>
+              <input type="text" name="nom" placeholder="Votre nom" required />
+            </label>
+            <label class="field">
+              <span>Email professionnel ou personnel</span>
+              <input type="email" name="email" placeholder="votre@email.fr" required />
+            </label>
+            <label class="field">
+              <span>Corps</span>
+              <select name="corps_adh">
+                <option value="CEA">CEA</option>
+                <option value="CRS">CRS</option>
+                <option value="PTS">PTS</option>
+                <option value="ADMIN">Administratif</option>
+                <option value="PA">Policier Adjoint</option>
+                <option value="RES">Réserviste</option>
+              </select>
+            </label>
+            <label class="field" style="grid-column:1/-1;">
+              <span>Message (optionnel)</span>
+              <textarea name="message" rows="3" placeholder="Une question, une situation à évoquer…" style="resize:vertical;"></textarea>
+            </label>
+          </div>
+          <button class="btn primary" type="submit" style="margin-top:16px;">🤝 Envoyer ma demande</button>
+          <p class="tiny">Données utilisées uniquement pour le traitement de votre adhésion. Aucun démarchage commercial.</p>
+        </form>
+        <div id="adhToast" class="toast" role="alert" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">📞 Contact</div>
+        <h2>Nous contacter</h2>
+        <p>PRO POLICE répond à toutes vos questions — syndicat de proximité.</p>
+      </div>
+      <div class="grid2">
+        <div class="card contactCard">
+          <div style="font-size:40px;">👤</div>
+          <h3>Stéphane CIRACIYAN</h3>
+          <p>Responsable National Développement</p>
+          <div class="socialRow">
+            <a href="/cdn-cgi/l/email-protection#e5969c8b818c868491cb95978a958a898c8680a58288848c89cb868a88" class="socialBtn">✉️ <span class="__cf_email__" data-cfemail="37444e59535e5456431947455847585b5e545277505a565e5b1954585a">[email&#160;protected]</span></a>
+            <a href="tel:+33631133956" class="socialBtn">📞 06 31 13 39 56</a>
+            <a href="tel:+33603431557" class="socialBtn">📞 06 03 43 15 57</a>
+          </div>
+        </div>
+        <div class="card contactCard">
+          <div style="font-size:40px;">🌐</div>
+          <h3>PRO POLICE en ligne</h3>
+          <p>Site officiel, GitHub et réseaux</p>
+          <div class="socialRow">
+            <a href="https://www.propolice.fr" target="_blank" rel="noopener" class="socialBtn">🌐 propolice.fr</a>
+            <a href="https://github.com/SparkProPol/propolice-site" target="_blank" rel="noopener" class="socialBtn">💻 GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footGrid">
+      <div class="brand mini">
+        <div class="logo-placeholder" aria-label="Logo PRO POLICE">🏴‍☠️</div>
+        <div class="brandtext">
+          <div class="brandname">PRO POLICE</div>
+          <div class="brandsub">Syndicat indépendant</div>
+        </div>
+        <p class="footNote">Société de représentants du personnel de la Police nationale. Apolitique, indépendant, orienté terrain.</p>
+      </div>
+      <div class="footLinks">
+        <strong>Navigation</strong>
+        <a href="#ressources">Ressources</a>
+        <a href="#simulateur">Simulateur</a>
+        <a href="#universite">Université</a>
+        <a href="#actualites">Actualités</a>
+        <a href="#adhesion">Adhérer</a>
+      </div>
+      <div class="footLinks">
+        <strong>Outils</strong>
+        <a href="#simulateur">Simulateur primes</a>
+        <a href="#simulateur-cmo">Simulateur CMO</a>
+        <a href="#telechargements">Téléchargements</a>
+        <a href="#bonsplans">Bons plans</a>
+      </div>
+      <div class="footLinks">
+        <strong>Contact</strong>
+        <a href="/cdn-cgi/l/email-protection#b6c5cfd8d2dfd5d7c298c6c4d9c6d9dadfd5d3f6d1dbd7dfda98d5d9db"><span class="__cf_email__" data-cfemail="cfbcb6a1aba6acaebbe1bfbda0bfa0a3a6acaa8fa8a2aea6a3e1aca0a2">[email&#160;protected]</span></a>
+        <a href="tel:+33631133956">06 31 13 39 56</a>
+        <a href="https://www.propolice.fr" target="_blank" rel="noopener">propolice.fr</a>
+        <a href="https://github.com/SparkProPol/propolice-site" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <p class="footNote" style="margin-top:24px;text-align:center;">© <span id="year"></span> PRO POLICE — Tous droits réservés. Simulation indicative, non contractuelle.</p>
+  </div>
+</footer>
+
+<!-- ===== POPUP ADHÉRENT ===== -->
+<div id="popupAdherent" onclick="fermerPopup()" style="
+  display:none;
+  position:fixed;
+  top:0; left:0; right:0; bottom:0;
+  background:rgba(0,0,0,.65);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;">
+  <div onclick="event.stopPropagation()" style="
+    background:#0f1929;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    padding:32px;
+    max-width:420px;
+    width:90%;
+    text-align:center;">
+    <div style="font-size:40px;margin-bottom:12px;">🔒</div>
+    <h3 style="margin:0 0 8px;">Contenu adhérent</h3>
+    <p style="color:#94a3b8;font-size:14px;margin-bottom:20px;">Ce contenu est réservé aux adhérents PRO POLICE. Rejoignez-nous pour y accéder.</p>
+    <div style="display:flex;gap:12px;justify-content:center;">
+      <a href="#adhesion" class="btn primary" onclick="fermerPopup()">🤝 Adhérer</a>
+      <button class="btn ghost" onclick="fermerPopup()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts BDD -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="content/data/bdd_CEA.js"></script>
+<script src="content/data/bdd_CRS.js"></script>
+<script src="content/data/bdd_administratif.js"></script>
+<script src="content/data/bdd_PTS.js"></script>
+<script src="content/data/bdd_adjoints.js"></script>
+<script src="content/data/bdd_reservistes.js"></script>
+<script src="content/data/bdd_retraite.js"></script>
+
+<!-- Script principal -->
+<script src="script.js"></script>
+
+</body>
+</html>
