@@ -217,16 +217,6 @@ return {
   } else {
     net = (brut - totalRetenues) * coefficientCorrection;
   }
-
-  return {
-    net,
-    pension,
-    csg_deductible,
-    csg_non_deductible,
-    crds,
-    rafp,
-    totalRetenues
-  };
 }
 
 
