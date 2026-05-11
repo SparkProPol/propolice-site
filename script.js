@@ -204,6 +204,16 @@ else {
 
 net = brut * ratioNet;
 
+return {
+  net,
+  pension: 0,
+  csg_deductible: 0,
+  csg_non_deductible: 0,
+  crds: 0,
+  rafp: 0,
+  totalRetenues: brut - net
+};
+
   } else {
     net = (brut - totalRetenues) * coefficientCorrection;
   }
