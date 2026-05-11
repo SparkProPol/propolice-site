@@ -167,12 +167,42 @@ function calculerNetReel(brut) {
 
   if (typeZone === "outremer") {
     // Ratio net Outre-mer selon taux de majoration
-    let ratioNet;
-    if      (zoneOM >= 0.70) ratioNet = 0.98;
-    else if (zoneOM >= 0.40) ratioNet = 0.94;
-    else if (zoneOM >= 0.30) ratioNet = 0.915;
-    else                     ratioNet = 0.93;
-    net = brut * ratioNet;
+    const zoneLabel = document.getElementById("zoneOM").selectedOptions[0].text;
+
+let ratioNet;
+
+if (zoneLabel.includes("Polynésie")) {
+
+  ratioNet = 1.00;
+
+} 
+else if (zoneLabel.includes("Nouvelle-Calédonie")) {
+
+  ratioNet = 0.98;
+
+} 
+else if (zoneLabel.includes("Mayotte")) {
+
+  ratioNet = 0.74;
+
+} 
+else if (zoneOM >= 0.40) {
+
+  ratioNet = 0.94;
+
+} 
+else if (zoneOM >= 0.30) {
+
+  ratioNet = 0.915;
+
+} 
+else {
+
+  ratioNet = 0.93;
+
+}
+
+net = brut * ratioNet;
 
   } else {
     net = (brut - totalRetenues) * coefficientCorrection;
