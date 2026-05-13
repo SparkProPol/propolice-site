@@ -80,9 +80,18 @@ function calculerNetReel(brut) {
 
     let ratioNet;
 
-    if (zoneOM >= 0.70) {
-      ratioNet = 0.98;
-    } 
+    const label = document.getElementById("zoneOM").selectedOptions[0].text;
+
+if (label.includes("Polynésie")) {
+
+  ratioNet = 1.00; // 🔥 correction réelle
+
+} 
+else if (zoneOM >= 0.70) {
+
+  ratioNet = 0.98;
+
+}
     else if (zoneOM >= 0.40) {
       ratioNet = 0.94;
     } 
