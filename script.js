@@ -653,6 +653,11 @@ if (typeZone === "outremer") {
     totalCorrige = totalEstime * 1.18;
 
   }
+else if (label.includes("Mayotte")) {
+
+    totalCorrige = totalEstime * 1.19; // 🔥 calibration Mayotte
+
+  }
 
 }
   const bloc = `
