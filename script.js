@@ -631,6 +631,20 @@ const ICSS = (corps === "CRS") ? 145 : 0;
   sft +
   majorationOM +
   montantVP;
+	// 🔥 Correction spécifique Polynésie
+let totalCorrige = totalEstime;
+
+if (typeZone === "outremer") {
+
+  const label = document.getElementById("zoneOM")?.selectedOptions?.[0]?.text || "";
+
+  if (label.includes("Polynésie")) {
+
+    totalCorrige = totalEstime * 1.18;
+
+  }
+
+}
   const bloc = `
   <div class="row between"><span>Salaire de base valorisé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
 
