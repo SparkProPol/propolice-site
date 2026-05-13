@@ -662,7 +662,7 @@ else if (label.includes("Mayotte")) {
   }
 
 }
-const bloc = `
+ const bloc = `
   <div class="row between">
     <span>Salaire de base valorisé</span>
     <strong>${salaireBase.toFixed(2)} €</strong>
@@ -690,78 +690,40 @@ const bloc = `
   </div>
   ` : ""}
 
-  ${corps === "CRS" ? `
-  <div class="row between">
-    <span>ICSS CRS</span>
-    <strong>+ ${ICSS.toFixed(2)} €</strong>
-  </div>
-  ` : ""}
+${corps === "CRS" ? `
+<div class="row between"><span>ICSS CRS</span><strong>+ ${ICSS.toFixed(2)} €</strong></div>
+` : ""}
+    <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
+    <div class="row between"><span>Prime voie publique (VP)</span><strong>+ ${montantVP.toFixed(2)} €</strong></div>
+    <div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
+    <div class="row between"><span>Majoration dimanche</span><strong>+ ${majorationDimanche.toFixed(2)} €</strong></div>
+    <div class="row between"><span>SFT${enfants > 0 ? ` (${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span><strong>+ ${sft.toFixed(2)} €</strong></div>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
+    <div class="row between" style="font-size:1.15rem;">
+      <strong>Estimation totale</strong>
+      <strong>${totalCorrige.toFixed(2)} € BRUT estimé</strong>
+</div>
 
-  <div class="row between">
-    <span>Prime ITN</span>
-    <strong>+ ${primeITN.toFixed(2)} €</strong>
-  </div>
+<div style="margin-top:8px; font-size:0.9em; opacity:0.8;">
+  💡 Écart moyen constaté : +2% à +4% sur certains tableaux externes
+</div>
 
-  <div class="row between">
-    <span>Prime voie publique (VP)</span>
-    <strong>+ ${montantVP.toFixed(2)} €</strong>
-  </div>
+<div class="notice" style="margin-top:10px;">
+  <strong>Note :</strong> estimation indicative à visée informative.
+</div>
 
-  <div class="row between">
-    <span>Majoration nuit</span>
-    <strong>+ ${majorationNuit.toFixed(2)} €</strong>
-  </div>
-
-  <div class="row between">
-    <span>Majoration dimanche</span>
-    <strong>+ ${majorationDimanche.toFixed(2)} €</strong>
-  </div>
-
-  <div class="row between">
-    <span>SFT${enfants > 0 ? ` (${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span>
-    <strong>+ ${sft.toFixed(2)} €</strong>
-  </div>
-
-  <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
-
-  <div class="row between" style="font-size:1.15rem;">
-    <strong>Estimation totale</strong>
-    <strong>${totalCorrige.toFixed(2)} € BRUT estimé</strong>
-  </div>
-
-  ${typeZone === "outremer" ? `
-  <div style="margin-top:6px; font-size:0.8em; color:#22c55e;">
-    🔥 Simulation calibrée Outre-mer (données terrain)
-  </div>
-  ` : ""}
-
-  ${typeZone === "outremer" && label.includes("Mayotte") ? `
-  <div style="margin-top:6px; font-size:0.85em; color:#facc15;">
-    🌍 Spécificité Mayotte : fiscalité et retenues adaptées localement
-  </div>
-  ` : ""}
-
-  <div style="margin-top:8px; font-size:0.9em; opacity:0.8;">
-    💡 Écart moyen constaté : +2% à +4% sur certains tableaux externes
-  </div>
-
-  <div class="notice" style="margin-top:10px;">
-    <strong>Note :</strong> estimation indicative à visée informative.
-  </div>
-
-  <div class="notice" style="margin-top:10px;">
-    <strong>🎯 Lecture PRO POLICE :</strong><br>
-    Cette simulation intègre l’ensemble des retenues réelles appliquées sur votre rémunération.
-    <br><br>
-    Les montants parfois plus élevés observés ailleurs correspondent à des estimations simplifiées ou partielles.
-    <br><br>
-    👉 Ici, vous avez une vision au plus proche de votre paie réelle.
-    <br><br>
-    <span style="font-size:0.85em; color:#ff4d4f; font-weight:700;">
-      🔴 Simulation calibrée terrain PRO POLICE (écart < 1%)
-    </span>
-  </div>
-`;
+<div class="notice" style="margin-top:10px;">
+  <strong>🎯 Lecture PRO POLICE :</strong><br>
+  Cette simulation intègre l’ensemble des retenues réelles appliquées sur votre rémunération.
+  <br><br>
+  Les montants parfois plus élevés observés ailleurs correspondent à des estimations simplifiées ou partielles.
+  <br><br>
+  👉 Ici, vous avez une vision au plus proche de votre paie réelle.
+  <br><br>
+  <span style="font-size:0.85em; color:#ff4d4f; font-weight:700;">
+    🔴 Simulation calibrée terrain PRO POLICE (écart < 1%)
+  </span>
+</div>`;
 
 if (isMember()) {
 
