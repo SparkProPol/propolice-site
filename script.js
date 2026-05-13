@@ -493,32 +493,19 @@ function calculerNetReel(brut) {
 
   let net;
 
-  if (typeZone === "outremer") {
+ if (typeZone === "outremer") {
 
-    let ratioNet;
+  const label = document.getElementById("zoneOM")?.selectedOptions?.[0]?.text || "";
 
-    const label = document.getElementById("zoneOM")?.selectedOptions?.[0]?.text || "";
+  let ratioNet;
 
-if (label.includes("Polynésie")) {
+  if (label.includes("Polynésie")) {
 
-  ratioNet = 1.00; // 🔥 correction Polynésie (net ≈ brut)
+    ratioNet = 1.00;
 
-} 
-else if (zoneOM >= 0.70) {
+  } 
+  else if (label.includes("Mayotte")) {
 
-  ratioNet = 0.98;
-
-}
-    const label = document.getElementById("zoneOM")?.selectedOptions?.[0]?.text || "";
-
-if (label.includes("Polynésie")) {
-
-  ratioNet = 1.00;
-
-} 
-else if (label.includes("Mayotte")) {
-
-  
     ratioNet = 0.73; // 🔥 correction réelle terrain
 
   } 
@@ -532,13 +519,16 @@ else if (label.includes("Mayotte")) {
     ratioNet = 0.94;
 
   } 
-    else if (zoneOM >= 0.30) {
-      ratioNet = 0.915;
-    } 
-    else {
-      ratioNet = 0.93;
-    }
+  else if (zoneOM >= 0.30) {
 
+    ratioNet = 0.915;
+
+  } 
+  else {
+
+    ratioNet = 0.93;
+
+  }
     net = brut * ratioNet;
 
   } else {
