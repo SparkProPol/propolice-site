@@ -518,14 +518,20 @@ if (label.includes("Polynésie")) {
 } 
 else if (label.includes("Mayotte")) {
 
-  ratioNet = 0.73; // 🔥 calibrage réel terrain
+  
+    ratioNet = 0.73; // 🔥 correction réelle terrain
 
-} 
-else if (zoneOM >= 0.40) {
+  } 
+  else if (zoneOM >= 0.70) {
 
-  ratioNet = 0.94;
+    ratioNet = 0.98;
 
-} 
+  } 
+  else if (zoneOM >= 0.40) {
+
+    ratioNet = 0.94;
+
+  } 
     else if (zoneOM >= 0.30) {
       ratioNet = 0.915;
     } 
