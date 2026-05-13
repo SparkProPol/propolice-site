@@ -698,7 +698,7 @@ if (isMember()) {
   document.getElementById("resultatMembre").style.display = "block";
   document.getElementById("resultatPublic").style.display = "none";
 
-  const brut = totalEstime;
+  const brut = totalCorrige;
  const detailNet = calculerNetReel(brut);
 const net = detailNet.net;
   const annuel = net * 12;
