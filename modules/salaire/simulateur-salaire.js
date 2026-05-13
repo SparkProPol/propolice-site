@@ -237,6 +237,20 @@ const ICSS = (corps === "CRS") ? 145 : 0;
   sft +
   majorationOM +
   montantVP;
+
+// 🔥 CORRECTION OUTRE-MER
+let totalCorrige = totalEstime;
+
+if (typeZone === "outremer") {
+
+  const label = document.getElementById("zoneOM").selectedOptions[0].text;
+
+  // Polynésie → recalibrage réel
+  if (label.includes("Polynésie")) {
+    totalCorrige = totalEstime * 1.18;
+  }
+
+}
   const bloc = `
   <div class="row between"><span>Salaire de base valorisé</span><strong>${salaireBase.toFixed(2)} €</strong></div>
 
@@ -261,7 +275,7 @@ ${corps === "CRS" ? `
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
     <div class="row between" style="font-size:1.15rem;">
       <strong>Estimation totale</strong>
-      <strong>${totalEstime.toFixed(2)} € BRUT estimé</strong>
+      <strong>${totalCorrige.toFixed(2)} € BRUT estimé</strong>
 </div>
 
 <div style="margin-top:8px; font-size:0.9em; opacity:0.8;">
@@ -290,7 +304,7 @@ if (isMember()) {
   document.getElementById("resultatMembre").style.display = "block";
   document.getElementById("resultatPublic").style.display = "none";
 
-  const brut = totalEstime;
+  const brut = totalCorrige;
  const detailNet = calculerNetReel(brut);
 const net = detailNet.net;
   const annuel = net * 12;
