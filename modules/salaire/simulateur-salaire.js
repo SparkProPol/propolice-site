@@ -1,3 +1,5 @@
+console.log("🔥 SCRIPT SALAIRE V4 CHARGÉ");
+
 // ---------------- Simulateur primes ----------------
 function getSalaireBase(grade, echelon) {
 
