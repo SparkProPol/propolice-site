@@ -646,7 +646,7 @@ ${corps === "CRS" ? `
     <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
     <div class="row between" style="font-size:1.15rem;">
       <strong>Estimation totale</strong>
-      <strong>${totalEstime.toFixed(2)} € BRUT estimé</strong>
+      <strong>${totalCorrige.toFixed(2)} € BRUT estimé</strong>
 </div>
 
 <div style="margin-top:8px; font-size:0.9em; opacity:0.8;">
