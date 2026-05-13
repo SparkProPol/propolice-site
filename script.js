@@ -509,9 +509,23 @@ else if (zoneOM >= 0.70) {
   ratioNet = 0.98;
 
 }
-    else if (zoneOM >= 0.40) {
-      ratioNet = 0.94;
-    } 
+    const label = document.getElementById("zoneOM")?.selectedOptions?.[0]?.text || "";
+
+if (label.includes("Polynésie")) {
+
+  ratioNet = 1.00;
+
+} 
+else if (label.includes("Mayotte")) {
+
+  ratioNet = 0.73; // 🔥 calibrage réel terrain
+
+} 
+else if (zoneOM >= 0.40) {
+
+  ratioNet = 0.94;
+
+} 
     else if (zoneOM >= 0.30) {
       ratioNet = 0.915;
     } 
