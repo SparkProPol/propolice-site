@@ -185,6 +185,7 @@ if (grade === "bc_sup") gradeBDD = "bcs";
 const zoneOM = parseFloat(document.getElementById("zoneOM")?.value || 0);
 const itnChoix = document.getElementById("itn")?.value || "non";
   const corps = document.getElementById("corps")?.value || "CEA";
+  const opj = document.getElementById("opj")?.value || "non";
 const salaireBase = getBrutBase(corps, gradeBDD, echelon);
   // 🌍 Majoration Outre-mer
 let majorationOM = 0;
@@ -226,6 +227,7 @@ if (typeZone === "outremer") {
   const sft = getSFT(enfants);
   const primeVP = document.getElementById("primeVP")?.value || "non";
   const montantVP = primeVP === "oui" ? 100 : 0;
+  const primeOPJ = (opj === "oui") ? 150 : 0;
   // 🔥 Allocation maîtrise (fixe)
 const allocationMaitrise = 319.58;
 // 🔥 Complément RTT (fixe)
@@ -245,7 +247,8 @@ const ICSS = (corps === "CRS") ? 145 : 0;
   majorationDimanche +
   sft +
   majorationOM +
-  montantVP;
+  montantVP +
+  primeOPJ;
 
 // 🔥 CORRECTION OUTRE-MER
 let totalCorrige = totalEstime;
@@ -278,6 +281,7 @@ ${corps === "CRS" ? `
 ` : ""}
     <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
     <div class="row between"><span>Prime voie publique (VP)</span><strong>+ ${montantVP.toFixed(2)} €</strong></div>
+    <div class="row between"><span>Indemnité OPJ</span><strong>+ ${primeOPJ.toFixed(2)} €</strong></div>
     <div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
     <div class="row between"><span>Majoration dimanche</span><strong>+ ${majorationDimanche.toFixed(2)} €</strong></div>
     <div class="row between"><span>SFT${enfants > 0 ? ` (${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span><strong>+ ${sft.toFixed(2)} €</strong></div>
