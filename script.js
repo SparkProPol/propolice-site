@@ -519,11 +519,9 @@ function calculerNetReel(brut) {
     ratioNet = 0.94;
 
   } 
-  else if (zoneOM >= 0.30) {
-
-    ratioNet = 0.915;
-
-  } 
+else if (zoneOM >= 0.30) {
+  ratioNet = 0.93; // 🔥 ajustement Réunion
+}
   else {
 
     ratioNet = 0.93;
@@ -696,11 +694,19 @@ let totalCorrige = totalEstime;
 
 if (typeZone === "outremer") {
 
+  // 🔥 Polynésie → déjà boostée par majoration
   if (label.includes("Polynésie")) {
-    totalCorrige = totalEstime * 1.18;
-  } 
+    totalCorrige = totalEstime; // ❌ on supprime le x1.18
+  }
+
+  // 🔥 Mayotte → OK
   else if (label.includes("Mayotte")) {
     totalCorrige = totalEstime * 1.19;
+  }
+
+  // 🔥 DOM 40% → correction nécessaire
+  else if (zoneOM >= 0.40) {
+    totalCorrige = totalEstime * 1.12;
   }
 
 }
