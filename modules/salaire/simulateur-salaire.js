@@ -186,6 +186,7 @@ const zoneOM = parseFloat(document.getElementById("zoneOM")?.value || 0);
 const itnChoix = document.getElementById("itn")?.value || "non";
   const corps = document.getElementById("corps")?.value || "CEA";
   const opj = document.getElementById("opj")?.value || "non";
+  console.log("OPJ =", opj);
 const salaireBase = getBrutBase(corps, gradeBDD, echelon);
   // 🌍 Majoration Outre-mer
 let majorationOM = 0;
