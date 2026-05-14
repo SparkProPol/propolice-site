@@ -185,7 +185,8 @@ if (grade === "bc_sup") gradeBDD = "bcs";
 const zoneOM = parseFloat(document.getElementById("zoneOM")?.value || 0);
 const itnChoix = document.getElementById("itn")?.value || "non";
   const corps = document.getElementById("corps")?.value || "CEA";
-  const opj = document.getElementById("opj")?.value || "non";
+ const opjValue = document.getElementById("opj")?.value?.toLowerCase() || "";
+const opj = opjValue.includes("oui") || opjValue.includes("carto");
   console.log("OPJ =", opj);
 const salaireBase = getBrutBase(corps, gradeBDD, echelon);
   // 🌍 Majoration Outre-mer
@@ -228,7 +229,7 @@ if (typeZone === "outremer") {
   const sft = getSFT(enfants);
   const primeVP = document.getElementById("primeVP")?.value || "non";
   const montantVP = primeVP === "oui" ? 100 : 0;
-  const primeOPJ = (opj === "oui") ? 150 : 0;
+  const primeOPJ = opj ? 150 : 0;
   // 🔥 Allocation maîtrise (fixe)
 const allocationMaitrise = 319.58;
 // 🔥 Complément RTT (fixe)
@@ -284,7 +285,7 @@ ${corps === "CRS" ? `
 </div>
 ` : ""}
 
-${opj === "oui" ? `
+${opj ? `
 <div class="row between">
   <span>Indemnité OPJ</span>
   <strong>+ ${primeOPJ.toFixed(2)} €</strong>
