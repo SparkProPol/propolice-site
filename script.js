@@ -705,7 +705,7 @@ if (typeZone === "outremer") {
     totalCorrige = totalEstime * 1.19;
   }
 
-  // 🔥 Nouvelle-Calédonie 
+  // ✅ Nouvelle-Calédonie (NE PAS TOUCHER)
   else if (label.includes("Nouvelle-Calédonie")) {
     totalCorrige = totalEstime * 0.954;
   }
@@ -715,7 +715,7 @@ if (typeZone === "outremer") {
     totalCorrige = totalEstime;
   }
 
-  // 🔥 DOM (Guadeloupe / Martinique / Guyane)
+  // ✅ DOM (Guadeloupe / Martinique / Guyane) (NE PAS TOUCHER)
   else {
     totalCorrige = totalEstime * 1.235;
   }
