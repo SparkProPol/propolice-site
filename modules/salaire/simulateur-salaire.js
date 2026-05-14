@@ -171,24 +171,35 @@ function remplirEchelons() {
 }
 
 function calculerPrimes() {
-  const grade = document.getElementById("grade")?.value || "gpx";
-let gradeBDD = grade;
 
-if (grade === "bc_norm") gradeBDD = "bcn";
-if (grade === "bc_sup") gradeBDD = "bcs";
+  const grade = document.getElementById("grade")?.value || "gpx";
+  let gradeBDD = grade;
+
+  if (grade === "bc_norm") gradeBDD = "bcn";
+  if (grade === "bc_sup") gradeBDD = "bcs";
+
   const echelon = parseInt(document.getElementById("echelon")?.value || 1, 10);
   const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
   const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
   const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
-  const zone = document.getElementById("zone")?.value || "3";
+
+  const zone = document.getElementById("zone")?.value || "3"; // 0 / 1 / 3
+  const zoneIR = parseFloat(zone);
+  const tauxIR = zoneIR / 100; // 🔥 conversion propre
+
   const typeZone = document.getElementById("typeZone")?.value || "metropole";
-const zoneOM = parseFloat(document.getElementById("zoneOM")?.value || 0);
-const itnChoix = document.getElementById("itn")?.value || "non";
+  const zoneOM = parseFloat(document.getElementById("zoneOM")?.value || 0);
+
+  const itnChoix = document.getElementById("itn")?.value || "non";
   const corps = document.getElementById("corps")?.value || "CEA";
- const opjValue = document.getElementById("opj")?.value?.toLowerCase() || "";
-const opj = opjValue.includes("oui") || opjValue.includes("carto");
+
+  const opjValue = document.getElementById("opj")?.value?.toLowerCase() || "";
+  const opj = opjValue.includes("oui") || opjValue.includes("carto");
+
   console.log("OPJ =", opj);
-const salaireBase = getBrutBase(corps, gradeBDD, echelon);
+
+  const salaireBase = getBrutBase(corps, gradeBDD, echelon);
+
   // 🌍 Majoration Outre-mer
 let majorationOM = 0;
 
