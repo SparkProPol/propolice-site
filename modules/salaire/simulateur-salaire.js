@@ -471,4 +471,15 @@ function toggleZone() {
 
 typeZone?.addEventListener("change", toggleZone);
 toggleZone();
-});
+}); // ← fin du DOMContentLoaded
+
+function reinitSimulateur() {
+
+  document.getElementById("grade").value = "gpx";
+  document.getElementById("echelon").value = 1;
+  document.getElementById("typeZone").value = "metropole";
+
+  document.getElementById("resultatPublic").innerHTML = "";
+  document.getElementById("resultatMembre").innerHTML = "";
+
+}
