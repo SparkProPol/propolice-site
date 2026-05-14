@@ -4,14 +4,55 @@
   <meta charset="UTF-8">
   <title>Simulateur Salaire PRO POLICE</title>
 </head>
+
 <body>
 
-<h1>Simulateur Salaire</h1>
+<h1>💰 Simulateur Salaire PRO POLICE</h1>
 
-<!-- 👉 TON FORMULAIRE ACTUEL ICI -->
+<!-- 🔹 FORMULAIRE -->
+<label>Grade :</label>
+<select id="grade">
+  <option value="gpx">Gardien de la paix</option>
+  <option value="bc_norm">Brigadier chef</option>
+  <option value="bc_sup">Brigadier chef sup</option>
+  <option value="major">Major</option>
+</select>
 
-<div id="resultat"></div>
+<br><br>
 
+<label>Échelon :</label>
+<input type="number" id="echelon" value="8" min="1">
+
+<br><br>
+
+<label>Zone :</label>
+<select id="typeZone">
+  <option value="metropole">Métropole</option>
+  <option value="outremer">Outre-mer</option>
+</select>
+
+<br><br>
+
+<label>Zone Outre-mer :</label>
+<select id="zoneOM">
+  <option>Polynésie</option>
+  <option>Mayotte</option>
+  <option>Réunion</option>
+  <option>Nouvelle-Calédonie</option>
+  <option>DOM</option>
+</select>
+
+<br><br>
+
+<button onclick="calculerPrimes()">💰 Calculer</button>
+
+<hr>
+
+<!-- 🔹 RESULTAT -->
+<div id="resultatPublic"></div>
+<div id="resultatMembre"></div>
+
+<!-- 🔹 SCRIPT -->
 <script src="simulateur-salaire.js"></script>
 
 </body>
