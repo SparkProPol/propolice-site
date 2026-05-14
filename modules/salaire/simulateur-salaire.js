@@ -440,12 +440,7 @@ function updateMemberButton() {
 
 // Initialisation
 document.addEventListener("DOMContentLoaded", () => {
-  updateMemberButton();
-  renderActus();
-  loadSiteSettings();
-  loadResourcesFromJSON();
-  loadArticlesCards();
-  applyFilters();
+  
   // 🔥 Gestion affichage Outre-mer
 const typeZone = document.getElementById("typeZone");
 const blocOM = document.getElementById("blocOM");
