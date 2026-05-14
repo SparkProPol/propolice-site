@@ -598,38 +598,85 @@ function remplirEchelons() {
 }
 
 function calculerPrimes() {
-  const grade = document.getElementById("grade")?.value || "gpx";
+// ===============================
+// 🔹 PARAMÈTRES UTILISATEUR
+// ===============================
+const grade = document.getElementById("grade")?.value || "gpx";
 let gradeBDD = grade;
 
 if (grade === "bc_norm") gradeBDD = "bcn";
 if (grade === "bc_sup") gradeBDD = "bcs";
-  const echelon = parseInt(document.getElementById("echelon")?.value || 1, 10);
-  const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
-  const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
-  const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
-  const zone = document.getElementById("zone")?.value || "3";
-  const typeZone = document.getElementById("typeZone")?.value || "metropole";
+
+const echelon = parseInt(document.getElementById("echelon")?.value || 1, 10);
+const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
+const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
+const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
+const zone = document.getElementById("zone")?.value || "3";
+const typeZone = document.getElementById("typeZone")?.value || "metropole";
 const zoneOM = parseFloat(document.getElementById("zoneOM")?.value || 0);
+const corps = document.getElementById("corps")?.value || "CEA";
 const itnChoix = document.getElementById("itn")?.value || "non";
-  const corps = document.getElementById("corps")?.value || "CEA";
+const primeVP = document.getElementById("primeVP")?.value || "non";
+
+// ===============================
+// 🔹 LABEL ZONE OUTRE-MER
+// ===============================
+let label = "";
+const zoneSelect = document.getElementById("zoneOM");
+if (zoneSelect && zoneSelect.selectedOptions.length > 0) {
+  label = zoneSelect.selectedOptions[0].text;
+}
+
+// ===============================
+// 🔹 BASE SALARIALE
+// ===============================
 const salaireBase = getBrutBase(corps, gradeBDD, echelon);
-  // 🌍 Majoration Outre-mer
-const majorationOM = (typeZone === "outremer") ? salaireBase * zoneOM : 0;
-  const primeITN = itnChoix === "oui" ? (getITN(zone) || 0) : 0;
-  const majorationNuit = heuresNuit * 2.2;
-  const majorationDimanche = heuresDimanche * 2.8;
-  const sft = getSFT(enfants);
-  const primeVP = document.getElementById("primeVP")?.value || "non";
-  const montantVP = primeVP === "oui" ? 100 : 0;
-  // 🔥 Allocation maîtrise (fixe)
-const allocationMaitrise = 319.58;
-// 🔥 Complément RTT (fixe)
-const complementRTT = 112.33;
-  // 🔥 ISSP 28,5 %
+
+// ===============================
+// 🔹 PRIMES FIXES
+// ===============================
 const ISSP = Math.round(salaireBase * 0.285);
-// 🔥 ICSS (CRS uniquement)
-const ICSS = (corps === "CRS") ? 145 : 0;
- const totalEstime =
+const allocationMaitrise = 319.58;
+const complementRTT = 112.33;
+const ICSS = (corps.includes("CRS")) ? 145 : 0;
+
+// ===============================
+// 🔹 PRIMES VARIABLES
+// ===============================
+const primeITN = itnChoix === "oui" ? getITN(zone) : 0;
+const majorationNuit = heuresNuit * 2.2;
+const majorationDimanche = heuresDimanche * 2.8;
+const sft = getSFT(enfants);
+const montantVP = primeVP === "oui" ? 100 : 0;
+
+// ===============================
+// 🔹 MAJORATION OUTRE-MER
+// ===============================
+let majorationOM = 0;
+
+if (typeZone === "outremer") {
+
+  if (label.includes("Polynésie")) {
+    majorationOM = salaireBase * 0.65;
+  } 
+  else if (label.includes("Nouvelle-Calédonie")) {
+    majorationOM = salaireBase * 0.73;
+  } 
+  else if (label.includes("Mayotte")) {
+    majorationOM = salaireBase * 0.40;
+  } 
+  else if (zoneOM >= 0.40) {
+    majorationOM = salaireBase * 0.40;
+  } 
+  else if (zoneOM >= 0.30) {
+    majorationOM = salaireBase * 0.30;
+  }
+}
+
+// ===============================
+// 🔹 TOTAL BRUT
+// ===============================
+const totalEstime =
   salaireBase +
   ISSP +
   allocationMaitrise +
@@ -641,24 +688,19 @@ const ICSS = (corps === "CRS") ? 145 : 0;
   sft +
   majorationOM +
   montantVP;
-	// 🔒 Calibration terrain validée (2026)
-// Polynésie : x1.18
-// Mayotte : x1.19
+
+// ===============================
+// 🔹 CORRECTIONS TERRAIN
+// ===============================
 let totalCorrige = totalEstime;
 
 if (typeZone === "outremer") {
 
-  const label = document.getElementById("zoneOM")?.selectedOptions?.[0]?.text || "";
-
   if (label.includes("Polynésie")) {
-
     totalCorrige = totalEstime * 1.18;
-
-  }
-else if (label.includes("Mayotte")) {
-
-    totalCorrige = totalEstime * 1.19; // 🔥 calibration Mayotte
-
+  } 
+  else if (label.includes("Mayotte")) {
+    totalCorrige = totalEstime * 1.19;
   }
 
 }
