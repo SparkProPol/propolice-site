@@ -694,19 +694,29 @@ let totalCorrige = totalEstime;
 
 if (typeZone === "outremer") {
 
-  // 🔥 Polynésie → déjà boostée par majoration
+  // ✅ Polynésie (NE PAS TOUCHER)
   if (label.includes("Polynésie")) {
-    totalCorrige = totalEstime; // ❌ on supprime le x1.18
+    totalCorrige = totalEstime;
   }
 
-  // 🔥 Mayotte → OK
+  // ✅ Mayotte (NE PAS TOUCHER)
   else if (label.includes("Mayotte")) {
     totalCorrige = totalEstime * 1.19;
   }
 
-  // 🔥 DOM 40% → correction nécessaire
-  else if (zoneOM >= 0.40) {
-    totalCorrige = totalEstime * 1.12;
+  // 🔥 Nouvelle-Calédonie (correction légère)
+  else if (label.includes("Nouvelle-Calédonie")) {
+    totalCorrige = totalEstime * 0.95;
+  }
+
+  // 🔥 Réunion (brut OK, pas de correction)
+  else if (label.includes("Réunion")) {
+    totalCorrige = totalEstime;
+  }
+
+  // 🔥 DOM (Guadeloupe / Martinique / Guyane)
+  else {
+    totalCorrige = totalEstime * 0.80;
   }
 
 }
