@@ -427,16 +427,6 @@ const net = detailNet.net;
   
   } // ← fermeture de calculerPrimes()
 
-function reinitSimulateur() {
-  const defaults = { grade: "gpx", echelon: 1, heuresNuit: 0, heuresDimanche: 0, enfants: 0, zone: "1" };
-  Object.entries(defaults).forEach(([id, value]) => {
-    const el = document.getElementById(id);
-    if (el) el.value = value;
-  });
-  const cible = document.getElementById("resultatPublic");
-  if (cible) cible.innerHTML = `<div class="smallmuted">Renseignez vos informations pour lancer le calcul.</div>`;
-}
-
 // 🔐 Bouton mode adhérent
 function updateMemberButton() {
   const btnMember = document.getElementById("btnMember");
