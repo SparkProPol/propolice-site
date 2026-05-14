@@ -249,7 +249,7 @@ const complementRTT = 112.33;
 const ISSP = Math.round(salaireBase * 0.285);
 // 🔥 ICSS (CRS uniquement)
 const ICSS = (corps === "CRS") ? 145 : 0;
- const totalEstime =
+let totalEstime =
   salaireBase +
   ISSP +
   allocationMaitrise +
@@ -262,6 +262,13 @@ const ICSS = (corps === "CRS") ? 145 : 0;
   majorationOM +
   montantVP +
   primeOPJ;
+
+// 🔹 Correction indemnité de résidence (base 3% → ajustement réel)
+const baseIR = salaireBase * 0.03;
+const IRreelle = salaireBase * tauxIR;
+const correctionIR = IRreelle - baseIR;
+
+totalEstime += correctionIR;
 
 // 🔥 CORRECTION OUTRE-MER
 let totalCorrige = totalEstime;
