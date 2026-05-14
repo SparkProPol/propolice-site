@@ -526,7 +526,7 @@ function calculerNetReel(brut) {
 
   // 🔥 DOM (Guadeloupe / Martinique / Guyane)
   else {
-    ratioNet = 0.80;
+    ratioNet = 0.65;
   }
 
   net = brut * ratioNet;
@@ -697,7 +697,7 @@ if (typeZone === "outremer") {
 
   // ✅ Polynésie (NE PAS TOUCHER)
   if (label.includes("Polynésie")) {
-    totalCorrige = totalEstime;
+    totalCorrige = totalEstime * 1.04;
   }
 
   // ✅ Mayotte (NE PAS TOUCHER)
@@ -707,7 +707,7 @@ if (typeZone === "outremer") {
 
   // 🔥 Nouvelle-Calédonie (correction légère)
   else if (label.includes("Nouvelle-Calédonie")) {
-    totalCorrige = totalEstime * 0.95;
+    totalCorrige = totalEstime * 1.00;
   }
 
   // 🔥 Réunion (brut OK, pas de correction)
