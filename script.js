@@ -705,19 +705,19 @@ if (typeZone === "outremer") {
     totalCorrige = totalEstime * 1.19;
   }
 
-  // 🔥 Nouvelle-Calédonie (correction légère)
+  // 🔥 Nouvelle-Calédonie 
   else if (label.includes("Nouvelle-Calédonie")) {
-    totalCorrige = totalEstime * 1.00;
+    totalCorrige = totalEstime * 0.95;
   }
 
-  // 🔥 Réunion (brut OK, pas de correction)
+  // ✅  Réunion (NE PAS TOUCHER)
   else if (label.includes("Réunion")) {
     totalCorrige = totalEstime;
   }
 
   // 🔥 DOM (Guadeloupe / Martinique / Guyane)
   else {
-    totalCorrige = totalEstime * 0.80;
+    totalCorrige = totalEstime * 1.25;
   }
 
 }
