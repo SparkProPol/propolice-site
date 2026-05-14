@@ -495,46 +495,47 @@ function calculerNetReel(brut) {
 
  if (typeZone === "outremer") {
 
-  const label = document.getElementById("zoneOM")?.selectedOptions?.[0]?.text || "";
+  let label = "";
+  const zoneSelect = document.getElementById("zoneOM");
+
+  if (zoneSelect && zoneSelect.selectedOptions.length > 0) {
+    label = zoneSelect.selectedOptions[0].text;
+  }
 
   let ratioNet;
 
+  // ✅ Polynésie
   if (label.includes("Polynésie")) {
-
     ratioNet = 1.00;
+  }
 
-  } 
+  // ✅ Mayotte
   else if (label.includes("Mayotte")) {
+    ratioNet = 0.73;
+  }
 
-    ratioNet = 0.73; // 🔥 correction réelle terrain
-
-  } 
-  else if (zoneOM >= 0.70) {
-
+  // 🔥 Nouvelle-Calédonie
+  else if (label.includes("Nouvelle-Calédonie")) {
     ratioNet = 0.98;
+  }
 
-  } 
-  else if (zoneOM >= 0.40) {
-
-    ratioNet = 0.94;
-
-  } 
-else if (zoneOM >= 0.30) {
-  ratioNet = 0.93; // 🔥 ajustement Réunion
-}
-  else {
-
+  // 🔥 Réunion
+  else if (label.includes("Réunion")) {
     ratioNet = 0.93;
-
-  }
-    net = brut * ratioNet;
-
-  } else {
-
-    net = (brut - totalRetenues) * coefficientCorrection;
-
   }
 
+  // 🔥 DOM (Guadeloupe / Martinique / Guyane)
+  else {
+    ratioNet = 0.80;
+  }
+
+  net = brut * ratioNet;
+
+} else {
+
+  net = (brut - totalRetenues) * coefficientCorrection;
+
+}
   return {
     net,
     pension,
