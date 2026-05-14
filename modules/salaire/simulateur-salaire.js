@@ -277,18 +277,49 @@ ${typeZone === "outremer" ? `
 ` : ""}
 
 ${corps === "CRS" ? `
-<div class="row between"><span>ICSS CRS</span><strong>+ ${ICSS.toFixed(2)} €</strong></div>
+<div class="row between">
+  <span>ICSS CRS</span>
+  <strong>+ ${ICSS.toFixed(2)} €</strong>
+</div>
 ` : ""}
-    <div class="row between"><span>Prime ITN</span><strong>+ ${primeITN.toFixed(2)} €</strong></div>
-    <div class="row between"><span>Prime voie publique (VP)</span><strong>+ ${montantVP.toFixed(2)} €</strong></div>
-    <div class="row between"><span>Indemnité OPJ</span><strong>+ ${primeOPJ.toFixed(2)} €</strong></div>
-    <div class="row between"><span>Majoration nuit</span><strong>+ ${majorationNuit.toFixed(2)} €</strong></div>
-    <div class="row between"><span>Majoration dimanche</span><strong>+ ${majorationDimanche.toFixed(2)} €</strong></div>
-    <div class="row between"><span>SFT${enfants > 0 ? ` (${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span><strong>+ ${sft.toFixed(2)} €</strong></div>
-    <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
-    <div class="row between" style="font-size:1.15rem;">
-      <strong>Estimation totale</strong>
-      <strong>${totalCorrige.toFixed(2)} € BRUT estimé</strong>
+
+${opj === "oui" ? `
+<div class="row between">
+  <span>Indemnité OPJ</span>
+  <strong>+ ${primeOPJ.toFixed(2)} €</strong>
+</div>
+` : ""}
+
+<div class="row between">
+  <span>Prime ITN</span>
+  <strong>+ ${primeITN.toFixed(2)} €</strong>
+</div>
+
+<div class="row between">
+  <span>Prime voie publique (VP)</span>
+  <strong>+ ${montantVP.toFixed(2)} €</strong>
+</div>
+
+<div class="row between">
+  <span>Majoration nuit</span>
+  <strong>+ ${majorationNuit.toFixed(2)} €</strong>
+</div>
+
+<div class="row between">
+  <span>Majoration dimanche</span>
+  <strong>+ ${majorationDimanche.toFixed(2)} €</strong>
+</div>
+
+<div class="row between">
+  <span>SFT${enfants > 0 ? ` (${enfants} enfant${enfants > 1 ? "s" : ""})` : ""}</span>
+  <strong>+ ${sft.toFixed(2)} €</strong>
+</div>
+
+<hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:8px 0;">
+
+<div class="row between" style="font-size:1.15rem;">
+  <strong>Estimation totale</strong>
+  <strong>${totalCorrige.toFixed(2)} € BRUT estimé</strong>
 </div>
 
 <div style="margin-top:8px; font-size:0.9em; opacity:0.8;">
