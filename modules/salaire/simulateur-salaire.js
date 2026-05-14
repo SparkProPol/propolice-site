@@ -312,7 +312,7 @@ ${corps === "CRS" ? `
   </span>
 </div>`;
 
-if (isMember()) {
+if (typeof isMember === "function" && isMember()) {
 
   document.getElementById("resultatMembre").style.display = "block";
   document.getElementById("resultatPublic").style.display = "none";
@@ -426,7 +426,9 @@ const net = detailNet.net;
 }
   
   setTimeout(() => {
+ if (typeof afficherPopup === "function") {
   afficherPopup("primes");
+}
 }, 800); // 0.8 seconde
   
   } // ← fermeture de calculerPrimes()
