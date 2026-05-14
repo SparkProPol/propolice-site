@@ -707,7 +707,7 @@ if (typeZone === "outremer") {
 
   // 🔥 Nouvelle-Calédonie 
   else if (label.includes("Nouvelle-Calédonie")) {
-    totalCorrige = totalEstime * 0.95;
+    totalCorrige = totalEstime * 0.955;
   }
 
   // ✅  Réunion (NE PAS TOUCHER)
@@ -717,7 +717,7 @@ if (typeZone === "outremer") {
 
   // 🔥 DOM (Guadeloupe / Martinique / Guyane)
   else {
-    totalCorrige = totalEstime * 1.25;
+    totalCorrige = totalEstime * 1.23;
   }
 
 }
