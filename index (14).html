@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>PRO POLICE - Simulateur</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h2>Simulateur de primes</h2>
+
+<div class="formGrid">
+
+<label>Grade</label>
+<select id="grade">
+<option value="gpx">Gardien</option>
+<option value="bc_norm">BCN</option>
+<option value="bc_sup">BCS</option>
+<option value="major">Major</option>
+</select>
+
+<label>Echelon</label>
+<select id="echelon"></select>
+
+<label>Localisation</label>
+<select id="typeZone">
+<option value="metropole">Métropole</option>
+<option value="outremer">Outre-mer</option>
+</select>
+
+<div id="blocAffectation">
+<label>Affectation</label>
+<select id="affectation">
+<option value="paris">Paris</option>
+<option value="province">Province</option>
+</select>
+</div>
+
+<div id="blocIR">
+<label>IR</label>
+<select id="zone">
+<option value="3">3%</option>
+<option value="1">1%</option>
+<option value="0">0%</option>
+</select>
+</div>
+
+<div id="blocOM" style="display:none;">
+<label>Zone OM</label>
+<select id="zoneOM">
+<option value="0.35">Réunion</option>
+<option value="0.40">DOM</option>
+<option value="0.73">NC</option>
+</select>
+</div>
+
+<button onclick="calculerPrimes()">Calculer</button>
+
+<div id="resultatPublic"></div>
+
+</div>
+
+<script src="simulateur-salaire.js"></script>
+</body>
+</html>
