@@ -199,7 +199,7 @@ function calculerPrimes() {
   console.log("OPJ =", opj);
 
   const salaireBase = getBrutBase(corps, gradeBDD, echelon);
-
+const indemniteResidence = salaireBase * tauxIR;
   // 🌍 Majoration Outre-mer
 let majorationOM = 0;
 
@@ -251,6 +251,7 @@ const ISSP = Math.round(salaireBase * 0.285);
 const ICSS = (corps === "CRS") ? 145 : 0;
 let totalEstime =
   salaireBase +
+  indemniteResidence +
   ISSP +
   allocationMaitrise +
   complementRTT +
@@ -262,13 +263,6 @@ let totalEstime =
   majorationOM +
   montantVP +
   primeOPJ;
-
-// 🔹 Correction indemnité de résidence (base 3% → ajustement réel)
-const baseIR = salaireBase * 0.03;
-const IRreelle = salaireBase * tauxIR;
-const correctionIR = IRreelle - baseIR;
-
-totalEstime += correctionIR;
 
 // 🔥 CORRECTION OUTRE-MER
 let totalCorrige = totalEstime;
