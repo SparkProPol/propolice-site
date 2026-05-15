@@ -584,7 +584,7 @@ window.addEventListener("DOMContentLoaded", () => {
     updateEchelonMax();
     remplirEchelons();
   }
-});
+
   // Initialisation
   updateAll();
 
