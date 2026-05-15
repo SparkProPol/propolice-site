@@ -442,7 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadResourcesFromJSON();
   loadArticlesCards();
   applyFilters();
-
+});
 // ---------------- Simulateur CMO V2 ----------------
 function parseHistoriqueCMO(value) {
   if (!value || !value.trim()) return 0;
