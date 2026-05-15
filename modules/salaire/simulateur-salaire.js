@@ -493,31 +493,34 @@ function updateMemberButton() {
 
 // Initialisation
 document.addEventListener("DOMContentLoaded", () => {
+
   remplirEchelons();
-updateEchelonMax();
-  
- // 🔥 Gestion affichage Outre-mer
-const typeZone = document.getElementById("typeZone");
-const blocOM = document.getElementById("blocOM");
-const blocIR = document.getElementById("blocIR");
-const blocAffectation = document.getElementById("blocAffectation");
+  updateEchelonMax();
 
-function toggleZone() {
-  if (!typeZone || !blocOM || !blocIR || !blocAffectation) return;
+  // 🔥 Gestion affichage Outre-mer
+  const typeZone = document.getElementById("typeZone");
+  const blocOM = document.getElementById("blocOM");
+  const blocIR = document.getElementById("blocIR");
+  const blocAffectation = document.getElementById("blocAffectation");
 
-  if (typeZone.value === "outremer") {
-    blocOM.style.display = "block";
-    blocIR.style.display = "none";
-    blocAffectation.style.display = "none";
-  } else {
-    blocOM.style.display = "none";
-    blocIR.style.display = "block";
-    blocAffectation.style.display = "block";
+  function toggleZone() {
+    if (!typeZone || !blocOM || !blocIR || !blocAffectation) return;
+
+    if (typeZone.value === "outremer") {
+      blocOM.style.display = "block";
+      blocIR.style.display = "none";
+      blocAffectation.style.display = "none";
+    } else {
+      blocOM.style.display = "none";
+      blocIR.style.display = "block";
+      blocAffectation.style.display = "block";
+    }
   }
-}
 
-typeZone?.addEventListener("change", toggleZone);
-toggleZone();
+  typeZone.addEventListener("change", toggleZone);
+  toggleZone();
+
+});
 
 function reinitSimulateur() {
 
