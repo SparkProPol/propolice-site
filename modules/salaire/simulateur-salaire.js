@@ -254,9 +254,9 @@ let tauxISSP = 0.285;
 
 // 🔥 Ajustement Paris / Province
 if (affectation === "paris") {
-  tauxISSP = 0.30;
+  tauxISSP = 0.31;
 } else if (affectation === "province") {
-  tauxISSP = 0.27;
+  tauxISSP = 0.255;
 }
 
 const ISSP = Math.round(salaireBase * tauxISSP);
