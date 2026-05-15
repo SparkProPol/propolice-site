@@ -493,6 +493,8 @@ function updateMemberButton() {
 
 // Initialisation
 document.addEventListener("DOMContentLoaded", () => {
+  remplirEchelons();
+updateEchelonMax();
   
  // 🔥 Gestion affichage Outre-mer
 const typeZone = document.getElementById("typeZone");
