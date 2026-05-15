@@ -496,21 +496,26 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // 🔥 Gestion affichage Outre-mer
 const typeZone = document.getElementById("typeZone");
-const blocOM = document.getElementById("blocOM");
+const blocOM = document.getElementById("zoneOM");
 const blocIR = document.getElementById("zone");
+const blocAffectation = document.getElementById("affectation");
 
 function toggleZone() {
-  if (!typeZone || !blocOM || !blocIR) return;
+  if (!typeZone || !blocOM || !blocIR || !blocAffectation) return;
 
   if (typeZone.value === "outremer") {
-    blocOM.style.display = "block";
+    blocOM.parentElement.style.display = "block";
     blocIR.parentElement.style.display = "none";
+    blocAffectation.parentElement.style.display = "none";
   } else {
-    blocOM.style.display = "none";
+    blocOM.parentElement.style.display = "none";
     blocIR.parentElement.style.display = "block";
+    blocAffectation.parentElement.style.display = "block";
   }
 }
 
+typeZone?.addEventListener("change", toggleZone);
+toggleZone();
 typeZone?.addEventListener("change", toggleZone);
 toggleZone();
 }); // ← fin du DOMContentLoaded
