@@ -499,20 +499,20 @@ updateEchelonMax();
  // 🔥 Gestion affichage Outre-mer
 const typeZone = document.getElementById("typeZone");
 const blocOM = document.getElementById("blocOM");
-const blocIR = document.getElementById("zone");
-const blocAffectation = document.getElementById("affectation");
+const blocIR = document.getElementById("blocIR");
+const blocAffectation = document.getElementById("blocAffectation");
 
 function toggleZone() {
   if (!typeZone || !blocOM || !blocIR || !blocAffectation) return;
 
   if (typeZone.value === "outremer") {
     blocOM.style.display = "block";
-    blocIR.parentElement.style.display = "none";
-    blocAffectation.parentElement.style.display = "none";
+    blocIR.style.display = "none";
+    blocAffectation.style.display = "none";
   } else {
     blocOM.style.display = "none";
-    blocIR.parentElement.style.display = "block";
-    blocAffectation.parentElement.style.display = "block";
+    blocIR.style.display = "block";
+    blocAffectation.style.display = "block";
   }
 }
 
