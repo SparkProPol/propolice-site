@@ -39,7 +39,10 @@ function calculerMobile() {
   const salaireBase = getSalaireBaseMobile(grade, echelon, affectation, zone);
 
   const ISSP = salaireBase * 0.285;
-  const total = salaireBase + ISSP;
+  const tauxIR = parseFloat(zone) / 100;
+const indemniteResidence = salaireBase * tauxIR;
+
+const total = salaireBase + ISSP + indemniteResidence;
 
   document.getElementById("resultatMobile").innerHTML = `
     <div>
