@@ -188,6 +188,7 @@ function calculerPrimes() {
   const tauxIR = zoneIR / 100; // 🔥 conversion propre
 
   const typeZone = document.getElementById("typeZone")?.value || "metropole";
+  const affectation = document.getElementById("affectation")?.value || "province";
   const zoneOM = parseFloat(document.getElementById("zoneOM")?.value || 0);
 
   const itnChoix = document.getElementById("itn")?.value || "non";
@@ -241,12 +242,25 @@ if (typeZone === "outremer") {
   const primeVP = document.getElementById("primeVP")?.value || "non";
   const montantVP = primeVP === "oui" ? 100 : 0;
   const primeOPJ = opj ? 150 : 0;
+ 
   // 🔥 Allocation maîtrise (fixe)
 const allocationMaitrise = 319.58;
-// 🔥 Complément RTT (fixe)
+
+  // 🔥 Complément RTT (fixe)
 const complementRTT = 112.33;
+  
   // 🔥 ISSP 28,5 %
-const ISSP = Math.round(salaireBase * 0.285);
+let tauxISSP = 0.285;
+
+// 🔥 Ajustement Paris / Province
+if (affectation === "paris") {
+  tauxISSP = 0.30;
+} else if (affectation === "province") {
+  tauxISSP = 0.27;
+}
+
+const ISSP = Math.round(salaireBase * tauxISSP);
+  
 // 🔥 ICSS (CRS uniquement)
 const ICSS = (corps === "CRS") ? 145 : 0;
 let totalEstime =
