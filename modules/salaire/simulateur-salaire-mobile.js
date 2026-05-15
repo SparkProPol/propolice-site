@@ -40,7 +40,7 @@ function calculerMobile() {
 
   const ISSP = salaireBase * 0.285;
   const tauxIR = parseFloat(zone) / 100;
-const indemniteResidence = salaireBase * tauxIR;
+const indemniteResidence = (salaireBase + ISSP) * tauxIR;
 
 const total = salaireBase + ISSP + indemniteResidence;
 
