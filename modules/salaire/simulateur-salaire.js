@@ -494,9 +494,9 @@ function updateMemberButton() {
 // Initialisation
 document.addEventListener("DOMContentLoaded", () => {
   
-  // 🔥 Gestion affichage Outre-mer
+ // 🔥 Gestion affichage Outre-mer
 const typeZone = document.getElementById("typeZone");
-const blocOM = document.getElementById("zoneOM");
+const blocOM = document.getElementById("blocOM");
 const blocIR = document.getElementById("zone");
 const blocAffectation = document.getElementById("affectation");
 
@@ -504,11 +504,11 @@ function toggleZone() {
   if (!typeZone || !blocOM || !blocIR || !blocAffectation) return;
 
   if (typeZone.value === "outremer") {
-    blocOM.parentElement.style.display = "block";
+    blocOM.style.display = "block";
     blocIR.parentElement.style.display = "none";
     blocAffectation.parentElement.style.display = "none";
   } else {
-    blocOM.parentElement.style.display = "none";
+    blocOM.style.display = "none";
     blocIR.parentElement.style.display = "block";
     blocAffectation.parentElement.style.display = "block";
   }
@@ -516,9 +516,6 @@ function toggleZone() {
 
 typeZone?.addEventListener("change", toggleZone);
 toggleZone();
-typeZone?.addEventListener("change", toggleZone);
-toggleZone();
-}); // ← fin du DOMContentLoaded
 
 function reinitSimulateur() {
 
