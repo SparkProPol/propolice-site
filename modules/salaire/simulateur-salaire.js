@@ -200,7 +200,10 @@ function calculerPrimes() {
   console.log("OPJ =", opj);
 
   const salaireBase = getBrutBase(corps, gradeBDD, echelon);
-const indemniteResidence = salaireBase * tauxIR;
+  if (corps === "CRS" && salaireBase === 0) {
+  console.warn("⚠️ fallback CRS actif");
+}
+const indemniteResidence = (salaireBase * tauxIR) * 0.80;
   // 🌍 Majoration Outre-mer
 let majorationOM = 0;
 
@@ -262,7 +265,13 @@ if (affectation === "paris") {
 const ISSP = Math.round(salaireBase * tauxISSP);
   
 // 🔥 ICSS (CRS uniquement)
-const ICSS = (corps === "CRS") ? 145 : 0;
+let ICSS = 0;
+
+if (corps === "CRS") {
+  if (zone === "0") ICSS = 113.33;
+  if (zone === "1") ICSS = 145.00;
+  if (zone === "3") ICSS = 145.00;
+}
 let totalEstime =
   salaireBase +
   indemniteResidence +
