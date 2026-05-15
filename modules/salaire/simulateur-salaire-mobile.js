@@ -17,18 +17,22 @@ const GRILLES = {
   },
 
   CRS: {
-    paris: {
-      "0": { gpx: [2000,2050,2100,2150,2200,2250,2300,2161,2250] }
-    },
-    province: {
-      "0": { gpx: [1950,2000,2050,2100,2150,2200,2250,2100,2200] }
-    }
+  paris: {
+    "0": { gpx: [2000,2050,2100,2150,2200,2250,2300,2161,2250] },
+    "1": { gpx: [2000,2050,2100,2150,2200,2250,2300,2161,2250] },
+    "3": { gpx: [2000,2050,2100,2150,2200,2250,2300,2161,2250] }
+  },
+  province: {
+    "0": { gpx: [1950,2000,2050,2100,2150,2200,2250,2100,2200] },
+    "1": { gpx: [1950,2000,2050,2100,2150,2200,2250,2100,2200] },
+    "3": { gpx: [1950,2000,2050,2100,2150,2200,2250,2100,2200] }
   }
+}
 
 };
 
 // 🔥 Récupération salaire base selon grille
-function getSalaireBaseMobile(grade, echelon, affectation, zone) {
+function getSalaireBaseMobile(grade, echelon, affectation, zone, corps) {
 
  const data = GRILLES[corps]?.[affectation]?.[zone] 
           || GRILLES["CEA"]["province"]["0"];
@@ -50,7 +54,7 @@ function calculerMobile() {
 console.log("CORPS =", corps);
 console.log("AFFECTATION =", affectation);
 console.log("ZONE =", zone);
-  const salaireBase = getSalaireBaseMobile(grade, echelon, affectation, zone);
+  const salaireBase = getSalaireBaseMobile(grade, echelon, affectation, zone, corps);
 
   const ISSP = salaireBase * 0.285;
   const tauxIR = parseFloat(zone) / 100;
