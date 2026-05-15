@@ -383,6 +383,7 @@
   </select>
 </label>
 
+<!-- 🔥 CORRECTION STRUCTURE -->
 <div id="blocIR" class="field">
   <span>Indemnité de résidence</span>
   <select id="zone">
@@ -392,16 +393,24 @@
   </select>
 </div>
 
-<label class="field" id="blocOM" style="display:none;">
+<div id="blocOM" class="field" style="display:none;">
   <span>Zone Outre-mer</span>
   <select id="zoneOM">
     <option value="0.35">Réunion (35%)</option>
     <option value="0.40">DOM (40%)</option>
     <option value="0.73">Nouvelle-Calédonie (73%)</option>
-    <option value="0.40">Polynésie (approx.)</option>
-    <option value="0.40">Mayotte (approx.)</option>
+    <option value="0.40">Polynésie</option>
+    <option value="0.40">Mayotte</option>
   </select>
-</label>
+</div>
+
+<div id="blocAffectation" class="field">
+  <span>Affectation</span>
+  <select id="affectation">
+    <option value="paris">Paris / Île-de-France</option>
+    <option value="province">Province</option>
+  </select>
+</div>
             <label class="field">
   <span>Prime voie publique (VP)</span>
   <select id="primeVP">
