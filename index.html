@@ -465,7 +465,24 @@
 </div>
 </div>
 </section>
-  
+
+  <hr style="margin:40px 0;">
+
+<section class="section">
+  <div class="container">
+    <div class="sectionHead">
+      <div class="sectionBadge">📱 Test</div>
+      <h2>Simulateur mobile (multi-grilles)</h2>
+      <p>Version avancée basée sur les tableaux réels (Paris / Province / IR).</p>
+    </div>
+
+    <div class="card">
+      <button class="btn primary" onclick="calculerMobile()">📱 Calcul mobile</button>
+
+      <div id="resultatMobile" style="margin-top:20px;"></div>
+    </div>
+  </div>
+</section>
   <!-- ===== SIMULATEUR CMO ===== -->
   <section class="section" id="simulateur-cmo">
     <div class="container">
@@ -951,7 +968,8 @@
 
 <script defer src="script.js"></script>
 <script src="modules/salaire/simulateur-salaire.js"></script>
-
+<script src="modules/salaire/simulateur-salaire-mobile.js"></script>
+  
 (function () {
   // Mode adhérent toggle
   const btn = document.getElementById("btnMember");
