@@ -1,56 +1,31 @@
-// 🔥 BDD CRS — Police Nationale (Base indiciaire réelle)
-// Source : grilles 2026 validées (IM uniquement)
+// 🔥 BDD CRS — Police Nationale (IM réel)
 
 const BDD_CRS = {
 
-  gpx: {
-    1: { IM: 375 },
-    2: { IM: 377 },
-    3: { IM: 381 },
-    4: { IM: 387 },
-    5: { IM: 401 },
-    6: { IM: 415 },
-    7: { IM: 424 },
-    8: { IM: 439 },
-    9: { IM: 458 },
-    10: { IM: 475 },
-    11: { IM: 493 },
-    12: { IM: 511 },
-    13: { IM: 532 }
-  },
+  valeur_point: 4.92278,
 
-  bcn: { // Brigadier-chef classe normale
-    1: { IM: 410 },
-    2: { IM: 421 },
-    3: { IM: 436 },
-    4: { IM: 453 },
-    5: { IM: 470 },
-    6: { IM: 478 },
-    7: { IM: 489 },
-    8: { IM: 508 }
-  },
+  actif: {
 
-  bcs: { // Brigadier-chef classe supérieure
-    1: { IM: 478 },
-    2: { IM: 489 },
-    3: { IM: 508 },
-    4: { IM: 518 },
-    5: { IM: 528 },
-    6: { IM: 548 },
-    7: { IM: 565 }
-  },
+    gpx: {
+      label: "Gardien de la paix CRS",
+      echelons: [375,377,381,387,401,415,424,439,458,475,493,511,532]
+    },
 
-  major: {
-    1: { IM: 515 },
-    2: { IM: 535 },
-    3: { IM: 549 },
-    4: { IM: 567 },
-    5: { IM: 579 },
-    6: { IM: 615 },
-    7: { IM: 620 },
-    8: { IM: 640 },
-    9: { IM: 660 },
-    10: { IM: 690 }
+    bcn: { // Brigadier-chef classe normale
+      label: "Brigadier-chef",
+      echelons: [410,421,436,453,470,478,489,508]
+    },
+
+    bcs: { // Brigadier-chef classe supérieure
+      label: "Brigadier-chef supérieur",
+      echelons: [478,489,508,518,528,548,565]
+    },
+
+    major: {
+      label: "Major CRS",
+      echelons: [515,535,549,567,579,615,620,640,660,690]
+    }
+
   }
 
 };
