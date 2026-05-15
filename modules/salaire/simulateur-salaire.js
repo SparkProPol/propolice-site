@@ -413,11 +413,12 @@ const net = detailNet.net;
 
       <strong>🔍 Analyse avancée PRO POLICE</strong>
 
-      <div style="margin-top:10px;">
-        💰 Brut estimé : <strong>${brut.toFixed(2)} €</strong><br>
-        💸 Net estimé : <strong>${net.toFixed(2)} €</strong><br>
-        📅 Projection annuelle : <strong>${(net * 12).toFixed(2)} €</strong>
-      </div>
+    <div style="margin-top:10px;">
+  💰 Brut estimé : <strong>${brut.toFixed(2)} €</strong><br>
+  🏠 Indemnité de résidence : <strong>${indemniteResidence.toFixed(2)} €</strong><br>
+  💸 Net estimé : <strong>${net.toFixed(2)} €</strong><br>
+  📅 Projection annuelle : <strong>${(net * 12).toFixed(2)} €</strong>
+</div>
 
       <hr style="margin:12px 0; opacity:0.2;">
 <div style="font-size:0.95em;">
