@@ -47,7 +47,9 @@ function calculerMobile() {
   const echelon = parseInt(document.getElementById("echelon")?.value || 1, 10);
   const affectation = document.getElementById("affectation")?.value || "province";
   const zone = document.getElementById("zone")?.value || "0";
-
+console.log("CORPS =", corps);
+console.log("AFFECTATION =", affectation);
+console.log("ZONE =", zone);
   const salaireBase = getSalaireBaseMobile(grade, echelon, affectation, zone);
 
   const ISSP = salaireBase * 0.285;
