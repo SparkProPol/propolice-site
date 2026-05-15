@@ -3,16 +3,26 @@ console.log("📱 SIMULATEUR MOBILE MULTI-GRILLES CHARGÉ");
 // 🔥 GRILLES RÉELLES (À AJUSTER AVEC TES TABLEAUX)
 const GRILLES = {
 
-  paris: {
-    "0": { gpx: [1800,1850,1900,1950,2000,2020,2040,2050,2070] },
-    "1": { gpx: [1820,1870,1920,1970,2020,2040,2060,2070,2090] },
-    "3": { gpx: [1850,1900,1950,2000,2050,2070,2090,2100,2120] }
+  CEA: {
+    paris: {
+      "0": { gpx: [1800,1850,1900,1950,2000,2020,2040,2050,2070] },
+      "1": { gpx: [1820,1870,1920,1970,2020,2040,2060,2070,2090] },
+      "3": { gpx: [1850,1900,1950,2000,2050,2070,2090,2100,2120] }
+    },
+    province: {
+      "0": { gpx: [1700,1750,1800,1850,1880,1900,1920,1930,1950] },
+      "1": { gpx: [1720,1770,1820,1870,1900,1920,1940,1950,1970] },
+      "3": { gpx: [1750,1800,1850,1900,1930,1950,1970,1980,2000] }
+    }
   },
 
-  province: {
-    "0": { gpx: [1700,1750,1800,1850,1880,1900,1920,1930,1950] },
-    "1": { gpx: [1720,1770,1820,1870,1900,1920,1940,1950,1970] },
-    "3": { gpx: [1750,1800,1850,1900,1930,1950,1970,1980,2000] }
+  CRS: {
+    paris: {
+      "0": { gpx: [2000,2050,2100,2150,2200,2250,2300,2161,2250] }
+    },
+    province: {
+      "0": { gpx: [1950,2000,2050,2100,2150,2200,2250,2100,2200] }
+    }
   }
 
 };
@@ -20,7 +30,8 @@ const GRILLES = {
 // 🔥 Récupération salaire base selon grille
 function getSalaireBaseMobile(grade, echelon, affectation, zone) {
 
-  const data = GRILLES[affectation]?.[zone] || GRILLES["province"]["0"];
+ const data = GRILLES[corps]?.[affectation]?.[zone] 
+          || GRILLES["CEA"]["province"]["0"];
   const grille = data[grade] || data["gpx"];
 
   const index = Math.max(0, Math.min(grille.length - 1, echelon - 1));
@@ -32,6 +43,7 @@ function getSalaireBaseMobile(grade, echelon, affectation, zone) {
 function calculerMobile() {
 
   const grade = document.getElementById("grade")?.value || "gpx";
+  const corps = document.getElementById("corps")?.value || "CEA";
   const echelon = parseInt(document.getElementById("echelon")?.value || 1, 10);
   const affectation = document.getElementById("affectation")?.value || "province";
   const zone = document.getElementById("zone")?.value || "0";
@@ -42,12 +54,21 @@ function calculerMobile() {
   const tauxIR = parseFloat(zone) / 100;
 const indemniteResidence = (salaireBase * tauxIR) * 0.85;
 
-const total = salaireBase + ISSP + indemniteResidence;
+let ICSS = 0;
+
+if (corps === "CRS") {
+  if (zone === "0") ICSS = 113.33;
+  if (zone === "1") ICSS = 145.00;
+  if (zone === "3") ICSS = 145.00;
+}
+
+const total = salaireBase + ISSP + indemniteResidence + ICSS;
 
   document.getElementById("resultatMobile").innerHTML = `
     <div>
       💰 Base : ${salaireBase.toFixed(2)} €<br>
       📈 ISSP : ${ISSP.toFixed(2)} €<br>
+      🚓 ICSS : ${ICSS.toFixed(2)} €<br>
       <strong>➡️ Total : ${total.toFixed(2)} €</strong>
     </div>
   `;
