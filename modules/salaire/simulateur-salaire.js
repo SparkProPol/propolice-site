@@ -199,9 +199,20 @@ function calculerPrimes() {
 
   console.log("OPJ =", opj);
 
-  const salaireBase = getBrutBase(corps, gradeBDD, echelon);
-  if (corps === "CRS" && salaireBase === 0) {
-  console.warn("⚠️ fallback CRS actif");
+  let salaireBase;
+
+if (corps === "CRS") {
+
+  const data = BDD_CRS.actif[gradeBDD] || BDD_CRS.actif["gpx"];
+  const index = Math.max(0, Math.min(data.echelons.length - 1, echelon - 1));
+  const IM = data.echelons[index];
+
+  salaireBase = IM * BDD_CRS.valeur_point;
+
+} else {
+
+  salaireBase = getBrutBase(corps, gradeBDD, echelon);
+
 }
 const indemniteResidence = (salaireBase * tauxIR) * 0.80;
   // 🌍 Majoration Outre-mer
