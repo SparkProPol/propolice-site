@@ -1,48 +1,5 @@
 console.log("📱 SIMULATEUR MOBILE MULTI-GRILLES CHARGÉ");
 
-// 🔥 GRILLES RÉELLES (À AJUSTER AVEC TES TABLEAUX)
-const GRILLES = {
-
-  CEA: {
-    paris: {
-      "0": { gpx: [1800,1850,1900,1950,2000,2020,2040,2050,2070] },
-      "1": { gpx: [1820,1870,1920,1970,2020,2040,2060,2070,2090] },
-      "3": { gpx: [1850,1900,1950,2000,2050,2070,2090,2100,2120] }
-    },
-    province: {
-      "0": { gpx: [1700,1750,1800,1850,1880,1900,1920,1930,1950] },
-      "1": { gpx: [1720,1770,1820,1870,1900,1920,1940,1950,1970] },
-      "3": { gpx: [1750,1800,1850,1900,1930,1950,1970,1980,2000] }
-    }
-  },
-
-  CRS: {
-  paris: {
-    "0": { gpx: [1846,1855,1875,1905,1974,2042,2087,2161,2254] },
-    "1": { gpx: [1846,1855,1875,1905,1974,2042,2087,2161,2254] },
-    "3": { gpx: [1846,1855,1875,1905,1974,2042,2087,2161,2254] }
-  },
-  province: {
-    "0": { gpx: [1800,1820,1850,1880,1950,2000,2050,2100,2200] },
-    "1": { gpx: [1800,1820,1850,1880,1950,2000,2050,2100,2200] },
-    "3": { gpx: [1800,1820,1850,1880,1950,2000,2050,2100,2200] }
-  }
-}
-
-};
-
-// 🔥 Récupération salaire base selon grille
-function getSalaireBaseMobile(grade, echelon, affectation, zone, corps) {
-
- const data = GRILLES[corps]?.[affectation]?.[zone] 
-          || GRILLES["CEA"]["province"]["0"];
-  const grille = data[grade] || data["gpx"];
-
-  const index = Math.max(0, Math.min(grille.length - 1, echelon - 1));
-
-  return grille[index];
-}
-
 // 🔥 Calcul mobile
 function calculerMobile() {
 
@@ -54,7 +11,27 @@ function calculerMobile() {
 console.log("CORPS =", corps);
 console.log("AFFECTATION =", affectation);
 console.log("ZONE =", zone);
-  const salaireBase = getSalaireBaseMobile(grade, echelon, affectation, zone, corps);
+  let salaireBase;
+
+if (corps === "CRS") {
+
+  const gradeBDD =
+    grade === "bc_norm" ? "bcn" :
+    grade === "bc_sup" ? "bcs" :
+    grade;
+
+  const data = BDD_CRS.actif[gradeBDD] || BDD_CRS.actif["gpx"];
+  const index = Math.max(0, Math.min(data.echelons.length - 1, echelon - 1));
+  const IM = data.echelons[index];
+
+  salaireBase = IM * BDD_CRS.valeur_point;
+
+} else {
+
+  // CEA → utiliser même logique que simulateur principal
+  salaireBase = getBrutBase(corps, grade, echelon);
+
+}
 
   const ISSP = salaireBase * 0.285;
   const tauxIR = parseFloat(zone) / 100;
