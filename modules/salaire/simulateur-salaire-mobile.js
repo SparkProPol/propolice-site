@@ -42,9 +42,6 @@ if (corps === "CRS") {
   else tauxISSP = 0.255;
 }
 
-if (affectation === "paris") tauxISSP = 0.31;
-if (affectation === "province") tauxISSP = 0.255;
-
 const ISSP = salaireBase * tauxISSP;
   const tauxIR = parseFloat(zone) / 100;
 const indemniteResidence = salaireBase * tauxIR;
