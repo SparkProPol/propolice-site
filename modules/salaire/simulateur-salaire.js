@@ -170,7 +170,7 @@ function remplirEchelons() {
 
     // 🔥 LOGIQUE RULP
     if (grade === "major" && i >= 7) {
-      label = "RULP " + (i - 6);
+      label = "RULP " + (i - 6) + " (éch. " + i + ")";
     }
 
     option.textContent = label;
