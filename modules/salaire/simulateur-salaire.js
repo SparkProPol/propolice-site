@@ -152,7 +152,7 @@ function remplirEchelons() {
     gpx: 13,
     bc_norm: 8,
     bc_sup: 7,
-    major: 7
+    major: 10 // 🔥 IMPORTANT
   };
 
   const max = maxEchelons[grade] || 12;
@@ -162,12 +162,21 @@ function remplirEchelons() {
 
   // remplir les options
   for (let i = 1; i <= max; i++) {
+
     const option = document.createElement("option");
     option.value = i;
-    option.textContent = "Échelon " + i;
+
+    let label = "Échelon " + i;
+
+    // 🔥 LOGIQUE RULP
+    if (grade === "major" && i >= 7) {
+      label = "RULP " + (i - 6);
+    }
+
+    option.textContent = label;
     select.appendChild(option);
   }
-  
+
 }
 
 function calculerPrimes() {
