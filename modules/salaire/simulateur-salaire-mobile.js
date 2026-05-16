@@ -33,31 +33,37 @@ if (corps === "CRS") {
 
 }
 
-let tauxISSP = 0.285;
+  let tauxISSP;
+
+if (corps === "CRS") {
+  tauxISSP = 0.285;
+} else {
+  if (affectation === "paris") tauxISSP = 0.31;
+  else tauxISSP = 0.255;
+}
 
 if (affectation === "paris") tauxISSP = 0.31;
 if (affectation === "province") tauxISSP = 0.255;
 
 const ISSP = salaireBase * tauxISSP;
   const tauxIR = parseFloat(zone) / 100;
+const tauxIR = parseFloat(zone) / 100;
 const indemniteResidence = salaireBase * tauxIR;
 
 let ICSS = 0;
 
 if (corps === "CRS") {
-  if (zone === "0") ICSS = 113.33;
-  if (zone === "1") ICSS = 145.00;
-  if (zone === "3") ICSS = 145.00;
+  ICSS = 113.33;
 }
 
 const total = salaireBase + ISSP + indemniteResidence + ICSS;
 
   document.getElementById("resultatMobile").innerHTML = `
-    <div>
-      💰 Base : ${salaireBase.toFixed(2)} €<br>
-      📈 ISSP : ${ISSP.toFixed(2)} €<br>
-      🚓 ICSS : ${ICSS.toFixed(2)} €<br>
-      <strong>➡️ Total : ${total.toFixed(2)} €</strong>
-    </div>
-  `;
-}
+  <div>
+    💰 Base : ${salaireBase.toFixed(2)} €<br>
+    📈 ISSP : ${ISSP.toFixed(2)} €<br>
+    🏠 IR : ${indemniteResidence.toFixed(2)} €<br>
+    🚓 ICSS : ${ICSS.toFixed(2)} €<br>
+    <strong>➡️ Total : ${total.toFixed(2)} €</strong>
+  </div>
+`;
