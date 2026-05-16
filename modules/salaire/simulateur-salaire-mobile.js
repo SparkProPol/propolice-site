@@ -66,3 +66,4 @@ const total = salaireBase + ISSP + indemniteResidence + ICSS;
     <strong>➡️ Total : ${total.toFixed(2)} €</strong>
   </div>
 `;
+}
