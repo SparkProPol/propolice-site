@@ -38,8 +38,11 @@ if (corps === "CRS") {
 if (corps === "CRS") {
   tauxISSP = 0.285;
 } else {
-  if (affectation === "paris") tauxISSP = 0.31;
-  else tauxISSP = 0.255;
+  if (affectation === "paris") {
+    tauxISSP = 0.31;
+  } else {
+    tauxISSP = 0.255;
+  }
 }
 
 const ISSP = salaireBase * tauxISSP;
