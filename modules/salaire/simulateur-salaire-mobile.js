@@ -33,7 +33,7 @@ function calculerMobile() {
         return;
       }
 
-      const ligne = grille[echelon];
+      const ligne = grille?.[echelon];
 
       if (!ligne) {
         console.error("❌ Échelon invalide :", echelon);
