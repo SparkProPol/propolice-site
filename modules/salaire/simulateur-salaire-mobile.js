@@ -56,14 +56,15 @@ if (corps === "CRS") {
 }
 
 const total = salaireBase + ISSP + indemniteResidence + ICSS;
-
+const net = total * 0.92;
   document.getElementById("resultatMobile").innerHTML = `
   <div>
     💰 Base : ${salaireBase.toFixed(2)} €<br>
     📈 ISSP : ${ISSP.toFixed(2)} €<br>
     🏠 IR : ${indemniteResidence.toFixed(2)} €<br>
     🚓 ICSS : ${ICSS.toFixed(2)} €<br>
-    <strong>➡️ Total : ${total.toFixed(2)} €</strong>
+    <strong>➡️ Net estimé : ${net.toFixed(2)} €</strong><br>
+💰 Brut : ${total.toFixed(2)} €
   </div>
 `;
 }
