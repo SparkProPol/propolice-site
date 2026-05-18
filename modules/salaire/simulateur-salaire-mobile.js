@@ -63,8 +63,11 @@ const indemniteResidence = salaireBase * tauxIR;
 
 let ICSS = 0;
 
-if (corps === "CRS") {
-  if (affectation === "paris") {
+if (corps?.trim().toUpperCase() === "CRS") {
+
+  const aff = affectation?.trim().toLowerCase();
+
+  if (aff === "paris") {
     ICSS = 145;
   } else {
     ICSS = 113.32;
