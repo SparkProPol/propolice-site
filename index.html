@@ -970,15 +970,20 @@
 <script src="modules/salaire/simulateur-salaire.js"></script>
 <script src="modules/salaire/simulateur-salaire-mobile.js"></script>
   
+<script>
 (function () {
   // Mode adhérent toggle
   const btn = document.getElementById("btnMember");
   if (!btn) return;
+
   function refreshMemberButton() {
     const isOn = localStorage.getItem("propolice_member") === "true";
     btn.textContent = isOn ? "Mode adhérent ON" : "Mode adhérent OFF";
     btn.classList.toggle("active", isOn);
   }
+
+})();
+</script>
   btn.addEventListener("click", function () {
     const isOn = localStorage.getItem("propolice_member") === "true";
     if (isOn) { localStorage.removeItem("propolice_member"); }
