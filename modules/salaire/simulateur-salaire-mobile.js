@@ -20,11 +20,14 @@ if (corps === "CRS") {
     grade === "bc_sup" ? "bcs" :
     grade;
 
-  const data = BDD_CRS.actif[gradeBDD] || BDD_CRS.actif["gpx"];
-  const index = Math.max(0, Math.min(data.echelons.length - 1, echelon - 1));
-  const IM = data.echelons[index];
+  const data = BDD_CRS[gradeBDD] || BDD_CRS["gpx"];
+const IM = data?.[echelon]?.IM || 0;
 
   salaireBase = IM * BDD_CRS.valeur_point;
+  if (!salaireBase || salaireBase === 0) {
+  console.error("❌ Salaire base invalide");
+  return;
+}
 
 } else {
 
@@ -33,7 +36,7 @@ if (corps === "CRS") {
 
 }
 
-  let tauxISSP;
+let tauxISSP;
 
 if (corps === "CRS") {
   tauxISSP = 0.285;
@@ -45,6 +48,15 @@ if (corps === "CRS") {
   }
 }
 
+// 🔥 charges réalistes police
+let tauxCharges;
+
+if (corps === "CRS") {
+  tauxCharges = 0.158; // calibré fin CRS
+} else {
+  tauxCharges = 0.15;
+}
+
 const ISSP = salaireBase * tauxISSP;
   const tauxIR = parseFloat(zone) / 100;
 const indemniteResidence = salaireBase * tauxIR;
@@ -52,11 +64,16 @@ const indemniteResidence = salaireBase * tauxIR;
 let ICSS = 0;
 
 if (corps === "CRS") {
-  ICSS = 113.33;
+  if (affectation === "paris") {
+    ICSS = 145;
+  } else {
+    ICSS = 113.32;
+  }
 }
 
-const total = salaireBase + ISSP + indemniteResidence + ICSS;
-const net = total * 0.92;
+const brut = salaireBase + ISSP + indemniteResidence + ICSS;
+  
+const net = brut * (1 - tauxCharges);
   document.getElementById("resultatMobile").innerHTML = `
   <div>
     💰 Base : ${salaireBase.toFixed(2)} €<br>
@@ -64,7 +81,7 @@ const net = total * 0.92;
     🏠 IR : ${indemniteResidence.toFixed(2)} €<br>
     🚓 ICSS : ${ICSS.toFixed(2)} €<br>
     <strong>➡️ Net estimé : ${net.toFixed(2)} €</strong><br>
-💰 Brut : ${total.toFixed(2)} €
+    💸 Brut : ${brut.toFixed(2)} €
   </div>
 `;
 }
