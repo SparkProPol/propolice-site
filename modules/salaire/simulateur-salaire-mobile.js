@@ -15,6 +15,9 @@ function calculerMobile() {
 
     let salaireBase = 0;
 
+    // ========================
+    // 🔵 CALCUL BASE
+    // ========================
     if (corpsClean === "CRS") {
 
       const gradeBDD =
@@ -22,21 +25,40 @@ function calculerMobile() {
         grade === "bc_sup" ? "bcs" :
         grade;
 
-      const data = BDD_CRS[gradeBDD] || BDD_CRS["gpx"];
-      const IM = data[echelon]?.IM || 0;
+      const grille = BDD_CRS[gradeBDD] || BDD_CRS["gpx"];
 
+      if (!grille) {
+        console.error("❌ Grille CRS introuvable :", gradeBDD);
+        alert("Erreur grille CRS");
+        return;
+      }
+
+      const ligne = grille[echelon];
+
+      if (!ligne) {
+        console.error("❌ Échelon invalide :", echelon);
+        alert("Échelon invalide");
+        return;
+      }
+
+      const IM = ligne.IM;
       salaireBase = IM * BDD_CRS.valeur_point;
 
     } else {
 
+      // CEA
       salaireBase = getBrutBase(corps, grade, echelon);
     }
 
     if (!salaireBase) {
+      console.error("❌ Salaire base invalide");
       alert("Erreur salaire base");
       return;
     }
 
+    // ========================
+    // 🔵 ISSP
+    // ========================
     let tauxISSP = 0;
 
     if (corpsClean === "CRS") {
@@ -47,19 +69,34 @@ function calculerMobile() {
 
     const ISSP = salaireBase * tauxISSP;
 
+    // ========================
+    // 🔵 IR
+    // ========================
     const IR = salaireBase * (parseFloat(zone) / 100);
 
+    // ========================
+    // 🔵 ICSS
+    // ========================
     let ICSS = 0;
 
     if (corpsClean === "CRS") {
       ICSS = (aff === "paris") ? 145 : 113.32;
     }
 
+    // ========================
+    // 🔵 BRUT
+    // ========================
     const brut = salaireBase + ISSP + IR + ICSS;
 
+    // ========================
+    // 🔵 CHARGES
+    // ========================
     const tauxCharges = (corpsClean === "CRS") ? 0.158 : 0.15;
     const net = brut * (1 - tauxCharges);
 
+    // ========================
+    // 🔵 AFFICHAGE
+    // ========================
     document.getElementById("resultatMobile").innerHTML =
       "<div>" +
       "💰 Base : " + salaireBase.toFixed(2) + " €<br>" +
@@ -73,5 +110,4 @@ function calculerMobile() {
     console.error("❌ ERREUR JS :", e);
     alert("Erreur JS - voir console");
   }
-
 }
