@@ -33,18 +33,23 @@ function calculerMobile() {
         return;
       }
 
-      const ligne = grille?.[echelon];
+      const grille = BDD_CRS.actif?.[gradeBDD];
 
-      if (!ligne) {
-        console.error("❌ Échelon invalide :", echelon);
-        alert("Échelon invalide");
-        return;
-      }
+if (!grille) {
+  console.error("❌ Grille CRS introuvable :", gradeBDD);
+  alert("Erreur grille CRS");
+  return;
+}
 
-      const IM = ligne.IM;
-      salaireBase = IM * BDD_CRS.valeur_point;
+const IM = grille.echelons?.[echelon - 1];
 
-    } else {
+if (!IM) {
+  console.error("❌ Échelon invalide :", echelon);
+  alert("Échelon invalide");
+  return;
+}
+
+salaireBase = IM * BDD_CRS.valeur_point;
 
       // CEA
       salaireBase = getBrutBase(corps, grade, echelon);
