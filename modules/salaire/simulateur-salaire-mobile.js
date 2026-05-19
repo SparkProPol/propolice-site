@@ -43,14 +43,13 @@ function calculerMobile() {
 
 } else {
 
-      // CEA
-      salaireBase = getBrutBase(corps, grade, echelon);
-    }
+      // 🔵 CEA (avec mapping)
+let gradeCEA = grade;
 
-    if (!salaireBase) {
-      console.error("❌ Salaire base invalide");
-      alert("Erreur salaire base");
-      return;
+if (grade === "bc_norm") gradeCEA = "bcn";
+if (grade === "bc_sup") gradeCEA = "bcs";
+
+salaireBase = getBrutBase(corps, gradeCEA, echelon);
     }
 
     // ========================
