@@ -2,6 +2,8 @@ console.log("📱 SIMULATEUR MOBILE SAFE");
 
 function calculerMobile() {
 
+  console.log("🔥 NOUVELLE VERSION RULP ACTIVE");
+  
   try {
 
     const grade = document.getElementById("grade")?.value || "gpx";
