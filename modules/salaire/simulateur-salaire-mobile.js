@@ -25,14 +25,14 @@ function calculerMobile() {
     grade === "bc_sup" ? "bcs" :
     grade;
 
-  const grille = BDD_CRS.actif?.[gradeBDD];
+  const grille = BDD_CRS[gradeBDD];
 
   if (!grille) {
     console.error("❌ Grille CRS introuvable :", gradeBDD);
     return;
   }
 
-  const IM = grille.echelons[echelon - 1];
+  const IM = grille.echelons?.[echelon - 1];
 
   if (!IM) {
     console.error("❌ Échelon invalide :", echelon);
@@ -88,7 +88,13 @@ function calculerMobile() {
     // ========================
     // 🔵 CHARGES
     // ========================
-    const tauxCharges = (corpsClean === "CRS") ? 0.09 : 0.13;
+    let tauxCharges;
+
+if (corpsClean === "CRS") {
+  tauxCharges = 0.08;
+} else {
+  tauxCharges = 0.105;
+}
     const net = brut * (1 - tauxCharges);
 
     // ========================
