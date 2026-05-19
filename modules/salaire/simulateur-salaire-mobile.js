@@ -18,38 +18,32 @@ function calculerMobile() {
     // ========================
     // 🔵 CALCUL BASE
     // ========================
-    if (corpsClean === "CRS") {
+   if (corpsClean === "CRS") {
 
-      const gradeBDD =
-        grade === "bc_norm" ? "bcn" :
-        grade === "bc_sup" ? "bcs" :
-        grade;
+  const gradeBDD =
+    grade === "bc_norm" ? "bcn" :
+    grade === "bc_sup" ? "bcs" :
+    grade;
 
-      const grille = BDD_CRS[gradeBDD] || BDD_CRS["gpx"];
+  const grille = BDD_CRS[gradeBDD] || BDD_CRS["gpx"];
 
-      if (!grille) {
-        console.error("❌ Grille CRS introuvable :", gradeBDD);
-        alert("Erreur grille CRS");
-        return;
-      }
+  if (!grille) {
+    console.error("❌ Grille CRS introuvable :", gradeBDD);
+    alert("Erreur grille CRS");
+    return;
+  }
 
-      const grille = BDD_CRS.actif?.[gradeBDD];
+  const IM = grille.echelons?.[echelon - 1];
 
-if (!grille) {
-  console.error("❌ Grille CRS introuvable :", gradeBDD);
-  alert("Erreur grille CRS");
-  return;
-}
+  if (!IM) {
+    console.error("❌ Échelon invalide :", echelon);
+    alert("Échelon invalide");
+    return;
+  }
 
-const IM = grille.echelons?.[echelon - 1];
+  salaireBase = IM * BDD_CRS.valeur_point;
 
-if (!IM) {
-  console.error("❌ Échelon invalide :", echelon);
-  alert("Échelon invalide");
-  return;
-}
-
-salaireBase = IM * BDD_CRS.valeur_point;
+} else {
 
       // CEA
       salaireBase = getBrutBase(corps, grade, echelon);
