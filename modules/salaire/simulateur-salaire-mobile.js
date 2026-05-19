@@ -97,21 +97,21 @@ if (corpsClean === "CRS") {
 let tauxCharges;
 
 const isMajor = (grade === "major");
+const isCRS = (corpsClean === "CRS");
+const isParis = (aff === "paris");
+const isZero = (zone === "0");
 
-if (corpsClean === "CRS") {
+if (isCRS) {
 
-  if (zone === "0") {
-
-    // 🔥 CRS 0% (régime unique)
+  // 🔥 CRS 0% = régime unique
+  if (isZero) {
     tauxCharges = isMajor ? 0.11 : 0.135;
-
   } else {
 
-    // 🔥 CRS 1% / 3%
     if (isMajor) {
-      tauxCharges = (aff === "paris") ? 0.12 : 0.145;
+      tauxCharges = isParis ? 0.12 : 0.145;
     } else {
-      tauxCharges = (aff === "paris") ? 0.11 : 0.14;
+      tauxCharges = isParis ? 0.11 : 0.14;
     }
 
   }
@@ -122,7 +122,6 @@ if (corpsClean === "CRS") {
   tauxCharges = isMajor ? 0.115 : 0.105;
 
 }
-
 const net = brut * (1 - tauxCharges);
 
     // ========================
