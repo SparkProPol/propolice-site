@@ -25,7 +25,7 @@ function calculerMobile() {
     grade === "bc_sup" ? "bcs" :
     grade;
 
-  const grille = BDD_CRS[gradeBDD];
+  const grille = BDD_CRS.actif?.[gradeBDD];
 
   if (!grille) {
     console.error("❌ Grille CRS introuvable :", gradeBDD);
