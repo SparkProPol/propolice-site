@@ -94,10 +94,16 @@ if (corpsClean === "CRS") {
     // ========================
     // 🔵 CHARGES
     // ========================
- let tauxCharges;
+let tauxCharges;
 
 if (corpsClean === "CRS") {
-  tauxCharges = (aff === "paris") ? 0.093 : 0.128; // CRS Paris / Province
+
+  if (zone === "0") {
+    tauxCharges = 0.135; // 🔥 0% = même régime partout
+  } else {
+    tauxCharges = (aff === "paris") ? 0.093 : 0.128;
+  }
+
 } else {
   tauxCharges = 0.095;
 }
