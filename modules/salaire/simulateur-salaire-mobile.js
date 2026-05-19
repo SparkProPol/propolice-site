@@ -91,7 +91,7 @@ function calculerMobile() {
  let tauxCharges;
 
 if (corpsClean === "CRS") {
-  tauxCharges = (aff === "paris") ? 0.093 : 0.128; 🔥 CORRECTION ICI
+  tauxCharges = (aff === "paris") ? 0.093 : 0.128; // CRS Paris / Province
 } else {
   tauxCharges = 0.092;
 }
