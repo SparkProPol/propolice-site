@@ -9,8 +9,6 @@
 
 <h1>💰 Simulateur Salaire PRO POLICE</h1>
 
-<!-- 🔹 FORMULAIRE -->
-
 <label>Corps :</label>
 <select id="corps">
   <option value="CEA">CEA</option>
@@ -59,10 +57,9 @@
   </select>
 </div>
 
-  <br><br>
-  
-<div id="blocOM" style="display:none;">
+<br><br>
 
+<div id="blocOM" style="display:none;">
 <label>Zone Outre-mer :</label>
 <select id="zoneOM">
   <option>Polynésie</option>
@@ -71,7 +68,6 @@
   <option>Nouvelle-Calédonie</option>
   <option>DOM</option>
 </select>
-
 </div>
 
 <br><br>
@@ -84,18 +80,17 @@
 
 <br><br>
 
-<button onclick="calculerMobile()">💰 Calculer</button>
+<button onclick="window.calculerMobile()">💰 Calculer</button>
 <button onclick="reinitSimulateur()">🔄 Réinitialiser</button>
 
 <hr>
 
-<!-- 🔹 RESULTAT -->
 <div id="resultatPublic"></div>
 <div id="resultatMembre"></div>
 
-<!-- 🔹 SCRIPT -->
+<!-- 🔹 SCRIPTS -->
 <script src="../js/bdd/bdd_CRS.js"></script>
-<script src="simulateur-salaire.js"></script>
+<script src="simulateur-salaire.js" defer></script>
 <script src="simulateur-salaire-mobile.js"></script>
 
 </body>
