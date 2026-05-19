@@ -102,23 +102,19 @@ const isCRS = (corpsClean === "CRS");
 const isParis = (aff === "paris");
 const isZero = (zone === "0");
 
-if (isZero) {
+if (isCRS) {
 
-  if (isRULP) {
+  if (isZero) {
 
-    tauxCharges = (ech >= 4) ? 0.165 : 0.155;
-
-  } else if (isMajor) {
-
-    tauxCharges = 0.107;
+    if (isRULP) {
+      tauxCharges = (ech >= 4) ? 0.165 : 0.155;
+    } else if (isMajor) {
+      tauxCharges = 0.107;
+    } else {
+      tauxCharges = 0.135;
+    }
 
   } else {
-
-    tauxCharges = 0.135;
-
-  }
-
-} else {
 
     if (isRULP) {
 
@@ -140,7 +136,6 @@ if (isZero) {
 
     } else {
 
-      // GPX
       tauxCharges = isParis ? 0.093 : 0.128;
 
     }
@@ -148,16 +143,16 @@ if (isZero) {
   }
 
 } else {
-  // 🔵 CEA
+
   if (isRULP) {
 
     if (ech >= 4) {
-  tauxCharges = 0.175;
-} else if (ech === 3) {
-  tauxCharges = 0.165;
-} else {
-  tauxCharges = 0.155;
-}
+      tauxCharges = 0.175;
+    } else if (ech === 3) {
+      tauxCharges = 0.165;
+    } else {
+      tauxCharges = 0.155;
+    }
 
   } else if (isMajor) {
 
@@ -171,7 +166,7 @@ if (isZero) {
 
 }
 
-// 🔥 IMPORTANT → en dehors du if
+// 🔥 TOUJOURS EN DEHORS
 const net = brut * (1 - tauxCharges);
     // ========================
     // 🔵 AFFICHAGE
