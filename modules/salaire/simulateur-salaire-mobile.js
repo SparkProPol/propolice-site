@@ -101,7 +101,7 @@ if (corpsClean === "CRS") {
   if (zone === "0") {
     tauxCharges = 0.135; // 🔥 0% = même régime partout
   } else {
-    tauxCharges = (aff === "paris") ? 0.105 : 0.14;
+    tauxCharges = (aff === "paris") ? 0.11 : 0.14;
   }
 
 } else {
