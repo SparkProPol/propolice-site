@@ -23,6 +23,7 @@
   <option value="bc_norm">Brigadier chef</option>
   <option value="bc_sup">Brigadier chef sup</option>
   <option value="major">Major</option>
+  <option value="rulp">RULP</option> <!-- 🔥 IMPORTANT -->
 </select>
 
 <br><br>
@@ -80,19 +81,23 @@
 
 <br><br>
 
-<button onclick="calculerMobile()">💰 Calculer</button>
+<!-- 🔥 BOUTONS CORRIGÉS -->
+<button onclick="calculerSalaireMobile()">💰 Calculer</button>
 <button onclick="reinitSimulateur()">🔄 Réinitialiser</button>
-
 
 <hr>
 
-<div id="resultatPublic"></div>
-<div id="resultatMembre"></div>
+<!-- 🔥 CORRECTION AFFICHAGE -->
+<div id="resultatMobile"></div>
 
 <!-- 🔹 SCRIPTS -->
 <script src="../js/bdd/bdd_CRS.js"></script>
-<script src="simulateur-salaire.js" defer></script>
+
+<!-- 🔥 IMPORTANT : ordre maîtrisé -->
 <script src="simulateur-salaire-mobile.js"></script>
+
+<!-- 🔥 OPTION : garder mais neutralisé -->
+<!-- <script src="simulateur-salaire.js"></script> -->
 
 </body>
 </html>
