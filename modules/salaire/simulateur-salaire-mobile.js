@@ -99,13 +99,33 @@ let tauxCharges;
 if (corpsClean === "CRS") {
 
   if (zone === "0") {
-    tauxCharges = 0.135; // 🔥 0% = même régime partout
+
+    // 🔥 CAS MAJOR CRS 0%
+    if (grade === "major") {
+      tauxCharges = 0.11;
+    } else {
+      tauxCharges = 0.135;
+    }
+
   } else {
-    tauxCharges = (aff === "paris") ? 0.11 : 0.14;
+
+    if (grade === "major") {
+      tauxCharges = (aff === "paris") ? 0.12 : 0.145;
+    } else {
+      tauxCharges = (aff === "paris") ? 0.11 : 0.14;
+    }
+
   }
 
 } else {
-  tauxCharges = 0.105;
+
+  // 🔵 CEA
+  if (grade === "major") {
+    tauxCharges = 0.115;
+  } else {
+    tauxCharges = 0.105;
+  }
+
 }
 
 const net = brut * (1 - tauxCharges);
