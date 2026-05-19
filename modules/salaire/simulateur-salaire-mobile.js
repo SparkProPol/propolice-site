@@ -112,7 +112,7 @@ if (isCRS) {
 
     if (isRULP) {
 
-      tauxCharges = (ech >= 4) ? 0.185 : 0.175;
+      tauxCharges = (ech >= 4) ? 0.205 : 0.175;
 
     } else if (isMajor) {
 
@@ -132,7 +132,7 @@ if (isCRS) {
     if (isRULP) {
 
       tauxCharges = (ech >= 4)
-        ? (isParis ? 0.19 : 0.20)
+        ? (isParis ? 0.21 : 0.22)
         : (isParis ? 0.18 : 0.19);
 
     } else if (isMajor) {
@@ -167,7 +167,7 @@ else {
 
     if (ech >= 4) {
 
-      tauxCharges = 0.195;
+      tauxCharges = 0.215;
 
     } else if (ech === 3) {
 
