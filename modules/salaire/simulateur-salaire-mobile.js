@@ -91,7 +91,7 @@ function calculerMobile() {
     let tauxCharges;
 
 if (corpsClean === "CRS") {
-  tauxCharges = 0.0075;
+  tauxCharges = 0.075;
 } else {
   tauxCharges = 0.092;
 }
