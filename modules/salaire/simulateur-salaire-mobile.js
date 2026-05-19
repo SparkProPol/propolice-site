@@ -73,11 +73,18 @@ salaireBase = getBrutBase(corps, gradeCEA, echelon);
     // ========================
     // 🔵 ICSS
     // ========================
-    let ICSS = 0;
+    // 🔵 ICSS
+let ICSS = 0;
 
-    if (corpsClean === "CRS") {
-      ICSS = (aff === "paris") ? 145 : 113.32;
-    }
+if (corpsClean === "CRS") {
+
+  if (zone === "0") {
+    ICSS = 113.32; // 🔥 0% = toujours province
+  } else {
+    ICSS = (aff === "paris") ? 145 : 113.32;
+  }
+
+}
 
     // ========================
     // 🔵 BRUT
