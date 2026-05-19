@@ -91,9 +91,9 @@ function calculerMobile() {
     let tauxCharges;
 
 if (corpsClean === "CRS") {
-  tauxCharges = 0.08;
+  tauxCharges = 0.0075;
 } else {
-  tauxCharges = 0.105;
+  tauxCharges = 0.092;
 }
     const net = brut * (1 - tauxCharges);
 
