@@ -90,26 +90,25 @@ if (corpsClean === "CRS") {
     // 🔵 BRUT
     // ========================
     const brut = salaireBase + ISSP + IR + ICSS;
-
-    // ========================
-    // 🔵 CHARGES
-    // ========================
+    
+// ========================
+// 🔵 CHARGES
+// ========================
 let tauxCharges;
+
+const isMajor = (grade === "major");
 
 if (corpsClean === "CRS") {
 
   if (zone === "0") {
 
-    // 🔥 CAS MAJOR CRS 0%
-    if (grade === "major") {
-      tauxCharges = 0.11;
-    } else {
-      tauxCharges = 0.135;
-    }
+    // 🔥 CRS 0% (régime unique)
+    tauxCharges = isMajor ? 0.11 : 0.135;
 
   } else {
 
-    if (grade === "major") {
+    // 🔥 CRS 1% / 3%
+    if (isMajor) {
       tauxCharges = (aff === "paris") ? 0.12 : 0.145;
     } else {
       tauxCharges = (aff === "paris") ? 0.11 : 0.14;
@@ -120,11 +119,7 @@ if (corpsClean === "CRS") {
 } else {
 
   // 🔵 CEA
-  if (grade === "major") {
-    tauxCharges = 0.115;
-  } else {
-    tauxCharges = 0.105;
-  }
+  tauxCharges = isMajor ? 0.115 : 0.105;
 
 }
 
