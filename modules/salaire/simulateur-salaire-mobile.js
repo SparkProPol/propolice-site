@@ -105,17 +105,19 @@ if (isCRS) {
 
   if (isZero) {
 
-    if (grade === "major") {
-      tauxCharges = 0.11;
+    // 🔥 CRS 0%
+    if (isMajor) {
+      tauxCharges = 0.107; // 🔧 affiné
     } else {
       tauxCharges = 0.135;
     }
 
   } else {
 
-    if (grade === "major") {
+    if (isMajor) {
 
-      tauxCharges = isParis ? 0.12 : 0.145;
+      // 🔥 CRS MAJOR
+      tauxCharges = isParis ? 0.123 : 0.148; // 🔧 affiné
 
     } else if (grade === "bc_sup") {
 
@@ -137,7 +139,7 @@ if (isCRS) {
 } else {
 
   // 🔵 CEA
-  tauxCharges = isMajor ? 0.115 : 0.105;
+  tauxCharges = isMajor ? 0.118 : 0.105; // 🔧 affiné
 
 }
 
