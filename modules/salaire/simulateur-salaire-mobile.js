@@ -107,11 +107,26 @@ if (isCRS) {
   if (isZero) {
 
     if (isRULP) {
-      tauxCharges = (ech >= 4) ? 0.15 : 0.14;
+
+      tauxCharges = (ech >= 4) ? 0.165 : 0.155;
+
     } else if (isMajor) {
+
       tauxCharges = 0.107;
-    } else {
+
+    } else if (grade === "bc_sup") {
+
       tauxCharges = 0.135;
+
+    } else if (grade === "bc_norm") {
+
+      tauxCharges = 0.135;
+
+    } else {
+
+      // GPX
+      tauxCharges = 0.135;
+
     }
 
   } else {
@@ -119,8 +134,8 @@ if (isCRS) {
     if (isRULP) {
 
       tauxCharges = (ech >= 4)
-        ? (isParis ? 0.155 : 0.165)
-        : (isParis ? 0.145 : 0.155);
+        ? (isParis ? 0.17 : 0.18)
+        : (isParis ? 0.16 : 0.17);
 
     } else if (isMajor) {
 
@@ -144,17 +159,16 @@ if (isCRS) {
   }
 
 } else {
-
   // 🔵 CEA
   if (isRULP) {
 
     if (ech >= 4) {
-      tauxCharges = 0.155;
-    } else if (ech === 3) {
-      tauxCharges = 0.150;
-    } else {
-      tauxCharges = 0.145;
-    }
+  tauxCharges = 0.175;
+} else if (ech === 3) {
+  tauxCharges = 0.165;
+} else {
+  tauxCharges = 0.155;
+}
 
   } else if (isMajor) {
 
