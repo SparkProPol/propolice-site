@@ -103,15 +103,33 @@ const isZero = (zone === "0");
 
 if (isCRS) {
 
-  // 🔥 CRS 0% = régime unique
   if (isZero) {
-    tauxCharges = isMajor ? 0.11 : 0.135;
+
+    if (grade === "major") {
+      tauxCharges = 0.11;
+    } else {
+      tauxCharges = 0.135;
+    }
+
   } else {
 
-    if (isMajor) {
+    if (grade === "major") {
+
       tauxCharges = isParis ? 0.12 : 0.145;
-    } else {
+
+    } else if (grade === "bc_sup") {
+
       tauxCharges = isParis ? 0.11 : 0.14;
+
+    } else if (grade === "bc_norm") {
+
+      tauxCharges = isParis ? 0.105 : 0.135;
+
+    } else {
+
+      // 🔥 GPX
+      tauxCharges = isParis ? 0.093 : 0.128;
+
     }
 
   }
@@ -122,8 +140,8 @@ if (isCRS) {
   tauxCharges = isMajor ? 0.115 : 0.105;
 
 }
-const net = brut * (1 - tauxCharges);
 
+const net = brut * (1 - tauxCharges);
     // ========================
     // 🔵 AFFICHAGE
     // ========================
