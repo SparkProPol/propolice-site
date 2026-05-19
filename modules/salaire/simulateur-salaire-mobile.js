@@ -88,14 +88,15 @@ function calculerMobile() {
     // ========================
     // 🔵 CHARGES
     // ========================
-    let tauxCharges;
+ let tauxCharges;
 
 if (corpsClean === "CRS") {
-  tauxCharges = 0.075;
+  tauxCharges = 0.093;  // 🔥 CORRECTION ICI
 } else {
   tauxCharges = 0.092;
 }
-    const net = brut * (1 - tauxCharges);
+
+const net = brut * (1 - tauxCharges);
 
     // ========================
     // 🔵 AFFICHAGE
