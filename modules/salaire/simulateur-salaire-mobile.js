@@ -102,34 +102,23 @@ const isCRS = (corpsClean === "CRS");
 const isParis = (aff === "paris");
 const isZero = (zone === "0");
 
-if (isCRS) {
+if (isZero) {
 
-  if (isZero) {
+  if (isRULP) {
 
-    if (isRULP) {
+    tauxCharges = (ech >= 4) ? 0.165 : 0.155;
 
-      tauxCharges = (ech >= 4) ? 0.165 : 0.155;
+  } else if (isMajor) {
 
-    } else if (isMajor) {
-
-      tauxCharges = 0.107;
-
-    } else if (grade === "bc_sup") {
-
-      tauxCharges = 0.135;
-
-    } else if (grade === "bc_norm") {
-
-      tauxCharges = 0.135;
-
-    } else {
-
-      // GPX
-      tauxCharges = 0.135;
-
-    }
+    tauxCharges = 0.107;
 
   } else {
+
+    tauxCharges = 0.135;
+
+  }
+
+} else {
 
     if (isRULP) {
 
