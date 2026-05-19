@@ -581,7 +581,9 @@ window.addEventListener("DOMContentLoaded", () => {
   const gradeSelect = document.getElementById("grade");
 
   function updateAll() {
-    updateEchelonMax();
+    if (typeof updateEchelonMax === "function") {
+  updateEchelonMax();
+}
     remplirEchelons();
   }
 
