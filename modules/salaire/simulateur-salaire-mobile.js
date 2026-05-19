@@ -99,7 +99,7 @@ if (corpsClean === "CRS") {
 if (corpsClean === "CRS") {
   tauxCharges = (aff === "paris") ? 0.093 : 0.128; // CRS Paris / Province
 } else {
-  tauxCharges = 0.092;
+  tauxCharges = 0.095;
 }
 
 const net = brut * (1 - tauxCharges);
