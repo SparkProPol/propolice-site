@@ -9,7 +9,7 @@ function calculerMobile() {
     const echelon = parseInt(document.getElementById("echelon")?.value || 1, 10);
     const affectation = document.getElementById("affectation")?.value || "province";
     const zone = document.getElementById("zone")?.value || "0";
-
+    const ech = echelon;
     const corpsClean = corps.trim().toUpperCase();
     const aff = affectation.trim().toLowerCase();
 
@@ -97,6 +97,7 @@ if (corpsClean === "CRS") {
 let tauxCharges;
 
 const isMajor = (grade === "major");
+const isRULP = (grade === "rulp");
 const isCRS = (corpsClean === "CRS");
 const isParis = (aff === "paris");
 const isZero = (zone === "0");
@@ -105,19 +106,25 @@ if (isCRS) {
 
   if (isZero) {
 
-    // 🔥 CRS 0%
-    if (isMajor) {
-      tauxCharges = 0.107; // 🔧 affiné
+    if (isRULP) {
+      tauxCharges = (ech >= 4) ? 0.15 : 0.14;
+    } else if (isMajor) {
+      tauxCharges = 0.107;
     } else {
       tauxCharges = 0.135;
     }
 
   } else {
 
-    if (isMajor) {
+    if (isRULP) {
 
-      // 🔥 CRS MAJOR
-      tauxCharges = isParis ? 0.123 : 0.148; // 🔧 affiné
+      tauxCharges = (ech >= 4)
+        ? (isParis ? 0.155 : 0.165)
+        : (isParis ? 0.145 : 0.155);
+
+    } else if (isMajor) {
+
+      tauxCharges = isParis ? 0.123 : 0.148;
 
     } else if (grade === "bc_sup") {
 
@@ -129,7 +136,7 @@ if (isCRS) {
 
     } else {
 
-      // 🔥 GPX
+      // GPX
       tauxCharges = isParis ? 0.093 : 0.128;
 
     }
@@ -139,10 +146,29 @@ if (isCRS) {
 } else {
 
   // 🔵 CEA
-  tauxCharges = isMajor ? 0.118 : 0.105; // 🔧 affiné
+  if (isRULP) {
+
+    if (ech >= 4) {
+      tauxCharges = 0.155;
+    } else if (ech === 3) {
+      tauxCharges = 0.150;
+    } else {
+      tauxCharges = 0.145;
+    }
+
+  } else if (isMajor) {
+
+    tauxCharges = 0.118;
+
+  } else {
+
+    tauxCharges = 0.105;
+
+  }
 
 }
 
+// 🔥 IMPORTANT → en dehors du if
 const net = brut * (1 - tauxCharges);
     // ========================
     // 🔵 AFFICHAGE
