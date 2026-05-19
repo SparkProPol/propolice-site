@@ -18,26 +18,24 @@ function calculerMobile() {
     // ========================
     // 🔵 CALCUL BASE
     // ========================
-   if (corpsClean === "CRS") {
+  if (corpsClean === "CRS") {
 
   const gradeBDD =
     grade === "bc_norm" ? "bcn" :
     grade === "bc_sup" ? "bcs" :
     grade;
 
-  const grille = BDD_CRS[gradeBDD] || BDD_CRS["gpx"];
+  const grille = BDD_CRS.actif?.[gradeBDD];
 
   if (!grille) {
     console.error("❌ Grille CRS introuvable :", gradeBDD);
-    alert("Erreur grille CRS");
     return;
   }
 
-  const IM = grille.echelons?.[echelon - 1];
+  const IM = grille.echelons[echelon - 1];
 
   if (!IM) {
     console.error("❌ Échelon invalide :", echelon);
-    alert("Échelon invalide");
     return;
   }
 
