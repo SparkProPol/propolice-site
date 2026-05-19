@@ -92,7 +92,7 @@ if (corpsClean === "CRS") {
     const brut = salaireBase + ISSP + IR + ICSS;
     
 // ========================
-// 🔵 CHARGES
+// 🔵 CHARGES (VERSION FINALE PRO)
 // ========================
 let tauxCharges;
 
@@ -102,25 +102,38 @@ const isCRS = (corpsClean === "CRS");
 const isParis = (aff === "paris");
 const isZero = (zone === "0");
 
+// ========================
+// 🔵 CRS
+// ========================
 if (isCRS) {
 
+  // 🔵 CAS 0%
   if (isZero) {
 
     if (isRULP) {
-      tauxCharges = (ech >= 4) ? 0.165 : 0.155;
+
+      tauxCharges = (ech >= 4) ? 0.185 : 0.175;
+
     } else if (isMajor) {
+
       tauxCharges = 0.107;
+
     } else {
+
+      // GPX / BCN / BCS validés
       tauxCharges = 0.135;
+
     }
 
   } else {
 
+    // 🔵 PARIS / PROVINCE
+
     if (isRULP) {
 
       tauxCharges = (ech >= 4)
-        ? (isParis ? 0.17 : 0.18)
-        : (isParis ? 0.16 : 0.17);
+        ? (isParis ? 0.19 : 0.20)
+        : (isParis ? 0.18 : 0.19);
 
     } else if (isMajor) {
 
@@ -136,22 +149,34 @@ if (isCRS) {
 
     } else {
 
+      // GPX
       tauxCharges = isParis ? 0.093 : 0.128;
 
     }
 
   }
 
-} else {
+}
+
+// ========================
+// 🔵 CEA
+// ========================
+else {
 
   if (isRULP) {
 
     if (ech >= 4) {
-      tauxCharges = 0.175;
+
+      tauxCharges = 0.195;
+
     } else if (ech === 3) {
+
       tauxCharges = 0.165;
+
     } else {
+
       tauxCharges = 0.155;
+
     }
 
   } else if (isMajor) {
@@ -160,13 +185,16 @@ if (isCRS) {
 
   } else {
 
+    // GPX / BCN / BCS
     tauxCharges = 0.105;
 
   }
 
 }
 
-// 🔥 TOUJOURS EN DEHORS
+// ========================
+// 🔵 NET
+// ========================
 const net = brut * (1 - tauxCharges);
     // ========================
     // 🔵 AFFICHAGE
