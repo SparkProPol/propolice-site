@@ -197,7 +197,7 @@ else {
 // ========================
 // 🔵 NET
 // ========================
-const net = brut * (1 - tauxCharges);
+const net = Math.max(0, brut * (1 - tauxCharges));
     // ========================
     // 🔵 AFFICHAGE
     // ========================
