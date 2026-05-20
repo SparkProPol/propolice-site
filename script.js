@@ -1,4 +1,6 @@
+"use strict";
 
+console.log("🔒 PRO POLICE V5 — MODE SÉCURISÉ ACTIF");
 
 	// ===== ACCÈS BDD PAR CORPS =====
 function getBDD(corps) {
