@@ -580,15 +580,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const gradeSelect = document.getElementById("grade");
 
-  function updateAll() {
-    updateEchelonMax();
-    remplirEchelons();
-  }
-
-  // Initialisation
+  // Initialisation SAFE
   updateAll();
 
-  // Changement de grade
+  // Mise à jour dynamique
   gradeSelect?.addEventListener("change", updateAll);
 
 });
@@ -623,4 +618,29 @@ function getIndice(corps, grade, echelon) {
 function getBrutBase(corps, grade, echelon) {
   const indice = getIndice(corps, grade, echelon);
   return indice * VALEUR_POINT;
+}
+
+function remplirEchelons() {
+
+  const grade = document.getElementById("grade")?.value;
+  const select = document.getElementById("echelon");
+
+  if (!select) return;
+
+  select.innerHTML = "";
+
+  let max = 12;
+
+  if (grade === "gpx") max = 12;
+  else if (grade === "bc_norm") max = 10;
+  else if (grade === "bc_sup") max = 8;
+  else if (grade === "major") max = 7;
+  else if (grade === "rulp") max = 4;
+
+  for (let i = 1; i <= max; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = "Échelon " + i;
+    select.appendChild(option);
+  }
 }
