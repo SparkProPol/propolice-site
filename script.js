@@ -639,21 +639,49 @@ function getBrutBase(corps, grade, echelon) {
 function remplirEchelons() {
 
   const grade = document.getElementById("grade")?.value;
+  const corps = document.getElementById("corps")?.value;
   const select = document.getElementById("echelon");
 
   if (!select) return;
 
   select.innerHTML = "";
 
-  let max = 12;
+  let nbEchelons = 0;
 
-  if (grade === "gpx") max = 12;
-  else if (grade === "bc_norm") max = 10;
-  else if (grade === "bc_sup") max = 8;
-  else if (grade === "major") max = 7;
-  else if (grade === "rulp") max = 4;
+  // 🔵 CAS CRS
+  if (corps === "CRS") {
 
-  for (let i = 1; i <= max; i++) {
+    const gradeBDD =
+      grade === "bc_norm" ? "bcn" :
+      grade === "bc_sup" ? "bcs" :
+      grade;
+
+    const grille = BDD_CRS?.actif?.[gradeBDD];
+
+    if (grille && grille.echelons) {
+      nbEchelons = grille.echelons.length;
+    }
+
+  } else {
+
+    // 🔵 CEA (via ta fonction existante)
+    try {
+      const data = getGrille ? getGrille(corps, grade) : null;
+      if (data && data.echelons) {
+        nbEchelons = data.echelons.length;
+      }
+    } catch (e) {
+      console.warn("⚠️ CEA grille non trouvée");
+    }
+
+  }
+
+  // 🔥 fallback sécurité
+  if (nbEchelons === 0) {
+    nbEchelons = 12;
+  }
+
+  for (let i = 1; i <= nbEchelons; i++) {
     const option = document.createElement("option");
     option.value = i;
     option.textContent = "Échelon " + i;
