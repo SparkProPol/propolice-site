@@ -580,15 +580,20 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const gradeSelect = document.getElementById("grade");
 
-  function updateAll() {
-    if (typeof updateEchelonMax === "function") {
-  updateEchelonMax();
-}
+ function updateAll() {
+
+  if (typeof updateEchelonMax === "function") {
+    updateEchelonMax();
+  }
+
+  if (typeof remplirEchelons === "function") {
     remplirEchelons();
   }
 
-  // Initialisation
-  updateAll();
+}
+
+// 🔥 appel UNE SEULE FOIS
+updateAll();
 
   // Changement de grade
   gradeSelect?.addEventListener("change", updateAll);
