@@ -972,7 +972,7 @@
   
 <script>
 (function () {
-  // Mode adhérent toggle
+
   const btn = document.getElementById("btnMember");
   if (!btn) return;
 
@@ -982,16 +982,23 @@
     btn.classList.toggle("active", isOn);
   }
 
-})();
-</script>
   btn.addEventListener("click", function () {
     const isOn = localStorage.getItem("propolice_member") === "true";
-    if (isOn) { localStorage.removeItem("propolice_member"); }
-    else { localStorage.setItem("propolice_member", "true"); }
+
+    if (isOn) {
+      localStorage.removeItem("propolice_member");
+    } else {
+      localStorage.setItem("propolice_member", "true");
+    }
+
     refreshMemberButton();
     window.location.reload();
   });
+
   refreshMemberButton();
+
+})();
+</script>
 
   // Année footer
   const yearEl = document.getElementById("year");
