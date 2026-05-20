@@ -205,7 +205,11 @@ const net = Math.max(0, brut * (1 - tauxCharges));
     // ========================
     // 🔵 AFFICHAGE
     // ========================
-    document.getElementById("resultatMobile").innerHTML =
+    const cible =
+  document.getElementById("resultatPublic") ||
+  document.getElementById("resultatMobile");
+
+cible.innerHTML =
       "<div>" +
       "💰 Base : " + salaireBase.toFixed(2) + " €<br>" +
       "📈 ISSP : " + ISSP.toFixed(2) + " €<br>" +
