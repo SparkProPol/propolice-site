@@ -2,7 +2,7 @@ console.log("📱 SIMULATEUR MOBILE SAFE");
 
 window.calculerMobile = function() {
 
-  console.log("🔥 NOUVELLE VERSION V.5Finish. RULP ACTIVE");
+  console.log("🔥 NOUVELLE VERSION V.finale. RULP ACTIVE");
   
   try {
 
