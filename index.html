@@ -468,20 +468,6 @@
 
   <hr style="margin:40px 0;">
 
-<section class="section">
-  <div class="container">
-    <div class="sectionHead">
-      <div class="sectionBadge">📱 Test</div>
-      <h2>Simulateur mobile (multi-grilles)</h2>
-      <p>Version avancée basée sur les tableaux réels (Paris / Province / IR).</p>
-    </div>
-
-    <div class="card">
-      <button class="btn primary" onclick="calculerSalaireMobile()">📱 Calcul mobile</button>
-
-      <div id="resultatMobile" style="margin-top:20px;"></div>
-    </div>
-  </div>
 </section>
   <!-- ===== SIMULATEUR CMO ===== -->
   <section class="section" id="simulateur-cmo">
@@ -967,7 +953,6 @@
 <script defer src="js/bdd/bdd_RESERVISTES.js"></script>
 
 <script defer src="script.js"></script>
-<!-- <script src="modules/salaire/simulateur-salaire.js"></script> -->
 <script src="modules/salaire/simulateur-salaire-mobile.js"></script>
   
 <script>
@@ -997,8 +982,12 @@
 
   refreshMemberButton();
 
+  // 🔥 AJOUT ICI (IMPORTANT)
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
 })();
-</script>
+</script>>
 
   // Année footer
   const yearEl = document.getElementById("year");
