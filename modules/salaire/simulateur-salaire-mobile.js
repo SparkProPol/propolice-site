@@ -1,8 +1,8 @@
 console.log("📱 SIMULATEUR MOBILE SAFE");
 
-function calculerSalaireMobile() {
+window.calculerMobile = function() {
 
-  console.log("🔥 NOUVELLE VERSION V.2. RULP ACTIVE");
+  console.log("🔥 NOUVELLE VERSION V.3. RULP ACTIVE");
   
   try {
 
