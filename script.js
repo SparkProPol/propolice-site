@@ -648,7 +648,9 @@ function remplirEchelons() {
 
   let nbEchelons = 0;
 
-  // 🔵 CAS CRS
+  // ========================
+  // 🔵 CRS
+  // ========================
   if (corps === "CRS") {
 
     const gradeBDD =
@@ -662,29 +664,36 @@ function remplirEchelons() {
       nbEchelons = grille.echelons.length;
     }
 
-  } else {
+  }
 
-    // 🔵 CEA (via ta fonction existante)
-    try {
-      const data = getGrille ? getGrille(corps, grade) : null;
-      if (data && data.echelons) {
-        nbEchelons = data.echelons.length;
-      }
-    } catch (e) {
-      console.warn("⚠️ CEA grille non trouvée");
-    }
+  // ========================
+  // 🔵 CEA
+  // ========================
+  else {
+
+    if (grade === "gpx") nbEchelons = 12;
+    else if (grade === "bc_norm") nbEchelons = 13;
+    else if (grade === "bc_sup") nbEchelons = 11;
+    else if (grade === "major") nbEchelons = 9;
+    else if (grade === "rulp") nbEchelons = 4;
 
   }
 
-  // 🔥 fallback sécurité
+  // ========================
+  // 🔥 FALLBACK (sécurité)
+  // ========================
   if (nbEchelons === 0) {
     nbEchelons = 12;
   }
 
+  // ========================
+  // 🔵 REMPLISSAGE FINAL (POUR TOUS)
+  // ========================
   for (let i = 1; i <= nbEchelons; i++) {
     const option = document.createElement("option");
     option.value = i;
     option.textContent = "Échelon " + i;
     select.appendChild(option);
   }
+
 }
