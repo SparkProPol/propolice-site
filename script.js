@@ -576,6 +576,22 @@ function reinitCMO() {
 function exportCMOPDF() {
   window.print();
 }
+
+// ========================
+// 🔵 UPDATE GLOBAL SAFE
+// ========================
+function updateAll() {
+
+  if (typeof updateEchelonMax === "function") {
+    updateEchelonMax();
+  }
+
+  if (typeof remplirEchelons === "function") {
+    remplirEchelons();
+  }
+
+}
+
 window.addEventListener("DOMContentLoaded", () => {
 
   const gradeSelect = document.getElementById("grade");
