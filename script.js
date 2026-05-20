@@ -648,47 +648,22 @@ function remplirEchelons() {
 
   let nbEchelons = 0;
 
-  // ========================
-  // 🔵 CRS
-  // ========================
-  if (corps === "CRS") {
+  const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
 
-    const gradeBDD =
-      grade === "bc_norm" ? "bcn" :
-      grade === "bc_sup" ? "bcs" :
-      grade;
+  let gradeBDD =
+    grade === "bc_norm" ? "bcn" :
+    grade === "bc_sup" ? "bcs" :
+    grade;
 
-    const grille = BDD_CRS?.actif?.[gradeBDD];
+  const grille = bdd?.[gradeBDD];
 
-    if (grille && grille.echelons) {
-      nbEchelons = grille.echelons.length;
-    }
-
+  if (grille) {
+    nbEchelons = Object.keys(grille).length;
   }
 
-  // ========================
-  // 🔵 CEA
-  // ========================
-  else {
+  // sécurité minimale
+  if (nbEchelons === 0) nbEchelons = 1;
 
-    if (grade === "gpx") nbEchelons = 12;
-    else if (grade === "bc_norm") nbEchelons = 13;
-    else if (grade === "bc_sup") nbEchelons = 11;
-    else if (grade === "major") nbEchelons = 9;
-    else if (grade === "rulp") nbEchelons = 4;
-
-  }
-
-  // ========================
-  // 🔥 FALLBACK (sécurité)
-  // ========================
-  if (nbEchelons === 0) {
-    nbEchelons = 12;
-  }
-
-  // ========================
-  // 🔵 REMPLISSAGE FINAL (POUR TOUS)
-  // ========================
   for (let i = 1; i <= nbEchelons; i++) {
     const option = document.createElement("option");
     option.value = i;
