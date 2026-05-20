@@ -2,7 +2,7 @@ console.log("📱 SIMULATEUR MOBILE SAFE");
 
 window.calculerMobile = function() {
 
-  console.log("🔥 NOUVELLE VERSION V.3. RULP ACTIVE");
+  console.log("🔥 NOUVELLE VERSION V.5Finish. RULP ACTIVE");
   
   try {
 
@@ -209,26 +209,55 @@ const net = Math.max(0, brut * (1 - tauxCharges));
   document.getElementById("resultatPublic") ||
   document.getElementById("resultatMobile");
 
-cible.innerHTML =
-  "<div style='padding:15px;border-radius:10px;background:#0f172a;color:white'>" +
+cible.innerHTML = `
 
-  "<h3 style='margin-bottom:10px'>💰 Détail du calcul</h3>" +
+<div style="margin-top:20px;padding:20px;border-radius:12px;background:#111827;color:white">
 
-  "<div>💰 Base indiciaire : <strong>" + salaireBase.toFixed(2) + " €</strong></div>" +
-  "<div>📈 ISSP : " + ISSP.toFixed(2) + " €</div>" +
-  "<div>🏠 Indemnité résidence : " + IR.toFixed(2) + " €</div>" +
-  "<div>🚓 ICSS : " + ICSS.toFixed(2) + " €</div>" +
+  <h2 style="margin-bottom:15px;color:#38bdf8">
+    📊 Simulation détaillée
+  </h2>
 
-  "<hr style='margin:10px 0;border:1px solid #334155'>" +
+  <div style="margin-bottom:10px">
+    💰 <strong>Base indiciaire :</strong> ${salaireBase.toFixed(2)} €
+  </div>
 
-  "<div>💸 Brut total : <strong>" + brut.toFixed(2) + " €</strong></div>" +
-  "<div>📉 Taux charges : " + (tauxCharges * 100).toFixed(1) + " %</div>" +
+  <div style="margin-bottom:10px">
+    📈 <strong>ISSP :</strong> ${ISSP.toFixed(2)} €
+  </div>
 
-  "<hr style='margin:10px 0;border:1px solid #334155'>" +
+  <div style="margin-bottom:10px">
+    🏠 <strong>Indemnité de résidence :</strong> ${IR.toFixed(2)} €
+  </div>
 
-  "<div style='font-size:18px;color:#22c55e'>➡️ Net estimé : <strong>" + net.toFixed(2) + " €</strong></div>" +
+  <div style="margin-bottom:10px">
+    🚓 <strong>ICSS :</strong> ${ICSS.toFixed(2)} €
+  </div>
 
-  "</div>";
+  <hr style="margin:15px 0;border:1px solid #374151">
+
+  <div style="margin-bottom:10px">
+    💸 <strong>Brut total :</strong> ${brut.toFixed(2)} €
+  </div>
+
+  <div style="margin-bottom:10px">
+    📉 <strong>Taux de charges :</strong> ${(tauxCharges * 100).toFixed(1)} %
+  </div>
+
+  <hr style="margin:15px 0;border:1px solid #374151">
+
+  <div style="font-size:22px;color:#22c55e">
+    ➡️ <strong>Net estimé : ${net.toFixed(2)} €</strong>
+  </div>
+
+  <hr style="margin:20px 0;border:1px solid #374151">
+
+  <div style="font-size:12px;color:#9ca3af">
+    ⚠️ Simulation indicative à caractère informatif (non contractuelle)
+  </div>
+
+</div>
+
+`;
 
   } catch (e) {
     console.error("❌ ERREUR JS :", e);
