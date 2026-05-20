@@ -638,36 +638,37 @@ function getBrutBase(corps, grade, echelon) {
 
 function remplirEchelons() {
 
-  const grade = document.getElementById("grade")?.value;
-  const corps = document.getElementById("corps")?.value;
+  const grade = document.getElementById("grade").value;
   const select = document.getElementById("echelon");
 
   if (!select) return;
 
+  const maxEchelons = {
+    gpx: 13,
+    bc_norm: 8,
+    bc_sup: 7,
+    major: 10 // 🔥 inclut RULP
+  };
+
+  const max = maxEchelons[grade] || 12;
+
+  // vider
   select.innerHTML = "";
 
-  let nbEchelons = 0;
+  // remplir
+  for (let i = 1; i <= max; i++) {
 
-  const bdd = (corps === "CRS") ? BDD_CRS : BDD_CEA;
-
-  let gradeBDD =
-    grade === "bc_norm" ? "bcn" :
-    grade === "bc_sup" ? "bcs" :
-    grade;
-
-  const grille = bdd?.[gradeBDD];
-
-  if (grille) {
-    nbEchelons = Object.keys(grille).length;
-  }
-
-  // sécurité minimale
-  if (nbEchelons === 0) nbEchelons = 1;
-
-  for (let i = 1; i <= nbEchelons; i++) {
     const option = document.createElement("option");
     option.value = i;
-    option.textContent = "Échelon " + i;
+
+    let label = "Échelon " + i;
+
+    // 🔥 LOGIQUE RULP (IDENTIQUE V4)
+    if (grade === "major" && i >= 7) {
+      label = "RULP " + (i - 6) + " (éch. " + i + ")";
+    }
+
+    option.textContent = label;
     select.appendChild(option);
   }
 
