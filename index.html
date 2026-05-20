@@ -987,41 +987,9 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 })();
-</script>>
+</script>
 
   // Année footer
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  // Menu mobile
-  const menuBtn = document.getElementById("menuBtn");
-  const menuMobile = document.getElementById("menuMobile");
-  if (menuBtn && menuMobile) {
-    menuBtn.addEventListener("click", function () {
-      const expanded = menuBtn.getAttribute("aria-expanded") === "true";
-      menuBtn.setAttribute("aria-expanded", String(!expanded));
-      menuMobile.classList.toggle("open", !expanded);
-    });
-    // Fermer le menu au clic sur un lien
-    menuMobile.querySelectorAll("a").forEach(function(link) {
-      link.addEventListener("click", function() {
-        menuBtn.setAttribute("aria-expanded", "false");
-        menuMobile.classList.remove("open");
-      });
-    });
-  }
-
-  // Plan sélectionné via les boutons pricing
-  document.querySelectorAll(".priceCard button[data-plan]").forEach(function(btn) {
-    btn.addEventListener("click", function() {
-      const plan = this.getAttribute("data-plan");
-      const label = document.getElementById("planLabel");
-      if (label) label.innerHTML = 'Plan choisi : <strong>' + plan + '</strong> (modifiable)';
-      document.getElementById("adhesion").scrollIntoView({ behavior: "smooth" });
-    });
-  });
-})();
-</script>
 <div id="popupAdherent" onclick="fermerPopup()" style="
   display:none;
   position:fixed;
