@@ -193,7 +193,11 @@ else {
   }
 
 }
-
+// 🔥 SÉCURITÉ TAUX
+if (typeof tauxCharges !== "number" || isNaN(tauxCharges)) {
+  console.error("❌ tauxCharges invalide :", tauxCharges);
+  tauxCharges = 0.13; // fallback sécurité
+}
 // ========================
 // 🔵 NET
 // ========================
