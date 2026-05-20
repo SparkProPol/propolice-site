@@ -210,13 +210,25 @@ const net = Math.max(0, brut * (1 - tauxCharges));
   document.getElementById("resultatMobile");
 
 cible.innerHTML =
-      "<div>" +
-      "💰 Base : " + salaireBase.toFixed(2) + " €<br>" +
-      "📈 ISSP : " + ISSP.toFixed(2) + " €<br>" +
-      "🏠 IR : " + IR.toFixed(2) + " €<br>" +
-      "🚓 ICSS : " + ICSS.toFixed(2) + " €<br>" +
-      "<strong>➡️ Net estimé : " + net.toFixed(2) + " €</strong><br>" +
-      "💸 Brut : " + brut.toFixed(2) + " €</div>";
+  "<div style='padding:15px;border-radius:10px;background:#0f172a;color:white'>" +
+
+  "<h3 style='margin-bottom:10px'>💰 Détail du calcul</h3>" +
+
+  "<div>💰 Base indiciaire : <strong>" + salaireBase.toFixed(2) + " €</strong></div>" +
+  "<div>📈 ISSP : " + ISSP.toFixed(2) + " €</div>" +
+  "<div>🏠 Indemnité résidence : " + IR.toFixed(2) + " €</div>" +
+  "<div>🚓 ICSS : " + ICSS.toFixed(2) + " €</div>" +
+
+  "<hr style='margin:10px 0;border:1px solid #334155'>" +
+
+  "<div>💸 Brut total : <strong>" + brut.toFixed(2) + " €</strong></div>" +
+  "<div>📉 Taux charges : " + (tauxCharges * 100).toFixed(1) + " %</div>" +
+
+  "<hr style='margin:10px 0;border:1px solid #334155'>" +
+
+  "<div style='font-size:18px;color:#22c55e'>➡️ Net estimé : <strong>" + net.toFixed(2) + " €</strong></div>" +
+
+  "</div>";
 
   } catch (e) {
     console.error("❌ ERREUR JS :", e);
