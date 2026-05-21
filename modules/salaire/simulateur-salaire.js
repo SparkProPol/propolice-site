@@ -1,4 +1,4 @@
-console.log("🔒 PRO POLICE — SIMULATEUR FINAL CHARGÉ");
+console.log("🔒 PRO POLICE — V5 SIMULATEUR FINAL CHARGÉ");
 
 // ========================
 // 🔵 FONCTION PRINCIPALE
@@ -104,7 +104,8 @@ window.calculerMobile = function () {
       tauxCharges = (grade === "major") ? 0.118 : 0.105;
     }
 
-    const net = brut * (1 - tauxCharges);
+    const detailNet = calculerNetReel(brut);
+const net = detailNet.net;
 
     // ========================
     // 🔵 PRIMES (AFFICHAGE UNIQUEMENT)
