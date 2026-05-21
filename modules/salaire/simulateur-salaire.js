@@ -1,5 +1,35 @@
 console.log("🔒 PRO POLICE — V5 SIMULATEUR FINAL CHARGÉ");
 
+function calculerNetReel(brut) {
+
+  const pension = brut * 0.111;
+  const csg_deductible = brut * 0.068;
+  const csg_non_deductible = brut * 0.024;
+  const crds = brut * 0.005;
+  const rafp = brut * 0.05 * 0.10;
+
+  const totalRetenues =
+    pension +
+    csg_deductible +
+    csg_non_deductible +
+    crds +
+    rafp;
+
+  const coefficientCorrection = 1.05;
+
+  const net = (brut - totalRetenues) * coefficientCorrection;
+
+  return {
+    net,
+    pension,
+    csg_deductible,
+    csg_non_deductible,
+    crds,
+    rafp,
+    totalRetenues
+  };
+}
+
 // ========================
 // 🔵 FONCTION PRINCIPALE
 // ========================
