@@ -335,7 +335,7 @@
       </div>
 
       <div class="ctaRow" style="justify-content:center;">
-        <a class="btn primary" href="#adhesion">🤝 Rejoindre PRO POLICE</a>
+        <a class="btn primary" href="#adhesion" id="btnRejoindreHero">🤝 Rejoindre PRO POLICE</a>
         <a class="btn ghost" href="#ressources">📚 Accéder aux ressources</a>
       </div>
 
@@ -1006,7 +1006,7 @@
         <div class="card contactCard">
           <div class="icon">✉️</div>
           <h3>Email</h3>
-          <p><a href="/cdn-cgi/l/email-protection#3043495e54595351441e40425f405f5c59535570575d51595c1e535f5d"><span class="__cf_email__" data-cfemail="3a4943545e53595b4e144a48554a555653595f7a5d575b535614595557">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#2e5d57404a474d4f5a005e5c415e4142474d4b6e49434f4742004d4143"><span class="__cf_email__" data-cfemail="5a2923343e33393b2e742a28352a353633393f1a3d373b333674393537">[email&#160;protected]</span></a></p>
         </div>
         <div class="card contactCard">
           <div class="icon">🌐</div>
@@ -1057,7 +1057,7 @@
     </div>
     <div class="footLinks">
       <strong>Contact</strong>
-      <a href="/cdn-cgi/l/email-protection#6e1d17000a070d0f1a401e1c011e0102070d0b2e09030f0702400d0103">Email</a>
+      <a href="/cdn-cgi/l/email-protection#6013190e04090301144e10120f100f0c09030520070d01090c4e030f0d">Email</a>
       <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
       <a href="#apropos">À propos</a>
     </div>
@@ -1089,6 +1089,24 @@
       const isOn = localStorage.getItem("propolice_member") === "true";
       btn.textContent = isOn ? "Mode adhérent ON ✅" : "Mode adhérent OFF";
       btn.classList.toggle("active", isOn);
+
+      // ── BETA : masquage adhésion si déjà adhérent ──────────
+      // Bouton hero "Rejoindre PRO POLICE"
+      const btnHero = document.getElementById("btnRejoindreHero");
+      if (btnHero) btnHero.style.display = isOn ? "none" : "";
+
+      // Section adhésion complète (fin de page)
+      const sectionAdhesion = document.getElementById("adhesion");
+      if (sectionAdhesion) sectionAdhesion.style.display = isOn ? "none" : "";
+
+      // Liens "Adhérer" dans les navs desktop + mobile
+      document.querySelectorAll("a[href='#adhesion']").forEach(function(el) {
+        el.style.display = isOn ? "none" : "";
+      });
+
+      // Bouton "Adhérer" dans la topbar
+      const btnAdhTopbar = document.querySelector(".topbar-right a.btn.primary");
+      if (btnAdhTopbar) btnAdhTopbar.style.display = isOn ? "none" : "";
     }
     btn.addEventListener("click", function () {
       const isOn = localStorage.getItem("propolice_member") === "true";
