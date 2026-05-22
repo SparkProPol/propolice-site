@@ -58,9 +58,11 @@
     .corpsGrid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 12px;
+      gap: 14px;
       margin-top: 24px;
     }
+
+    /* Carte générique (sans image) */
     .corpsCard {
       background: rgba(255,255,255,.03);
       border: 1px solid var(--line);
@@ -69,9 +71,11 @@
       text-align: center;
       transition: transform .2s, border-color .2s, background .2s;
       cursor: default;
+      position: relative;
+      overflow: hidden;
     }
     .corpsCard:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       border-color: rgba(59,130,246,.35);
       background: rgba(59,130,246,.06);
     }
@@ -82,6 +86,94 @@
       margin-bottom: 6px;
     }
     .corpsLabel { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+    /* ── Carte avec IMAGE de fond (CEA, CRS…) ── */
+    .corpsCard.hasImg {
+      padding: 0;
+      height: 200px;
+      background-size: cover;
+      background-position: center top;
+      border: none;
+      cursor: default;
+    }
+    /* overlay gradient sombre du bas */
+    .corpsCard.hasImg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(5,10,20,.10) 0%,
+        rgba(5,10,20,.55) 55%,
+        rgba(5,10,20,.92) 100%
+      );
+      border-radius: 18px;
+      z-index: 1;
+    }
+    /* fine ligne bleue sur le bord gauche au hover */
+    .corpsCard.hasImg::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 12%; bottom: 12%;
+      width: 3px;
+      background: var(--accent2);
+      border-radius: 3px;
+      opacity: 0;
+      transition: opacity .25s;
+      z-index: 2;
+    }
+    .corpsCard.hasImg:hover::after { opacity: 1; }
+    .corpsCard.hasImg:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,.5); }
+
+    /* contenu texte flottant en bas */
+    .corpsImgBody {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 14px 16px 16px;
+      z-index: 3;
+      text-align: left;
+    }
+    /* ligne décorative fine au-dessus du texte */
+    .corpsImgBody::before {
+      content: '';
+      display: block;
+      width: 32px; height: 2px;
+      background: var(--accent2);
+      border-radius: 2px;
+      margin-bottom: 8px;
+      opacity: .85;
+    }
+    .corpsImgAbbr {
+      font-size: 17px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .corpsImgLabel {
+      font-size: 10px;
+      color: rgba(255,255,255,.65);
+      line-height: 1.4;
+      font-weight: 400;
+    }
+    /* badge discret en haut à droite */
+    .corpsImgBadge {
+      position: absolute;
+      top: 12px; right: 12px;
+      z-index: 3;
+      background: rgba(59,130,246,.18);
+      border: 1px solid rgba(59,130,246,.35);
+      border-radius: 20px;
+      padding: 3px 9px;
+      font-size: 9px;
+      font-weight: 700;
+      color: rgba(255,255,255,.8);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      backdrop-filter: blur(6px);
+    }
 
     /* POURQUOI PRO POLICE — 6 cartes feature */
     .whyGrid {
@@ -243,11 +335,13 @@
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       .corpsGrid { grid-template-columns: repeat(3, 1fr); }
+      .corpsCard.hasImg { height: 180px; }
       .whyGrid { grid-template-columns: repeat(2, 1fr); }
       .pricingV5 { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
     }
     @media (max-width: 768px) {
       .corpsGrid { grid-template-columns: repeat(2, 1fr); }
+      .corpsCard.hasImg { height: 160px; }
       .whyGrid { grid-template-columns: 1fr; }
       .actionsGrid { grid-template-columns: 1fr; }
       .niveauxGrid { grid-template-columns: 1fr; }
@@ -399,36 +493,53 @@
         <p>PRO POLICE représente l'ensemble des personnels — actifs, administratifs, techniques et réservistes.</p>
       </div>
       <div class="corpsGrid">
-        <div class="corpsCard">
-          <div class="corpsIcon">👮</div>
-          <div class="corpsAbbr">CEA</div>
-          <div class="corpsLabel">Corps d'encadrement et d'application</div>
+
+        <!-- ── CEA — image réelle ── -->
+        <div class="corpsCard hasImg" style="background-image: url('generated-image-2351076e.jpg');">
+          <span class="corpsImgBadge">Actif</span>
+          <div class="corpsImgBody">
+            <div class="corpsImgAbbr">C.E.A</div>
+            <div class="corpsImgLabel">Corps d'encadrement<br>et d'application</div>
+          </div>
         </div>
-        <div class="corpsCard">
-          <div class="corpsIcon">🚔</div>
-          <div class="corpsAbbr">CRS</div>
-          <div class="corpsLabel">Compagnies Républicaines de Sécurité</div>
+
+        <!-- ── CRS — image réelle ── -->
+        <div class="corpsCard hasImg" style="background-image: url('generated-image-11e08161.jpg');">
+          <span class="corpsImgBadge">Actif</span>
+          <div class="corpsImgBody">
+            <div class="corpsImgAbbr">C.R.S</div>
+            <div class="corpsImgLabel">Compagnies Républicaines<br>de Sécurité</div>
+          </div>
         </div>
+
+        <!-- ── PTS — placeholder ── -->
         <div class="corpsCard">
           <div class="corpsIcon">🔬</div>
           <div class="corpsAbbr">PTS</div>
           <div class="corpsLabel">Personnels techniques & scientifiques</div>
         </div>
+
+        <!-- ── ADMIN — placeholder ── -->
         <div class="corpsCard">
           <div class="corpsIcon">🗂️</div>
           <div class="corpsAbbr">ADMIN</div>
           <div class="corpsLabel">Personnels administratifs</div>
         </div>
+
+        <!-- ── P.A — placeholder ── -->
         <div class="corpsCard">
           <div class="corpsIcon">🪪</div>
           <div class="corpsAbbr">P.A</div>
           <div class="corpsLabel">Policier Adjoint</div>
         </div>
+
+        <!-- ── RÉS. — placeholder ── -->
         <div class="corpsCard">
           <div class="corpsIcon">🎖️</div>
           <div class="corpsAbbr">RÉS.</div>
           <div class="corpsLabel">Réservistes</div>
         </div>
+
       </div>
     </div>
   </section>
@@ -1027,7 +1138,7 @@
         <div class="card contactCard">
           <div class="icon">✉️</div>
           <h3>Email</h3>
-          <p><a href="/cdn-cgi/l/email-protection#b0c3c9ded4d9d3d1c49ec0c2dfc0dfdcd9d3d5f0d7ddd1d9dc9ed3dfdd"><span class="__cf_email__" data-cfemail="9be8e2f5fff2f8faefb5ebe9f4ebf4f7f2f8fedbfcf6faf2f7b5f8f4f6">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#d8aba1b6bcb1bbb9acf6a8aab7a8b7b4b1bbbd98bfb5b9b1b4f6bbb7b5"><span class="__cf_email__" data-cfemail="f182889f9598929085df81839e819e9d989294b1969c90989ddf929e9c">[email&#160;protected]</span></a></p>
         </div>
         <div class="card contactCard">
           <div class="icon">🌐</div>
@@ -1078,7 +1189,7 @@
     </div>
     <div class="footLinks">
       <strong>Contact</strong>
-      <a href="/cdn-cgi/l/email-protection#3f4c46515b565c5e4b114f4d504f5053565c5a7f58525e5653115c5052">Email</a>
+      <a href="/cdn-cgi/l/email-protection#f3808a9d979a909287dd83819c839c9f9a9096b3949e929a9fdd909c9e">Email</a>
       <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
       <a href="#apropos">À propos</a>
     </div>
