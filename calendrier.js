@@ -1,230 +1,138 @@
-{
-  "lastUpdate": "2026-05-26",
-  "source": "PRO POLICE — Télégrammes DGPN + WhatsApp PRO POLICE",
-  "evenements": [
+/* ══════════════════════════════════════════
+   CALENDRIER SOCIAL — PRO POLICE
+   Lit calendrier.json — éditable sans code
+══════════════════════════════════════════ */
 
-    {
-      "id": 1,
-      "titre": "Arrêtés Ministériels — Avancements Major 2026",
-      "date": "2026-04-30",
-      "categorie": "avancement",
-      "corps": ["CEA"],
-      "statut": "clos",
-      "description": "Publication des arrêtés du 30 avril 2026 — Titulaires Examens Pro + Avancements au Choix (Supers historiques / Historiques). Félicitations aux promus 🫡",
-      "source": "DGPN — TG N°0392 du 17-04-2026",
-      "lien": ""
-    },
+(function() {
+  const MOIS = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
+  const STATUT_LABEL = {
+    ouvert: '🟢 Ouvert',
+    en_cours: '🔵 En cours',
+    a_venir: '⚪ À venir',
+    clos: '🔴 Clôturé'
+  };
 
-    {
-      "id": 2,
-      "titre": "Tableau d'avancement Major 2026 — Examens Pro",
-      "date": "2026-04-30",
-      "categorie": "avancement",
-      "corps": ["CEA"],
-      "statut": "clos",
-      "description": "CEA-20260430 — Tableau N°1880 : liste avancement Major 2026 voie Examens Professionnels.",
-      "source": "DGPN — Arrêté du 30 avril 2026",
-      "lien": ""
-    },
+  let allEvents = [];
+  let categories = {};
+  let filtreActif = 'all';
 
-    {
-      "id": 3,
-      "titre": "Tableau d'avancement Major 2026 — Choix",
-      "date": "2026-04-30",
-      "categorie": "avancement",
-      "corps": ["CEA"],
-      "statut": "clos",
-      "description": "CEA-20260430 — Tableau N°1879 : liste avancement Major 2026 voie Choix.",
-      "source": "DGPN — Arrêté du 30 avril 2026",
-      "lien": ""
-    },
+  /* ── Chargement du JSON ── */
+  function loadCalendrier() {
+    fetch('calendrier.json?v=' + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        allEvents = data.evenements.sort((a,b) => new Date(a.date) - new Date(b.date));
+        categories = data.categories || {};
+        document.getElementById('calSourceMention').textContent =
+          '📡 Dernière mise à jour : ' + formatDate(data.lastUpdate) + ' — ' + data.source;
+        renderCalendrier();
+        bindFiltres();
+      })
+      .catch(() => {
+        document.getElementById('calTimeline').innerHTML =
+          '<div class="calVide">⚠️ Impossible de charger le calendrier. Vérifiez que calendrier.json est présent.</div>';
+      });
+  }
 
-    {
-      "id": 4,
-      "titre": "Prime d'investigation & haute technicité — Publication",
-      "date": "2026-05-22",
-      "categorie": "paritaire",
-      "corps": ["CEA", "PTS", "CRS"],
-      "statut": "clos",
-      "description": "Arrêté du 22 mai 2026 fixant le montant forfaitaire de la prime d'investigation et de la prime de haute technicité (décret n°2026-389 du 22 mai 2026).",
-      "source": "Légifrance — JORFTEXT000054125158",
-      "lien": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054125158"
-    },
+  /* ── Rendu timeline ── */
+  function renderCalendrier() {
+    const timeline = document.getElementById('calTimeline');
+    const today = new Date();
+    today.setHours(0,0,0,0);
 
-    {
-      "id": 5,
-      "titre": "Ouverture inscriptions BC Classique & SUEP 2026",
-      "date": "2026-04-28",
-      "categorie": "concours",
-      "corps": ["CEA"],
-      "statut": "clos",
-      "description": "Ouverture des inscriptions en ligne pour l'examen Brigadier-Chef Classique et SUEP 2026. Épreuve écrite (3h) : Déontologie, GESTT & TSI.",
-      "source": "DGPN — TG BC Classique & SUEP 2026",
-      "lien": "https://www.police-nationale.interieur.gouv.fr/promotion-interne"
-    },
+    const filtered = filtreActif === 'all'
+      ? allEvents
+      : allEvents.filter(e => e.categorie === filtreActif);
 
-    {
-      "id": 6,
-      "titre": "Clôture inscriptions BC Classique & SUEP 2026",
-      "date": "2026-06-01",
-      "categorie": "concours",
-      "corps": ["CEA"],
-      "statut": "en_cours",
-      "description": "Clôture des inscriptions à 18h00 pour les examens Brigadier-Chef Classique et SUEP 2026.",
-      "source": "DGPN — TG Ouverture BC/SUEP",
-      "lien": "https://www.police-nationale.interieur.gouv.fr/promotion-interne"
-    },
+    // Masquer les événements passés depuis plus de 30 jours
+    const visible = filtered.filter(e => {
+      const d = new Date(e.date);
+      const diff = (d - today) / (1000*60*60*24);
+      return diff > -30;
+    });
 
-    {
-      "id": 7,
-      "titre": "Clôture Mouvement Inter-CRS 2026",
-      "date": "2026-06-01",
-      "categorie": "mutation",
-      "corps": ["CRS"],
-      "statut": "en_cours",
-      "description": "Clôture du mouvement inter-CRS 2026. Affectation prévue au 01/09/2026.",
-      "source": "DGPN — TO Ouverture Mvmt Inter-CRS 2026",
-      "lien": ""
-    },
-
-    {
-      "id": 8,
-      "titre": "Épreuve principale BC Classique & SUEP 2026",
-      "date": "2026-09-08",
-      "categorie": "concours",
-      "corps": ["CEA"],
-      "statut": "a_venir",
-      "description": "Épreuve principale écrite (3h) des examens Brigadier-Chef Classique et SUEP 2026 — Déontologie, GESTT & TSI.",
-      "source": "DGPN — TG BC/SUEP 2026",
-      "lien": "https://docpro-pn.minint.fr/"
-    },
-
-    {
-      "id": 9,
-      "titre": "Affectation Mouvement Inter-CRS 2026",
-      "date": "2026-09-01",
-      "categorie": "mutation",
-      "corps": ["CRS"],
-      "statut": "a_venir",
-      "description": "Prise d'effet des affectations issues du mouvement inter-CRS 2026.",
-      "source": "DGPN — TO Ouverture Mvmt Inter-CRS 2026",
-      "lien": ""
-    },
-
-    {
-      "id": 10,
-      "titre": "Examens BC Classique & SUEP 2026 — Période",
-      "date": "2026-10-01",
-      "categorie": "concours",
-      "corps": ["CEA"],
-      "statut": "a_venir",
-      "description": "Période des épreuves examens Brigadier-Chef — de septembre à octobre 2026.",
-      "source": "PRO POLICE — Calendrier prévisionnel",
-      "lien": ""
-    },
-
-    {
-      "id": 11,
-      "titre": "Résultats BC Classique & SUEP 2026",
-      "date": "2026-12-01",
-      "categorie": "concours",
-      "corps": ["CEA"],
-      "statut": "a_venir",
-      "description": "Résultats attendus en décembre 2026 pour les examens Brigadier-Chef Classique et SUEP.",
-      "source": "PRO POLICE — Calendrier prévisionnel",
-      "lien": ""
-    },
-
-    {
-      "id": 12,
-      "titre": "Résultats Promotion Interne Gardien de la Paix",
-      "date": "2026-11-23",
-      "categorie": "concours",
-      "corps": ["CEA"],
-      "statut": "a_venir",
-      "description": "Résultats consultables sur l'intranet de l'académie de police à partir de 14h00.",
-      "source": "Police nationale officiel",
-      "lien": "https://www.police-nationale.interieur.gouv.fr/promotion-interne/gpx"
-    },
-
-    {
-      "id": 13,
-      "titre": "Dotations Brigadier-Chef 2027 — Expression besoins",
-      "date": "2026-12-31",
-      "categorie": "avancement",
-      "corps": ["CEA"],
-      "statut": "a_venir",
-      "description": "5 200 postes BC 2027 : ~3 650 examens classiques, 1 040 SUEP, 80 OPJ, ~430 au choix. Conditions : 9 ans effectifs (classique), 6 ans + 2 ans SUEP, 7 ans + 4 ans OPJ au 01/01/2027.",
-      "source": "PRO POLICE — Dotations 2027",
-      "lien": ""
-    },
-
-    {
-      "id": 14,
-      "titre": "Dotations Major 2027 — Expression besoins",
-      "date": "2026-12-31",
-      "categorie": "avancement",
-      "corps": ["CEA"],
-      "statut": "a_venir",
-      "description": "2 600 postes Major 2027 : ~325 examens classiques, 200 SUEP, 325 OPJ, ~1 750 au choix (BC super-historiques).",
-      "source": "PRO POLICE — Dotations 2027",
-      "lien": ""
-    },
-
-    {
-      "id": 15,
-      "titre": "Mouvement Profilé CEA — Modificatif 2026",
-      "date": "2026-04-03",
-      "categorie": "mutation",
-      "corps": ["CEA"],
-      "statut": "clos",
-      "description": "TG N°0342 du 03-04-2026 — Table des postes modificatif profilé 2026.",
-      "source": "DGPN — TG N°0342",
-      "lien": ""
-    },
-
-    {
-      "id": 16,
-      "titre": "Mouvement Profilé Outre-Mer — Modificatif 2026",
-      "date": "2026-04-01",
-      "categorie": "mutation",
-      "corps": ["CEA", "CRS"],
-      "statut": "clos",
-      "description": "TG modificatif mouvement profilé Outre-Mer 2026 — dont DTPN 976 Mayotte.",
-      "source": "DGPN — TG Modificatif OM 2026",
-      "lien": ""
-    },
-
-    {
-      "id": 17,
-      "titre": "Arrêté Brigadier-Chef — Modification règles organisation",
-      "date": "2026-03-14",
-      "categorie": "paritaire",
-      "corps": ["CEA"],
-      "statut": "clos",
-      "description": "Arrêté du 14 mars 2026 modifiant l'arrêté du 15 décembre 2021 — règles organisation examens BC police nationale.",
-      "source": "Légifrance — JORFTEXT000053900882",
-      "lien": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053900882"
-    },
-
-    {
-      "id": 18,
-      "titre": "Inscriptions BC 2027 — Avant l'été 2026",
-      "date": "2026-07-31",
-      "categorie": "concours",
-      "corps": ["CEA"],
-      "statut": "a_venir",
-      "description": "21 500 GPX éligibles BC classique / 6 200 GPX éligibles SUEP. Inscriptions à effectuer avant l'été 2026 — TH d'ouverture en attente.",
-      "source": "PRO POLICE — Rappel examens BC 2027",
-      "lien": ""
+    if (visible.length === 0) {
+      timeline.innerHTML = '<div class="calVide">Aucune échéance dans cette catégorie pour le moment.</div>';
+      return;
     }
 
-  ],
-  "categories": {
-    "avancement": { "label": "Avancement", "couleur": "#3b82f6", "emoji": "🏅" },
-    "mutation":   { "label": "Mutation",    "couleur": "#f59e0b", "emoji": "🗺️" },
-    "concours":   { "label": "Concours",    "couleur": "#22c55e", "emoji": "📝" },
-    "paritaire":  { "label": "Réunion / Texte officiel", "couleur": "#a855f7", "emoji": "⚖️" },
-    "formation":  { "label": "Formation",   "couleur": "#ef4444", "emoji": "🎓" }
+    timeline.innerHTML = visible.map((ev, i) => {
+      const d = new Date(ev.date);
+      const diff = Math.round((d - today) / (1000*60*60*24));
+      const cat = categories[ev.categorie] || { emoji: '📌', couleur: '#3b82f6' };
+
+      let countdown = '';
+      let countClass = '';
+      if (diff < 0) {
+        countdown = 'Il y a ' + Math.abs(diff) + 'j';
+        countClass = 'clos';
+      } else if (diff === 0) {
+        countdown = "Aujourd'hui !";
+        countClass = 'urgent';
+      } else if (diff <= 7) {
+        countdown = 'Dans ' + diff + ' jour' + (diff > 1 ? 's' : '');
+        countClass = 'urgent';
+      } else if (diff <= 30) {
+        countdown = 'Dans ' + diff + ' jours';
+        countClass = 'soon';
+      } else {
+        countdown = 'Dans ' + diff + ' jours';
+      }
+
+      const corps = (ev.corps || []).map(c =>
+        `<span class="calTag calTagCorps">${c}</span>`
+      ).join('');
+
+      const lien = ev.lien
+        ? `<a href="${ev.lien}" target="_blank" style="font-size:11px;color:var(--accent2);margin-left:8px;text-decoration:none;">→ Voir</a>`
+        : '';
+
+      return `
+        <div class="calEvent" data-statut="${ev.statut}" data-cat="${ev.categorie}"
+             style="animation-delay:${i * 0.06}s; border-left: 3px solid ${cat.couleur};">
+          <div class="calDate">
+            <div class="calJour">${d.getDate()}</div>
+            <div class="calMois">${MOIS[d.getMonth()]}</div>
+            <div class="calAnnee">${d.getFullYear()}</div>
+          </div>
+          <div class="calSep"></div>
+          <div class="calBody">
+            <div class="calTitre">${cat.emoji} ${ev.titre}</div>
+            <div class="calDesc">${ev.description}</div>
+            <div class="calMeta">
+              <span class="calBadgeStatut ${ev.statut}">${STATUT_LABEL[ev.statut] || ev.statut}</span>
+              ${corps}
+              ${lien}
+              <span class="calCountdown ${countClass}">${countdown}</span>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
   }
-}
+
+  /* ── Filtres ── */
+  function bindFiltres() {
+    document.querySelectorAll('.calFiltreBtn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.calFiltreBtn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        filtreActif = this.dataset.cat;
+        renderCalendrier();
+      });
+    });
+  }
+
+  /* ── Utilitaires ── */
+  function formatDate(str) {
+    if (!str) return '';
+    const d = new Date(str);
+    return d.getDate() + ' ' + MOIS[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  /* ── Init ── */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadCalendrier);
+  } else {
+    loadCalendrier();
+  }
+})();
