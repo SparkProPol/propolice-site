@@ -60,6 +60,7 @@
       grid-template-columns: repeat(6, 1fr);
       gap: 14px;
       margin-top: 24px;
+      align-items: start;
     }
 
     /* Carte générique (sans image) */
@@ -92,24 +93,19 @@
       padding: 0;
       height: 200px;
       background-size: cover;
-      background-position: center top;
+      background-position: center;
       border: none;
       cursor: pointer;
       overflow: hidden;
+      transition: height .55s cubic-bezier(.25,.46,.45,.94),
+                  box-shadow .55s cubic-bezier(.25,.46,.45,.94),
+                  transform .55s cubic-bezier(.25,.46,.45,.94);
     }
-    /* pseudo-element portant l'image — permet le zoom sans bouger le texte */
-    .corpsCard.hasImg::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      background: inherit;
-      background-size: cover;
-      background-position: center top;
-      transition: transform .45s cubic-bezier(.25,.46,.45,.94);
-      z-index: 0;
-    }
-    .corpsCard.hasImg:hover::before {
-      transform: scale(1.08);
+    .corpsCard.hasImg:hover {
+      height: 390px;
+      box-shadow: 0 22px 55px rgba(0,0,0,.72);
+      transform: translateY(-8px);
+      z-index: 10;
     }
     /* overlay gradient sombre du bas — sur ::after pour laisser ::before au zoom image */
     .corpsCard.hasImg .corpsImgOverlay {
@@ -195,6 +191,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
+      align-items: start;
       margin-top: 24px;
     }
     .whyCard {
@@ -241,7 +238,8 @@
       position: relative;
       z-index: 2;
     }
-    .whyCard[style*="background-image"] {
+    .whyCard[style*="background-image"],
+    a.whyCard {
       cursor: pointer;
       border: none;
       padding: 0;
@@ -249,6 +247,16 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      transition: min-height .55s cubic-bezier(.25,.46,.45,.94),
+                  box-shadow .55s cubic-bezier(.25,.46,.45,.94),
+                  transform .55s cubic-bezier(.25,.46,.45,.94) !important;
+    }
+    a.whyCard:hover,
+    .whyCard[style*="background-image"]:hover {
+      min-height: 420px !important;
+      box-shadow: 0 22px 55px rgba(0,0,0,.72) !important;
+      transform: translateY(-8px) !important;
+      z-index: 10;
     }
     .whyIcon { font-size: 32px; margin-bottom: 14px; }
     .whyTitle { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: #fff; }
@@ -1243,7 +1251,7 @@
         <div class="card contactCard">
           <div class="icon">✉️</div>
           <h3>Email</h3>
-          <p><a href="/cdn-cgi/l/email-protection#fa8983949e93999b8ed48a88958a959693999fba9d979b9396d4999597"><span class="__cf_email__" data-cfemail="12616b7c767b7173663c62607d627d7e7b717752757f737b7e3c717d7f">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#285b51464c414b495c06585a47584744414b4d684f45494144064b4745"><span class="__cf_email__" data-cfemail="3f4c46515b565c5e4b114f4d504f5053565c5a7f58525e5653115c5052">[email&#160;protected]</span></a></p>
         </div>
         <div class="card contactCard">
           <div class="icon">🌐</div>
@@ -1294,7 +1302,7 @@
     </div>
     <div class="footLinks">
       <strong>Contact</strong>
-      <a href="/cdn-cgi/l/email-protection#fc8f859298959f9d88d28c8e938c9390959f99bc9b919d9590d29f9391">Email</a>
+      <a href="/cdn-cgi/l/email-protection#e99a90878d808a889dc7999b86998685808a8ca98e84888085c78a8684">Email</a>
       <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
       <a href="#apropos">À propos</a>
     </div>
