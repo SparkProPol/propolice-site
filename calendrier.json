@@ -1,0 +1,68 @@
+{
+  "lastUpdate": "2026-05-26",
+  "source": "PRO POLICE — mise à jour manuelle + veille syndicale",
+  "evenements": [
+    {
+      "id": 1,
+      "titre": "Avancement Major 2026",
+      "date": "2026-06-15",
+      "categorie": "avancement",
+      "corps": ["CEA"],
+      "statut": "en_cours",
+      "description": "Résultats de la campagne d'avancement au grade de Major — DRHFS",
+      "source": "UN1TÉ / Alliance PN",
+      "lien": ""
+    },
+    {
+      "id": 2,
+      "titre": "Examen pro Brigadier-Chef (SUEP) 2026",
+      "date": "2026-07-01",
+      "categorie": "avancement",
+      "corps": ["CEA"],
+      "statut": "ouvert",
+      "description": "Ouverture officielle de l'examen professionnel pour l'accès au grade de brigadier-chef",
+      "source": "Alliance PN",
+      "lien": ""
+    },
+    {
+      "id": 3,
+      "titre": "Concours Gardien de la Paix — 2e session",
+      "date": "2026-07-27",
+      "categorie": "concours",
+      "corps": ["CEA"],
+      "statut": "ouvert",
+      "description": "Clôture des inscriptions — Zone Ouest",
+      "source": "Police nationale officiel",
+      "lien": "https://www.police-nationale.interieur.gouv.fr"
+    },
+    {
+      "id": 4,
+      "titre": "Résultats Gardien de la Paix — Promotion interne",
+      "date": "2026-11-23",
+      "categorie": "concours",
+      "corps": ["CEA"],
+      "statut": "a_venir",
+      "description": "Résultats consultables sur l'intranet de l'académie de police à partir de 14h",
+      "source": "Police nationale officiel",
+      "lien": ""
+    },
+    {
+      "id": 5,
+      "titre": "Campagne mutations — À compléter",
+      "date": "2026-09-01",
+      "categorie": "mutation",
+      "corps": ["CEA", "CRS", "PTS", "ADMIN"],
+      "statut": "a_venir",
+      "description": "Date indicative — à confirmer par PRO POLICE",
+      "source": "PRO POLICE",
+      "lien": ""
+    }
+  ],
+  "categories": {
+    "avancement": { "label": "Avancement", "couleur": "#3b82f6", "emoji": "🏅" },
+    "mutation": { "label": "Mutation", "couleur": "#f59e0b", "emoji": "🗺️" },
+    "concours": { "label": "Concours", "couleur": "#22c55e", "emoji": "📝" },
+    "paritaire": { "label": "Réunion paritaire", "couleur": "#a855f7", "emoji": "🤝" },
+    "formation": { "label": "Formation", "couleur": "#ef4444", "emoji": "🎓" }
+  }
+}
