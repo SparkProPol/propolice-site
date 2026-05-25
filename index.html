@@ -94,11 +94,25 @@
       background-size: cover;
       background-position: center top;
       border: none;
-      cursor: default;
+      cursor: pointer;
+      overflow: hidden;
     }
-    /* overlay gradient sombre du bas */
+    /* pseudo-element portant l'image — permet le zoom sans bouger le texte */
     .corpsCard.hasImg::before {
       content: '';
+      position: absolute;
+      inset: -4px;
+      background: inherit;
+      background-size: cover;
+      background-position: center top;
+      transition: transform .45s cubic-bezier(.25,.46,.45,.94);
+      z-index: 0;
+    }
+    .corpsCard.hasImg:hover::before {
+      transform: scale(1.08);
+    }
+    /* overlay gradient sombre du bas — sur ::after pour laisser ::before au zoom image */
+    .corpsCard.hasImg .corpsImgOverlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(
@@ -109,6 +123,7 @@
       );
       border-radius: 18px;
       z-index: 1;
+      pointer-events: none;
     }
     /* fine ligne bleue sur le bord gauche au hover */
     .corpsCard.hasImg::after {
@@ -187,9 +202,54 @@
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 28px 24px;
-      transition: transform .2s, border-color .2s;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
     }
-    .whyCard:hover { transform: translateY(-4px); border-color: rgba(59,130,246,.3); }
+    .whyCard:hover { transform: translateY(-5px); border-color: rgba(59,130,246,.3); box-shadow: 0 14px 36px rgba(0,0,0,.45); }
+    /* zoom image de fond via pseudo-element */
+    .whyCard[style*="background-image"]::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      background: inherit;
+      background-size: cover;
+      background-position: center;
+      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+      z-index: 0;
+      border-radius: inherit;
+    }
+    .whyCard[style*="background-image"]:hover::before {
+      transform: scale(1.09);
+    }
+    /* overlay gradient sur whyCard avec image */
+    .whyCard .whyOverlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(5,10,20,.12) 0%,
+        rgba(5,10,20,.75) 55%,
+        rgba(5,10,20,.96) 100%
+      );
+      border-radius: inherit;
+      z-index: 1;
+      pointer-events: none;
+    }
+    /* contenu au-dessus de l'overlay */
+    .whyCard > *:not(.whyOverlay) {
+      position: relative;
+      z-index: 2;
+    }
+    .whyCard[style*="background-image"] {
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
     .whyIcon { font-size: 32px; margin-bottom: 14px; }
     .whyTitle { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: #fff; }
     .whyDesc { font-size: 13px; color: var(--muted); line-height: 1.65; }
@@ -495,58 +555,64 @@
       <div class="corpsGrid">
 
         <!-- ── CEA — image réelle ── -->
-        <div class="corpsCard hasImg" style="background-image: url('generated-image-2351076e.jpg');">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-2351076e.jpg');text-decoration:none;">
+          <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">C.E.A</div>
             <div class="corpsImgLabel">Corps d'encadrement<br>et d'application</div>
           </div>
-        </div>
+        </a>
 
         <!-- ── CRS — image réelle ── -->
-        <div class="corpsCard hasImg" style="background-image: url('generated-image-11e08161.jpg');">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-11e08161.jpg');text-decoration:none;">
+          <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">C.R.S</div>
             <div class="corpsImgLabel">Compagnies Républicaines<br>de Sécurité</div>
           </div>
-        </div>
+        </a>
 
         <!-- ── PTS — image réelle ── -->
-        <div class="corpsCard hasImg" style="background-image: url('generated-image-b4abc5d9.jpg');">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-b4abc5d9.jpg');text-decoration:none;">
+          <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">P.T.S</div>
             <div class="corpsImgLabel">Personnels techniques<br>& scientifiques</div>
           </div>
-        </div>
+        </a>
 
         <!-- ── ADMIN — image réelle ── -->
-        <div class="corpsCard hasImg" style="background-image: url('generated-image-1e7e0811.jpg');">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-1e7e0811.jpg');text-decoration:none;">
+          <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">ADMIN</div>
             <div class="corpsImgLabel">Personnels<br>administratifs</div>
           </div>
-        </div>
+        </a>
 
         <!-- ── P.A — image réelle ── -->
-        <div class="corpsCard hasImg" style="background-image: url('generated-image-eef1f41b.jpg');">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-eef1f41b.jpg');text-decoration:none;">
+          <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">P.A</div>
             <div class="corpsImgLabel">Policier<br>Adjoint</div>
           </div>
-        </div>
+        </a>
 
         <!-- ── RÉS. — image réelle ── -->
-        <div class="corpsCard hasImg" style="background-image: url('generated-image-49f917f5.jpg');">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-49f917f5.jpg');text-decoration:none;">
+          <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">RÉS.</div>
             <div class="corpsImgLabel">Réservistes<br>Police Nationale</div>
           </div>
-        </div>
+        </a>
 
       </div>
     </div>
@@ -565,70 +631,70 @@
       <div class="whyGrid">
 
         <!-- 1 — Indépendant -->
-        <div class="whyCard" style="background-image:url('generated-image-dbe415dd.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;padding:0;min-height:260px;">
-          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,10,20,.15) 0%,rgba(5,10,20,.82) 60%,rgba(5,10,20,.97) 100%);border-radius:inherit;z-index:1;"></div>
+        <a class="whyCard" href="#fonctionnalites" style="background-image:url('generated-image-dbe415dd.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+          <div class="whyOverlay"></div>
           <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🏴‍☠️</div>
             <div class="whyTitle" style="color:#fff;">100% Indépendant</div>
             <div class="whyDesc" style="color:rgba(255,255,255,.75);">Ni confédération, ni fédération, libre de toute pression politique ou syndicale extérieure. PRO POLICE ne répond qu'à une seule boussole : l'intérêt des policiers.</div>
             <span class="whyTag">Unique en France</span>
           </div>
-        </div>
+        </a>
 
         <!-- 2 — Université -->
-        <div class="whyCard" style="background-image:url('generated-image-bcf42af1.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;padding:0;min-height:260px;">
-          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,10,20,.15) 0%,rgba(5,10,20,.82) 60%,rgba(5,10,20,.97) 100%);border-radius:inherit;z-index:1;"></div>
+        <a class="whyCard" href="#universite" style="background-image:url('generated-image-bcf42af1.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+          <div class="whyOverlay"></div>
           <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🎓</div>
             <div class="whyTitle" style="color:#fff;">Université PRO POLICE</div>
             <div class="whyDesc" style="color:rgba(255,255,255,.75);">Progressez à votre rythme grâce à des parcours pédagogiques professionnels. Un formateur virtuel disponible 24h/24 pour développer vos connaissances et compétences syndicales — où que vous soyez, quand vous le souhaitez.</div>
             <span class="whyTag">Digital Learning</span>
           </div>
-        </div>
+        </a>
 
         <!-- 3 — Mentorat -->
-        <div class="whyCard" style="background-image:url('generated-image-612a9138.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;padding:0;min-height:260px;">
-          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,10,20,.15) 0%,rgba(5,10,20,.82) 60%,rgba(5,10,20,.97) 100%);border-radius:inherit;z-index:1;"></div>
+        <a class="whyCard" href="#universite" style="background-image:url('generated-image-612a9138.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+          <div class="whyOverlay"></div>
           <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🧠</div>
             <div class="whyTitle" style="color:#fff;">PRO POLICE Mentorat</div>
             <div class="whyDesc" style="color:rgba(255,255,255,.75);">Accompagnement individuel par des experts certifiés. Coaching, leadership syndical — des compétences que personne d'autre ne vous enseigne. Places limitées — accès sur dossier.</div>
             <span class="whyTag">Innovant</span>
           </div>
-        </div>
+        </a>
 
         <!-- 4 — Simulateurs -->
-        <div class="whyCard" style="background-image:url('generated-image-3a8663fc.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;padding:0;min-height:260px;">
-          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,10,20,.15) 0%,rgba(5,10,20,.82) 60%,rgba(5,10,20,.97) 100%);border-radius:inherit;z-index:1;"></div>
+        <a class="whyCard" href="#simulateur" style="background-image:url('generated-image-3a8663fc.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+          <div class="whyOverlay"></div>
           <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">📊</div>
             <div class="whyTitle" style="color:#fff;">Simulateurs exclusifs</div>
             <div class="whyDesc" style="color:rgba(255,255,255,.75);">Votre salaire. Vos primes. Votre réalité. Calibré sur les grilles officielles DGPN, tous corps, toutes zones. En accès libre : une estimation. En adhérent : votre rémunération réelle, complète, détaillée. L'outil qu'il manquait à la Police Nationale.</div>
             <span class="whyTag">Outil terrain</span>
           </div>
-        </div>
+        </a>
 
         <!-- 5 — Délégué en poche -->
-        <div class="whyCard" style="background-image:url('generated-image-e911e793.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;padding:0;min-height:260px;">
-          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,10,20,.15) 0%,rgba(5,10,20,.82) 60%,rgba(5,10,20,.97) 100%);border-radius:inherit;z-index:1;"></div>
+        <a class="whyCard" href="#ressources" style="background-image:url('generated-image-e911e793.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+          <div class="whyOverlay"></div>
           <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🤝</div>
             <div class="whyTitle" style="color:#fff;">Délégué en poche</div>
             <div class="whyDesc" style="color:rgba(255,255,255,.75);">Accédez à votre délégué virtuel 24h/24. Ressources, fiches, modèles — tout ce dont vous avez besoin, quand vous en avez besoin.</div>
             <span class="whyTag">Mobile first</span>
           </div>
-        </div>
+        </a>
 
         <!-- 6 — Ouvert à tous -->
-        <div class="whyCard" style="background-image:url('generated-image-b5292d51.jpg');background-size:cover;background-position:center;position:relative;overflow:hidden;padding:0;min-height:260px;">
-          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,10,20,.15) 0%,rgba(5,10,20,.82) 60%,rgba(5,10,20,.97) 100%);border-radius:inherit;z-index:1;"></div>
+        <a class="whyCard" href="#adhesion" style="background-image:url('generated-image-b5292d51.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+          <div class="whyOverlay"></div>
           <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">⚡</div>
             <div class="whyTitle" style="color:#fff;">Ouvert à tous, pensé pour le meilleur</div>
             <div class="whyDesc" style="color:rgba(255,255,255,.75);">80% de contenu gratuit pour tous. 17% exclusif adhérents. 3% réservé aux délégués formés — chaque niveau se mérite, chaque accès s'acquiert.</div>
             <span class="whyTag">Stratégie valeur</span>
           </div>
-        </div>
+        </a>
 
       </div>
     </div>
@@ -1177,7 +1243,7 @@
         <div class="card contactCard">
           <div class="icon">✉️</div>
           <h3>Email</h3>
-          <p><a href="/cdn-cgi/l/email-protection#98ebe1f6fcf1fbf9ecb6e8eaf7e8f7f4f1fbfdd8fff5f9f1f4b6fbf7f5"><span class="__cf_email__" data-cfemail="23505a4d474a4042570d53514c534c4f4a404663444e424a4f0d404c4e">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#fa8983949e93999b8ed48a88958a959693999fba9d979b9396d4999597"><span class="__cf_email__" data-cfemail="12616b7c767b7173663c62607d627d7e7b717752757f737b7e3c717d7f">[email&#160;protected]</span></a></p>
         </div>
         <div class="card contactCard">
           <div class="icon">🌐</div>
@@ -1228,7 +1294,7 @@
     </div>
     <div class="footLinks">
       <strong>Contact</strong>
-      <a href="/cdn-cgi/l/email-protection#4d3e342329242e2c39633d3f223d2221242e280d2a202c2421632e2220">Email</a>
+      <a href="/cdn-cgi/l/email-protection#fc8f859298959f9d88d28c8e938c9390959f99bc9b919d9590d29f9391">Email</a>
       <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
       <a href="#apropos">À propos</a>
     </div>
