@@ -1,68 +1,230 @@
 {
   "lastUpdate": "2026-05-26",
-  "source": "PRO POLICE — mise à jour manuelle + veille syndicale",
+  "source": "PRO POLICE — Télégrammes DGPN + WhatsApp PRO POLICE",
   "evenements": [
+
     {
       "id": 1,
-      "titre": "Avancement Major 2026",
-      "date": "2026-06-15",
+      "titre": "Arrêtés Ministériels — Avancements Major 2026",
+      "date": "2026-04-30",
       "categorie": "avancement",
       "corps": ["CEA"],
-      "statut": "en_cours",
-      "description": "Résultats de la campagne d'avancement au grade de Major — DRHFS",
-      "source": "UN1TÉ / Alliance PN",
+      "statut": "clos",
+      "description": "Publication des arrêtés du 30 avril 2026 — Titulaires Examens Pro + Avancements au Choix (Supers historiques / Historiques). Félicitations aux promus 🫡",
+      "source": "DGPN — TG N°0392 du 17-04-2026",
       "lien": ""
     },
+
     {
       "id": 2,
-      "titre": "Examen pro Brigadier-Chef (SUEP) 2026",
-      "date": "2026-07-01",
+      "titre": "Tableau d'avancement Major 2026 — Examens Pro",
+      "date": "2026-04-30",
       "categorie": "avancement",
       "corps": ["CEA"],
-      "statut": "ouvert",
-      "description": "Ouverture officielle de l'examen professionnel pour l'accès au grade de brigadier-chef",
-      "source": "Alliance PN",
+      "statut": "clos",
+      "description": "CEA-20260430 — Tableau N°1880 : liste avancement Major 2026 voie Examens Professionnels.",
+      "source": "DGPN — Arrêté du 30 avril 2026",
       "lien": ""
     },
+
     {
       "id": 3,
-      "titre": "Concours Gardien de la Paix — 2e session",
-      "date": "2026-07-27",
-      "categorie": "concours",
+      "titre": "Tableau d'avancement Major 2026 — Choix",
+      "date": "2026-04-30",
+      "categorie": "avancement",
       "corps": ["CEA"],
-      "statut": "ouvert",
-      "description": "Clôture des inscriptions — Zone Ouest",
-      "source": "Police nationale officiel",
-      "lien": "https://www.police-nationale.interieur.gouv.fr"
+      "statut": "clos",
+      "description": "CEA-20260430 — Tableau N°1879 : liste avancement Major 2026 voie Choix.",
+      "source": "DGPN — Arrêté du 30 avril 2026",
+      "lien": ""
     },
+
     {
       "id": 4,
-      "titre": "Résultats Gardien de la Paix — Promotion interne",
+      "titre": "Prime d'investigation & haute technicité — Publication",
+      "date": "2026-05-22",
+      "categorie": "paritaire",
+      "corps": ["CEA", "PTS", "CRS"],
+      "statut": "clos",
+      "description": "Arrêté du 22 mai 2026 fixant le montant forfaitaire de la prime d'investigation et de la prime de haute technicité (décret n°2026-389 du 22 mai 2026).",
+      "source": "Légifrance — JORFTEXT000054125158",
+      "lien": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054125158"
+    },
+
+    {
+      "id": 5,
+      "titre": "Ouverture inscriptions BC Classique & SUEP 2026",
+      "date": "2026-04-28",
+      "categorie": "concours",
+      "corps": ["CEA"],
+      "statut": "clos",
+      "description": "Ouverture des inscriptions en ligne pour l'examen Brigadier-Chef Classique et SUEP 2026. Épreuve écrite (3h) : Déontologie, GESTT & TSI.",
+      "source": "DGPN — TG BC Classique & SUEP 2026",
+      "lien": "https://www.police-nationale.interieur.gouv.fr/promotion-interne"
+    },
+
+    {
+      "id": 6,
+      "titre": "Clôture inscriptions BC Classique & SUEP 2026",
+      "date": "2026-06-01",
+      "categorie": "concours",
+      "corps": ["CEA"],
+      "statut": "en_cours",
+      "description": "Clôture des inscriptions à 18h00 pour les examens Brigadier-Chef Classique et SUEP 2026.",
+      "source": "DGPN — TG Ouverture BC/SUEP",
+      "lien": "https://www.police-nationale.interieur.gouv.fr/promotion-interne"
+    },
+
+    {
+      "id": 7,
+      "titre": "Clôture Mouvement Inter-CRS 2026",
+      "date": "2026-06-01",
+      "categorie": "mutation",
+      "corps": ["CRS"],
+      "statut": "en_cours",
+      "description": "Clôture du mouvement inter-CRS 2026. Affectation prévue au 01/09/2026.",
+      "source": "DGPN — TO Ouverture Mvmt Inter-CRS 2026",
+      "lien": ""
+    },
+
+    {
+      "id": 8,
+      "titre": "Épreuve principale BC Classique & SUEP 2026",
+      "date": "2026-09-08",
+      "categorie": "concours",
+      "corps": ["CEA"],
+      "statut": "a_venir",
+      "description": "Épreuve principale écrite (3h) des examens Brigadier-Chef Classique et SUEP 2026 — Déontologie, GESTT & TSI.",
+      "source": "DGPN — TG BC/SUEP 2026",
+      "lien": "https://docpro-pn.minint.fr/"
+    },
+
+    {
+      "id": 9,
+      "titre": "Affectation Mouvement Inter-CRS 2026",
+      "date": "2026-09-01",
+      "categorie": "mutation",
+      "corps": ["CRS"],
+      "statut": "a_venir",
+      "description": "Prise d'effet des affectations issues du mouvement inter-CRS 2026.",
+      "source": "DGPN — TO Ouverture Mvmt Inter-CRS 2026",
+      "lien": ""
+    },
+
+    {
+      "id": 10,
+      "titre": "Examens BC Classique & SUEP 2026 — Période",
+      "date": "2026-10-01",
+      "categorie": "concours",
+      "corps": ["CEA"],
+      "statut": "a_venir",
+      "description": "Période des épreuves examens Brigadier-Chef — de septembre à octobre 2026.",
+      "source": "PRO POLICE — Calendrier prévisionnel",
+      "lien": ""
+    },
+
+    {
+      "id": 11,
+      "titre": "Résultats BC Classique & SUEP 2026",
+      "date": "2026-12-01",
+      "categorie": "concours",
+      "corps": ["CEA"],
+      "statut": "a_venir",
+      "description": "Résultats attendus en décembre 2026 pour les examens Brigadier-Chef Classique et SUEP.",
+      "source": "PRO POLICE — Calendrier prévisionnel",
+      "lien": ""
+    },
+
+    {
+      "id": 12,
+      "titre": "Résultats Promotion Interne Gardien de la Paix",
       "date": "2026-11-23",
       "categorie": "concours",
       "corps": ["CEA"],
       "statut": "a_venir",
-      "description": "Résultats consultables sur l'intranet de l'académie de police à partir de 14h",
+      "description": "Résultats consultables sur l'intranet de l'académie de police à partir de 14h00.",
       "source": "Police nationale officiel",
+      "lien": "https://www.police-nationale.interieur.gouv.fr/promotion-interne/gpx"
+    },
+
+    {
+      "id": 13,
+      "titre": "Dotations Brigadier-Chef 2027 — Expression besoins",
+      "date": "2026-12-31",
+      "categorie": "avancement",
+      "corps": ["CEA"],
+      "statut": "a_venir",
+      "description": "5 200 postes BC 2027 : ~3 650 examens classiques, 1 040 SUEP, 80 OPJ, ~430 au choix. Conditions : 9 ans effectifs (classique), 6 ans + 2 ans SUEP, 7 ans + 4 ans OPJ au 01/01/2027.",
+      "source": "PRO POLICE — Dotations 2027",
       "lien": ""
     },
+
     {
-      "id": 5,
-      "titre": "Campagne mutations — À compléter",
-      "date": "2026-09-01",
-      "categorie": "mutation",
-      "corps": ["CEA", "CRS", "PTS", "ADMIN"],
+      "id": 14,
+      "titre": "Dotations Major 2027 — Expression besoins",
+      "date": "2026-12-31",
+      "categorie": "avancement",
+      "corps": ["CEA"],
       "statut": "a_venir",
-      "description": "Date indicative — à confirmer par PRO POLICE",
-      "source": "PRO POLICE",
+      "description": "2 600 postes Major 2027 : ~325 examens classiques, 200 SUEP, 325 OPJ, ~1 750 au choix (BC super-historiques).",
+      "source": "PRO POLICE — Dotations 2027",
+      "lien": ""
+    },
+
+    {
+      "id": 15,
+      "titre": "Mouvement Profilé CEA — Modificatif 2026",
+      "date": "2026-04-03",
+      "categorie": "mutation",
+      "corps": ["CEA"],
+      "statut": "clos",
+      "description": "TG N°0342 du 03-04-2026 — Table des postes modificatif profilé 2026.",
+      "source": "DGPN — TG N°0342",
+      "lien": ""
+    },
+
+    {
+      "id": 16,
+      "titre": "Mouvement Profilé Outre-Mer — Modificatif 2026",
+      "date": "2026-04-01",
+      "categorie": "mutation",
+      "corps": ["CEA", "CRS"],
+      "statut": "clos",
+      "description": "TG modificatif mouvement profilé Outre-Mer 2026 — dont DTPN 976 Mayotte.",
+      "source": "DGPN — TG Modificatif OM 2026",
+      "lien": ""
+    },
+
+    {
+      "id": 17,
+      "titre": "Arrêté Brigadier-Chef — Modification règles organisation",
+      "date": "2026-03-14",
+      "categorie": "paritaire",
+      "corps": ["CEA"],
+      "statut": "clos",
+      "description": "Arrêté du 14 mars 2026 modifiant l'arrêté du 15 décembre 2021 — règles organisation examens BC police nationale.",
+      "source": "Légifrance — JORFTEXT000053900882",
+      "lien": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053900882"
+    },
+
+    {
+      "id": 18,
+      "titre": "Inscriptions BC 2027 — Avant l'été 2026",
+      "date": "2026-07-31",
+      "categorie": "concours",
+      "corps": ["CEA"],
+      "statut": "a_venir",
+      "description": "21 500 GPX éligibles BC classique / 6 200 GPX éligibles SUEP. Inscriptions à effectuer avant l'été 2026 — TH d'ouverture en attente.",
+      "source": "PRO POLICE — Rappel examens BC 2027",
       "lien": ""
     }
+
   ],
   "categories": {
     "avancement": { "label": "Avancement", "couleur": "#3b82f6", "emoji": "🏅" },
-    "mutation": { "label": "Mutation", "couleur": "#f59e0b", "emoji": "🗺️" },
-    "concours": { "label": "Concours", "couleur": "#22c55e", "emoji": "📝" },
-    "paritaire": { "label": "Réunion paritaire", "couleur": "#a855f7", "emoji": "🤝" },
-    "formation": { "label": "Formation", "couleur": "#ef4444", "emoji": "🎓" }
+    "mutation":   { "label": "Mutation",    "couleur": "#f59e0b", "emoji": "🗺️" },
+    "concours":   { "label": "Concours",    "couleur": "#22c55e", "emoji": "📝" },
+    "paritaire":  { "label": "Réunion / Texte officiel", "couleur": "#a855f7", "emoji": "⚖️" },
+    "formation":  { "label": "Formation",   "couleur": "#ef4444", "emoji": "🎓" }
   }
 }
