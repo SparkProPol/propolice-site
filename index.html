@@ -414,15 +414,6 @@
   </style>
 </head>
 <body>
-  <!-- ── LIGHTBOX CORPS ── -->
-  <div class="lb-overlay" id="lbOverlay" onclick="lbClose()">
-    <div class="lb-img-wrap" onclick="event.stopPropagation()">
-      <button class="lb-close" onclick="lbClose()">✕</button>
-      <img id="lbImg" src="" alt="">
-      <div class="lb-caption"><span id="lbAbbr"></span><span id="lbLabel"></span></div>
-    </div>
-  </div>
-
 
 
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -569,8 +560,9 @@
       <div class="corpsGrid">
 
         <!-- ── CEA — image réelle ── -->
-        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-2351076e.jpg','C.E.A','Corps d'encadrement et d'application')" style="background-image: url('generated-image-2351076e.jpg');text-decoration:none;cursor:pointer;">
+        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-2351076e.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
+          <div class="corps-popover"><img src="generated-image-2351076e.jpg" alt="C.E.A"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">C.E.A</div>
@@ -579,8 +571,9 @@
         </a>
 
         <!-- ── CRS — image réelle ── -->
-        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-11e08161.jpg','C.R.S','Compagnies Républicaines de Sécurité')" style="background-image: url('generated-image-11e08161.jpg');text-decoration:none;cursor:pointer;">
+        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-11e08161.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
+          <div class="corps-popover"><img src="generated-image-11e08161.jpg" alt="C.R.S"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">C.R.S</div>
@@ -589,8 +582,9 @@
         </a>
 
         <!-- ── PTS — image réelle ── -->
-        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-b4abc5d9.jpg','P.T.S','Personnels techniques & scientifiques')" style="background-image: url('generated-image-b4abc5d9.jpg');text-decoration:none;cursor:pointer;">
+        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-b4abc5d9.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
+          <div class="corps-popover"><img src="generated-image-b4abc5d9.jpg" alt="P.T.S"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">P.T.S</div>
@@ -599,8 +593,9 @@
         </a>
 
         <!-- ── ADMIN — image réelle ── -->
-        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-1e7e0811.jpg','ADMIN','Personnels administratifs')" style="background-image: url('generated-image-1e7e0811.jpg');text-decoration:none;cursor:pointer;">
+        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-1e7e0811.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
+          <div class="corps-popover"><img src="generated-image-1e7e0811.jpg" alt="ADMIN"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">ADMIN</div>
@@ -609,8 +604,9 @@
         </a>
 
         <!-- ── P.A — image réelle ── -->
-        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-eef1f41b.jpg','P.A','Policier Adjoint')" style="background-image: url('generated-image-eef1f41b.jpg');text-decoration:none;cursor:pointer;">
+        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-eef1f41b.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
+          <div class="corps-popover"><img src="generated-image-eef1f41b.jpg" alt="P.A"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">P.A</div>
@@ -619,8 +615,9 @@
         </a>
 
         <!-- ── RÉS. — image réelle ── -->
-        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-49f917f5.jpg','RÉS.','Réservistes Police Nationale')" style="background-image: url('generated-image-49f917f5.jpg');text-decoration:none;cursor:pointer;">
+        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-49f917f5.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
+          <div class="corps-popover"><img src="generated-image-49f917f5.jpg" alt="RÉS."></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
             <div class="corpsImgAbbr">RÉS.</div>
@@ -1257,7 +1254,7 @@
         <div class="card contactCard">
           <div class="icon">✉️</div>
           <h3>Email</h3>
-          <p><a href="/cdn-cgi/l/email-protection#186b61767c717b796c36686a77687774717b7d587f75797174367b7775"><span class="__cf_email__" data-cfemail="80f3f9eee4e9e3e1f4aef0f2eff0efece9e3e5c0e7ede1e9ecaee3efed">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#91e2e8fff5f8f2f0e5bfe1e3fee1fefdf8f2f4d1f6fcf0f8fdbff2fefc"><span class="__cf_email__" data-cfemail="c7b4bea9a3aea4a6b3e9b7b5a8b7a8abaea4a287a0aaa6aeabe9a4a8aa">[email&#160;protected]</span></a></p>
         </div>
         <div class="card contactCard">
           <div class="icon">🌐</div>
@@ -1308,7 +1305,7 @@
     </div>
     <div class="footLinks">
       <strong>Contact</strong>
-      <a href="/cdn-cgi/l/email-protection#eb9892858f82888a9fc59b99849b848782888eab8c868a8287c5888486">Email</a>
+      <a href="/cdn-cgi/l/email-protection#681b11060c010b091c46181a07180704010b0d280f05090104460b0705">Email</a>
       <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
       <a href="#apropos">À propos</a>
     </div>
@@ -1458,25 +1455,6 @@
   </div>
 </div>
 
-
-  <script>
-    /* ── LIGHTBOX CORPS ── */
-    function lbOpen(src, abbr, label) {
-      document.getElementById('lbImg').src   = src;
-      document.getElementById('lbAbbr').textContent  = abbr;
-      document.getElementById('lbLabel').textContent = label;
-      const ov = document.getElementById('lbOverlay');
-      ov.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function lbClose() {
-      document.getElementById('lbOverlay').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') lbClose();
-    });
-  </script>
 
 </body>
 </html>
