@@ -61,6 +61,7 @@
       gap: 14px;
       margin-top: 24px;
       align-items: start;
+      overflow: visible;
     }
 
     /* Carte générique (sans image) */
@@ -96,7 +97,7 @@
       background-position: center;
       border: none;
       cursor: pointer;
-      overflow: hidden;
+      overflow: visible;        /* permet au popover de sortir de la carte */
       transition: transform .3s ease, box-shadow .3s ease;
     }
     .corpsCard.hasImg:hover {
@@ -411,7 +412,33 @@
       .niveauxGrid { grid-template-columns: 1fr; }
       .heroStats { grid-template-columns: repeat(2, 1fr); }
     }
-  </style>
+
+    /* ── POPOVER IMAGE AU SURVOL Corps ── */
+    .corpsCard.hasImg .corps-popover {
+      position: absolute;
+      bottom: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px) scale(.93);
+      width: 320px;
+      height: 210px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.85), 0 0 0 1px rgba(59,130,246,.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s ease, transform .35s cubic-bezier(.25,.46,.45,.94);
+      z-index: 200;
+    }
+    .corpsCard.hasImg .corps-popover img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
+    }
+    .corpsCard.hasImg:hover .corps-popover {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    </style>
 </head>
 <body>
 
@@ -560,7 +587,7 @@
       <div class="corpsGrid">
 
         <!-- ── CEA — image réelle ── -->
-        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-2351076e.jpg');text-decoration:none;cursor:pointer;">
+        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-2351076e.jpg');text-decoration:none;cursor:pointer;\">
           <div class="corpsImgOverlay"></div>
           <div class="corps-popover"><img src="generated-image-2351076e.jpg" alt="C.E.A"></div>
           <span class="corpsImgBadge">Actif</span>
@@ -571,7 +598,7 @@
         </a>
 
         <!-- ── CRS — image réelle ── -->
-        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-11e08161.jpg');text-decoration:none;cursor:pointer;">
+        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-11e08161.jpg');text-decoration:none;cursor:pointer;\">
           <div class="corpsImgOverlay"></div>
           <div class="corps-popover"><img src="generated-image-11e08161.jpg" alt="C.R.S"></div>
           <span class="corpsImgBadge">Actif</span>
@@ -582,7 +609,7 @@
         </a>
 
         <!-- ── PTS — image réelle ── -->
-        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-b4abc5d9.jpg');text-decoration:none;cursor:pointer;">
+        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-b4abc5d9.jpg');text-decoration:none;cursor:pointer;\">
           <div class="corpsImgOverlay"></div>
           <div class="corps-popover"><img src="generated-image-b4abc5d9.jpg" alt="P.T.S"></div>
           <span class="corpsImgBadge">Actif</span>
@@ -593,7 +620,7 @@
         </a>
 
         <!-- ── ADMIN — image réelle ── -->
-        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-1e7e0811.jpg');text-decoration:none;cursor:pointer;">
+        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-1e7e0811.jpg');text-decoration:none;cursor:pointer;\">
           <div class="corpsImgOverlay"></div>
           <div class="corps-popover"><img src="generated-image-1e7e0811.jpg" alt="ADMIN"></div>
           <span class="corpsImgBadge">Actif</span>
@@ -604,7 +631,7 @@
         </a>
 
         <!-- ── P.A — image réelle ── -->
-        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-eef1f41b.jpg');text-decoration:none;cursor:pointer;">
+        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-eef1f41b.jpg');text-decoration:none;cursor:pointer;\">
           <div class="corpsImgOverlay"></div>
           <div class="corps-popover"><img src="generated-image-eef1f41b.jpg" alt="P.A"></div>
           <span class="corpsImgBadge">Actif</span>
@@ -615,7 +642,7 @@
         </a>
 
         <!-- ── RÉS. — image réelle ── -->
-        <a class="corpsCard hasImg" style="cursor:pointer;" style="background-image: url('generated-image-49f917f5.jpg');text-decoration:none;cursor:pointer;">
+        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-49f917f5.jpg');text-decoration:none;cursor:pointer;\">
           <div class="corpsImgOverlay"></div>
           <div class="corps-popover"><img src="generated-image-49f917f5.jpg" alt="RÉS."></div>
           <span class="corpsImgBadge">Actif</span>
@@ -1254,7 +1281,7 @@
         <div class="card contactCard">
           <div class="icon">✉️</div>
           <h3>Email</h3>
-          <p><a href="/cdn-cgi/l/email-protection#91e2e8fff5f8f2f0e5bfe1e3fee1fefdf8f2f4d1f6fcf0f8fdbff2fefc"><span class="__cf_email__" data-cfemail="c7b4bea9a3aea4a6b3e9b7b5a8b7a8abaea4a287a0aaa6aeabe9a4a8aa">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#a1d2d8cfc5c8c2c0d58fd1d3ced1cecdc8c2c4e1c6ccc0c8cd8fc2cecc"><span class="__cf_email__" data-cfemail="c4b7bdaaa0ada7a5b0eab4b6abb4aba8ada7a184a3a9a5ada8eaa7aba9">[email&#160;protected]</span></a></p>
         </div>
         <div class="card contactCard">
           <div class="icon">🌐</div>
@@ -1305,7 +1332,7 @@
     </div>
     <div class="footLinks">
       <strong>Contact</strong>
-      <a href="/cdn-cgi/l/email-protection#681b11060c010b091c46181a07180704010b0d280f05090104460b0705">Email</a>
+      <a href="/cdn-cgi/l/email-protection#74070d1a101d1715005a04061b041b181d1711341319151d185a171b19">Email</a>
       <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
       <a href="#apropos">À propos</a>
     </div>
