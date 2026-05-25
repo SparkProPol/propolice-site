@@ -97,15 +97,11 @@
       border: none;
       cursor: pointer;
       overflow: hidden;
-      transition: height .55s cubic-bezier(.25,.46,.45,.94),
-                  box-shadow .55s cubic-bezier(.25,.46,.45,.94),
-                  transform .55s cubic-bezier(.25,.46,.45,.94);
+      transition: transform .3s ease, box-shadow .3s ease;
     }
     .corpsCard.hasImg:hover {
-      height: 390px;
-      box-shadow: 0 22px 55px rgba(0,0,0,.72);
-      transform: translateY(-8px);
-      z-index: 10;
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(59,130,246,.25);
     }
     /* overlay gradient sombre du bas — sur ::after pour laisser ::before au zoom image */
     .corpsCard.hasImg .corpsImgOverlay {
@@ -418,6 +414,16 @@
   </style>
 </head>
 <body>
+  <!-- ── LIGHTBOX CORPS ── -->
+  <div class="lb-overlay" id="lbOverlay" onclick="lbClose()">
+    <div class="lb-img-wrap" onclick="event.stopPropagation()">
+      <button class="lb-close" onclick="lbClose()">✕</button>
+      <img id="lbImg" src="" alt="">
+      <div class="lb-caption"><span id="lbAbbr"></span><span id="lbLabel"></span></div>
+    </div>
+  </div>
+
+
 
 <a class="skip" href="#contenu">Aller au contenu</a>
 
@@ -563,7 +569,7 @@
       <div class="corpsGrid">
 
         <!-- ── CEA — image réelle ── -->
-        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-2351076e.jpg');text-decoration:none;">
+        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-2351076e.jpg','C.E.A','Corps d'encadrement et d'application')" style="background-image: url('generated-image-2351076e.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
@@ -573,7 +579,7 @@
         </a>
 
         <!-- ── CRS — image réelle ── -->
-        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-11e08161.jpg');text-decoration:none;">
+        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-11e08161.jpg','C.R.S','Compagnies Républicaines de Sécurité')" style="background-image: url('generated-image-11e08161.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
@@ -583,7 +589,7 @@
         </a>
 
         <!-- ── PTS — image réelle ── -->
-        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-b4abc5d9.jpg');text-decoration:none;">
+        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-b4abc5d9.jpg','P.T.S','Personnels techniques & scientifiques')" style="background-image: url('generated-image-b4abc5d9.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
@@ -593,7 +599,7 @@
         </a>
 
         <!-- ── ADMIN — image réelle ── -->
-        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-1e7e0811.jpg');text-decoration:none;">
+        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-1e7e0811.jpg','ADMIN','Personnels administratifs')" style="background-image: url('generated-image-1e7e0811.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
@@ -603,7 +609,7 @@
         </a>
 
         <!-- ── P.A — image réelle ── -->
-        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-eef1f41b.jpg');text-decoration:none;">
+        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-eef1f41b.jpg','P.A','Policier Adjoint')" style="background-image: url('generated-image-eef1f41b.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
@@ -613,7 +619,7 @@
         </a>
 
         <!-- ── RÉS. — image réelle ── -->
-        <a class="corpsCard hasImg" href="#simulateur" style="background-image: url('generated-image-49f917f5.jpg');text-decoration:none;">
+        <a class="corpsCard hasImg" onclick="lbOpen('generated-image-49f917f5.jpg','RÉS.','Réservistes Police Nationale')" style="background-image: url('generated-image-49f917f5.jpg');text-decoration:none;cursor:pointer;">
           <div class="corpsImgOverlay"></div>
           <span class="corpsImgBadge">Actif</span>
           <div class="corpsImgBody">
@@ -1251,7 +1257,7 @@
         <div class="card contactCard">
           <div class="icon">✉️</div>
           <h3>Email</h3>
-          <p><a href="/cdn-cgi/l/email-protection#285b51464c414b495c06585a47584744414b4d684f45494144064b4745"><span class="__cf_email__" data-cfemail="3f4c46515b565c5e4b114f4d504f5053565c5a7f58525e5653115c5052">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#186b61767c717b796c36686a77687774717b7d587f75797174367b7775"><span class="__cf_email__" data-cfemail="80f3f9eee4e9e3e1f4aef0f2eff0efece9e3e5c0e7ede1e9ecaee3efed">[email&#160;protected]</span></a></p>
         </div>
         <div class="card contactCard">
           <div class="icon">🌐</div>
@@ -1302,7 +1308,7 @@
     </div>
     <div class="footLinks">
       <strong>Contact</strong>
-      <a href="/cdn-cgi/l/email-protection#e99a90878d808a889dc7999b86998685808a8ca98e84888085c78a8684">Email</a>
+      <a href="/cdn-cgi/l/email-protection#eb9892858f82888a9fc59b99849b848782888eab8c868a8287c5888486">Email</a>
       <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
       <a href="#apropos">À propos</a>
     </div>
@@ -1451,6 +1457,26 @@
     </div>
   </div>
 </div>
+
+
+  <script>
+    /* ── LIGHTBOX CORPS ── */
+    function lbOpen(src, abbr, label) {
+      document.getElementById('lbImg').src   = src;
+      document.getElementById('lbAbbr').textContent  = abbr;
+      document.getElementById('lbLabel').textContent = label;
+      const ov = document.getElementById('lbOverlay');
+      ov.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function lbClose() {
+      document.getElementById('lbOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') lbClose();
+    });
+  </script>
 
 </body>
 </html>
