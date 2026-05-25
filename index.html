@@ -58,13 +58,9 @@
     .corpsGrid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 14px;
+      gap: 12px;
       margin-top: 24px;
-      align-items: start;
-      overflow: visible !important;
     }
-
-    /* Carte générique (sans image) */
     .corpsCard {
       background: rgba(255,255,255,.03);
       border: 1px solid var(--line);
@@ -77,7 +73,7 @@
       overflow: hidden;
     }
     .corpsCard:hover {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
       border-color: rgba(59,130,246,.35);
       background: rgba(59,130,246,.06);
     }
@@ -89,106 +85,30 @@
     }
     .corpsLabel { font-size: 11px; color: var(--muted); line-height: 1.4; }
 
-    /* ── Carte avec IMAGE de fond (CEA, CRS…) ── */
+    /* Carte avec image */
     .corpsCard.hasImg {
-      padding: 0;
-      height: 200px;
-      background-size: cover;
-      background-position: center;
-      border: none;
-      cursor: pointer;
-      overflow: visible !important;
+      padding: 0; height: 200px;
+      background-size: cover; background-position: center;
+      border: none; cursor: pointer;
       transition: transform .3s ease, box-shadow .3s ease;
     }
-    .corpsCard.hasImg:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 14px 36px rgba(59,130,246,.25);
-    }
-    /* overlay gradient sombre du bas — sur ::after pour laisser ::before au zoom image */
+    .corpsCard.hasImg:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(59,130,246,.25); }
     .corpsCard.hasImg .corpsImgOverlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(5,10,20,.10) 0%,
-        rgba(5,10,20,.55) 55%,
-        rgba(5,10,20,.92) 100%
-      );
-      border-radius: 18px;
-      z-index: 1;
-      pointer-events: none;
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(5,10,20,.1) 0%, rgba(5,10,20,.55) 55%, rgba(5,10,20,.92) 100%);
+      border-radius: 18px; z-index: 1;
     }
-    /* fine ligne bleue sur le bord gauche au hover */
-    .corpsCard.hasImg::after {
-      content: '';
-      position: absolute;
-      left: 0; top: 12%; bottom: 12%;
-      width: 3px;
-      background: var(--accent2);
-      border-radius: 3px;
-      opacity: 0;
-      transition: opacity .25s;
-      z-index: 2;
-    }
-    .corpsCard.hasImg:hover::after { opacity: 1; }
-    .corpsCard.hasImg:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,.5); }
-
-    /* contenu texte flottant en bas */
-    .corpsImgBody {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 14px 16px 16px;
-      z-index: 3;
-      text-align: left;
-    }
-    /* ligne décorative fine au-dessus du texte */
-    .corpsImgBody::before {
-      content: '';
-      display: block;
-      width: 32px; height: 2px;
-      background: var(--accent2);
-      border-radius: 2px;
-      margin-bottom: 8px;
-      opacity: .85;
-    }
-    .corpsImgAbbr {
-      font-size: 17px;
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .corpsImgLabel {
-      font-size: 10px;
-      color: rgba(255,255,255,.65);
-      line-height: 1.4;
-      font-weight: 400;
-    }
-    /* badge discret en haut à droite */
-    .corpsImgBadge {
-      position: absolute;
-      top: 12px; right: 12px;
-      z-index: 3;
-      background: rgba(59,130,246,.18);
-      border: 1px solid rgba(59,130,246,.35);
-      border-radius: 20px;
-      padding: 3px 9px;
-      font-size: 9px;
-      font-weight: 700;
-      color: rgba(255,255,255,.8);
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      backdrop-filter: blur(6px);
-    }
+    .corpsImgBody { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 16px 16px; z-index: 3; text-align: left; }
+    .corpsImgBody::before { content: ''; display: block; width: 32px; height: 2px; background: var(--accent2); border-radius: 2px; margin-bottom: 8px; opacity: .85; }
+    .corpsImgAbbr { font-size: 17px; font-weight: 900; color: #fff; letter-spacing: .08em; text-transform: uppercase; line-height: 1; margin-bottom: 4px; }
+    .corpsImgLabel { font-size: 10px; color: rgba(255,255,255,.65); line-height: 1.4; }
+    .corpsImgBadge { position: absolute; top: 12px; right: 12px; z-index: 3; background: rgba(59,130,246,.18); border: 1px solid rgba(59,130,246,.35); border-radius: 20px; padding: 3px 9px; font-size: 9px; font-weight: 700; color: rgba(255,255,255,.8); letter-spacing: .06em; text-transform: uppercase; backdrop-filter: blur(6px); }
 
     /* POURQUOI PRO POLICE — 6 cartes feature */
     .whyGrid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      align-items: start;
       margin-top: 24px;
     }
     .whyCard {
@@ -201,60 +121,19 @@
       overflow: hidden;
     }
     .whyCard:hover { transform: translateY(-5px); border-color: rgba(59,130,246,.3); box-shadow: 0 14px 36px rgba(0,0,0,.45); }
-    /* zoom image de fond via pseudo-element */
-    .whyCard[style*="background-image"]::before {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      background: inherit;
-      background-size: cover;
-      background-position: center;
-      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
-      z-index: 0;
-      border-radius: inherit;
-    }
-    .whyCard[style*="background-image"]:hover::before {
-      transform: scale(1.09);
-    }
-    /* overlay gradient sur whyCard avec image */
-    .whyCard .whyOverlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(5,10,20,.12) 0%,
-        rgba(5,10,20,.75) 55%,
-        rgba(5,10,20,.96) 100%
-      );
-      border-radius: inherit;
-      z-index: 1;
-      pointer-events: none;
-    }
-    /* contenu au-dessus de l'overlay */
-    .whyCard > *:not(.whyOverlay) {
-      position: relative;
-      z-index: 2;
-    }
-    .whyCard[style*="background-image"],
+    /* whyCard avec image */
     a.whyCard {
-      cursor: pointer;
-      border: none;
-      padding: 0;
-      min-height: 260px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      transition: min-height .55s cubic-bezier(.25,.46,.45,.94),
-                  box-shadow .55s cubic-bezier(.25,.46,.45,.94),
-                  transform .55s cubic-bezier(.25,.46,.45,.94) !important;
+      padding: 0; min-height: 260px; border: none; cursor: pointer;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      text-decoration: none;
     }
-    a.whyCard:hover,
-    .whyCard[style*="background-image"]:hover {
-      min-height: 420px !important;
-      box-shadow: 0 22px 55px rgba(0,0,0,.72) !important;
-      transform: translateY(-8px) !important;
-      z-index: 10;
+    a.whyCard .whyOverlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(5,10,20,.12) 0%, rgba(5,10,20,.75) 55%, rgba(5,10,20,.96) 100%);
+      border-radius: inherit; z-index: 1; pointer-events: none;
     }
+    a.whyCard > div:not(.whyOverlay) { position: relative; z-index: 2; }
+    a.whyCard:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(0,0,0,.5); }
     .whyIcon { font-size: 32px; margin-bottom: 14px; }
     .whyTitle { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: #fff; }
     .whyDesc { font-size: 13px; color: var(--muted); line-height: 1.65; }
@@ -400,51 +279,67 @@
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       .corpsGrid { grid-template-columns: repeat(3, 1fr); }
-      .corpsCard.hasImg { height: 180px; }
       .whyGrid { grid-template-columns: repeat(2, 1fr); }
       .pricingV5 { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
     }
     @media (max-width: 768px) {
       .corpsGrid { grid-template-columns: repeat(2, 1fr); }
-      .corpsCard.hasImg { height: 160px; }
       .whyGrid { grid-template-columns: 1fr; }
       .actionsGrid { grid-template-columns: 1fr; }
       .niveauxGrid { grid-template-columns: 1fr; }
       .heroStats { grid-template-columns: repeat(2, 1fr); }
     }
 
-    /* ── POPOVER IMAGE AU SURVOL Corps ── */
-    .corpsCard.hasImg .corps-popover {
-      position: absolute;
-      bottom: calc(100% + 14px);
-      left: 50%;
-      transform: translateX(-50%) translateY(10px) scale(.93);
-      width: 320px;
-      height: 210px;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0,0,0,.85), 0 0 0 1px rgba(59,130,246,.4);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .35s ease, transform .35s cubic-bezier(.25,.46,.45,.94);
-      z-index: 200;
-    }
-    .corpsCard.hasImg .corps-popover img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center top;
-      display: block;
-    }
-    .corpsCard.hasImg:hover .corps-popover {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0) scale(1);
-    }
-
-    /* ══ CALENDRIER SOCIAL ══ */
+  /* ══ CALENDRIER SOCIAL ══ */
 /* ══════════════════════════════════════════
    CALENDRIER SOCIAL — PRO POLICE
 ══════════════════════════════════════════ */
 
-/* Filtres */
+/* Onglets */
+.calOnglets {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 5px;
+}
+.calOngletBtn {
+  flex: 1;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .25s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.calOngletBtn:hover {
+  color: #e9eefb;
+  background: rgba(255,255,255,.05);
+}
+.calOngletBtn.active {
+  background: rgba(59,130,246,.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59,130,246,.3);
+}
+.calOngletCount {
+  background: rgba(239,68,68,.2);
+  color: #f87171;
+  border-radius: 10px;
+  padding: 1px 8px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
 .calFiltres {
   display: flex;
   gap: 8px;
@@ -636,6 +531,23 @@
   color: var(--muted);
 }
 
+/* Titres de groupe */
+.calGroupTitle {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--accent2);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 18px 0 8px 48px;
+  opacity: .9;
+}
+.calGroupPast {
+  color: var(--muted);
+  margin-top: 8px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
 /* Source */
 .calSource {
   text-align: center;
@@ -661,10 +573,10 @@
   .calCountdown { display: none; }
 }
 
-    </style>
+  
+  </style>
 </head>
 <body>
-
 
 <a class="skip" href="#contenu">Aller au contenu</a>
 
@@ -687,6 +599,7 @@
     <nav class="navDesktop" aria-label="Navigation principale">
       <a href="#corps">Corps</a>
       <a href="#calendrier">Calendrier</a>
+    <a href="#calendrier">Calendrier</a>
     <a href="#ressources">Ressources</a>
       <a href="#simulateur">Simulateur</a>
       <a href="#simulateur-cmo">CMO</a>
@@ -708,7 +621,6 @@
   <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
     <a href="#contenu">Accueil</a>
     <a href="#corps">Corps</a>
-    <a href="#calendrier">Calendrier</a>
     <a href="#ressources">Ressources</a>
     <a href="#simulateur">Simulateur</a>
     <a href="#simulateur-cmo">CMO</a>
@@ -735,7 +647,7 @@
       <div class="heroHighlight">
         <div class="hh-icon">🔥</div>
         <div>
-          <a href="#simulateur" class="hh-title" style="text-decoration:none;cursor:pointer;transition:color .2s;" onmouseover="this.style.color='#93c5fd'" onmouseout="this.style.color=''">Le simulateur Police Nationale le plus complet du paysage syndical</a>
+          <div class="hh-title">Le simulateur Police Nationale le plus complet du paysage syndical</div>
           <ul>
             <li>Métropole & Outre-mer</li>
             <li>CEA & CRS</li>
@@ -746,36 +658,15 @@
       </div>
 
       <div class="ctaRow" style="justify-content:center;">
-        <a class="btn primary" href="#adhesion" id="btnRejoindreHero">🤝 Rejoindre PRO POLICE</a>
+        <a class="btn primary" href="#adhesion">🤝 Rejoindre PRO POLICE</a>
         <a class="btn ghost" href="#ressources">📚 Accéder aux ressources</a>
       </div>
 
       <div class="heroStats">
-
-        <div class="heroStatItem" style="border-color:rgba(59,130,246,.3);background:rgba(59,130,246,.06);">
-          <div style="font-size:28px;margin-bottom:6px;">👮</div>
-          <div class="num" style="font-size:16px;font-weight:900;color:#60a5fa;line-height:1.2;">Des milliers</div>
-          <div class="lbl" style="margin-top:6px;font-size:12px;line-height:1.4;">de collègues<br>accompagnés</div>
-        </div>
-
-        <div class="heroStatItem" style="border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.06);">
-          <div style="font-size:28px;margin-bottom:6px;">📂</div>
-          <div class="num" style="font-size:16px;font-weight:900;color:#22c55e;line-height:1.2;">Des centaines</div>
-          <div class="lbl" style="margin-top:6px;font-size:12px;line-height:1.4;">de dossiers<br>traités</div>
-        </div>
-
-        <div class="heroStatItem" style="border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.06);">
-          <div style="font-size:28px;margin-bottom:6px;">⚖️</div>
-          <div class="num" style="font-size:16px;font-weight:900;color:#f59e0b;line-height:1.2;">Des centaines</div>
-          <div class="lbl" style="margin-top:6px;font-size:12px;line-height:1.4;">de collègues rétablis<br>dans leurs droits</div>
-        </div>
-
-        <div class="heroStatItem" style="border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.06);">
-          <div style="font-size:28px;margin-bottom:6px;">🏴‍☠️</div>
-          <div class="num" style="font-size:16px;font-weight:900;color:#f87171;line-height:1.2;">100%</div>
-          <div class="lbl" style="margin-top:6px;font-size:12px;line-height:1.4;">indépendant<br>& apolitique</div>
-        </div>
-
+        <div class="heroStatItem"><div class="num">150+</div><div class="lbl">collègues accompagnés</div></div>
+        <div class="heroStatItem"><div class="num">80+</div><div class="lbl">dossiers traités</div></div>
+        <div class="heroStatItem"><div class="num">45 000€+</div><div class="lbl">récupérés</div></div>
+        <div class="heroStatItem"><div class="num">100%</div><div class="lbl">indépendant</div></div>
       </div>
 
       <div class="metaRow" style="justify-content:center;">
@@ -810,73 +701,36 @@
         <p>PRO POLICE représente l'ensemble des personnels — actifs, administratifs, techniques et réservistes.</p>
       </div>
       <div class="corpsGrid">
-
-        <!-- ── CEA — image réelle ── -->
-        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-2351076e.jpg');text-decoration:none;cursor:pointer;\">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image:url('generated-image-2351076e.jpg');text-decoration:none;">
           <div class="corpsImgOverlay"></div>
-          <div class="corps-popover"><img src="generated-image-2351076e.jpg" alt="C.E.A"></div>
           <span class="corpsImgBadge">Actif</span>
-          <div class="corpsImgBody">
-            <div class="corpsImgAbbr">C.E.A</div>
-            <div class="corpsImgLabel">Corps d'encadrement<br>et d'application</div>
-          </div>
+          <div class="corpsImgBody"><div class="corpsImgAbbr">C.E.A</div><div class="corpsImgLabel">Corps d'encadrement<br>et d'application</div></div>
         </a>
-
-        <!-- ── CRS — image réelle ── -->
-        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-11e08161.jpg');text-decoration:none;cursor:pointer;\">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image:url('generated-image-11e08161.jpg');text-decoration:none;">
           <div class="corpsImgOverlay"></div>
-          <div class="corps-popover"><img src="generated-image-11e08161.jpg" alt="C.R.S"></div>
           <span class="corpsImgBadge">Actif</span>
-          <div class="corpsImgBody">
-            <div class="corpsImgAbbr">C.R.S</div>
-            <div class="corpsImgLabel">Compagnies Républicaines<br>de Sécurité</div>
-          </div>
+          <div class="corpsImgBody"><div class="corpsImgAbbr">C.R.S</div><div class="corpsImgLabel">Compagnies Républicaines<br>de Sécurité</div></div>
         </a>
-
-        <!-- ── PTS — image réelle ── -->
-        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-b4abc5d9.jpg');text-decoration:none;cursor:pointer;\">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image:url('generated-image-b4abc5d9.jpg');text-decoration:none;">
           <div class="corpsImgOverlay"></div>
-          <div class="corps-popover"><img src="generated-image-b4abc5d9.jpg" alt="P.T.S"></div>
           <span class="corpsImgBadge">Actif</span>
-          <div class="corpsImgBody">
-            <div class="corpsImgAbbr">P.T.S</div>
-            <div class="corpsImgLabel">Personnels techniques<br>& scientifiques</div>
-          </div>
+          <div class="corpsImgBody"><div class="corpsImgAbbr">P.T.S</div><div class="corpsImgLabel">Personnels techniques<br>& scientifiques</div></div>
         </a>
-
-        <!-- ── ADMIN — image réelle ── -->
-        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-1e7e0811.jpg');text-decoration:none;cursor:pointer;\">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image:url('generated-image-1e7e0811.jpg');text-decoration:none;">
           <div class="corpsImgOverlay"></div>
-          <div class="corps-popover"><img src="generated-image-1e7e0811.jpg" alt="ADMIN"></div>
           <span class="corpsImgBadge">Actif</span>
-          <div class="corpsImgBody">
-            <div class="corpsImgAbbr">ADMIN</div>
-            <div class="corpsImgLabel">Personnels<br>administratifs</div>
-          </div>
+          <div class="corpsImgBody"><div class="corpsImgAbbr">ADMIN</div><div class="corpsImgLabel">Personnels<br>administratifs</div></div>
         </a>
-
-        <!-- ── P.A — image réelle ── -->
-        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-eef1f41b.jpg');text-decoration:none;cursor:pointer;\">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image:url('generated-image-eef1f41b.jpg');text-decoration:none;">
           <div class="corpsImgOverlay"></div>
-          <div class="corps-popover"><img src="generated-image-eef1f41b.jpg" alt="P.A"></div>
           <span class="corpsImgBadge">Actif</span>
-          <div class="corpsImgBody">
-            <div class="corpsImgAbbr">P.A</div>
-            <div class="corpsImgLabel">Policier<br>Adjoint</div>
-          </div>
+          <div class="corpsImgBody"><div class="corpsImgAbbr">P.A</div><div class="corpsImgLabel">Policier<br>Adjoint</div></div>
         </a>
-
-        <!-- ── RÉS. — image réelle ── -->
-        <a class=\"corpsCard hasImg\" style=\"background-image: url('generated-image-49f917f5.jpg');text-decoration:none;cursor:pointer;\">
+        <a class="corpsCard hasImg" href="#simulateur" style="background-image:url('generated-image-49f917f5.jpg');text-decoration:none;">
           <div class="corpsImgOverlay"></div>
-          <div class="corps-popover"><img src="generated-image-49f917f5.jpg" alt="RÉS."></div>
           <span class="corpsImgBadge">Actif</span>
-          <div class="corpsImgBody">
-            <div class="corpsImgAbbr">RÉS.</div>
-            <div class="corpsImgLabel">Réservistes<br>Police Nationale</div>
-          </div>
+          <div class="corpsImgBody"><div class="corpsImgAbbr">RÉS.</div><div class="corpsImgLabel">Réservistes<br>Police Nationale</div></div>
         </a>
-
       </div>
     </div>
   </section>
@@ -892,73 +746,60 @@
         <p>Un syndicat qui pense autrement — indépendant, innovant, orienté terrain.</p>
       </div>
       <div class="whyGrid">
-
-        <!-- 1 — Indépendant -->
-        <a class="whyCard" href="#fonctionnalites" style="background-image:url('generated-image-dbe415dd.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+        <a class="whyCard" href="#fonctionnalites" style="background-image:url('generated-image-dbe415dd.jpg');background-size:cover;background-position:center;">
           <div class="whyOverlay"></div>
-          <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🏴‍☠️</div>
             <div class="whyTitle" style="color:#fff;">100% Indépendant</div>
             <div class="whyDesc" style="color:rgba(255,255,255,.75);">Ni confédération, ni fédération, libre de toute pression politique ou syndicale extérieure. PRO POLICE ne répond qu'à une seule boussole : l'intérêt des policiers.</div>
             <span class="whyTag">Unique en France</span>
           </div>
         </a>
-
-        <!-- 2 — Université -->
-        <a class="whyCard" href="#universite" style="background-image:url('generated-image-bcf42af1.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+        <a class="whyCard" href="#universite" style="background-image:url('generated-image-bcf42af1.jpg');background-size:cover;background-position:center;">
           <div class="whyOverlay"></div>
-          <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🎓</div>
             <div class="whyTitle" style="color:#fff;">Université PRO POLICE</div>
-            <div class="whyDesc" style="color:rgba(255,255,255,.75);">Progressez à votre rythme grâce à des parcours pédagogiques professionnels. Un formateur virtuel disponible 24h/24 pour développer vos connaissances et compétences syndicales — où que vous soyez, quand vous le souhaitez.</div>
+            <div class="whyDesc" style="color:rgba(255,255,255,.75);">Progressez à votre rythme grâce à des parcours pédagogiques professionnels. Un formateur virtuel disponible 24h/24 — où que vous soyez, quand vous le souhaitez.</div>
             <span class="whyTag">Digital Learning</span>
           </div>
         </a>
-
-        <!-- 3 — Mentorat -->
-        <a class="whyCard" href="#universite" style="background-image:url('generated-image-612a9138.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+        <a class="whyCard" href="#universite" style="background-image:url('generated-image-612a9138.jpg');background-size:cover;background-position:center;">
           <div class="whyOverlay"></div>
-          <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🧠</div>
             <div class="whyTitle" style="color:#fff;">PRO POLICE Mentorat</div>
             <div class="whyDesc" style="color:rgba(255,255,255,.75);">Accompagnement individuel par des experts certifiés. Coaching, leadership syndical — des compétences que personne d'autre ne vous enseigne. Places limitées — accès sur dossier.</div>
             <span class="whyTag">Innovant</span>
           </div>
         </a>
-
-        <!-- 4 — Simulateurs -->
-        <a class="whyCard" href="#simulateur" style="background-image:url('generated-image-3a8663fc.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+        <a class="whyCard" href="#simulateur" style="background-image:url('generated-image-3a8663fc.jpg');background-size:cover;background-position:center;">
           <div class="whyOverlay"></div>
-          <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">📊</div>
             <div class="whyTitle" style="color:#fff;">Simulateurs exclusifs</div>
-            <div class="whyDesc" style="color:rgba(255,255,255,.75);">Votre salaire. Vos primes. Votre réalité. Calibré sur les grilles officielles DGPN, tous corps, toutes zones. En accès libre : une estimation. En adhérent : votre rémunération réelle, complète, détaillée. L'outil qu'il manquait à la Police Nationale.</div>
+            <div class="whyDesc" style="color:rgba(255,255,255,.75);">Votre salaire. Vos primes. Votre réalité. Calibré sur les grilles officielles DGPN, tous corps, toutes zones. En adhérent : votre rémunération réelle, complète, détaillée. L'outil qu'il manquait à la Police Nationale.</div>
             <span class="whyTag">Outil terrain</span>
           </div>
         </a>
-
-        <!-- 5 — Délégué en poche -->
-        <a class="whyCard" href="#ressources" style="background-image:url('generated-image-e911e793.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+        <a class="whyCard" href="#ressources" style="background-image:url('generated-image-e911e793.jpg');background-size:cover;background-position:center;">
           <div class="whyOverlay"></div>
-          <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🤝</div>
             <div class="whyTitle" style="color:#fff;">Délégué en poche</div>
             <div class="whyDesc" style="color:rgba(255,255,255,.75);">Accédez à votre délégué virtuel 24h/24. Ressources, fiches, modèles — tout ce dont vous avez besoin, quand vous en avez besoin.</div>
             <span class="whyTag">Mobile first</span>
           </div>
         </a>
-
-        <!-- 6 — Ouvert à tous -->
-        <a class="whyCard" href="#adhesion" style="background-image:url('generated-image-b5292d51.jpg');text-decoration:none;display:flex;flex-direction:column;justify-content:flex-end;">
+        <a class="whyCard" href="#adhesion" style="background-image:url('generated-image-b5292d51.jpg');background-size:cover;background-position:center;">
           <div class="whyOverlay"></div>
-          <div style="position:relative;z-index:2;padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">⚡</div>
             <div class="whyTitle" style="color:#fff;">Ouvert à tous, pensé pour le meilleur</div>
             <div class="whyDesc" style="color:rgba(255,255,255,.75);">80% de contenu gratuit pour tous. 17% exclusif adhérents. 3% réservé aux délégués formés — chaque niveau se mérite, chaque accès s'acquiert.</div>
             <span class="whyTag">Stratégie valeur</span>
           </div>
         </a>
-
       </div>
     </div>
   </section>
@@ -1012,13 +853,23 @@
       <p>Avancements, mutations, concours, réunions paritaires — toutes les dates clés en un coup d'œil.</p>
     </div>
 
-    <!-- Filtres -->
+    <!-- Onglets principaux -->
+    <div class="calOnglets" id="calOnglets">
+      <button class="calOngletBtn active" data-onglet="actif">
+        📅 Agenda en cours & à venir
+      </button>
+      <button class="calOngletBtn" data-onglet="clos">
+        🗂️ Archivés <span class="calOngletCount" id="countClos"></span>
+      </button>
+    </div>
+
+    <!-- Filtres catégories -->
     <div class="calFiltres" id="calFiltres">
-      <button class="calFiltreBtn active" data-cat="all">Tout afficher</button>
+      <button class="calFiltreBtn active" data-cat="all">Tout</button>
       <button class="calFiltreBtn" data-cat="avancement">🏅 Avancements</button>
       <button class="calFiltreBtn" data-cat="mutation">🗺️ Mutations</button>
       <button class="calFiltreBtn" data-cat="concours">📝 Concours</button>
-      <button class="calFiltreBtn" data-cat="paritaire">🤝 Paritaires</button>
+      <button class="calFiltreBtn" data-cat="paritaire">⚖️ Textes officiels</button>
       <button class="calFiltreBtn" data-cat="formation">🎓 Formations</button>
     </div>
 
@@ -1550,7 +1401,7 @@
         <div class="card contactCard">
           <div class="icon">✉️</div>
           <h3>Email</h3>
-          <p><a href="/cdn-cgi/l/email-protection#d1a2a8bfb5b8b2b0a5ffa1a3bea1bebdb8b2b491b6bcb0b8bdffb2bebc"><span class="__cf_email__" data-cfemail="1063697e74797371643e60627f607f7c79737550777d71797c3e737f7d">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#0e7d77606a676d6f7a207e7c617e6162676d6b4e69636f6762206d6163"><span class="__cf_email__" data-cfemail="05767c6b616c6664712b75776a756a696c6660456268646c692b666a68">[email&#160;protected]</span></a></p>
         </div>
         <div class="card contactCard">
           <div class="icon">🌐</div>
@@ -1588,8 +1439,7 @@
     <div class="footLinks">
       <strong>Navigation</strong>
       <a href="#corps">Corps</a>
-      <a href="#calendrier">Calendrier</a>
-    <a href="#ressources">Ressources</a>
+      <a href="#ressources">Ressources</a>
       <a href="#universite">Université</a>
       <a href="#actualites">Actualités</a>
       <a href="#bonsplans">Bons plans</a>
@@ -1602,7 +1452,7 @@
     </div>
     <div class="footLinks">
       <strong>Contact</strong>
-      <a href="/cdn-cgi/l/email-protection#23505a4d474a4042570d53514c534c4f4a404663444e424a4f0d404c4e">Email</a>
+      <a href="/cdn-cgi/l/email-protection#8ffcf6e1ebe6eceefba1fffde0ffe0e3e6eceacfe8e2eee6e3a1ece0e2">Email</a>
       <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
       <a href="#apropos">À propos</a>
     </div>
@@ -1634,24 +1484,6 @@
       const isOn = localStorage.getItem("propolice_member") === "true";
       btn.textContent = isOn ? "Mode adhérent ON ✅" : "Mode adhérent OFF";
       btn.classList.toggle("active", isOn);
-
-      // ── BETA : masquage adhésion si déjà adhérent ──────────
-      // Bouton hero "Rejoindre PRO POLICE"
-      const btnHero = document.getElementById("btnRejoindreHero");
-      if (btnHero) btnHero.style.display = isOn ? "none" : "";
-
-      // Section adhésion complète (fin de page)
-      const sectionAdhesion = document.getElementById("adhesion");
-      if (sectionAdhesion) sectionAdhesion.style.display = isOn ? "none" : "";
-
-      // Liens "Adhérer" dans les navs desktop + mobile
-      document.querySelectorAll("a[href='#adhesion']").forEach(function(el) {
-        el.style.display = isOn ? "none" : "";
-      });
-
-      // Bouton "Adhérer" dans la topbar
-      const btnAdhTopbar = document.querySelector(".topbar-right a.btn.primary");
-      if (btnAdhTopbar) btnAdhTopbar.style.display = isOn ? "none" : "";
     }
     btn.addEventListener("click", function () {
       const isOn = localStorage.getItem("propolice_member") === "true";
@@ -1753,122 +1585,188 @@
 </div>
 
 
-
   <script>
-  /* ══ CALENDRIER SOCIAL PRO POLICE ══ */
-  /* ══════════════════════════════════════════
+/* ══════════════════════════════════════════════════════════════
    CALENDRIER SOCIAL — PRO POLICE
-   Lit calendrier.json — éditable sans code
-══════════════════════════════════════════ */
+   Lit calendrier.json — éditable sans toucher au code
+   Deux onglets : "Agenda en cours & à venir" / "Archivés"
+   Filtres par catégorie disponibles sur les deux onglets
+══════════════════════════════════════════════════════════════ */
 
 (function() {
+  'use strict';
+
   const MOIS = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
   const STATUT_LABEL = {
-    ouvert: '🟢 Ouvert',
+    ouvert:   '🟢 Ouvert',
     en_cours: '🔵 En cours',
-    a_venir: '⚪ À venir',
-    clos: '🔴 Clôturé'
+    a_venir:  '⚪ À venir',
+    clos:     '🔴 Clôturé'
   };
 
-  let allEvents = [];
+  let allEvents  = [];
   let categories = {};
   let filtreActif = 'all';
+  let ongletActif = 'actif'; // 'actif' | 'clos'
 
-  /* ── Chargement du JSON ── */
+  /* ──────────────────────────────────────────
+     CHARGEMENT JSON
+  ────────────────────────────────────────── */
   function loadCalendrier() {
     fetch('calendrier.json?v=' + Date.now())
-      .then(r => r.json())
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(data => {
-        allEvents = data.evenements.sort((a,b) => new Date(a.date) - new Date(b.date));
+        allEvents  = data.evenements || [];
         categories = data.categories || {};
-        document.getElementById('calSourceMention').textContent =
+        const src = document.getElementById('calSourceMention');
+        if (src) src.textContent =
           '📡 Dernière mise à jour : ' + formatDate(data.lastUpdate) + ' — ' + data.source;
         renderCalendrier();
+        bindOnglets();
         bindFiltres();
       })
-      .catch(() => {
-        document.getElementById('calTimeline').innerHTML =
-          '<div class="calVide">⚠️ Impossible de charger le calendrier. Vérifiez que calendrier.json est présent.</div>';
+      .catch(err => {
+        console.error('Calendrier :', err);
+        const tl = document.getElementById('calTimeline');
+        if (tl) tl.innerHTML =
+          '<div class="calVide">⚠️ Impossible de charger le calendrier. Vérifiez que calendrier.json est présent à la racine du site.</div>';
       });
   }
 
-  /* ── Rendu timeline ── */
+  /* ──────────────────────────────────────────
+     RENDU TIMELINE
+  ────────────────────────────────────────── */
   function renderCalendrier() {
     const timeline = document.getElementById('calTimeline');
-    const today = new Date();
-    today.setHours(0,0,0,0);
+    if (!timeline) return;
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const currentYear = today.getFullYear();
+
+    // Filtrer par catégorie
     const filtered = filtreActif === 'all'
       ? allEvents
       : allEvents.filter(e => e.categorie === filtreActif);
 
-    // Masquer les événements passés depuis plus de 30 jours
-    const visible = filtered.filter(e => {
-      const d = new Date(e.date);
-      const diff = (d - today) / (1000*60*60*24);
-      return diff > -30;
-    });
+    // Séparer actifs et clôturés
+    const actifs = filtered
+      .filter(e => {
+        const d = new Date(e.date);
+        return d >= today || e.statut === 'en_cours';
+      })
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    const clos = filtered
+      .filter(e => {
+        const d = new Date(e.date);
+        return d < today && e.statut !== 'en_cours';
+      })
+      .sort((a, b) => new Date(b.date) - new Date(a.date)); // plus récent en premier
+
+    // Mettre à jour le compteur badge onglet clôturés
+    const countEl = document.getElementById('countClos');
+    if (countEl) countEl.textContent = clos.length > 0 ? clos.length : '';
+
+    // Choisir le groupe à afficher
+    const visible = ongletActif === 'actif' ? actifs : clos;
 
     if (visible.length === 0) {
-      timeline.innerHTML = '<div class="calVide">Aucune échéance dans cette catégorie pour le moment.</div>';
+      const msg = ongletActif === 'actif'
+        ? '✅ Aucune échéance à venir dans cette catégorie.'
+        : '📭 Aucun événement archivé dans cette catégorie pour ' + currentYear + '.';
+      timeline.innerHTML = '<div class="calVide">' + msg + '</div>';
       return;
     }
 
-    timeline.innerHTML = visible.map((ev, i) => {
-      const d = new Date(ev.date);
-      const diff = Math.round((d - today) / (1000*60*60*24));
-      const cat = categories[ev.categorie] || { emoji: '📌', couleur: '#3b82f6' };
+    // Titre groupe
+    const groupTitle = ongletActif === 'actif'
+      ? '<div class="calGroupTitle">📅 Prochaines échéances (' + actifs.length + ')</div>'
+      : '<div class="calGroupTitle calGroupPast">🗂️ Archivés ' + currentYear + ' (' + clos.length + ')</div>';
 
-      let countdown = '';
-      let countClass = '';
-      if (diff < 0) {
-        countdown = 'Il y a ' + Math.abs(diff) + 'j';
-        countClass = 'clos';
-      } else if (diff === 0) {
-        countdown = "Aujourd'hui !";
-        countClass = 'urgent';
-      } else if (diff <= 7) {
-        countdown = 'Dans ' + diff + ' jour' + (diff > 1 ? 's' : '');
-        countClass = 'urgent';
-      } else if (diff <= 30) {
-        countdown = 'Dans ' + diff + ' jours';
-        countClass = 'soon';
-      } else {
-        countdown = 'Dans ' + diff + ' jours';
-      }
-
-      const corps = (ev.corps || []).map(c =>
-        `<span class="calTag calTagCorps">${c}</span>`
-      ).join('');
-
-      const lien = ev.lien
-        ? `<a href="${ev.lien}" target="_blank" style="font-size:11px;color:var(--accent2);margin-left:8px;text-decoration:none;">→ Voir</a>`
-        : '';
-
-      return `
-        <div class="calEvent" data-statut="${ev.statut}" data-cat="${ev.categorie}"
-             style="animation-delay:${i * 0.06}s; border-left: 3px solid ${cat.couleur};">
-          <div class="calDate">
-            <div class="calJour">${d.getDate()}</div>
-            <div class="calMois">${MOIS[d.getMonth()]}</div>
-            <div class="calAnnee">${d.getFullYear()}</div>
-          </div>
-          <div class="calSep"></div>
-          <div class="calBody">
-            <div class="calTitre">${cat.emoji} ${ev.titre}</div>
-            <div class="calDesc">${ev.description}</div>
-            <div class="calMeta">
-              <span class="calBadgeStatut ${ev.statut}">${STATUT_LABEL[ev.statut] || ev.statut}</span>
-              ${corps}
-              ${lien}
-              <span class="calCountdown ${countClass}">${countdown}</span>
-            </div>
-          </div>
-        </div>`;
-    }).join('');
+    const isPast = (ongletActif === 'clos');
+    timeline.innerHTML = groupTitle + visible.map((ev, i) => buildCard(ev, i, isPast)).join('');
   }
 
-  /* ── Filtres ── */
+  /* ──────────────────────────────────────────
+     CONSTRUCTION D'UNE CARTE ÉVÉNEMENT
+  ────────────────────────────────────────── */
+  function buildCard(ev, i, isPast) {
+    const d    = new Date(ev.date);
+    const today = new Date(); today.setHours(0,0,0,0);
+    const diff  = Math.round((d - today) / (1000 * 60 * 60 * 24));
+    const cat   = categories[ev.categorie] || { emoji: '📌', couleur: '#3b82f6' };
+
+    // Countdown
+    let countdown = '', countClass = '';
+    if (diff < 0) {
+      const j = Math.abs(diff);
+      countdown  = j < 30 ? 'Il y a ' + j + 'j' : 'Il y a ' + Math.round(j / 30) + ' mois';
+      countClass = 'clos';
+    } else if (diff === 0) {
+      countdown  = "Aujourd'hui !";
+      countClass = 'urgent';
+    } else if (diff <= 7) {
+      countdown  = 'Dans ' + diff + ' jour' + (diff > 1 ? 's' : '');
+      countClass = 'urgent';
+    } else if (diff <= 30) {
+      countdown  = 'Dans ' + diff + ' jours';
+      countClass = 'soon';
+    } else {
+      countdown  = 'Dans ' + diff + ' jours';
+    }
+
+    // Tags corps
+    const corps = (ev.corps || [])
+      .map(c => '<span class="calTag calTagCorps">' + c + '</span>')
+      .join('');
+
+    // Lien optionnel
+    const lien = ev.lien
+      ? '<a href="' + ev.lien + '" target="_blank" rel="noopener" style="font-size:11px;color:var(--accent2);margin-left:8px;text-decoration:none;">→ Voir</a>'
+      : '';
+
+    const pastStyle = isPast ? 'opacity:.6;' : '';
+
+    return (
+      '<div class="calEvent" data-statut="' + ev.statut + '" data-cat="' + ev.categorie + '"' +
+      ' style="animation-delay:' + (i * 0.05) + 's;border-left:3px solid ' + cat.couleur + ';' + pastStyle + '">' +
+        '<div class="calDate">' +
+          '<div class="calJour">'  + d.getDate()             + '</div>' +
+          '<div class="calMois">'  + MOIS[d.getMonth()]      + '</div>' +
+          '<div class="calAnnee">' + d.getFullYear()          + '</div>' +
+        '</div>' +
+        '<div class="calSep"></div>' +
+        '<div class="calBody">' +
+          '<div class="calTitre">' + cat.emoji + ' ' + ev.titre + '</div>' +
+          '<div class="calDesc">'  + ev.description            + '</div>' +
+          '<div class="calMeta">' +
+            '<span class="calBadgeStatut ' + ev.statut + '">' + (STATUT_LABEL[ev.statut] || ev.statut) + '</span>' +
+            corps + lien +
+            '<span class="calCountdown ' + countClass + '">' + countdown + '</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  /* ──────────────────────────────────────────
+     BINDING ONGLETS (actif / clos)
+  ────────────────────────────────────────── */
+  function bindOnglets() {
+    document.querySelectorAll('.calOngletBtn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.calOngletBtn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        ongletActif = this.dataset.onglet; // 'actif' ou 'clos'
+        renderCalendrier();
+      });
+    });
+  }
+
+  /* ──────────────────────────────────────────
+     BINDING FILTRES CATÉGORIES
+  ────────────────────────────────────────── */
   function bindFiltres() {
     document.querySelectorAll('.calFiltreBtn').forEach(btn => {
       btn.addEventListener('click', function() {
@@ -1880,21 +1778,25 @@
     });
   }
 
-  /* ── Utilitaires ── */
+  /* ──────────────────────────────────────────
+     UTILITAIRES
+  ────────────────────────────────────────── */
   function formatDate(str) {
-    if (!str) return '';
+    if (!str) return '—';
     const d = new Date(str);
     return d.getDate() + ' ' + MOIS[d.getMonth()] + ' ' + d.getFullYear();
   }
 
-  /* ── Init ── */
+  /* ──────────────────────────────────────────
+     INIT
+  ────────────────────────────────────────── */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadCalendrier);
   } else {
     loadCalendrier();
   }
-})();
 
+})();
   </script>
 
 </body>
