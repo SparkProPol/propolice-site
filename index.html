@@ -88,11 +88,15 @@
     /* Carte avec image */
     .corpsCard.hasImg {
       padding: 0; height: 200px;
-      background-size: cover; background-position: center;
-      border: none; cursor: pointer;
-      transition: transform .3s ease, box-shadow .3s ease;
+      background-size: 100%; background-position: center;
+      border: none; cursor: pointer; overflow: hidden;
+      transition: transform .35s ease, box-shadow .35s ease, background-size .45s ease;
     }
-    .corpsCard.hasImg:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(59,130,246,.25); }
+    .corpsCard.hasImg:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(59,130,246,.28);
+      background-size: 112%;
+    }
     .corpsCard.hasImg .corpsImgOverlay {
       position: absolute; inset: 0;
       background: linear-gradient(to bottom, rgba(5,10,20,.1) 0%, rgba(5,10,20,.55) 55%, rgba(5,10,20,.92) 100%);
@@ -125,7 +129,9 @@
     a.whyCard {
       padding: 0; min-height: 260px; border: none; cursor: pointer;
       display: flex; flex-direction: column; justify-content: flex-end;
-      text-decoration: none;
+      text-decoration: none; overflow: hidden;
+      background-size: 100% !important; background-position: center !important;
+      transition: transform .35s ease, box-shadow .35s ease, background-size .45s ease !important;
     }
     a.whyCard .whyOverlay {
       position: absolute; inset: 0;
@@ -133,7 +139,11 @@
       border-radius: inherit; z-index: 1; pointer-events: none;
     }
     a.whyCard > div:not(.whyOverlay) { position: relative; z-index: 2; }
-    a.whyCard:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(0,0,0,.5); }
+    a.whyCard:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 48px rgba(0,0,0,.55);
+      background-size: 112% !important;
+    }
     .whyIcon { font-size: 32px; margin-bottom: 14px; }
     .whyTitle { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: #fff; }
     .whyDesc { font-size: 13px; color: var(--muted); line-height: 1.65; }
@@ -746,7 +756,7 @@
         <p>Un syndicat qui pense autrement — indépendant, innovant, orienté terrain.</p>
       </div>
       <div class="whyGrid">
-        <a class="whyCard" href="#fonctionnalites" style="background-image:url('generated-image-dbe415dd.jpg');background-size:cover;background-position:center;">
+        <a class="whyCard" href="#fonctionnalites" style="background-image:url('generated-image-dbe415dd.jpg');">
           <div class="whyOverlay"></div>
           <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🏴‍☠️</div>
@@ -755,7 +765,7 @@
             <span class="whyTag">Unique en France</span>
           </div>
         </a>
-        <a class="whyCard" href="#universite" style="background-image:url('generated-image-bcf42af1.jpg');background-size:cover;background-position:center;">
+        <a class="whyCard" href="#universite" style="background-image:url('generated-image-bcf42af1.jpg');">
           <div class="whyOverlay"></div>
           <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🎓</div>
@@ -764,7 +774,7 @@
             <span class="whyTag">Digital Learning</span>
           </div>
         </a>
-        <a class="whyCard" href="#universite" style="background-image:url('generated-image-612a9138.jpg');background-size:cover;background-position:center;">
+        <a class="whyCard" href="#universite" style="background-image:url('generated-image-612a9138.jpg');">
           <div class="whyOverlay"></div>
           <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🧠</div>
@@ -773,7 +783,7 @@
             <span class="whyTag">Innovant</span>
           </div>
         </a>
-        <a class="whyCard" href="#simulateur" style="background-image:url('generated-image-3a8663fc.jpg');background-size:cover;background-position:center;">
+        <a class="whyCard" href="#simulateur" style="background-image:url('generated-image-3a8663fc.jpg');">
           <div class="whyOverlay"></div>
           <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">📊</div>
@@ -782,7 +792,7 @@
             <span class="whyTag">Outil terrain</span>
           </div>
         </a>
-        <a class="whyCard" href="#ressources" style="background-image:url('generated-image-e911e793.jpg');background-size:cover;background-position:center;">
+        <a class="whyCard" href="#ressources" style="background-image:url('generated-image-e911e793.jpg');">
           <div class="whyOverlay"></div>
           <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">🤝</div>
@@ -791,7 +801,7 @@
             <span class="whyTag">Mobile first</span>
           </div>
         </a>
-        <a class="whyCard" href="#adhesion" style="background-image:url('generated-image-b5292d51.jpg');background-size:cover;background-position:center;">
+        <a class="whyCard" href="#adhesion" style="background-image:url('generated-image-b5292d51.jpg');">
           <div class="whyOverlay"></div>
           <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
             <div class="whyIcon">⚡</div>
@@ -1401,7 +1411,7 @@
         <div class="card contactCard">
           <div class="icon">✉️</div>
           <h3>Email</h3>
-          <p><a href="/cdn-cgi/l/email-protection#0e7d77606a676d6f7a207e7c617e6162676d6b4e69636f6762206d6163"><span class="__cf_email__" data-cfemail="05767c6b616c6664712b75776a756a696c6660456268646c692b666a68">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#4b3832252f22282a3f653b39243b242722282e0b2c262a222765282426"><span class="__cf_email__" data-cfemail="aeddd7c0cac7cdcfda80dedcc1dec1c2c7cdcbeec9c3cfc7c280cdc1c3">[email&#160;protected]</span></a></p>
         </div>
         <div class="card contactCard">
           <div class="icon">🌐</div>
@@ -1452,7 +1462,7 @@
     </div>
     <div class="footLinks">
       <strong>Contact</strong>
-      <a href="/cdn-cgi/l/email-protection#8ffcf6e1ebe6eceefba1fffde0ffe0e3e6eceacfe8e2eee6e3a1ece0e2">Email</a>
+      <a href="/cdn-cgi/l/email-protection#33404a5d575a5052471d43415c435c5f5a505673545e525a5f1d505c5e">Email</a>
       <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
       <a href="#apropos">À propos</a>
     </div>
