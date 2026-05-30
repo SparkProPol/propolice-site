@@ -1,4 +1,6 @@
 console.log("🔒 PRO POLICE V6 — SIMULATEUR OFFICIEL STABLE");
+const VERSION_SIMULATEUR = "V6.0 — STABLE";
+const DATE_VERSION = "2026-05-30";
 
 function calculerNetReel(brut) {
 
@@ -236,10 +238,15 @@ const net = detailNet.net;
     💡 Net avant impôt sur le revenu
   </div>
 
+  <!-- 🔧 VERSION -->
+  <div style="margin-top:10px;font-size:0.75em;color:#6b7280;">
+    🔧 ${VERSION_SIMULATEUR} • ${DATE_VERSION}
+  </div>
+
 </div>
 
 `;
-
+  
   } catch (e) {
     console.error("❌ ERREUR :", e);
     alert("Erreur JS - voir console");
