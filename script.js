@@ -224,6 +224,26 @@ if (isAdherent) {
 }
 
 // ========================
+// 🔵 TOGGLE ZONE OM / AFFECTATION
+// ========================
+function toggleZoneOM() {
+
+  const typeZone = document.getElementById("typeZone");
+  const blocOM = document.getElementById("blocOM");
+  const blocAffectation = document.getElementById("blocAffectation");
+
+  if (!typeZone || !blocOM || !blocAffectation) return;
+
+  if (typeZone.value === "outremer") {
+    blocOM.style.display = "block";
+    blocAffectation.style.display = "none";
+  } else {
+    blocOM.style.display = "none";
+    blocAffectation.style.display = "block";
+  }
+}
+
+// ========================
 // 🔵 INIT
 // ========================
 window.addEventListener("DOMContentLoaded", () => {
@@ -232,4 +252,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("grade")?.addEventListener("change", remplirEchelons);
 
+  toggleZoneOM(); // 🔥 IMPORTANT
 });
