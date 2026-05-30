@@ -2,7 +2,7 @@ console.log("🔒 PRO POLICE V6 — SIMULATEUR OFFICIEL STABLE");
 const VERSION_SIMULATEUR = "V6.0 — STABLE";
 const DATE_VERSION = "2026-05-30";
 
-function calculerNetReel(brut) {
+function calculerNetReel(brut, aff) {
 
   const pension = brut * 0.111;
   const csg_deductible = brut * 0.068;
@@ -19,7 +19,14 @@ function calculerNetReel(brut) {
 
   const coefficientCorrection = 1.05;
 
-  const net = (brut - totalRetenues) * coefficientCorrection;
+  let net = (brut - totalRetenues) * coefficientCorrection;
+
+// 🔥 CORRECTION PARIS / PROVINCE
+if (aff === "paris") {
+  net *= 1.01;
+} else {
+  net *= 0.995;
+}
 
   return {
     net,
@@ -136,7 +143,7 @@ function calculerPrimes() {
       tauxCharges = (grade === "major") ? 0.118 : 0.105;
     }
 
-    const detailNet = calculerNetReel(brut);
+    const detailNet = calculerNetReel(brut, aff);
 const net = detailNet.net;
 
     // ========================
