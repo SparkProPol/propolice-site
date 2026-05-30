@@ -33,7 +33,7 @@ function calculerNetReel(brut) {
 // ========================
 // 🔵 FONCTION PRINCIPALE
 // ========================
-window.calculerMobile = function () {
+function calculerPrimes() {
 
   console.log("🔥 CALCUL COMPLET PRO POLICE");
 
@@ -162,7 +162,7 @@ const net = detailNet.net;
       document.getElementById("resultatPublic") ||
       document.getElementById("resultatMobile");
 
-    cible.innerHTML = `
+  cible.innerHTML = `
 
 <div style="padding:20px;border-radius:12px;background:#111827;color:white">
 
@@ -176,31 +176,64 @@ const net = detailNet.net;
   <hr>
 
   <div><strong>💸 Brut officiel : ${brut.toFixed(2)} €</strong></div>
-  <div>📉 Charges : ${(tauxCharges * 100).toFixed(1)} %</div>
 
-  <div style="font-size:22px;color:#22c55e">
-    ➡️ Net estimé : <strong>${net.toFixed(2)} €</strong>
+  <!-- 💚 BLOC SALAIRE -->
+  <div style="
+    margin-top:15px;
+    padding:18px;
+    background:linear-gradient(135deg, #052e16, #14532d);
+    border-radius:12px;
+    border:1px solid rgba(34,197,94,0.3);
+  ">
+
+    <div style="font-size:0.9em;color:#86efac;">
+      💰 TON SALAIRE RÉEL ESTIMÉ
+    </div>
+
+    <div style="font-size:2em;font-weight:800;color:#22c55e;">
+      ${net.toFixed(2)} €
+    </div>
+
   </div>
 
   <hr>
 
-  <h3 style="color:#facc15">📊 Primes & compléments (hors brut officiel)</h3>
+  <h3 style="color:#facc15">📊 Primes & compléments</h3>
 
-  <div>🎖️ Allocation maîtrise : + ${allocationMaitrise.toFixed(2)} €</div>
-  <div>📅 Complément RTT : + ${complementRTT.toFixed(2)} €</div>
-  <div>🌙 Nuit : + ${majorationNuit.toFixed(2)} €</div>
-  <div>📆 Dimanche : + ${majorationDimanche.toFixed(2)} €</div>
-  <div>👨‍👩‍👧 SFT : + ${sft.toFixed(2)} €</div>
+<div>🎖️ Allocation maîtrise : + ${allocationMaitrise.toFixed(2)} €</div>
+<div>📅 Complément RTT : + ${complementRTT.toFixed(2)} €</div>
+<div>🌙 Nuit : + ${majorationNuit.toFixed(2)} €</div>
+<div>📆 Dimanche : + ${majorationDimanche.toFixed(2)} €</div>
+<div>👨‍👩‍👧 SFT : + ${sft.toFixed(2)} €</div>
+
+<hr>
+
+  <h3 style="color:#facc15">📉 Détail des retenues</h3>
+
+  <div>🏦 Pension : - ${detailNet.pension.toFixed(2)} €</div>
+  <div>🧾 CSG déductible : - ${detailNet.csg_deductible.toFixed(2)} €</div>
+  <div>📄 CSG non déductible : - ${detailNet.csg_non_deductible.toFixed(2)} €</div>
+  <div>⚖️ CRDS : - ${detailNet.crds.toFixed(2)} €</div>
+  <div>📊 RAFP : - ${detailNet.rafp.toFixed(2)} €</div>
 
   <hr>
 
-  <div style="font-size:12px;color:#9ca3af">
-    ⚠️ Simulation indicative – non contractuelle
+  <div style="background:#1e3a8a22;padding:10px;border-radius:8px;">
+    📊 Analyse PRO POLICE<br>
+    ✔ Simulation proche fiche de paie<br>
+    ✔ Écart moyen constaté < 1%
   </div>
 
-  <div style="margin-top:10px;font-size:0.85em;">
-    🎯 Lecture PRO POLICE : estimation basée sur données terrain.<br>
-    🔴 Précision < 1%
+  <div style="
+    margin-top:10px;
+    padding:10px;
+    background:#facc1522;
+    border-left:4px solid #facc15;
+    border-radius:6px;
+    font-size:0.85em;
+  ">
+    ⚠️ Simulation indicative non contractuelle<br>
+    💡 Net avant impôt sur le revenu
   </div>
 
 </div>
