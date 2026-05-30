@@ -119,8 +119,12 @@ function calculerPrimes() {
 
     // 🔵 ISSP
     let tauxISSP = 0.255;
-    if (corpsClean === "CRS") tauxISSP = 0.285;
-    else if (aff === "paris") tauxISSP = 0.31;
+
+if (corpsClean === "CRS") {
+  tauxISSP = 0.285;
+} else {
+  tauxISSP = (aff === "paris") ? 0.31 : 0.255;
+}
 
     const ISSP = salaireBase * tauxISSP;
 
@@ -129,9 +133,16 @@ function calculerPrimes() {
 
     // 🔵 ICSS CRS
     let ICSS = 0;
-    if (corpsClean === "CRS") {
-      ICSS = (zone === "0") ? 113.32 : 145;
-    }
+
+if (corpsClean === "CRS") {
+
+  if (zone === "0") {
+    ICSS = 113.32;
+  } else {
+    ICSS = (aff === "paris") ? 145 : 113.32;
+  }
+
+}
 
     // 🔵 BRUT
     const brut = salaireBase + ISSP + IR + ICSS;
