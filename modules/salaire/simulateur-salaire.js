@@ -1,4 +1,4 @@
-console.log("🔒 PRO POLICE — V5 SIMULATEUR FINAL CHARGÉ");
+console.log("🔒 PRO POLICE V6 — SIMULATEUR OFFICIEL STABLE");
 
 function calculerNetReel(brut) {
 
