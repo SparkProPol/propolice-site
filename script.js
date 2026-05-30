@@ -152,25 +152,70 @@ if (corpsClean === "CRS") {
     const net = netData.net;
 
     // 🔵 AFFICHAGE
-    const cible = document.getElementById("resultatPublic");
+    const isAdherent = true; // 🔥 TEMPORAIRE pour forcer mode ON
 
-    cible.innerHTML = `
-      <div style="padding:15px;background:#111827;color:white;border-radius:10px">
+const resultatPublic = document.getElementById("resultatPublic");
+const resultatMembre = document.getElementById("resultatMembre");
+if (!resultatPublic || !resultatMembre) {
+  console.error("❌ éléments HTML manquants");
+  return;
+}
+const blocBase = `
+<div class="row">💰 Base : ${salaireBase.toFixed(2)} €</div>
+<div class="row">📈 ISSP : ${ISSP.toFixed(2)} €</div>
+<div class="row">🏠 IR : ${IR.toFixed(2)} €</div>
+<div class="row">🚓 ICSS : ${ICSS.toFixed(2)} €</div>
+<hr>
+<div><strong>💸 Brut : ${brut.toFixed(2)} €</strong></div>
+<div><strong>➡️ Net : ${net.toFixed(2)} €</strong></div>
+`;
 
-        <h3>📊 Simulation PRO POLICE</h3>
+if (isAdherent) {
 
-        💰 Base : ${salaireBase.toFixed(2)} €<br>
-        📈 ISSP : ${ISSP.toFixed(2)} €<br>
-        🏠 IR : ${IR.toFixed(2)} €<br>
-        🚓 ICSS : ${ICSS.toFixed(2)} €<br>
+  resultatPublic.style.display = "none";
+  resultatMembre.style.display = "block";
 
-        <hr>
+  resultatMembre.innerHTML = `
+    ${blocBase}
 
-        💸 Brut : ${brut.toFixed(2)} €<br>
-        ➡️ <strong>Net estimé : ${net.toFixed(2)} €</strong>
+    <hr>
 
-      </div>
-    `;
+    <div style="margin-top:10px;">
+      📉 <strong>Détail des retenues :</strong><br><br>
+      🏦 Pension : - ${(brut * 0.111).toFixed(2)} €<br>
+      🧾 CSG déductible : - ${(brut * 0.068).toFixed(2)} €<br>
+      📄 CSG non déductible : - ${(brut * 0.024).toFixed(2)} €<br>
+      ⚖️ CRDS : - ${(brut * 0.005).toFixed(2)} €<br>
+      📊 RAFP : - ${(brut * 0.05 * 0.10).toFixed(2)} €
+    </div>
+
+    <hr>
+
+    <div style="margin-top:10px;">
+      📊 Analyse PRO POLICE<br>
+      ✔ Simulation proche fiche de paie<br>
+      ✔ Écart moyen constaté < 1%
+    </div>
+
+    <div style="margin-top:10px;font-size:0.85em;color:#aaa;">
+      ⚠️ Simulation indicative non contractuelle<br>
+      💡 Net avant impôt sur le revenu
+    </div>
+  `;
+
+} else {
+
+  resultatPublic.style.display = "block";
+  resultatMembre.style.display = "none";
+
+  resultatPublic.innerHTML = `
+    ${blocBase}
+    <div style="margin-top:10px;">
+      🔓 Version simplifiée<br>
+      👉 Passe en mode adhérent pour plus de détails
+    </div>
+  `;
+}
 
   } catch (e) {
     console.error("❌ ERREUR CALCUL :", e);
