@@ -257,6 +257,9 @@ net += (complementRTT || 0);
 </div>
 
 <div>👮 Fonction OPJ : + ${opj.toFixed(2)} €</div>
+<div style="font-size:0.8em;color:#facc15;">
+⚠️ Prime versée trimestriellement (~ ${(opj * 3).toFixed(0)} € / trimestre)
+</div>
 <div>🚓 Prime voie publique (VP) : + ${primeVP.toFixed(2)} €</div>
 
 <div>👨‍👩‍👧 SFT : + ${sft.toFixed(2)} €</div>
