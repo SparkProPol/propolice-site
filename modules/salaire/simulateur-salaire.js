@@ -153,6 +153,31 @@ const ISSP = salaireBase * tauxISSP;
     const detailNet = calculerNetReel(brut, aff);
 const net = detailNet.net;
 
+    
+// ========================
+// 🔵 MICRO CALIBRAGE PAR GRADE (V6+)
+// ========================
+if (grade === "gpx") {
+  net *= 1.000; // référence parfaite
+}
+
+if (grade === "bc_norm") {
+  net *= 0.995;
+}
+
+if (grade === "bc_sup") {
+  net *= 0.992;
+}
+
+if (grade === "major") {
+  net *= 0.990;
+}
+
+// ⚠️ RULP si utilisé (à adapter selon ton système réel)
+if (grade === "rulp") {
+  net *= 0.985;
+}
+
     // ========================
     // 🔵 PRIMES (AFFICHAGE UNIQUEMENT)
     // ========================
