@@ -54,6 +54,16 @@ function calculerPrimes() {
 
     const corpsClean = corps.toUpperCase();
     let aff = affectation.toLowerCase();
+    // ========================
+// 🔵 VARIABLES PRIMES
+// ========================
+const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
+const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
+const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
+
+const itn = document.getElementById("itn")?.value === "oui" ? 150 : 0;
+const opj = document.getElementById("opj")?.value === "oui" ? 150 : 0;
+const primeVP = document.getElementById("primeVP")?.value === "oui" ? 100 : 0;
 
     // ========================
     // 🔵 BASE INDICIAIRE (SAFE)
@@ -152,7 +162,17 @@ const ISSP = salaireBase * tauxISSP;
 
     const detailNet = calculerNetReel(brut, aff);
 let net = detailNet.net;
-
+// ========================
+// 🔵 AJOUT PRIMES AU NET (IMPACT RÉEL)
+// ========================
+net += majorationNuit;
+net += majorationDimanche;
+net += sft;
+net += itn;
+net += opj;
+net += primeVP;
+net += allocationMaitrise;
+net += complementRTT;
     
 // ========================
 // 🔵 MICRO CALIBRAGE PAR GRADE (V6+)
