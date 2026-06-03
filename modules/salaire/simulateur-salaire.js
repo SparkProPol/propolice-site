@@ -55,7 +55,7 @@ function calculerPrimes() {
     const zone = document.getElementById("zone")?.value || "0";
 
     const corpsClean = corps.toUpperCase();
-    aff = "province";
+    let aff = affectation.toLowerCase();
 
     // ========================
     // 🔵 BASE INDICIAIRE (SAFE)
@@ -113,10 +113,14 @@ const ISSP = salaireBase * tauxISSP;
     let ICSS = 0;
 
     if (corpsClean === "CRS") {
-      ICSS = (zone === "0")
-        ? 113.32
-        : (aff === "paris" ? 145 : 113.32);
-    }
+
+  if (zone === "0") {
+    ICSS = 113.32;
+  } else {
+    ICSS = 113.32; // 🔥 FIXE CRS
+  }
+
+}
 
     // ========================
     // 🔵 BRUT OFFICIEL (NE PAS TOUCHER)
