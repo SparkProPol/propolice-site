@@ -158,19 +158,23 @@ let net = detailNet.net;
 // 🔵 MICRO CALIBRAGE PAR GRADE (V6+)
 // ========================
 if (grade === "gpx") {
-  net *= 1.000; // référence parfaite
+  net *= 1.000;
 }
 
 if (grade === "bc_norm") {
-  net *= 0.995;
+  net *= 0.993; // 🔥 micro-ajustement
 }
 
 if (grade === "bc_sup") {
-  net *= 0.992;
+  net *= 0.991;
 }
 
 if (grade === "major") {
-  net *= 0.990;
+  net *= 0.989;
+}
+
+if (grade === "rulp") {
+  net *= 0.982;
 }
 
 // ⚠️ RULP si utilisé (à adapter selon ton système réel)
