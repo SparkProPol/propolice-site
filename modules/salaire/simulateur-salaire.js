@@ -54,18 +54,21 @@ function calculerPrimes() {
 
     const corpsClean = corps.toUpperCase();
     let aff = affectation.toLowerCase();
-   // ========================
-// 🔵 VARIABLES PRIMES (ROBUSTES)
+ // ========================
+// 🔵 VARIABLES PRIMES (ULTRA ROBUSTE)
 // ========================
 const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
 const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
 const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
 
-const normalize = (val) => (val || "").toLowerCase();
+const itnValue = document.getElementById("itn")?.value;
+const opjValue = document.getElementById("opj")?.value;
+const vpValue = document.getElementById("primeVP")?.value;
 
-const itn = normalize(document.getElementById("itn")?.value).includes("oui") ? 150 : 0;
-const opj = normalize(document.getElementById("opj")?.value).includes("oui") ? 150 : 0;
-const primeVP = normalize(document.getElementById("primeVP")?.value).includes("oui") ? 100 : 0;
+// 🔥 LOGIQUE CORRIGÉE
+const itn = itnValue !== "non" ? 150 : 0;
+const opj = opjValue !== "non" ? 150 : 0;
+const primeVP = vpValue !== "non" ? 100 : 0;
 
     // ========================
     // 🔵 BASE INDICIAIRE (SAFE)
