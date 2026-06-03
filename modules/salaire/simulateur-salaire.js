@@ -17,15 +17,15 @@ function calculerNetReel(brut, aff) {
     crds +
     rafp;
 
-  const coefficientCorrection = 1.05;
+  const coefficientCorrection = 0.92;
 
   let net = (brut - totalRetenues) * coefficientCorrection;
 
 // 🔥 CORRECTION PARIS / PROVINCE
 if (aff === "paris") {
-  net *= 1.01;
+  net *= 1.015;
 } else {
-  net *= 0.995;
+  net *= 0.99;
 }
 
   return {
@@ -88,14 +88,19 @@ function calculerPrimes() {
       salaireBase = getBrutBase(corps, gradeCEA, echelon);
     }
 
-    // ========================
-    // 🔵 ISSP
-    // ========================
-    let tauxISSP = corpsClean === "CRS"
-      ? 0.285
-      : (aff === "paris" ? 0.31 : 0.255);
+   // 🔥 PRIORITÉ CRS (avant tout)
+if (corpsClean === "CRS") {
+  aff = "province"; // neutralise Paris
+}
 
-    const ISSP = salaireBase * tauxISSP;
+// ========================
+// 🔵 ISSP
+// ========================
+let tauxISSP = corpsClean === "CRS"
+  ? 0.285
+  : (aff === "paris" ? 0.31 : 0.255);
+
+const ISSP = salaireBase * tauxISSP;
 
     // ========================
     // 🔵 IR
