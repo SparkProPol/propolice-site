@@ -160,8 +160,32 @@ const ISSP = salaireBase * tauxISSP;
       tauxCharges = (grade === "major") ? 0.118 : 0.105;
     }
 
-    const detailNet = calculerNetReel(brut, aff);
+   // ========================
+// 🔵 CALCUL PRIMES (AVANT NET)
+// ========================
+const majorationNuit = heuresNuit * 2.2;
+const majorationDimanche = heuresDimanche * 2.8;
+
+const sft =
+  enfants === 1 ? 2.29 :
+  enfants === 2 ? 73.79 :
+  enfants >= 3 ? 183.56 : 0;
+
+const allocationMaitrise = 319.58;
+const complementRTT = 112.33;
+
+// ========================
+// 🔵 NET RÉEL
+// ========================
+const detailNet = calculerNetReel(brut, aff);
 let net = detailNet.net;
+    
+    // 🔵 CALIBRAGE GRADE
+if (grade === "bc_norm") net *= 0.993;
+if (grade === "bc_sup") net *= 0.991;
+if (grade === "major") net *= 0.989;
+if (grade === "rulp") net *= 0.982;
+    
 // ========================
 // 🔵 AJOUT PRIMES AU NET (IMPACT RÉEL)
 // ========================
@@ -209,16 +233,7 @@ if (grade === "rulp") {
     const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
     const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
 
-    const majorationNuit = heuresNuit * 2.2;
-    const majorationDimanche = heuresDimanche * 2.8;
-
-    const sft =
-      enfants === 1 ? 2.29 :
-      enfants === 2 ? 73.79 :
-      enfants >= 3 ? 183.56 : 0;
-
-    const allocationMaitrise = 319.58;
-    const complementRTT = 112.33;
+    
 
     // ========================
     // 🔵 AFFICHAGE PRO COMPLET
