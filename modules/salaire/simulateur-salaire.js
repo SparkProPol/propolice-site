@@ -221,11 +221,6 @@ if (grade === "rulp") {
   net *= 0.982;
 }
 
-// ⚠️ RULP si utilisé (à adapter selon ton système réel)
-if (grade === "rulp") {
-  net *= 0.985;
-}
-
     // ========================
     // 🔵 PRIMES (AFFICHAGE UNIQUEMENT)
     // ========================
