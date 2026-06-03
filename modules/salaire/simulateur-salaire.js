@@ -241,43 +241,73 @@ net += (complementRTT || 0);
 
   <hr>
 
-  <h3 style="color:#facc15">📊 Primes & compléments</h3>
+ <h3 style="color:#facc15">📊 Primes & compléments</h3>
 
 <div>🎖️ Allocation maîtrise : + ${allocationMaitrise.toFixed(2)} €</div>
 <div>📅 Complément RTT : + ${complementRTT.toFixed(2)} €</div>
+
 <div>🌙 Nuit : + ${majorationNuit.toFixed(2)} €</div>
+<div style="font-size:0.85em;color:#94a3b8;">
+↳ ${heuresNuit} h × 2.20 €
+</div>
+
 <div>📆 Dimanche : + ${majorationDimanche.toFixed(2)} €</div>
+<div style="font-size:0.85em;color:#94a3b8;">
+↳ ${heuresDimanche} h × 2.80 €
+</div>
+
+<div>👮 Fonction OPJ : + ${opj.toFixed(2)} €</div>
+<div>🚓 Prime voie publique (VP) : + ${primeVP.toFixed(2)} €</div>
+
 <div>👨‍👩‍👧 SFT : + ${sft.toFixed(2)} €</div>
+<div style="font-size:0.85em;color:#94a3b8;">
+↳ ${enfants} enfant${enfants > 1 ? "s" : ""}
+</div>
 
 <hr>
 
-  <h3 style="color:#facc15">📉 Détail des retenues</h3>
+<div style="color:#22c55e;font-weight:700;">
+💰 Total primes & compléments : + ${(
+  (majorationNuit || 0) +
+  (majorationDimanche || 0) +
+  (sft || 0) +
+  (itn || 0) +
+  (opj || 0) +
+  (primeVP || 0) +
+  (allocationMaitrise || 0) +
+  (complementRTT || 0)
+).toFixed(2)} €
+</div>
 
-  <div>🏦 Pension : - ${detailNet.pension.toFixed(2)} €</div>
-  <div>🧾 CSG déductible : - ${detailNet.csg_deductible.toFixed(2)} €</div>
-  <div>📄 CSG non déductible : - ${detailNet.csg_non_deductible.toFixed(2)} €</div>
-  <div>⚖️ CRDS : - ${detailNet.crds.toFixed(2)} €</div>
-  <div>📊 RAFP : - ${detailNet.rafp.toFixed(2)} €</div>
+<hr>
 
-  <hr>
+<h3 style="color:#facc15">📉 Détail des retenues</h3>
 
-  <div style="background:#1e3a8a22;padding:10px;border-radius:8px;">
-    📊 Analyse PRO POLICE<br>
-    ✔ Simulation proche fiche de paie<br>
-    ✔ Écart moyen constaté < 1%
-  </div>
+<div>🏦 Pension : - ${detailNet.pension.toFixed(2)} €</div>
+<div>🧾 CSG déductible : - ${detailNet.csg_deductible.toFixed(2)} €</div>
+<div>📄 CSG non déductible : - ${detailNet.csg_non_deductible.toFixed(2)} €</div>
+<div>⚖️ CRDS : - ${detailNet.crds.toFixed(2)} €</div>
+<div>📊 RAFP : - ${detailNet.rafp.toFixed(2)} €</div>
 
-  <div style="
-    margin-top:10px;
-    padding:10px;
-    background:#facc1522;
-    border-left:4px solid #facc15;
-    border-radius:6px;
-    font-size:0.85em;
-  ">
-    ⚠️ Simulation indicative non contractuelle<br>
-    💡 Net avant impôt sur le revenu
-  </div>
+<hr>
+
+<div style="background:#1e3a8a22;padding:10px;border-radius:8px;">
+📊 Analyse PRO POLICE<br>
+✔ Simulation proche fiche de paie<br>
+✔ Écart moyen constaté < 1%
+</div>
+
+<div style="
+margin-top:10px;
+padding:10px;
+background:#facc1522;
+border-left:4px solid #facc15;
+border-radius:6px;
+font-size:0.85em;
+">
+⚠️ Simulation indicative non contractuelle<br>
+💡 Net avant impôt sur le revenu
+</div>
 
   <!-- 🔧 VERSION -->
   <div style="margin-top:10px;font-size:0.75em;color:#6b7280;">
