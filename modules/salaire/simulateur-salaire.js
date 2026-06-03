@@ -198,38 +198,6 @@ net += primeVP;
 net += allocationMaitrise;
 net += complementRTT;
     
-// ========================
-// 🔵 MICRO CALIBRAGE PAR GRADE (V6+)
-// ========================
-if (grade === "gpx") {
-  net *= 1.000;
-}
-
-if (grade === "bc_norm") {
-  net *= 0.993; // 🔥 micro-ajustement
-}
-
-if (grade === "bc_sup") {
-  net *= 0.991;
-}
-
-if (grade === "major") {
-  net *= 0.989;
-}
-
-if (grade === "rulp") {
-  net *= 0.982;
-}
-
-    // ========================
-    // 🔵 PRIMES (AFFICHAGE UNIQUEMENT)
-    // ========================
-    const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
-    const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
-    const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
-
-    
-
     // ========================
     // 🔵 AFFICHAGE PRO COMPLET
     // ========================
