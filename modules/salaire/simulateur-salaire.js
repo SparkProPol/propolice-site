@@ -189,14 +189,14 @@ if (grade === "rulp") net *= 0.982;
 // ========================
 // 🔵 AJOUT PRIMES AU NET (IMPACT RÉEL)
 // ========================
-net += majorationNuit;
-net += majorationDimanche;
-net += sft;
-net += itn;
-net += opj;
-net += primeVP;
-net += allocationMaitrise;
-net += complementRTT;
+net += (majorationNuit || 0);
+net += (majorationDimanche || 0);
+net += (sft || 0);
+net += (itn || 0);
+net += (opj || 0);
+net += (primeVP || 0);
+net += (allocationMaitrise || 0);
+net += (complementRTT || 0);
     
     // ========================
     // 🔵 AFFICHAGE PRO COMPLET
