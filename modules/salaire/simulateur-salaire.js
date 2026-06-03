@@ -55,7 +55,7 @@ function calculerPrimes() {
     const zone = document.getElementById("zone")?.value || "0";
 
     const corpsClean = corps.toUpperCase();
-    const aff = affectation.toLowerCase();
+    aff = "province";
 
     // ========================
     // 🔵 BASE INDICIAIRE (SAFE)
