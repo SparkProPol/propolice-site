@@ -17,7 +17,7 @@ function calculerNetReel(brut, aff) {
     crds +
     rafp;
 
-  const coefficientCorrection = 1.045;
+  const coefficientCorrection = 1.015;
 
   let net = (brut - totalRetenues) * coefficientCorrection;
 
