@@ -17,13 +17,13 @@ function calculerNetReel(brut, aff) {
     crds +
     rafp;
 
-  const coefficientCorrection = 1.075;
+  const coefficientCorrection = 1.045;
 
   let net = (brut - totalRetenues) * coefficientCorrection;
 
 // 🔥 CORRECTION PARIS / PROVINCE
 if (aff === "paris") {
-  net *= 1.015;
+  net *= 1.01;
 }
 
   return {
