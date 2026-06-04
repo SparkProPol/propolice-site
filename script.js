@@ -46,7 +46,7 @@ function calculerNetReel(brut) {
     crds +
     rafp;
 
-  const coefficientCorrection = 1.05;
+  const coefficientCorrection = 1.015;
 
   const net = (brut - totalRetenues) * coefficientCorrection;
 
@@ -158,9 +158,9 @@ const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0
 const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
 const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
 
-const itn = document.getElementById("itn")?.value !== "non" ? 150 : 0;
-const opj = document.getElementById("opj")?.value !== "non" ? 150 : 0;
-const primeVP = document.getElementById("primeVP")?.value !== "non" ? 100 : 0;
+const opj = document.getElementById("opj")?.value === "oui" ? 150 : 0;
+const itn = document.getElementById("itn")?.value === "oui" ? 150 : 0;
+const primeVP = document.getElementById("primeVP")?.value === "oui" ? 100 : 0;
 
 const majorationNuit = heuresNuit * 2.2;
 const majorationDimanche = heuresDimanche * 2.8;
