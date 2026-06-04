@@ -249,7 +249,7 @@ net += (complementRTT || 0);
  <h3 style="color:#facc15">📊 Primes & compléments</h3>
 
 <div>🎖️ Allocation maîtrise : + ${allocationMaitrise.toFixed(2)} €</div>
-<div>📅 Complément RTT : + ${complementRTT.toFixed(2)} €</div>
+<div>📅 Complément RTT : + 56.66 €</div>
 
 <div>🌙 Nuit : + ${majorationNuit.toFixed(2)} €</div>
 <div style="font-size:0.85em;color:#94a3b8;">
