@@ -556,3 +556,78 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Selection */
 ::selection { background: rgba(59,130,246,.3); color: #fff; }
+
+/* ===== CORPS ===== */
+
+.corpsGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:30px;
+}
+
+.corpsCard{
+  position:relative;
+  min-height:260px;
+  border-radius:20px;
+  overflow:hidden;
+  background-size:cover;
+  background-position:center;
+  border:1px solid rgba(255,255,255,.08);
+  transition:.3s;
+}
+
+.corpsCard:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.corpsImgOverlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.85),
+    rgba(0,0,0,.15)
+  );
+}
+
+.corpsImgBadge{
+  position:absolute;
+  top:15px;
+  right:15px;
+  z-index:2;
+
+  padding:5px 12px;
+  border-radius:20px;
+
+  background:rgba(59,130,246,.9);
+  color:white;
+  font-size:12px;
+  font-weight:700;
+}
+
+.corpsImgBody{
+  position:absolute;
+  left:20px;
+  bottom:20px;
+  z-index:2;
+}
+
+.corpsImgAbbr{
+  font-size:32px;
+  font-weight:900;
+  color:white;
+}
+
+.corpsImgLabel{
+  color:white;
+  font-size:14px;
+  line-height:1.4;
+}
+
+@media(max-width:900px){
+  .corpsGrid{
+    grid-template-columns:1fr;
+  }
+}
