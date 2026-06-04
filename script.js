@@ -134,19 +134,24 @@ if (corpsClean === "CRS") {
     // 🔵 ICSS CRS
    let ICSS = 0;
 
+// 🔴 CAS CRS
 if (corpsClean === "CRS") {
 
   if (zone === "0") {
     ICSS = 113.32;
   } else {
-    ICSS = (aff === "paris") ? 145 : 113.32;
+    ICSS = 113.32; // CRS reste fixe
   }
 
-} else {
-  // 🔥 CORRECTION CEA
-  if (aff === "paris") {
+}
+
+// 🔵 CAS CEA (POLICE CLASSIQUE)
+else {
+
+  if (aff.includes("paris") || aff.includes("île") || aff.includes("idf")) {
     ICSS = 145;
   }
+
 }
 
     // 🔵 BRUT
