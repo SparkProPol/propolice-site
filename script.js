@@ -132,7 +132,7 @@ if (corpsClean === "CRS") {
     const IR = salaireBase * (parseFloat(zone) / 100);
 
     // 🔵 ICSS CRS
-    let ICSS = 0;
+   let ICSS = 0;
 
 if (corpsClean === "CRS") {
 
@@ -143,7 +143,7 @@ if (corpsClean === "CRS") {
   }
 
 } else {
-  // 🔥 AJOUT CEA IDF
+  // 🔥 CORRECTION CEA
   if (aff === "paris") {
     ICSS = 145;
   }
@@ -183,9 +183,12 @@ const complementRTT = 56.66 * 0.72;
 net += majorationNuit;
 net += majorationDimanche;
 net += sft;
-net += itn;
-net += opj;
-net += primeVP;
+
+// 🔥 correction primes variables
+const primesVariables = itn + opj + primeVP;
+net += primesVariables * 0.72;
+
+// 🔥 déjà OK
 net += allocationMaitrise;
 net += complementRTT;
     // 🔵 AFFICHAGE
