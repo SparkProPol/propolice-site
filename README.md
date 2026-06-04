@@ -1,6 +1,7 @@
 # PRO POLICE — Site V7
 
 ## Structure du projet
+
 propolice-site/
 │
 ├── index.html              ✅ Accueil
@@ -22,6 +23,7 @@ propolice-site/
 ├── assets/
 │   ├── logo.svg
 │   └── images/
+
 
 
 
