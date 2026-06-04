@@ -149,8 +149,40 @@ if (corpsClean === "CRS") {
 
     // 🔵 NET RÉEL
     const netData = calculerNetReel(brut);
-    const net = netData.net;
+    let net = netData.net;
+// ========================
+// 🔵 AJOUT PRIMES SIMPLIFIÉ (VERSION STABLE)
+// ========================
 
+const heuresNuit = parseFloat(document.getElementById("heuresNuit")?.value) || 0;
+const heuresDimanche = parseFloat(document.getElementById("heuresDimanche")?.value) || 0;
+const enfants = parseInt(document.getElementById("enfants")?.value || 0, 10);
+
+const itn = document.getElementById("itn")?.value !== "non" ? 150 : 0;
+const opj = document.getElementById("opj")?.value !== "non" ? 150 : 0;
+const primeVP = document.getElementById("primeVP")?.value !== "non" ? 100 : 0;
+
+const majorationNuit = heuresNuit * 2.2;
+const majorationDimanche = heuresDimanche * 2.8;
+
+const sft =
+  enfants === 1 ? 2.29 :
+  enfants === 2 ? 73.79 :
+  enfants >= 3 ? 183.56 : 0;
+
+// 🔥 primes fixes calibrées (chargées)
+const allocationMaitrise = 319.58 * 0.72;
+const complementRTT = 56.66 * 0.72;
+
+// 🔥 injection propre
+net += majorationNuit;
+net += majorationDimanche;
+net += sft;
+net += itn;
+net += opj;
+net += primeVP;
+net += allocationMaitrise;
+net += complementRTT;
     // 🔵 AFFICHAGE
     const isAdherent = true; // 🔥 TEMPORAIRE pour forcer mode ON
 
