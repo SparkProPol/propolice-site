@@ -46,7 +46,7 @@ function calculerNetReel(brut) {
     crds +
     rafp;
 
-  const coefficientCorrection = 1.015;
+  const coefficientCorrection = 0.985;
 
   const net = (brut - totalRetenues) * coefficientCorrection;
 
@@ -142,6 +142,11 @@ if (corpsClean === "CRS") {
     ICSS = (aff === "paris") ? 145 : 113.32;
   }
 
+} else {
+  // 🔥 AJOUT CEA IDF
+  if (aff === "paris") {
+    ICSS = 145;
+  }
 }
 
     // 🔵 BRUT
