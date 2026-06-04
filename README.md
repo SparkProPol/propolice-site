@@ -1,36 +1,29 @@
-# PRO POLICE — Site V2
+# PRO POLICE — Site V7
 
 ## Structure du projet
-
-```
 propolice-site/
-├── index.html              # Page principale
-├── script.js               # Scripts (simulateurs, filtres, UX)
-├── styles.css              # Styles complets
-├── fiche-discipline.html   # Fiche procédure disciplinaire
-├── fiche-mutation.html     # Fiche mutation & mobilité
+│
+├── index.html              ✅ Accueil
+├── actualites.html
+├── corps.html
+├── calendrier.html
+├── ressources.html
+├── simulateur.html
+├── cmo.html
+├── universite.html
+├── adherer.html
+│
+├── styles.css
+├── script.js
+│
+├── js/
+│   └── bdd/
+│
 ├── assets/
-│   ├── logo.svg            # Logo PRO POLICE
-│   └── favicon.svg         # Favicon
-├── js/bdd/
-│   ├── bdd_CEA.js          # Corps d'Encadrement et d'Application
-│   ├── bdd_CRS.js          # Compagnies Républicaines de Sécurité
-│   ├── bdd_ADMIN.js        # Personnels Administratifs
-│   ├── bdd_PTS.js          # Personnels Techniques & Scientifiques
-│   ├── bdd_ADJOINTS.js     # Policiers Adjoints
-│   ├── bdd_RESERVISTES.js  # Réservistes
-│   └── bdd_RETRAITE.js     # Retraite
-├── content/
-│   ├── data/
-│   │   ├── site.json       # Configuration du site
-│   │   ├── articles.json   # Articles & actualités
-│   │   └── resources.json  # Ressources & fiches
-│   ├── articles/           # Articles complets (Markdown)
-│   └── pages/              # Pages simples (Markdown)
-└── admin/
-    ├── index.html          # Interface Decap CMS
-    └── config.yml          # Configuration CMS
-```
+│   ├── logo.svg
+│   └── images/
+
+
 
 ## Déploiement GitHub Pages
 
