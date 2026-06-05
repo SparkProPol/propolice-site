@@ -1,1 +1,29 @@
+{
+  "fiches": [
 
+    {
+      "id": 1,
+      "titre": "CMO depuis mars 2025",
+      "theme": "Carrière",
+      "acces": "public",
+      "description": "Calcul du maintien de rémunération en congé maladie ordinaire."
+    },
+
+    {
+      "id": 2,
+      "titre": "ISSPATS",
+      "theme": "Rémunération",
+      "acces": "public",
+      "description": "Indemnité spécifique des personnels techniques et scientifiques."
+    },
+
+    {
+      "id": 3,
+      "titre": "Cartographie OPJ Motocyclistes",
+      "theme": "Carrière",
+      "acces": "adherent",
+      "description": "Liste des postes OPJ cartographiés en spécialité motocycliste."
+    }
+
+  ]
+}
