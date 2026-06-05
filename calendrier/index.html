@@ -1,1 +1,125 @@
-one
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>PRO POLICE</title>
+
+  <!-- 🔥 TON CSS DOIT ÊTRE ICI -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- 🔵 MENU (NAVIGATION) -->
+<header class="header">
+
+  <div class="topbar">
+
+    <div class="topbar-left">
+
+      <a href="index.html" class="brand" style="text-decoration:none;">
+
+        <div class="logo-placeholder">🏴‍☠️</div>
+
+        <div class="brandtext">
+          <div class="brandname">PRO POLICE</div>
+          <div class="brandsub">Syndicat • Université</div>
+        </div>
+
+      </a>
+
+    </div>
+
+    <nav class="navDesktop" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="corps.html">Corps</a>
+      <a href="calendrier.html">Calendrier</a>
+      <a href="ressources.html">Ressources</a>
+      <a href="simulateur.html">Simulateur</a>
+      <a href="cmo.html">CMO</a>
+      <a href="universite.html">Université</a>
+      <a href="actualites.html">Actualités</a>
+      <a href="adherer.html">Adhérer</a>
+    </nav>
+
+    <div class="topbar-right">
+
+      <button
+  class="btn small ghost"
+  id="btnMember"
+  type="button">
+  Mode adhérent OFF
+</button>
+
+      <a class="btn small primary" href="adherer.html">
+        🤝 Adhérer
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+<main>
+
+  <!-- ═══════════════════════════════════════════════
+     WIDGET CALENDRIER SOCIAL — PRO POLICE
+     Lit calendrier.json — éditable sans toucher au code
+═══════════════════════════════════════════════ -->
+<section class="section" id="calendrier">
+  <div class="container">
+
+    <div class="sectionHead" style="text-align:center;">
+      <div class="sectionBadge">📅 Agenda social</div>
+      <h2>Calendrier des échéances</h2>
+      <p>Avancements, mutations, concours, réunions paritaires — toutes les dates clés en un coup d'œil.</p>
+    </div>
+
+    <!-- Onglets principaux -->
+    <div class="calOnglets" id="calOnglets">
+      <button class="calOngletBtn active" data-onglet="actif">
+        📅 Agenda en cours & à venir
+      </button>
+      <button class="calOngletBtn" data-onglet="clos">
+        🗂️ Archivés <span class="calOngletCount" id="countClos"></span>
+      </button>
+    </div>
+
+    <!-- Filtres catégories -->
+    <div class="calFiltres" id="calFiltres">
+      <button class="calFiltreBtn active" data-cat="all">Tout</button>
+      <button class="calFiltreBtn" data-cat="avancement">🏅 Avancements</button>
+      <button class="calFiltreBtn" data-cat="mutation">🗺️ Mutations</button>
+      <button class="calFiltreBtn" data-cat="concours">📝 Concours</button>
+      <button class="calFiltreBtn" data-cat="paritaire">⚖️ Textes officiels</button>
+      <button class="calFiltreBtn" data-cat="formation">🎓 Formations</button>
+    </div>
+
+    <!-- Timeline -->
+    <div class="calTimeline" id="calTimeline">
+      <div class="calLoading">⏳ Chargement du calendrier...</div>
+    </div>
+
+    <!-- Légende statuts -->
+    <div class="calLegende">
+      <span class="calLeg" data-s="ouvert">🟢 Ouvert</span>
+      <span class="calLeg" data-s="en_cours">🔵 En cours</span>
+      <span class="calLeg" data-s="a_venir">⚪ À venir</span>
+      <span class="calLeg" data-s="clos">🔴 Clôturé</span>
+    </div>
+
+    <!-- Mention source -->
+    <p class="calSource" id="calSourceMention"></p>
+
+  </div>
+</section>
+
+</main>
+
+<script src="script.js"></script>
+<script src="calendrier.js"></script>
+
+</body>
+</html>
