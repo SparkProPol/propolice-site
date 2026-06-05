@@ -30,6 +30,9 @@
   let filtreActif = 'all';
   let ongletActif = 'actif'; // 'actif' | 'clos'
 
+   const isAdherent =
+  localStorage.getItem("propolice_adherent") === "true";
+
   /* ──────────────────────────────────────────
      CHARGEMENT JSON
   ────────────────────────────────────────── */
@@ -90,7 +93,13 @@
     if (countEl) countEl.textContent = clos.length > 0 ? clos.length : '';
 
     // Choisir le groupe à afficher
-    const visible = ongletActif === 'actif' ? actifs : clos;
+    let visible = ongletActif === 'actif'
+      ? actifs
+      : clos;
+
+if (!isAdherent) {
+  visible = visible.slice(0, 5);
+}
 
     if (visible.length === 0) {
       const msg = ongletActif === 'actif'
@@ -106,7 +115,30 @@
       : '<div class="calGroupTitle calGroupPast">🗂️ Archivés ' + currentYear + ' (' + clos.length + ')</div>';
 
     const isPast = (ongletActif === 'clos');
-    timeline.innerHTML = groupTitle + visible.map((ev, i) => buildCard(ev, i, isPast)).join('');
+   timeline.innerHTML =
+  groupTitle +
+  visible.map((ev, i) => buildCard(ev, i, isPast)).join('');
+     if (!isAdherent && filtered.length > 5) {
+
+  timeline.innerHTML += `
+    <div class="card" style="margin-top:20px;text-align:center;">
+
+      <h3>🔒 Contenu réservé aux adhérents</h3>
+
+      <p>
+        ${filtered.length - 5}
+        événement(s) supplémentaire(s)
+        sont accessibles aux adhérents PRO POLICE.
+      </p>
+
+      <a class="btn primary" href="adherer.html">
+        🤝 Adhérer à PRO POLICE
+      </a>
+
+    </div>
+  `;
+
+}
   }
 
   /* ──────────────────────────────────────────
