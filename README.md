@@ -1,30 +1,48 @@
-# PRO POLICE — Site V7
-
-## Structure du projet
-
 propolice-site/
-│
-├── index.html              ✅ Accueil
-├── actualites.html
+
+index.html
+
+styles.css
+
+assets/
+
+corps/
 ├── corps.html
+├── cea.html
+├── crs.html
+├── pts.html
+├── admin.html
+├── pa.html
+└── reservistes.html
+
+calendrier/
 ├── calendrier.html
-├── ressources.html
+├── calendrier.js
+├── calendrier.json
+└── calendrier.css
+
+simulateur/
 ├── simulateur.html
+├── simulateur.js
+├── bdd_cea.js
+├── bdd_crs.js
+└── simulateur.css
+
+cmo/
 ├── cmo.html
+├── cmo.js
+└── cmo.css
+
+universite/
 ├── universite.html
-├── adherer.html
-│
-├── styles.css
-├── script.js
-│
-├── js/
-│   └── bdd/
-│
-├── assets/
-│   ├── logo.svg
-│   └── images/
 
+actualites/
+├── actualites.html
+├── actualites.json
 
+admin/
+├── admin.html
+├── admin.js
 
 
 ## Déploiement GitHub Pages
