@@ -878,55 +878,7 @@
 </section>
 
 
-  <!-- ═══════════════════════════════════════════════
-       RESSOURCES
-  ═══════════════════════════════════════════════ -->
-  <section class="section alt" id="ressources">
-    <div class="container">
-      <div class="sectionHead">
-        <div class="sectionBadge">📚 Ressources</div>
-        <h2>Base documentaire</h2>
-        <p>Fiches pratiques, décryptages juridiques et éclairage des textes — accessibles à tous.</p>
-      </div>
-
-      <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center;">
-        <input type="search" id="searchInput" placeholder="Rechercher une fiche…"
-          style="padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#e9eefb;font-size:14px;font-family:inherit;outline:none;flex:1;min-width:200px;" />
-        <select id="filterTheme"
-          style="padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(15,26,47,.9);color:#e9eefb;font-size:14px;font-family:inherit;outline:none;">
-          <option value="">Thème</option>
-          <option value="Carrière">Carrière</option>
-          <option value="retraite">Retraite</option>
-          <option value="Juridique">Juridique</option>
-          <option value="Rémunération">Rémunération</option>
-        </select>
-        <button class="btn ghost small" onclick="document.getElementById('searchInput').value='';document.getElementById('filterTheme').value='';renderArticles();">Réinitialiser</button>
-      </div>
-
-      <div class="grid3" id="articlesGrid"></div>
-
-      <div class="grid2" style="margin-top:16px;">
-        <article class="card">
-          <div class="kicker">🔒 Adhérents</div>
-          <h3>Espace membre</h3>
-          <p>Ressources avancées, modèles prêts à l'emploi, fiches mémos exclusives réservées aux adhérents PRO POLICE.</p>
-          <div class="row" style="margin-top:14px;">
-            <button class="btn small primary" onclick="document.getElementById('adhesion').scrollIntoView({behavior:'smooth'})">Débloquer via adhésion</button>
-          </div>
-        </article>
-        <article class="card" style="background:rgba(59,130,246,.04);border-color:rgba(59,130,246,.2);">
-          <div class="kicker" style="color:var(--accent2);">🔓 Accès public</div>
-          <h3>Accédez aux ressources gratuites</h3>
-          <p>Simulateurs, fiches pratiques — tout ce qui est accessible librement à tous les visiteurs.</p>
-          <div class="row" style="margin-top:14px;">
-            <a class="btn small ghost" href="#simulateur">💰 Simulateur primes</a>
-            <a class="btn small ghost" href="#simulateur-cmo">🏥 Simulateur CMO</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
+  
   <!-- ═══════════════════════════════════════════════
        SIMULATEUR PRIMES
   ═══════════════════════════════════════════════ -->
