@@ -197,7 +197,8 @@ net += primesVariables * 0.72;
 net += allocationMaitrise;
 net += complementRTT;
     // 🔵 AFFICHAGE
-    const isAdherent = true; // 🔥 TEMPORAIRE pour forcer mode ON
+    const isAdherent =
+localStorage.getItem("propolice_adherent") === "true";
 
 const resultatPublic = document.getElementById("resultatPublic");
 const resultatMembre = document.getElementById("resultatMembre");
