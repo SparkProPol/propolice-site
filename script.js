@@ -300,3 +300,41 @@ window.addEventListener("DOMContentLoaded", () => {
 
   toggleZoneOM(); // 🔥 IMPORTANT
 });
+// ==================================================
+// MODE ADHÉRENT GLOBAL PRO POLICE
+// ==================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btn = document.getElementById("btnMember");
+
+  if (!btn) return;
+
+  let isMember =
+    localStorage.getItem("propolice_adherent") === "true";
+
+  function updateButton() {
+
+    btn.textContent =
+      isMember
+        ? "🟢 Mode adhérent ON"
+        : "⚪ Mode adhérent OFF";
+
+  }
+
+  updateButton();
+
+  btn.addEventListener("click", () => {
+
+    isMember = !isMember;
+
+    localStorage.setItem(
+      "propolice_adherent",
+      isMember
+    );
+
+    updateButton();
+
+  });
+
+});
