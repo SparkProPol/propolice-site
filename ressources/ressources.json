@@ -1,6 +1,5 @@
 {
   "fiches": [
-
     {
       "id": 1,
       "titre": "CMO depuis mars 2025",
@@ -9,7 +8,6 @@
       "description": "Calcul du maintien de rémunération en congé maladie ordinaire.",
       "url": "fiches/retraite-cmo.html"
     },
-
     {
       "id": 2,
       "titre": "ISSPATS",
@@ -18,7 +16,6 @@
       "description": "Indemnité spécifique des personnels techniques et scientifiques.",
       "url": "fiches/isspats.html"
     },
-
     {
       "id": 3,
       "titre": "Cartographie OPJ Motocyclistes",
@@ -26,7 +23,22 @@
       "acces": "adherent",
       "description": "Liste des postes OPJ cartographiés en spécialité motocycliste.",
       "url": "fiches/opj-cartographie.html"
+    },
+    {
+      "id": 4,
+      "titre": "Notation et avancement",
+      "theme": "Carrière",
+      "acces": "public",
+      "description": "Comprendre les mécanismes de notation et leurs effets.",
+      "url": "fiches/notation.html"
+    },
+    {
+      "id": 5,
+      "titre": "Supplément Familial de Traitement",
+      "theme": "Rémunération",
+      "acces": "public",
+      "description": "Conditions d'attribution et montants du SFT.",
+      "url": "fiches/sft.html"
     }
-
   ]
 }
