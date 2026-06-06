@@ -1,4 +1,4 @@
-console.log("🤝 Module Adhérer chargé");
+console.log("🤝 PRO POLICE - Module Adhérer V3");
 
 /* ==========================
    BARÈME PRO POLICE
@@ -36,14 +36,19 @@ const cotisations = {
 };
 
 /* ==========================
-   CHARGEMENT PAGE
+   CHARGEMENT
 ========================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   remplirGrades();
-  activerCouple();
+
+  gererTypeAdhesion();
+
+  gererModeCouple();
+
   calculerMontant();
+
   activerCopieIBAN();
 
 });
@@ -60,36 +65,9 @@ function remplirGrades() {
   const gradeConjoint =
     document.getElementById("gradeConjoint");
 
-  if (!gradePrincipal) return;
+  const grades = Object.keys(cotisations);
 
-  const grades = [
-
-  "Cadet",
-  "Policier Adjoint",
-  "Élève GPX",
-  "GPX",
-  "Brigadier-Chef",
-  "Major",
-
-  "Administratif Catégorie C",
-  "Administratif Catégorie B",
-  "Administratif Catégorie A",
-
-  "Technique Catégorie C",
-  "Technique Catégorie B",
-  "Technique Catégorie A",
-
-  "Scientifique Catégorie C",
-  "Scientifique Catégorie B",
-  "Scientifique Catégorie A",
-
-  "Réserviste",
-
-  "Retraité"
-
-];
-
-grades.forEach(grade => {
+  grades.forEach(grade => {
 
     const option1 =
       document.createElement("option");
@@ -130,77 +108,151 @@ grades.forEach(grade => {
 }
 
 /* ==========================
-   MODE COUPLE
+   TYPE ADHÉSION
 ========================== */
 
-function activerCouple() {
+function gererTypeAdhesion() {
 
-  const checkbox =
-    document.getElementById("coupleCheck");
+  const radios =
+    document.querySelectorAll(
+      'input[name="typeAdhesion"]'
+    );
 
   const bloc =
-    document.getElementById("blocCouple");
+    document.getElementById(
+      "blocCouple"
+    );
 
-  if (!checkbox || !bloc) return;
+  radios.forEach(radio => {
 
-  checkbox.addEventListener("change", () => {
+    radio.addEventListener("change", () => {
 
-    bloc.style.display =
-      checkbox.checked
-        ? "block"
-        : "none";
+      const valeur =
+        document.querySelector(
+          'input[name="typeAdhesion"]:checked'
+        ).value;
 
-    calculerMontant();
+      bloc.style.display =
+        valeur === "couple"
+          ? "block"
+          : "none";
+
+      calculerMontant();
+
+    });
 
   });
 
 }
 
 /* ==========================
-   CALCUL COTISATION
+   MODE COUPLE
+========================== */
+
+function gererModeCouple() {
+
+  const radios =
+    document.querySelectorAll(
+      'input[name="modeCouple"]'
+    );
+
+  const formulaireConjoint =
+    document.getElementById(
+      "formulaireConjoint"
+    );
+
+  radios.forEach(radio => {
+
+    radio.addEventListener("change", () => {
+
+      const mode =
+        document.querySelector(
+          'input[name="modeCouple"]:checked'
+        ).value;
+
+      formulaireConjoint.style.display =
+        mode === "commun"
+          ? "block"
+          : "none";
+
+      calculerMontant();
+
+    });
+
+  });
+
+}
+
+/* ==========================
+   CALCUL MONTANT
 ========================== */
 
 function calculerMontant() {
 
-  const gradePrincipal =
-    document.getElementById("gradePrincipal");
-
-  const gradeConjoint =
-    document.getElementById("gradeConjoint");
-
-  const couple =
-    document.getElementById("coupleCheck");
-
   const resultat =
-    document.getElementById("montantCotisation");
+    document.getElementById(
+      "montantCotisation"
+    );
 
-  if (!gradePrincipal || !resultat) return;
+  const gradePrincipal =
+    document.getElementById(
+      "gradePrincipal"
+    );
+
+  if (!resultat || !gradePrincipal)
+    return;
 
   const montantPrincipal =
-    cotisations[gradePrincipal.value] || 0;
+    cotisations[
+      gradePrincipal.value
+    ] || 0;
+
+  const type =
+    document.querySelector(
+      'input[name="typeAdhesion"]:checked'
+    )?.value;
 
   let total =
     montantPrincipal;
 
-  if (
-    couple &&
-    couple.checked &&
-    gradeConjoint
-  ) {
+  if (type === "couple") {
 
-    const montantConjoint =
-      cotisations[gradeConjoint.value] || 0;
+    const mode =
+      document.querySelector(
+        'input[name="modeCouple"]:checked'
+      )?.value;
 
-    const reduction =
-      Math.min(
-        montantPrincipal,
-        montantConjoint
-      ) * 0.5;
+    if (mode === "individuel") {
 
-    total =
-      montantPrincipal +
-      montantConjoint -
-      reduction;
+      total =
+        montantPrincipal / 2;
+
+    }
+
+    if (mode === "commun") {
+
+      const gradeConjoint =
+        document.getElementById(
+          "gradeConjoint"
+        );
+
+      const montantConjoint =
+        cotisations[
+          gradeConjoint.value
+        ] || 0;
+
+      const reduction =
+        Math.min(
+          montantPrincipal,
+          montantConjoint
+        ) * 0.5;
+
+      total =
+        montantPrincipal +
+        montantConjoint -
+        reduction;
+
+    }
 
   }
 
@@ -216,18 +268,24 @@ function calculerMontant() {
 function activerCopieIBAN() {
 
   const btn =
-    document.getElementById("copyIban");
+    document.getElementById(
+      "copyIban"
+    );
 
   if (!btn) return;
 
   btn.addEventListener("click", () => {
 
     const iban =
-      document.getElementById("iban")
+      document.getElementById(
+        "iban"
+      )
       .textContent
       .trim();
 
-    navigator.clipboard.writeText(iban);
+    navigator.clipboard.writeText(
+      iban
+    );
 
     btn.textContent =
       "✅ IBAN copié";
