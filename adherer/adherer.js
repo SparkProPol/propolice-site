@@ -113,11 +113,6 @@ function remplirGrades() {
 
 function gererTypeAdhesion() {
 
-   const identiteCouple =
-document.getElementById(
-"identiteCouple"
-);
-   
   const radios =
     document.querySelectorAll(
       'input[name="typeAdhesion"]'
@@ -128,6 +123,16 @@ document.getElementById(
       "blocCouple"
     );
 
+  const identiteCouple =
+    document.getElementById(
+      "identiteCouple"
+    );
+
+  const formulaireConjoint =
+    document.getElementById(
+      "formulaireConjoint"
+    );
+
   radios.forEach(radio => {
 
     radio.addEventListener("change", () => {
@@ -135,23 +140,49 @@ document.getElementById(
       const valeur =
         document.querySelector(
           'input[name="typeAdhesion"]:checked'
-        ).value;
+        )?.value;
 
-    if (valeur === "couple") {
+      if (valeur === "couple") {
 
-bloc.style.display = "block";
+        bloc.style.display = "block";
 
-if (identiteCouple)
-identiteCouple.style.display = "block";
+        const mode =
+          document.querySelector(
+            'input[name="modeCouple"]:checked'
+          )?.value;
 
-} else {
+        if (mode === "individuel") {
 
-bloc.style.display = "none";
+          identiteCouple.style.display =
+            "block";
 
-if (identiteCouple)
-identiteCouple.style.display = "none";
+          formulaireConjoint.style.display =
+            "none";
 
-}
+        }
+
+        if (mode === "commun") {
+
+          identiteCouple.style.display =
+            "none";
+
+          formulaireConjoint.style.display =
+            "block";
+
+        }
+
+      } else {
+
+        bloc.style.display =
+          "none";
+
+        identiteCouple.style.display =
+          "none";
+
+        formulaireConjoint.style.display =
+          "none";
+
+      }
 
       calculerMontant();
 
@@ -160,7 +191,6 @@ identiteCouple.style.display = "none";
   });
 
 }
-
 /* ==========================
    MODE COUPLE
 ========================== */
