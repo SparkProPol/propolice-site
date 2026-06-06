@@ -177,6 +177,11 @@ function gererModeCouple() {
       "formulaireConjoint"
     );
 
+  const identiteCouple =
+    document.getElementById(
+      "identiteCouple"
+    );
+
   radios.forEach(radio => {
 
     radio.addEventListener("change", () => {
@@ -186,10 +191,25 @@ function gererModeCouple() {
           'input[name="modeCouple"]:checked'
         ).value;
 
-      formulaireConjoint.style.display =
-        mode === "commun"
-          ? "block"
-          : "none";
+      if (mode === "commun") {
+
+        formulaireConjoint.style.display =
+          "block";
+
+        identiteCouple.style.display =
+          "none";
+
+      }
+
+      if (mode === "individuel") {
+
+        formulaireConjoint.style.display =
+          "none";
+
+        identiteCouple.style.display =
+          "block";
+
+      }
 
       calculerMontant();
 
@@ -198,7 +218,6 @@ function gererModeCouple() {
   });
 
 }
-
 /* ==========================
    CALCUL MONTANT
 ========================== */
