@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Adhérer - PRO POLICE</title>
+
+<link rel="stylesheet" href="../styles.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="topbar">
+
+<div class="topbar-left">
+
+<a href="../index.html" class="brand" style="text-decoration:none;">
+
+<div class="logo-placeholder">🏴‍☠️</div>
+
+<div class="brandtext">
+<div class="brandname">PRO POLICE</div>
+<div class="brandsub">Par des policiers, pour des policiers</div>
+</div>
+
+</a>
+
+</div>
+
+<nav class="navDesktop">
+
+<a href="../index.html">Accueil</a>
+<a href="../corps/">Corps</a>
+<a href="../calendrier/">Calendrier</a>
+<a href="../ressources/">Ressources</a>
+<a href="../simulateur/">Simulateur</a>
+<a href="../cmo/">CMO</a>
+<a href="../universite/">Université</a>
+<a href="../actualites/">Actualités</a>
+<a href="../adherer/">Adhérer</a>
+
+</nav>
+
+<div class="topbar-right">
+
+<button
+class="btn small ghost"
+id="btnMember"
+type="button">
+Mode adhérent OFF
+</button>
+
+<a
+class="btn small primary"
+href="../adherer/">
+🤝 Adhérer
+</a>
+
+<button
+class="menuBtn"
+id="menuBtn"
+aria-expanded="false"
+aria-controls="menuMobile">
+
+<span class="sr">Menu</span>
+<span aria-hidden="true">☰</span>
+
+</button>
+
+</div>
+
+</div>
+
+<nav
+class="navMobile"
+id="menuMobile">
+
+<a href="../index.html">Accueil</a>
+<a href="../corps/">Corps</a>
+<a href="../calendrier/">Calendrier</a>
+<a href="../ressources/">Ressources</a>
+<a href="../simulateur/">Simulateur</a>
+<a href="../cmo/">CMO</a>
+<a href="../universite/">Université</a>
+<a href="../actualites/">Actualités</a>
+<a href="../videos/">Vidéos</a>
+<a href="../adherer/">Adhérer</a>
+
+</nav>
+
+</header>
+
+<main>
+
+<section class="section">
+
+<div class="container">
+
+<div class="sectionHead">
+
+<div class="sectionBadge">
+🤝 Adhésion PRO POLICE
+</div>
+
+<h2>Rejoignez le syndicat qui manquait dans la Police</h2>
+
+<p>
+Défense individuelle, accompagnement carrière,
+formation, soutien juridique et développement professionnel.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section alt">
+
+<div class="container">
+
+<h2>💳 Barème des cotisations</h2>
+
+<table class="table">
+
+<tr>
+<th>Grade / Catégorie</th>
+<th>Montant</th>
+</tr>
+
+<tr><td>Cadet</td><td>10 €</td></tr>
+<tr><td>Policier Adjoint</td><td>10 €</td></tr>
+<tr><td>Élève GPX</td><td>20 €</td></tr>
+<tr><td>GPX</td><td>30 €</td></tr>
+<tr><td>Brigadier-Chef</td><td>50 €</td></tr>
+<tr><td>Major</td><td>60 €</td></tr>
+
+<tr><td>Catégorie C</td><td>30 €</td></tr>
+<tr><td>Catégorie B</td><td>40 €</td></tr>
+<tr><td>Catégorie A</td><td>50 €</td></tr>
+
+<tr><td>Retraité</td><td>20 €</td></tr>
+
+</table>
+
+<br>
+
+<div class="card">
+
+<h3>👨‍👩‍👧 Cotisation Couple</h3>
+
+<p>
+
+Réduction de 50 % appliquée sur la cotisation la moins élevée des deux adhérents.
+
+</p>
+
+<p>
+
+Exemple :
+
+Major 60 € + GPX 30 €
+
+→ Réduction : 15 €
+
+→ Montant total : 75 €
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<h2>📝 Formulaire d'adhésion</h2>
+
+<form id="adhesionForm">
+
+<div class="grid2">
+
+<div>
+
+<label>Nom *</label>
+<input type="text" required>
+
+</div>
+
+<div>
+
+<label>Prénom *</label>
+<input type="text" required>
+
+</div>
+
+<div>
+
+<label>Grade *</label>
+<select id="gradePrincipal"></select>
+
+</div>
+
+<div>
+
+<label>Matricule *</label>
+<input type="text" required>
+
+</div>
+
+<div>
+
+<label>Service d'affectation *</label>
+<input type="text" required>
+
+</div>
+
+<div>
+
+<label>Date de naissance *</label>
+<input type="date" required>
+
+</div>
+
+<div>
+
+<label>Lieu de naissance *</label>
+<input type="text">
+
+</div>
+
+<div>
+
+<label>Adresse personnelle *</label>
+<input type="text" required>
+
+</div>
+
+<div>
+
+<label>Code postal *</label>
+<input type="text" required>
+
+</div>
+
+<div>
+
+<label>Ville *</label>
+<input type="text" required>
+
+</div>
+
+<div>
+
+<label>Téléphone *</label>
+<input type="tel" required>
+
+</div>
+
+<div>
+
+<label>Email *</label>
+<input type="email" required>
+
+</div>
+
+</div>
+
+<hr>
+
+<label>
+
+<input
+type="checkbox"
+id="coupleCheck">
+
+Adhésion Couple
+
+</label>
+
+<div
+id="blocCouple"
+style="display:none;margin-top:20px;">
+
+<div class="grid2">
+
+<div>
+
+<label>Nom conjoint</label>
+<input type="text">
+
+</div>
+
+<div>
+
+<label>Prénom conjoint</label>
+<input type="text">
+
+</div>
+
+<div>
+
+<label>Grade conjoint</label>
+<select id="gradeConjoint"></select>
+
+</div>
+
+</div>
+
+</div>
+
+<hr>
+
+<h3>
+
+Montant calculé :
+
+<span id="montantCotisation">
+0 €
+</span>
+
+</h3>
+
+<div class="row">
+
+<a
+class="btn primary"
+target="_blank"
+href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=N3WV9VEUNQ8LE&source=url&ssrt=1780750974320">
+
+💳 Paiement PayPal
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+</section>
+
+<section class="section alt">
+
+<div class="container">
+
+<h2>🏦 Paiement par virement</h2>
+
+<div class="card">
+
+<p><strong>IBAN PRO POLICE</strong></p>
+
+<p id="iban">
+
+FR76 1751 5900 0008 0145 6316 057
+
+</p>
+
+<button
+type="button"
+class="btn ghost"
+id="copyIban">
+
+📋 Copier l'IBAN
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<h2>📞 Contacts</h2>
+
+<div class="grid2">
+
+<div class="card">
+
+<h3>Secrétariat</h3>
+
+<p>
+syndicat.propolice@gmail.com
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Délégué National Développement</h3>
+
+<p>
+Stéphane C<br>
+06 29 61 52 00<br>
+syndicat.propolice.del.national@gmail.com
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Secrétaire Général</h3>
+
+<p>
+Franck J<br>
++33 6 31 13 39 56
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Secrétaire Général Adjoint</h3>
+
+<p>
+Yann M<br>
++33 6 03 43 15 57
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="../script.js"></script>
+<script src="adherer.js"></script>
+
+</body>
+</html>
