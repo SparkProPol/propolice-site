@@ -205,6 +205,38 @@ Major 60 € + GPX 30 €
 
 <div>
 
+<div>
+
+<label>Corps *</label>
+
+<select id="corpsPrincipal">
+
+<option value="CEA">CEA</option>
+
+<option value="CRS">CRS</option>
+
+<option value="PTS">PTS</option>
+
+<option value="Administratif">Administratif</option>
+
+<option value="Technique">Technique</option>
+
+<option value="Scientifique">Scientifique</option>
+
+<option value="Policier Adjoint">Policier Adjoint</option>
+
+<option value="Réserviste">Réserviste</option>
+
+<option value="Retraité">Retraité</option>
+
+<option value="Élève GPX">Élève GPX</option>
+
+<option value="Cadet">Cadet</option>
+
+</select>
+
+</div>
+  
 <label>Grade *</label>
 <select id="gradePrincipal"></select>
 
@@ -277,40 +309,131 @@ Major 60 € + GPX 30 €
 
 <hr>
 
+<h3>Type d'adhésion</h3>
+
 <label>
-
 <input
-type="checkbox"
-id="coupleCheck">
+type="radio"
+name="typeAdhesion"
+value="individuelle"
+checked>
 
-Adhésion Couple
+Adhésion individuelle
+</label>
 
+<br><br>
+
+<label>
+<input
+type="radio"
+name="typeAdhesion"
+value="couple">
+
+Adhésion couple
 </label>
 
 <div
 id="blocCouple"
 style="display:none;margin-top:20px;">
 
+<hr>
+
+<h3>Mode de règlement</h3>
+
+<label>
+
+<input
+type="radio"
+name="modeCouple"
+value="commun"
+checked>
+
+Paiement commun
+
+</label>
+
+<br><br>
+
+<label>
+
+<input
+type="radio"
+name="modeCouple"
+value="individuel">
+
+Paiement individuel
+
+</label>
+
+<div
+id="formulaireConjoint"
+style="margin-top:25px;">
+
+<h3>Informations conjoint(e)</h3>
+
 <div class="grid2">
 
 <div>
-
 <label>Nom conjoint</label>
-<input type="text">
-
+<input type="text" id="nomConjoint">
 </div>
 
 <div>
-
 <label>Prénom conjoint</label>
-<input type="text">
-
+<input type="text" id="prenomConjoint">
 </div>
 
 <div>
+<label>Date de naissance</label>
+<input type="date" id="naissanceConjoint">
+</div>
 
+<div>
+<label>Lieu de naissance</label>
+<input type="text" id="lieuConjoint">
+</div>
+
+<div>
 <label>Grade conjoint</label>
 <select id="gradeConjoint"></select>
+</div>
+
+<div>
+<label>Matricule conjoint</label>
+<input type="text" id="matriculeConjoint">
+</div>
+
+<div>
+<label>Service conjoint</label>
+<input type="text" id="serviceConjoint">
+</div>
+
+<div>
+<label>Téléphone conjoint</label>
+<input type="tel" id="telephoneConjoint">
+</div>
+
+<div>
+<label>Email conjoint</label>
+<input type="email" id="emailConjoint">
+</div>
+
+<div>
+<label>Adresse conjoint</label>
+<input type="text" id="adresseConjoint">
+</div>
+
+<div>
+<label>Code postal</label>
+<input type="text" id="cpConjoint">
+</div>
+
+<div>
+<label>Ville</label>
+<input type="text" id="villeConjoint">
+</div>
+
+</div>
 
 </div>
 
