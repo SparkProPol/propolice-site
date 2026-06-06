@@ -113,6 +113,11 @@ function remplirGrades() {
 
 function gererTypeAdhesion() {
 
+   const identiteCouple =
+document.getElementById(
+"identiteCouple"
+);
+   
   const radios =
     document.querySelectorAll(
       'input[name="typeAdhesion"]'
@@ -132,10 +137,21 @@ function gererTypeAdhesion() {
           'input[name="typeAdhesion"]:checked'
         ).value;
 
-      bloc.style.display =
-        valeur === "couple"
-          ? "block"
-          : "none";
+    if (valeur === "couple") {
+
+bloc.style.display = "block";
+
+if (identiteCouple)
+identiteCouple.style.display = "block";
+
+} else {
+
+bloc.style.display = "none";
+
+if (identiteCouple)
+identiteCouple.style.display = "none";
+
+}
 
       calculerMontant();
 
