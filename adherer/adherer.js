@@ -5,18 +5,34 @@ console.log("🤝 Module Adhérer chargé");
 ========================== */
 
 const cotisations = {
+
   "Cadet": 10,
   "Policier Adjoint": 10,
+
   "Élève GPX": 20,
+
   "GPX": 30,
+
   "Brigadier-Chef": 50,
+
   "Major": 60,
 
-  "Catégorie C": 30,
-  "Catégorie B": 40,
-  "Catégorie A": 50,
+  "Administratif Catégorie C": 30,
+  "Administratif Catégorie B": 40,
+  "Administratif Catégorie A": 50,
+
+  "Technique Catégorie C": 30,
+  "Technique Catégorie B": 40,
+  "Technique Catégorie A": 50,
+
+  "Scientifique Catégorie C": 30,
+  "Scientifique Catégorie B": 40,
+  "Scientifique Catégorie A": 50,
+
+  "Réserviste": 20,
 
   "Retraité": 20
+
 };
 
 /* ==========================
@@ -46,7 +62,34 @@ function remplirGrades() {
 
   if (!gradePrincipal) return;
 
-  Object.keys(cotisations).forEach(grade => {
+  const grades = [
+
+  "Cadet",
+  "Policier Adjoint",
+  "Élève GPX",
+  "GPX",
+  "Brigadier-Chef",
+  "Major",
+
+  "Administratif Catégorie C",
+  "Administratif Catégorie B",
+  "Administratif Catégorie A",
+
+  "Technique Catégorie C",
+  "Technique Catégorie B",
+  "Technique Catégorie A",
+
+  "Scientifique Catégorie C",
+  "Scientifique Catégorie B",
+  "Scientifique Catégorie A",
+
+  "Réserviste",
+
+  "Retraité"
+
+];
+
+grades.forEach(grade => {
 
     const option1 =
       document.createElement("option");
