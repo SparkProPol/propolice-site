@@ -219,7 +219,7 @@ function gererModeCouple() {
       const mode =
         document.querySelector(
           'input[name="modeCouple"]:checked'
-        ).value;
+        )?.value;
 
       if (mode === "commun") {
 
