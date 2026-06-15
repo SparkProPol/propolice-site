@@ -45,6 +45,28 @@ admin/
 ├── admin.js
 
 
+
+🏠 Accueil
+
+📅 Calendrier
+
+🎥 Vidéos
+
+📚 Ressources
+
+🤖 Assistants Virtuels PRO POLICE
+
+👮 Corps
+
+🧮 Simulateurs PRO POLICE
+
+🎓 Université
+
+👥 Accès Représentants
+
+🤝 Adhérer
+
+🛒 Boutique
 ## Déploiement GitHub Pages
 
 1. Pusher tous les fichiers sur le repo `SparkProPol/propolice-site`
