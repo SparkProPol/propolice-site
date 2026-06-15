@@ -3,249 +3,140 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PRO POLICE - Ressources</title>
+  <title>PRO POLICE</title>
 
-  <link rel="stylesheet" href="../styles.css">
+  <!-- 🔥 TON CSS DOIT ÊTRE ICI -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
+<!-- 🔵 MENU (NAVIGATION) -->
 <header class="header">
 
   <div class="topbar">
 
     <div class="topbar-left">
-
       <div class="brand">
         <div class="logo-placeholder">🏴‍☠️</div>
-
         <div class="brandtext">
           <div class="brandname">PRO POLICE</div>
           <div class="brandsub">Syndicat • Université</div>
         </div>
       </div>
-
     </div>
 
     <nav class="navDesktop" aria-label="Navigation principale">
-
-      <a href="../index.html">Accueil</a>
-
-      <a href="../corps/">Corps</a>
-
-      <a href="../calendrier/">Calendrier</a>
-
-      <a href="../ressources/">Ressources</a>
-
-      <a href="../simulateur.html">Simulateur</a>
-
-      <a href="../cmo.html">CMO</a>
-
-      <a href="../universite.html">Université</a>
-
-      <a href="../actualites/">Actualités</a>
-
-      <a href="../adherer.html">Adhérer</a>
-
+      <a href="corps.html">Corps</a>
+      <a href="calendrier.html">Calendrier</a>
+      <a href="ressources.html">Ressources</a>
+      <a href="simulateur.html">Simulateur</a>
+      <a href="cmo.html">CMO</a>
+      <a href="universite.html">Université</a>
+      <a href="actualites.html">Actualités</a>
+      <a href="adherer.html">Adhérer</a>
     </nav>
 
     <div class="topbar-right">
-
-      <button
-        class="btn small ghost"
-        id="btnMember"
-        type="button">
+      <button class="btn small ghost" id="btnMember" type="button">
         Mode adhérent OFF
       </button>
 
-      <a class="btn small primary" href="../adherer.html">
+      <a class="btn small primary" href="adherer.html">
         🤝 Adhérer
       </a>
 
-      <button
-        class="menuBtn"
-        id="menuBtn"
-        aria-expanded="false"
-        aria-controls="menuMobile">
-
+      <button class="menuBtn" id="menuBtn" aria-expanded="false" aria-controls="menuMobile">
         <span class="sr">Ouvrir le menu</span>
         <span aria-hidden="true">☰</span>
-
       </button>
-
     </div>
 
   </div>
 
   <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
-
-    <a href="../index.html">Accueil</a>
-
-    <a href="../corps/">Corps</a>
-
-    <a href="../calendrier/">Calendrier</a>
-
-    <a href="../ressources/">Ressources</a>
-
-    <a href="../simulateur.html">Simulateur</a>
-
-    <a href="../cmo.html">CMO</a>
-
-    <a href="../universite.html">Université</a>
-
-    <a href="../actualites/">Actualités</a>
-
-    <a href="../videos.html">Vidéos</a>
-
-    <a href="../adherer.html">Adhérer</a>
-
+    <a href="index.html">Accueil</a>
+    <a href="corps.html">Corps</a>
+    <a href="calendrier.html">Calendrier</a>
+    <a href="ressources.html">Ressources</a>
+    <a href="simulateur.html">Simulateur</a>
+    <a href="cmo.html">CMO</a>
+    <a href="universite.html">Université</a>
+    <a href="actualites.html">Actualités</a>
+    <a href="videos.html">Vidéos</a>
+    <a href="adherer.html">Adhérer</a>
   </nav>
 
 </header>
-
-<main style="padding:40px;">
-
-  <!-- ═══════════════════════════════════════════════
+  <main style="padding:40px;">
+<!-- ═══════════════════════════════════════════════
        RESSOURCES
   ═══════════════════════════════════════════════ -->
-
   <section class="section alt" id="ressources">
-
     <div class="container">
-
       <div class="sectionHead">
-
         <div class="sectionBadge">📚 Ressources</div>
-
         <h2>Base documentaire</h2>
-
-        <p>
-          Fiches pratiques, décryptages juridiques,
-          analyses statutaires et guides PRO POLICE.
-        </p>
-
+        <p>Fiches pratiques, décryptages juridiques et éclairage des textes — accessibles à tous.</p>
       </div>
 
-      <div
-        style="display:flex;
-        gap:10px;
-        margin-bottom:20px;
-        flex-wrap:wrap;
-        align-items:center;">
-
-        <input
-          type="search"
-          id="searchInput"
-          placeholder="Rechercher une fiche…"
-          style="
-          padding:10px 14px;
-          border-radius:12px;
-          border:1px solid rgba(255,255,255,.12);
-          background:rgba(255,255,255,.05);
-          color:#e9eefb;
-          font-size:14px;
-          font-family:inherit;
-          outline:none;
-          flex:1;
-          min-width:220px;">
-
-        <select
-          id="filterTheme"
-          style="
-          padding:10px 14px;
-          border-radius:12px;
-          border:1px solid rgba(255,255,255,.12);
-          background:rgba(15,26,47,.9);
-          color:#e9eefb;
-          font-size:14px;
-          font-family:inherit;
-          outline:none;">
-
-          <option value="">Tous les thèmes</option>
+      <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center;">
+        <input type="search" id="searchInput" placeholder="Rechercher une fiche…"
+          style="padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#e9eefb;font-size:14px;font-family:inherit;outline:none;flex:1;min-width:200px;" />
+        <select id="filterTheme"
+          style="padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(15,26,47,.9);color:#e9eefb;font-size:14px;font-family:inherit;outline:none;">
+          <option value="">Thème</option>
           <option value="Carrière">Carrière</option>
-          <option value="Retraite">Retraite</option>
+          <option value="retraite">Retraite</option>
           <option value="Juridique">Juridique</option>
           <option value="Rémunération">Rémunération</option>
-
         </select>
-
-        <button
-          class="btn ghost small"
-          onclick="
-          document.getElementById('searchInput').value='';
-          document.getElementById('filterTheme').value='';
-          renderArticles();">
-
-          Réinitialiser
-
-        </button>
-
+        <button class="btn ghost small" onclick="document.getElementById('searchInput').value='';document.getElementById('filterTheme').value='';renderArticles();">Réinitialiser</button>
       </div>
 
       <div class="grid3" id="articlesGrid">
 
-        <!-- Généré automatiquement par ressources.js -->
+  <article class="card">
+    <div class="kicker">📄 Retraite</div>
+    <h3>Guide retraite Police Nationale</h3>
+    <p>Comprendre les règles de départ, bonifications et calcul de pension.</p>
+  </article>
 
-      </div>
+  <article class="card">
+    <div class="kicker">⚖️ Juridique</div>
+    <h3>Fiche pratique OPJ</h3>
+    <p>Références légales, responsabilités et cadre d'exercice des missions OPJ.</p>
+  </article>
 
-      <div class="grid2" style="margin-top:30px;">
+  <article class="card">
+    <div class="kicker">🚔 Carrière</div>
+    <h3>Guide mutations</h3>
+    <p>Conseils et démarches pour préparer efficacement votre mobilité.</p>
+  </article>
 
+</div>
+
+      <div class="grid2" style="margin-top:16px;">
         <article class="card">
-
           <div class="kicker">🔒 Adhérents</div>
-
           <h3>Espace membre</h3>
-
-          <p>
-            Ressources avancées,
-            modèles prêts à l'emploi,
-            fiches mémos exclusives réservées aux adhérents PRO POLICE.
-          </p>
-
-          <div class="row" style="margin-top:15px;">
-
-            <a
-              class="btn small primary"
-              href="../adherer.html">
-
-              Débloquer via adhésion
-
-            </a>
-
+          <p>Ressources avancées, modèles prêts à l'emploi, fiches mémos exclusives réservées aux adhérents PRO POLICE.</p>
+          <div class="row" style="margin-top:14px;">
+            <button class="btn small primary" onclick="document.getElementById('adhesion').scrollIntoView({behavior:'smooth'})">Débloquer via adhésion</button>
           </div>
-
         </article>
-
-        <article
-          class="card"
-          style="
-          background:rgba(59,130,246,.04);
-          border-color:rgba(59,130,246,.2);">
-
-          <div
-            class="kicker"
-            style="color:var(--accent2);">
-
-            🔓 Accès public
-
-          </div>
-
+        <article class="card" style="background:rgba(59,130,246,.04);border-color:rgba(59,130,246,.2);">
+          <div class="kicker" style="color:var(--accent2);">🔓 Accès public</div>
           <h3>Accédez aux ressources gratuites</h3>
-
-          <p>
-            Simulateurs, fiches pratiques,
-            documentation syndicale accessible à tous.
-          </p>
-
+          <p>Simulateurs, fiches pratiques — tout ce qui est accessible librement à tous les visiteurs.</p>
+          <div class="row" style="margin-top:14px;">
+            <a class="btn small ghost" href="#simulateur">💰 Simulateur primes</a>
+            <a class="btn small ghost" href="#simulateur-cmo">🏥 Simulateur CMO</a>
+          </div>
         </article>
-
       </div>
-
     </div>
-
   </section>
-
-</main>
-
-<script src="ressources.js"></script>
+  </main>
+</body>
+</html>
