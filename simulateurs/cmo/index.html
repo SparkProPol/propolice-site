@@ -1,1 +1,217 @@
-🚧 CMO - Module en cours de développement
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Simulateur CMO PRO POLICE</title>
+
+<link rel="stylesheet" href="../../styles.css">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<nav class="navDesktop" aria-label="Navigation principale">
+
+<a href="../../index.html">🏠 Accueil</a>
+
+<a href="../../calendrier/">📅 Calendrier</a>
+
+<a href="../../videos/">🎥 Vidéos</a>
+
+<a href="../../ressources/">📚 Ressources</a>
+
+<a href="../../assistants/">🤖 Assistants Virtuels</a>
+
+<a href="../../corps/">👮 Corps</a>
+
+<a href="../../simulateurs/">🧮 Simulateurs PRO POLICE</a>
+
+<a href="../../universite/">🎓 Université</a>
+
+<a href="../../representants/">👥 Représentants</a>
+
+<a href="../../adherer/">🤝 Adhérer</a>
+
+<a href="../../boutique/">🛒 Boutique</a>
+
+</nav>
+
+<nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
+
+<a href="../../index.html">🏠 Accueil</a>
+
+<a href="../../calendrier/">📅 Calendrier</a>
+
+<a href="../../videos/">🎥 Vidéos</a>
+
+<a href="../../ressources/">📚 Ressources</a>
+
+<a href="../../assistants/">🤖 Assistants Virtuels</a>
+
+<a href="../../corps/">👮 Corps</a>
+
+<a href="../../simulateurs/">🧮 Simulateurs PRO POLICE</a>
+
+<a href="../../universite/">🎓 Université</a>
+
+<a href="../../representants/">👥 Représentants</a>
+
+<a href="../../adherer/">🤝 Adhérer</a>
+
+<a href="../../boutique/">🛒 Boutique</a>
+
+</nav>
+
+</header>
+
+<main style="padding:40px;">
+
+<div class="sectionHead" style="text-align:center;">
+
+<div class="sectionBadge">
+🏥 SIMULATEUR CMO
+</div>
+
+<h2>Simulateur Congé Maladie Ordinaire</h2>
+
+<p>
+Estimez l'impact d'un arrêt maladie ordinaire sur votre rémunération
+et visualisez les retenues potentielles selon votre situation.
+</p>
+
+</div>
+
+<section class="section alt" id="simulateur-cmo">
+
+<div class="container">
+
+<div class="simulateurWrap">
+
+<div class="card">
+
+<div class="formGrid">
+
+<label class="field">
+<span>Traitement mensuel estimé (NET)</span>
+<input type="number" id="cmoSalaire" min="0" value="2500" />
+</label>
+
+<label class="field">
+<span>Nombre de jours d'arrêt</span>
+<input type="number" id="cmoJours" min="0" value="1" />
+</label>
+
+<label class="field">
+<span>Jours CMO déjà consommés (12 mois glissants)</span>
+<input type="number" id="cmoDeja" min="0" value="0" />
+</label>
+
+<label class="field full">
+<span>Historique multi-arrêts (jours séparés par virgules)</span>
+<input type="text" id="cmoHistorique" placeholder="Ex : 3, 5, 12" />
+</label>
+
+<label class="field">
+<span>Régime applicable</span>
+<select id="cmoRegime">
+<option value="auto">Calcul auto 90% / 50%</option>
+<option value="plein">Plein traitement</option>
+<option value="demi">Demi-traitement</option>
+</select>
+</label>
+
+<label class="field">
+<span>Jour de carence</span>
+<select id="cmoCarence">
+<option value="non">Non</option>
+<option value="oui">Oui</option>
+</select>
+</label>
+
+<label class="field full">
+<span>Mode d'affichage</span>
+<select id="cmoMode">
+<option value="simple">Simple</option>
+<option value="detail">Détaillé</option>
+</select>
+</label>
+
+</div>
+
+<div class="row" style="margin-top:18px;gap:10px;flex-wrap:wrap;">
+
+<button class="btn primary" type="button" onclick="calculerCMO()">
+🏥 Calculer la retenue
+</button>
+
+<button class="btn ghost" type="button" onclick="reinitCMO()">
+Réinitialiser
+</button>
+
+<button class="btn outline" type="button" onclick="exportCMOPDF()">
+📄 Exporter PDF
+</button>
+
+</div>
+
+<div class="notice" style="margin-top:16px;">
+
+<strong>⚠️ Depuis le 1er mars 2025 :</strong>
+
+maintien à <strong>90%</strong> pendant les 3 premiers mois,
+puis <strong>50%</strong> au-delà.
+
+Calcul sur 12 mois glissants.
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Résultat estimatif</h3>
+
+<p class="smallmuted">
+Simulation indicative à vocation informative.
+</p>
+
+<div style="margin-top:18px;">
+
+<div id="resultatCMO">
+
+<div class="smallmuted"
+style="padding:24px 0;text-align:center;opacity:.6;">
+
+Renseignez vos informations pour lancer le calcul.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="../../script.js"></script>
+
+<script src="cmo.js"></script>
+
+</body>
+
+</html>
