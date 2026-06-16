@@ -2,10 +2,17 @@
 <html lang="fr">
 
 <head>
+
   <meta charset="UTF-8">
-  <title>CRS - PRO POLICE</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Compagnies Républicaines de Sécurité | PRO POLICE</title>
 
   <link rel="stylesheet" href="../styles.css">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
 </head>
 
 <body>
@@ -18,42 +25,89 @@
 
     <div class="topbar-left">
 
-  <a href="../index.html" class="brand" style="text-decoration:none;">
+      <a href="../index.html" class="brand" style="text-decoration:none;">
 
-    <div class="logo-placeholder">🏴‍☠️</div>
+        <div class="logo-placeholder">🏴‍☠️</div>
 
-    <div class="brandtext">
-      <div class="brandname">PRO POLICE</div>
-      <div class="brandsub">Syndicat • Université</div>
+        <div class="brandtext">
+
+          <div class="brandname">PRO POLICE</div>
+
+          <div class="brandsub">
+            Professionnels de la Police Nationale
+          </div>
+
+        </div>
+
+      </a>
+
     </div>
 
-  </a>
-
-</div>
-
     <nav class="navDesktop" aria-label="Navigation principale">
-  <a href="../index.html">Accueil</a>
-  <a href="../corps.html">Corps</a>
-  <a href="../calendrier.html">Calendrier</a>
-  <a href="../ressources.html">Ressources</a>
-  <a href="../simulateur.html">Simulateur</a>
-  <a href="../cmo.html">CMO</a>
-  <a href="../universite.html">Université</a>
-  <a href="../actualites.html">Actualités</a>
-  <a href="../adherer.html">Adhérer</a>
-</nav>
+
+      <a href="../index.html">🏠 Accueil</a>
+      <a href="../calendrier/">📅 Calendrier</a>
+      <a href="../videos/">🎥 Vidéos</a>
+      <a href="../ressources/">📚 Ressources</a>
+      <a href="../assistants/">🤖 Assistants Virtuels</a>
+      <a href="../corps/">👮 Corps</a>
+      <a href="../simulateurs/">🧮 Simulateurs</a>
+      <a href="../universite/">🎓 Université</a>
+      <a href="../representants/">👥 Représentants</a>
+      <a href="../adherer/">🤝 Adhérer</a>
+      <a href="../boutique/">🛒 Boutique</a>
+
+    </nav>
 
     <div class="topbar-right">
-      <button class="btn small ghost" type="button">
+
+      <button
+        class="btn small ghost"
+        id="btnMember"
+        type="button">
+
         Mode adhérent OFF
+
       </button>
 
-      <a class="btn small primary" href="../adherer.html">
+      <a
+        class="btn small primary"
+        href="../adherer/">
+
         🤝 Adhérer
+
       </a>
+
+      <button
+        class="menuBtn"
+        id="menuBtn"
+        aria-expanded="false"
+        aria-controls="menuMobile">
+
+        <span class="sr">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
+
+      </button>
+
     </div>
 
   </div>
+
+  <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
+
+    <a href="../index.html">🏠 Accueil</a>
+    <a href="../calendrier/">📅 Calendrier</a>
+    <a href="../videos/">🎥 Vidéos</a>
+    <a href="../ressources/">📚 Ressources</a>
+    <a href="../assistants/">🤖 Assistants Virtuels</a>
+    <a href="../corps/">👮 Corps</a>
+    <a href="../simulateurs/">🧮 Simulateurs</a>
+    <a href="../universite/">🎓 Université</a>
+    <a href="../representants/">👥 Représentants</a>
+    <a href="../adherer/">🤝 Adhérer</a>
+    <a href="../boutique/">🛒 Boutique</a>
+
+  </nav>
 
 </header>
 
@@ -66,17 +120,17 @@
 
     <div class="sectionHead">
 
-      <div class="sectionBadge">
-        🚓 C.R.S
-      </div>
+     <div class="sectionBadge">
+  🚓 C.R.S
+</div>
 
       <h1>
-        Compagnies Républicaines de Sécurité
+        Corps d'Encadrement et d'Application
       </h1>
 
-      <p>
-        Informations, revendications, actualités et outils dédiés aux personnels des Compagnies Républicaines de Sécurité.
-      </p>
+        <p>
+Informations, revendications, actualités et outils dédiés aux personnels des Compagnies Républicaines de Sécurité.
+</p>
 
     </div>
 
@@ -109,8 +163,8 @@
     <div class="sectionHead">
 
       <div class="sectionBadge">
-📰 Actualités CRS
-</div>
+        📰 Actualités CRS
+      </div>
 
       <h2>
         Dernières informations
@@ -161,22 +215,22 @@
 
     <div class="grid3">
 
-      <a class="card" href="#">
-        <h3>Grille indiciaire</h3>
-        <p>Consulter.</p>
-      </a>
+  <a class="card" href="#">
+    <h3>Grilles CRS</h3>
+    <p>Consulter.</p>
+  </a>
 
-      <a class="card" href="#">
-        <h3>Guide mutation</h3>
-        <p>Consulter.</p>
-      </a>
+  <a class="card" href="#">
+    <h3>Indemnités CRS</h3>
+    <p>Consulter.</p>
+  </a>
 
-      <a class="card" href="#">
-        <h3>Fiche OPJ</h3>
-        <p>Consulter.</p>
-      </a>
+  <a class="card" href="#">
+    <h3>Guide déplacements</h3>
+    <p>Consulter.</p>
+  </a>
 
-    </div>
+</div>
 
   </div>
 
@@ -199,11 +253,16 @@
       </h2>
 
       <ul>
-        <li>Revalorisation indiciaire.</li>
-        <li>Amélioration des conditions de travail.</li>
-        <li>Reconnaissance des spécialités.</li>
-        <li>Protection juridique renforcée.</li>
-      </ul>
+
+  <li>Revalorisation des indemnités de déplacement.</li>
+
+  <li>Modernisation des moyens matériels et véhicules.</li>
+
+  <li>Amélioration des conditions d'hébergement en déplacement.</li>
+
+  <li>Reconnaissance accrue de la spécificité CRS.</li>
+
+</ul>
 
     </div>
 
@@ -212,6 +271,6 @@
 </section>
 
 </main>
-
+<script src="../script.js"></script>
 </body>
 </html>
