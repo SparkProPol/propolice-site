@@ -1,6 +1,6 @@
 ---
 title: Bienvenue sur le nouveau site PRO POLICE
-date: 2026-04-01
+date: 2026-06-01
 excerpt: Une base moderne pour informer, représenter et structurer la communication syndicale de PRO POLICE.
 published: true
 ---
