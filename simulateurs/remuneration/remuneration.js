@@ -1,7 +1,8 @@
 
-console.log("🔒 PRO POLICE V6 — SIMULATEUR OFFICIEL STABLE");
-const VERSION_SIMULATEUR = "V6.0 — STABLE";
-const DATE_VERSION = "2026-05-30";
+console.log("🔒 PRO POLICE V8 — SIMULATEUR RÉMUNÉRATION");
+
+const VERSION_SIMULATEUR = "V8.0 — RÉMUNÉRATION";
+const DATE_VERSION = "2026-06-16";
 
 function calculerNetReel(brut, aff) {
 
@@ -39,7 +40,7 @@ if (aff === "paris") {
 }
 
 // ========================
-// 🔵 FONCTION PRINCIPALE
+// 🔵 SIMULATEUR RÉMUNÉRATION V8
 // ========================
 function calculerPrimes() {
 
@@ -215,7 +216,7 @@ net += (complementRTT || 0);
 
 <div style="padding:20px;border-radius:12px;background:#111827;color:white">
 
-  <h2 style="color:#38bdf8">📊 Simulation PRO POLICE</h2>
+  <h2 style="color:#38bdf8">📊 Simulateur Rémunération PRO POLICE</h2>
 
   <div>💰 Base : <strong>${salaireBase.toFixed(2)} €</strong></div>
   <div>📈 ISSP : + ${ISSP.toFixed(2)} €</div>
@@ -301,9 +302,9 @@ net += (complementRTT || 0);
 <hr>
 
 <div style="background:#1e3a8a22;padding:10px;border-radius:8px;">
-📊 Analyse PRO POLICE<br>
-✔ Simulation proche fiche de paie<br>
-✔ Écart moyen constaté < 1%
+📊 Analyse Rémunération PRO POLICE<br>
+✔ Calcul basé sur les grilles indiciaires intégrées
+✔ Estimation indicative à vocation informative
 </div>
 
 <div style="
