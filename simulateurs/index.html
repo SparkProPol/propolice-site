@@ -2,72 +2,92 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<head>
+<header class="header">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <div class="topbar">
 
-  <title>Simulateurs PRO POLICE</title>
+    <div class="topbar-left">
 
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+      <a href="../index.html" class="brand" style="text-decoration:none;">
 
-</head>
+        <div class="logo-placeholder">🏴‍☠️</div>
 
-<body>
+        <div class="brandtext">
+          <div class="brandname">PRO POLICE</div>
+          <div class="brandsub">Professionnels de la Police Nationale</div>
+        </div>
 
-<!-- 🔵 MENU (NAVIGATION) -->
-<nav class="navDesktop" aria-label="Navigation principale">
+      </a>
 
-  <a href="../index.html">🏠 Accueil</a>
+    </div>
 
-  <a href="../calendrier/">📅 Calendrier</a>
+    <nav class="navDesktop" aria-label="Navigation principale">
 
-  <a href="../videos/">🎥 Vidéos</a>
+      <a href="../index.html">🏠 Accueil</a>
+      <a href="../calendrier/">📅 Calendrier</a>
+      <a href="../videos/">🎥 Vidéos</a>
+      <a href="../ressources/">📚 Ressources</a>
+      <a href="../assistants/">🤖 Assistants Virtuels</a>
+      <a href="../corps/">👮 Corps</a>
+      <a href="../simulateurs/">🧮 Simulateurs</a>
+      <a href="../universite/">🎓 Université</a>
+      <a href="../representants/">👥 Représentants</a>
+      <a href="../adherer/">🤝 Adhérer</a>
+      <a href="../boutique/">🛒 Boutique</a>
 
-  <a href="../ressources/">📚 Ressources</a>
+    </nav>
 
-  <a href="../assistants/">🤖 Assistants Virtuels</a>
+    <div class="topbar-right">
 
-  <a href="../corps/">👮 Corps</a>
+      <button
+        class="btn small ghost"
+        id="btnMember"
+        type="button">
 
-  <a href="../simulateurs/">🧮 Simulateurs</a>
+        Mode adhérent OFF
 
-  <a href="../universite/">🎓 Université</a>
+      </button>
 
-  <a href="../representants/">👥 Représentants</a>
+      <a
+        class="btn small primary"
+        href="../adherer/">
 
-  <a href="../adherer/">🤝 Adhérer</a>
+        🤝 Adhérer
 
-  <a href="../boutique/">🛒 Boutique</a>
+      </a>
 
-</nav>
+      <button
+        class="menuBtn"
+        id="menuBtn"
+        aria-expanded="false"
+        aria-controls="menuMobile">
 
- <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
+        <span class="sr">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
 
-  <a href="../index.html">🏠 Accueil</a>
+      </button>
 
-  <a href="../calendrier/">📅 Calendrier</a>
+    </div>
 
-  <a href="../videos/">🎥 Vidéos</a>
+  </div>
 
-  <a href="../ressources/">📚 Ressources</a>
+  <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
 
-  <a href="../assistants/">🤖 Assistants Virtuels</a>
+    <a href="../index.html">🏠 Accueil</a>
+    <a href="../calendrier/">📅 Calendrier</a>
+    <a href="../videos/">🎥 Vidéos</a>
+    <a href="../ressources/">📚 Ressources</a>
+    <a href="../assistants/">🤖 Assistants Virtuels</a>
+    <a href="../corps/">👮 Corps</a>
+    <a href="../simulateurs/">🧮 Simulateurs</a>
+    <a href="../universite/">🎓 Université</a>
+    <a href="../representants/">👥 Représentants</a>
+    <a href="../adherer/">🤝 Adhérer</a>
+    <a href="../boutique/">🛒 Boutique</a>
 
-  <a href="../corps/">👮 Corps</a>
+  </nav>
 
-  <a href="../simulateurs/">🧮 Simulateurs</a>
-
-  <a href="../universite/">🎓 Université</a>
-
-  <a href="../representants/">👥 Représentants</a>
-
-  <a href="../adherer/">🤝 Adhérer</a>
-
-  <a href="../boutique/">🛒 Boutique</a>
-
-</nav> 
+</header>
 
   <!-- 🔵 CONTENU DE LA PAGE -->
 <main>
