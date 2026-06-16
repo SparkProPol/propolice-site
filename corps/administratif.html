@@ -1,11 +1,19 @@
+encore une verif dis moi si enfin cette 3e version est la bonne : 
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
+
   <meta charset="UTF-8">
-  <title>Administratifs - PRO POLICE</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Personnels Administratifs | PRO POLICE</title>
 
   <link rel="stylesheet" href="../styles.css">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
 </head>
 
 <body>
@@ -18,41 +26,89 @@
 
     <div class="topbar-left">
 
-  <a href="../index.html" class="brand" style="text-decoration:none;">
+      <a href="../index.html" class="brand" style="text-decoration:none;">
 
-    <div class="logo-placeholder">🏴‍☠️</div>
+        <div class="logo-placeholder">🏴‍☠️</div>
 
-    <div class="brandtext">
-      <div class="brandname">PRO POLICE</div>
-      <div class="brandsub">Syndicat • Université</div>
+        <div class="brandtext">
+
+          <div class="brandname">PRO POLICE</div>
+
+          <div class="brandsub">
+            Professionnels de la Police Nationale
+          </div>
+
+        </div>
+
+      </a>
+
     </div>
 
-  </a>
-
-</div>
     <nav class="navDesktop" aria-label="Navigation principale">
-  <a href="../index.html">Accueil</a>
-  <a href="../corps.html">Corps</a>
-  <a href="../calendrier.html">Calendrier</a>
-  <a href="../ressources.html">Ressources</a>
-  <a href="../simulateur.html">Simulateur</a>
-  <a href="../cmo.html">CMO</a>
-  <a href="../universite.html">Université</a>
-  <a href="../actualites.html">Actualités</a>
-  <a href="../adherer.html">Adhérer</a>
-</nav>
+
+      <a href="../index.html">🏠 Accueil</a>
+      <a href="../calendrier/">📅 Calendrier</a>
+      <a href="../videos/">🎥 Vidéos</a>
+      <a href="../ressources/">📚 Ressources</a>
+      <a href="../assistants/">🤖 Assistants Virtuels</a>
+      <a href="../corps/">👮 Corps</a>
+      <a href="../simulateurs/">🧮 Simulateurs</a>
+      <a href="../universite/">🎓 Université</a>
+      <a href="../representants/">👥 Représentants</a>
+      <a href="../adherer/">🤝 Adhérer</a>
+      <a href="../boutique/">🛒 Boutique</a>
+
+    </nav>
 
     <div class="topbar-right">
-      <button class="btn small ghost" type="button">
+
+      <button
+        class="btn small ghost"
+        id="btnMember"
+        type="button">
+
         Mode adhérent OFF
+
       </button>
 
-      <a class="btn small primary" href="../adherer.html">
+      <a
+        class="btn small primary"
+        href="../adherer/">
+
         🤝 Adhérer
+
       </a>
+
+      <button
+        class="menuBtn"
+        id="menuBtn"
+        aria-expanded="false"
+        aria-controls="menuMobile">
+
+        <span class="sr">Ouvrir le menu</span>
+        <span aria-hidden="true">☰</span>
+
+      </button>
+
     </div>
 
   </div>
+
+  <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
+
+    <a href="../index.html">🏠 Accueil</a>
+    <a href="../calendrier/">📅 Calendrier</a>
+    <a href="../videos/">🎥 Vidéos</a>
+    <a href="../ressources/">📚 Ressources</a>
+    <a href="../assistants/">🤖 Assistants Virtuels</a>
+    <a href="../corps/">👮 Corps</a>
+    <a href="../simulateurs/">🧮 Simulateurs</a>
+    <a href="../universite/">🎓 Université</a>
+    <a href="../representants/">👥 Représentants</a>
+    <a href="../adherer/">🤝 Adhérer</a>
+    <a href="../boutique/">🛒 Boutique</a>
+
+  </nav>
 
 </header>
 
@@ -65,17 +121,17 @@
 
     <div class="sectionHead">
 
-      <div class="sectionBadge">
-        📋 ADMIN
-      </div>
+      <<div class="sectionBadge">
+   🗂️ ADMINISTRATIFS
+</div>
 
       <h1>
         Personnels Administratifs
       </h1>
 
       <p>
-        Informations, revendications, actualités et outils dédiés aux personnels administratifs du ministère de l'Intérieur.
-      </p>
+Informations, revendications, actualités et outils dédiés aux personnels administratifs de la Police nationale.
+</p>
 
     </div>
 
@@ -91,13 +147,14 @@
 
       <img
         src="../assets/generated-image-1e7e0811.jpg"
-        alt="Administratifs"
+        alt="ADMIN"
         style="width:100%;border-radius:18px;">
 
     </div>
 
   </div>
 </section>
+
 <!-- ACTUALITÉS -->
 
 <section class="section">
@@ -107,8 +164,8 @@
     <div class="sectionHead">
 
       <div class="sectionBadge">
-📰 Actualités Personnels Administratifs
-</div>
+        📰 Actualités Administratifs
+      </div>
 
       <h2>
         Dernières informations
@@ -157,24 +214,24 @@
 
     </div>
 
-    <div class="grid3">
+ <div class="grid3">
 
-      <a class="card" href="#">
-        <h3>Grille indiciaire</h3>
-        <p>Consulter.</p>
-      </a>
+  <a class="card" href="#">
+    <h3>Grilles indiciaires</h3>
+    <p>Consulter.</p>
+  </a>
 
-      <a class="card" href="#">
-        <h3>Guide mutation</h3>
-        <p>Consulter.</p>
-      </a>
+  <a class="card" href="#">
+    <h3>Guide mobilité</h3>
+    <p>Consulter.</p>
+  </a>
 
-      <a class="card" href="#">
-        <h3>Fiche OPJ</h3>
-        <p>Consulter.</p>
-      </a>
+  <a class="card" href="#">
+    <h3>Télétravail</h3>
+    <p>Consulter.</p>
+  </a>
 
-    </div>
+</div>
 
   </div>
 
@@ -196,13 +253,17 @@
         Nos priorités
       </h2>
 
-      <ul>
-        <li>Revalorisation indiciaire.</li>
-        <li>Amélioration des conditions de travail.</li>
-        <li>Reconnaissance des spécialités.</li>
-        <li>Protection juridique renforcée.</li>
-      </ul>
+     <ul>
 
+  <li>Revalorisation des carrières administratives.</li>
+
+  <li>Développement du télétravail lorsque les missions le permettent.</li>
+
+  <li>Amélioration des perspectives d’avancement et de promotion.</li>
+
+  <li>Renforcement des effectifs pour garantir un service public de qualité.</li>
+
+</ul>
     </div>
 
   </div>
@@ -210,6 +271,6 @@
 </section>
 
 </main>
-
+<script src="../script.js"></script>
 </body>
 </html>
