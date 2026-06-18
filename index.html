@@ -14,39 +14,23 @@
   <style>
     /* ── OVERRIDES & NOUVEAUX COMPOSANTS V5 ─────────────────── */
 
-    /* HERO — centré, impactant */
     .heroInner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 20px;
-      gap: 28px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; max-width: 860px; margin: 0 auto;
+      padding: 0 20px; gap: 28px;
     }
-    .hero h1 {
-      font-size: clamp(36px, 5.5vw, 64px);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -.02em;
-    }
+    .hero h1 { font-size: clamp(36px, 5.5vw, 64px); font-weight: 900; line-height: 1.1; letter-spacing: -.02em; }
     .hero h1 span { color: var(--accent2); }
     .heroHighlight {
       display: flex; gap: 10px; align-items: flex-start;
       padding: 16px 20px; border-radius: 16px;
-      background: rgba(59,130,246,.08);
-      border: 1px solid rgba(59,130,246,.2);
+      background: rgba(59,130,246,.08); border: 1px solid rgba(59,130,246,.2);
       text-align: left; max-width: 600px; width: 100%;
     }
     .heroHighlight ul li { font-size: 13px; color: var(--muted); }
-    .heroStats {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 12px; width: 100%; max-width: 700px;
-    }
+    .heroStats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; width: 100%; max-width: 700px; }
     .heroStatItem {
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04); border: 1px solid var(--line);
       border-radius: 16px; padding: 16px 12px; text-align: center;
       transition: transform .2s, border-color .2s;
     }
@@ -54,49 +38,24 @@
     .heroStatItem .num { font-size: 22px; font-weight: 900; color: var(--accent2); }
     .heroStatItem .lbl { font-size: 11px; color: var(--muted); margin-top: 4px; }
 
-    /* CORPS GRID — 6 cartes horizontales */
-    .corpsGrid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 12px;
-      margin-top: 24px;
-    }
+    /* CORPS GRID */
+    .corpsGrid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-top: 24px; }
     .corpsCard {
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 22px 14px;
-      text-align: center;
+      background: rgba(255,255,255,.03); border: 1px solid var(--line);
+      border-radius: 18px; padding: 22px 14px; text-align: center;
       transition: transform .2s, border-color .2s, background .2s;
-      cursor: default;
-      position: relative;
-      overflow: hidden;
+      cursor: default; position: relative; overflow: hidden;
     }
-    .corpsCard:hover {
-      transform: translateY(-4px);
-      border-color: rgba(59,130,246,.35);
-      background: rgba(59,130,246,.06);
-    }
+    .corpsCard:hover { transform: translateY(-4px); border-color: rgba(59,130,246,.35); background: rgba(59,130,246,.06); }
     .corpsIcon { font-size: 28px; margin-bottom: 10px; }
-    .corpsAbbr {
-      font-size: 16px; font-weight: 900;
-      color: var(--accent2); letter-spacing: .04em;
-      margin-bottom: 6px;
-    }
+    .corpsAbbr { font-size: 16px; font-weight: 900; color: var(--accent2); letter-spacing: .04em; margin-bottom: 6px; }
     .corpsLabel { font-size: 11px; color: var(--muted); line-height: 1.4; }
-
-    /* Carte avec image */
     .corpsCard.hasImg {
       padding: 0; height: 200px;
-      background-size: 100%; background-position: center;
-      border: none; cursor: pointer; overflow: hidden;
+      background-size: 100%; background-position: center; border: none; cursor: pointer; overflow: hidden;
       transition: transform .35s ease, box-shadow .35s ease, background-size .45s ease;
     }
-    .corpsCard.hasImg:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 14px 36px rgba(59,130,246,.28);
-      background-size: 112%;
-    }
+    .corpsCard.hasImg:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(59,130,246,.28); background-size: 112%; }
     .corpsCard.hasImg .corpsImgOverlay {
       position: absolute; inset: 0;
       background: linear-gradient(to bottom, rgba(5,10,20,.1) 0%, rgba(5,10,20,.55) 55%, rgba(5,10,20,.92) 100%);
@@ -108,24 +67,15 @@
     .corpsImgLabel { font-size: 10px; color: rgba(255,255,255,.65); line-height: 1.4; }
     .corpsImgBadge { position: absolute; top: 12px; right: 12px; z-index: 3; background: rgba(59,130,246,.18); border: 1px solid rgba(59,130,246,.35); border-radius: 20px; padding: 3px 9px; font-size: 9px; font-weight: 700; color: rgba(255,255,255,.8); letter-spacing: .06em; text-transform: uppercase; backdrop-filter: blur(6px); }
 
-    /* POURQUOI PRO POLICE — 6 cartes feature */
-    .whyGrid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 24px;
-    }
+    /* POURQUOI PRO POLICE */
+    .whyGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
     .whyCard {
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 28px 24px;
+      background: rgba(255,255,255,.03); border: 1px solid var(--line);
+      border-radius: 20px; padding: 28px 24px;
       transition: transform .25s, border-color .25s, box-shadow .25s;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
     .whyCard:hover { transform: translateY(-5px); border-color: rgba(59,130,246,.3); box-shadow: 0 14px 36px rgba(0,0,0,.45); }
-    /* whyCard avec image */
     a.whyCard {
       padding: 0; min-height: 260px; border: none; cursor: pointer;
       display: flex; flex-direction: column; justify-content: flex-end;
@@ -139,224 +89,116 @@
       border-radius: inherit; z-index: 1; pointer-events: none;
     }
     a.whyCard > div:not(.whyOverlay) { position: relative; z-index: 2; }
-    a.whyCard:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 48px rgba(0,0,0,.55);
-      background-size: 112% !important;
-    }
+    a.whyCard:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(0,0,0,.55); background-size: 112% !important; }
     .whyIcon { font-size: 32px; margin-bottom: 14px; }
     .whyTitle { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: #fff; }
     .whyDesc { font-size: 13px; color: var(--muted); line-height: 1.65; }
-    .whyTag {
-      display: inline-block; margin-top: 14px;
-      padding: 5px 12px; border-radius: 999px;
-      background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2);
-      color: var(--accent2); font-size: 11px; font-weight: 700;
+    .whyTag { display: inline-block; margin-top: 14px; padding: 5px 12px; border-radius: 999px; background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2); color: var(--accent2); font-size: 11px; font-weight: 700; }
+
+    /* SIMULATEURS HOME */
+    .simGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+    .simCard {
+      background: rgba(255,255,255,.03); border: 1px solid var(--line);
+      border-radius: 20px; padding: 24px 20px;
+      transition: transform .25s, border-color .25s, box-shadow .25s; position: relative;
     }
-<!-- ═══════════════════════════════════════════════  
-     SIMULATEURS EXCLUSIFS  
-═══════════════════════════════════════════════ -->  
-<section class="section alt" id="simulateurs-home">  
-  <div class="container">
+    .simCard:hover { transform: translateY(-4px); border-color: rgba(59,130,246,.35); box-shadow: 0 14px 36px rgba(0,0,0,.35); }
+    .simCardPhare { border-color: rgba(59,130,246,.4); background: rgba(59,130,246,.07); box-shadow: 0 0 30px rgba(59,130,246,.12); }
+    .simCardPhare::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #2563eb, #60a5fa); border-radius: 20px 20px 0 0; }
+    .simPhareTag { display: inline-block; margin-bottom: 10px; padding: 3px 10px; border-radius: 999px; background: rgba(59,130,246,.2); color: var(--accent2); font-size: 11px; font-weight: 700; }
+    .simIcon { font-size: 32px; margin-bottom: 12px; }
+    .simTitle { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .simDesc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .simLink { display: inline-block; color: var(--accent2); font-size: 13px; font-weight: 700; }
+    .simLink:hover { opacity: 1; text-decoration: underline; }
+    .simFooterBar { margin-top: 24px; padding: 14px 20px; border-radius: 14px; background: rgba(255,255,255,.03); border: 1px solid var(--line); text-align: center; font-size: 13px; color: var(--muted); }
 
-    <div class="sectionHead">  
-      <div class="sectionBadge">🖥️ SIMULATEURS EXCLUSIFS</div>  
-      <h2>Le premier portail de simulation multi-corps</h2>  
-      <p>Développés à partir des données statutaires et indemnitaires réelles — point d'indice <strong>4,9228 €</strong> au 01/01/2026.</p>  
-    </div>
-
-    <div class="simGrid">
-
-      <!-- Simulateur Rémunération — PHARE -->  
-      <div class="simCard simCardPhare">  
-        <div class="simPhareTag">⭐ Phare</div>  
-        <div class="simIcon">💰</div>  
-        <h3 class="simTitle">Simulateur Rémunération</h3>  
-        <p class="simDesc">Traitement net, primes, ISSP, ITN — CEA, CRS, PTS, Administratifs. Toutes zones géographiques.</p>  
-        <a class="simLink" href="simulateurs/remuneration/">Accéder →</a>  
-      </div>
-
-      <!-- Simulateur CMO -->  
-      <div class="simCard">  
-        <div class="simIcon">🏥</div>  
-        <h3 class="simTitle">Simulateur CMO</h3>  
-        <p class="simDesc">Estimation des droits et impacts liés au congé maladie ordinaire.</p>  
-        <a class="simLink" href="simulateurs/cmo/">Accéder →</a>  
-      </div>
-
-      <!-- Simulateur Administratifs -->  
-      <div class="simCard">  
-        <div class="simIcon">🗂️</div>  
-        <h3 class="simTitle">Simulateur Administratifs</h3>  
-        <p class="simDesc">Outil dédié aux personnels administratifs de la Police nationale.</p>  
-        <a class="simLink" href="simulateurs/administratifs/">Accéder →</a>  
-      </div>
-
-      <!-- Simulateur PTS -->  
-      <div class="simCard">  
-        <div class="simIcon">🔬</div>  
-        <h3 class="simTitle">Simulateur PTS</h3>  
-        <p class="simDesc">Outil dédié aux personnels techniques et scientifiques.</p>  
-        <a class="simLink" href="simulateurs/pts/">Accéder →</a>  
-      </div>
-
-    </div>
-
-    <!-- Barre de bas -->  
-    <div class="simFooterBar">  
-      🏆 Des outils conçus par des policiers, pour des policiers. Données mises à jour au 01/01/2026.  
-    </div>
-
-  </div>  
-</section>  
-    
-    /* NOS ACTIONS — 2 colonnes grandes cartes */
-    .actionsGrid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 24px;
-    }
-    .actionCard {
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 28px 24px;
+    /* UNIVERSITÉ HOME */
+    .univGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .univLeft { display: flex; flex-direction: column; gap: 20px; }
+    .univLeft h2 { font-size: clamp(24px, 3vw, 40px); font-weight: 900; line-height: 1.15; }
+    .univLeft p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .univCTAs { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .univRight { display: flex; flex-direction: column; gap: 10px; }
+    .univModule {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px; border-radius: 14px;
+      background: rgba(255,255,255,.03); border: 1px solid var(--line);
       transition: transform .2s, border-color .2s;
     }
+    .univModule:hover { transform: translateX(4px); border-color: rgba(59,130,246,.3); }
+    .univModuleAccent { border-color: rgba(59,130,246,.25); background: rgba(59,130,246,.06); }
+    .univModuleGold { border-color: rgba(245,158,11,.25); background: rgba(245,158,11,.05); }
+    .univModuleIcon { font-size: 20px; flex-shrink: 0; }
+    .univModuleLabel { font-size: 14px; font-weight: 600; color: #fff; }
+
+    /* NOS ACTIONS */
+    .actionsGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+    .actionCard { background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 20px; padding: 28px 24px; transition: transform .2s, border-color .2s; }
     .actionCard:hover { transform: translateY(-4px); border-color: rgba(59,130,246,.3); }
     .actionIcon { font-size: 36px; margin-bottom: 14px; }
     .actionTitle { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #fff; }
     .actionDesc { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
-    /* UNIVERSITÉ — 3 niveaux redessinés */
-    .niveauxGrid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 28px;
-    }
-    .niveauCard {
-      border-radius: 24px;
-      padding: 36px 28px;
-      text-align: center;
-      border: 1px solid var(--line);
-      transition: transform .25s, box-shadow .25s;
-      position: relative; overflow: hidden;
-    }
+    /* NIVEAUX UNIVERSITÉ */
+    .niveauxGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .niveauCard { border-radius: 24px; padding: 36px 28px; text-align: center; border: 1px solid var(--line); transition: transform .25s, box-shadow .25s; position: relative; overflow: hidden; }
     .niveauCard:hover { transform: translateY(-5px); box-shadow: 0 20px 56px rgba(0,0,0,.35); }
-    .niveauPublic  { background: rgba(34,197,94,.05);  border-color: rgba(34,197,94,.2); }
-    .niveauMembre  { background: rgba(59,130,246,.06); border-color: rgba(59,130,246,.25); }
-    .niveauStaff   { background: rgba(245,158,11,.05); border-color: rgba(245,158,11,.2); }
+    .niveauPublic { background: rgba(34,197,94,.05); border-color: rgba(34,197,94,.2); }
+    .niveauMembre { background: rgba(59,130,246,.06); border-color: rgba(59,130,246,.25); }
+    .niveauStaff { background: rgba(245,158,11,.05); border-color: rgba(245,158,11,.2); }
     .niveauEmoji { font-size: 52px; margin-bottom: 16px; display: block; }
-    .niveauPct {
-      font-size: 56px; font-weight: 900; line-height: 1;
-      margin-bottom: 4px;
-    }
+    .niveauPct { font-size: 56px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
     .niveauPublic .niveauPct { color: var(--good); }
     .niveauMembre .niveauPct { color: var(--accent2); }
-    .niveauStaff  .niveauPct { color: var(--gold); }
+    .niveauStaff .niveauPct { color: var(--gold); }
     .niveauTitle { font-size: 20px; font-weight: 800; margin-bottom: 12px; color: #fff; }
     .niveauDesc { font-size: 13px; color: var(--muted); line-height: 1.65; }
-    .niveauBadge {
-      display: inline-block; margin-top: 18px;
-      padding: 7px 18px; border-radius: 999px;
-      font-size: 12px; font-weight: 700;
-    }
+    .niveauBadge { display: inline-block; margin-top: 18px; padding: 7px 18px; border-radius: 999px; font-size: 12px; font-weight: 700; }
     .niveauPublic .niveauBadge { background: rgba(34,197,94,.15); color: var(--good); }
     .niveauMembre .niveauBadge { background: rgba(59,130,246,.15); color: var(--accent2); }
-    .niveauStaff  .niveauBadge { background: rgba(245,158,11,.15); color: var(--gold); }
+    .niveauStaff .niveauBadge { background: rgba(245,158,11,.15); color: var(--gold); }
 
-    /* ADHÉSION — 3 plans redessinés */
-    .pricingV5 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 28px;
-    }
-    .priceCardV5 {
-      border-radius: 24px;
-      padding: 36px 28px;
-      text-align: center;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      transition: transform .25s, box-shadow .25s;
-      position: relative; overflow: hidden;
-    }
+    /* ADHÉSION */
+    .pricingV5 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .priceCardV5 { border-radius: 24px; padding: 36px 28px; text-align: center; border: 1px solid var(--line); background: rgba(255,255,255,.03); transition: transform .25s, box-shadow .25s; position: relative; overflow: hidden; }
     .priceCardV5:hover { transform: translateY(-5px); box-shadow: 0 20px 56px rgba(0,0,0,.35); }
-    .priceCardV5.featured {
-      border-color: rgba(59,130,246,.4);
-      background: rgba(59,130,246,.07);
-      box-shadow: 0 0 40px rgba(59,130,246,.15);
-    }
-    .priceCardV5.featured::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, #2563eb, #60a5fa);
-    }
-    .priceCardV5.staff {
-      border-color: rgba(245,158,11,.35);
-      background: rgba(245,158,11,.04);
-    }
-    .priceCardV5.staff::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, #d97706, #fbbf24);
-    }
+    .priceCardV5.featured { border-color: rgba(59,130,246,.4); background: rgba(59,130,246,.07); box-shadow: 0 0 40px rgba(59,130,246,.15); }
+    .priceCardV5.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #2563eb, #60a5fa); }
+    .priceCardV5.staff { border-color: rgba(245,158,11,.35); background: rgba(245,158,11,.04); }
+    .priceCardV5.staff::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #d97706, #fbbf24); }
     .priceEmoji { font-size: 44px; margin-bottom: 16px; display: block; }
     .priceTitle { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 10px; }
-    .priceAmount {
-      font-size: 42px; font-weight: 900; line-height: 1;
-      margin-bottom: 6px;
-    }
+    .priceAmount { font-size: 42px; font-weight: 900; line-height: 1; margin-bottom: 6px; }
     .priceCardV5:not(.featured):not(.staff) .priceAmount { color: var(--good); }
     .priceCardV5.featured .priceAmount { color: var(--accent2); }
     .priceCardV5.staff .priceAmount { color: var(--gold); }
     .priceSub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
     .priceDesc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 22px; }
-    .priceCTA {
-      display: block; width: 100%; padding: 13px;
-      border-radius: 14px; font-size: 15px; font-weight: 700;
-      cursor: pointer; border: none; font-family: inherit;
-      transition: all .2s;
-    }
-    .priceCardV5:not(.featured):not(.staff) .priceCTA {
-      background: rgba(255,255,255,.08); color: #fff;
-      border: 1px solid rgba(255,255,255,.15);
-    }
-    .priceCardV5.featured .priceCTA {
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(59,130,246,.35);
-    }
-    .priceCardV5.staff .priceCTA {
-      background: rgba(245,158,11,.15); color: var(--gold);
-      border: 1px solid rgba(245,158,11,.35);
-    }
+    .priceCTA { display: block; width: 100%; padding: 13px; border-radius: 14px; font-size: 15px; font-weight: 700; cursor: pointer; border: none; font-family: inherit; transition: all .2s; }
+    .priceCardV5:not(.featured):not(.staff) .priceCTA { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.15); }
+    .priceCardV5.featured .priceCTA { background: linear-gradient(135deg, #2563eb, #3b82f6); color: #fff; box-shadow: 0 4px 20px rgba(59,130,246,.35); }
+    .priceCardV5.staff .priceCTA { background: rgba(245,158,11,.15); color: var(--gold); border: 1px solid rgba(245,158,11,.35); }
     .priceCTA:hover { transform: translateY(-2px); }
-
-    /* FORMULAIRE ADHÉSION */
-    .adhFormCard {
-      margin-top: 28px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 32px 28px;
-    }
+    .adhFormCard { margin-top: 28px; background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 24px; padding: 32px 28px; }
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       .corpsGrid { grid-template-columns: repeat(3, 1fr); }
       .whyGrid { grid-template-columns: repeat(2, 1fr); }
       .pricingV5 { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .simGrid { grid-template-columns: repeat(2, 1fr); }
+      .univGrid { grid-template-columns: 1fr; gap: 28px; }
     }
-   @media (max-width: 768px) {
-  .corpsGrid { grid-template-columns: repeat(2, 1fr); }
-  .whyGrid { grid-template-columns: 1fr; }
-  .actionsGrid { grid-template-columns: 1fr; }
-  .niveauxGrid { grid-template-columns: 1fr; }
-  .heroStats { grid-template-columns: repeat(2, 1fr); }
-}
-</style>
-
+    @media (max-width: 768px) {
+      .corpsGrid { grid-template-columns: repeat(2, 1fr); }
+      .whyGrid { grid-template-columns: 1fr; }
+      .actionsGrid { grid-template-columns: 1fr; }
+      .niveauxGrid { grid-template-columns: 1fr; }
+      .heroStats { grid-template-columns: repeat(2, 1fr); }
+      .simGrid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
@@ -366,7 +208,6 @@
 ═══════════════════════════════════════════════ -->
 <header class="header">
   <div class="topbar">
-
     <div class="topbar-left">
       <div class="brand">
         <div class="logo-placeholder">🏴‍☠️</div>
@@ -377,31 +218,19 @@
       </div>
     </div>
 
- <nav class="navDesktop" aria-label="Navigation principale">
-
-<a href="index.html">🏠 Accueil</a>
-
-<a href="calendrier/">📅 Calendrier</a>
-
-<a href="videos/">🎥 Vidéos</a>
-
-<a href="ressources/">📚 Ressources</a>
-
-<a href="assistants/">🤖 Assistants Virtuels</a>
-
-<a href="corps/">👮 Corps</a>
-
-<a href="simulateurs/">🧮 Simulateurs PRO POLICE</a>
-
-<a href="universite/">🎓 Université</a>
-
-<a href="representants/">👥 Représentants</a>
-
-<a href="adherer/">🤝 Adhérer</a>
-
-<a href="boutique/">🛒 Boutique</a>
-
-</nav>
+    <nav class="navDesktop" aria-label="Navigation principale">
+      <a href="index.html">🏠 Accueil</a>
+      <a href="calendrier/">📅 Calendrier</a>
+      <a href="videos/">🎥 Vidéos</a>
+      <a href="ressources/">📚 Ressources</a>
+      <a href="assistants/">🤖 Assistants Virtuels</a>
+      <a href="corps/">👮 Corps</a>
+      <a href="simulateurs/">🧮 Simulateurs PRO POLICE</a>
+      <a href="universite/">🎓 Université</a>
+      <a href="representants/">👥 Représentants</a>
+      <a href="adherer/">🤝 Adhérer</a>
+      <a href="boutique/">🛒 Boutique</a>
+    </nav>
 
     <div class="topbar-right">
       <button class="btn small ghost" id="btnMember" type="button">Mode adhérent OFF</button>
@@ -413,87 +242,66 @@
     </div>
   </div>
 
-<nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
+  <nav class="navMobile" id="menuMobile" aria-label="Navigation mobile">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="calendrier/">📅 Calendrier</a>
+    <a href="videos/">🎥 Vidéos</a>
+    <a href="ressources/">📚 Ressources</a>
+    <a href="assistants/">🤖 Assistants Virtuels PRO POLICE</a>
+    <a href="corps/">👮 Corps</a>
+    <a href="simulateurs/">🧮 Simulateurs PRO POLICE</a>
+    <a href="universite/">🎓 Université</a>
+    <a href="representants/">👥 Accès Représentants</a>
+    <a href="adherer/">🤝 Adhérer</a>
+    <a href="boutique/">🛒 Boutique</a>
+  </nav>
 
-  <a href="index.html">🏠 Accueil</a>
-
-  <a href="calendrier/">📅 Calendrier</a>
-
-  <a href="videos/">🎥 Vidéos</a>
-
-  <a href="ressources/">📚 Ressources</a>
-
-  <a href="assistants/">🤖 Assistants Virtuels PRO POLICE</a>
-
-  <a href="corps/">👮 Corps</a>
-
-  <a href="simulateurs/">🧮 Simulateurs PRO POLICE</a>
-
-  <a href="universite/">🎓 Université</a>
-
-  <a href="representants/">👥 Accès Représentants</a>
-
-  <a href="adherer/">🤝 Adhérer</a>
-
-  <a href="boutique/">🛒 Boutique</a>
-
-</nav>
-  </header>
-  
   <!-- ═══════════════ HERO ═══════════════ -->
   <section class="hero" id="contenu">
     <div class="heroBg" aria-hidden="true"></div>
     <div class="heroInner">
-
       <div class="badge">⚡ SYNDICAT • TERRAIN • ENGAGEMENT</div>
-
       <h1>Défendre. Informer.<br><span>Représenter.</span></h1>
-
       <p class="lead" style="max-width:580px;">
         PRO POLICE est un syndicat de professionnels engagé au service des policiers.
         Des réponses concrètes, des analyses claires et un accompagnement réel dans toutes les situations professionnelles.
       </p>
-
       <div class="heroHighlight">
         <div class="hh-icon">🔥</div>
         <div>
           <div class="hh-title">Le simulateur Police Nationale le plus complet du paysage syndical</div>
           <ul>
-            <li>Métropole & Outre-mer</li>
-            <li>CEA & CRS</li>
+            <li>Métropole &amp; Outre-mer</li>
+            <li>CEA &amp; CRS</li>
             <li>Primes réelles intégrées (ISSP, ITN, OPJ…)</li>
-            <li>Estimation nette & annuelle</li>
+            <li>Estimation nette &amp; annuelle</li>
           </ul>
         </div>
       </div>
-
       <div class="ctaRow" style="justify-content:center;">
         <a class="btn primary" href="adherer/">🤝 Rejoindre PRO POLICE</a>
         <a class="btn ghost" href="#ressources">📚 Accéder aux ressources</a>
       </div>
-
       <div class="heroStats">
-        <div class="heroStatItem"><div class="num">Des Milliers</div><div class="lbl"> de collègues accompagnés</div></div>
+        <div class="heroStatItem"><div class="num">Des Milliers</div><div class="lbl">de collègues accompagnés</div></div>
         <div class="heroStatItem"><div class="num">Des Milliers</div><div class="lbl">de dossiers traités</div></div>
-        <div class="heroStatItem"><div class="num">Des Milliers €+</div><div class="lbl">récupérés</div></div>
+        <div class="heroStatItem"><div class="num">Des Dizaines de milliers €+</div><div class="lbl">récupérés</div></div>
         <div class="heroStatItem"><div class="num">100%</div><div class="lbl">Totalement indépendant</div></div>
       </div>
-
       <div class="metaRow" style="justify-content:center;">
         <div class="metaCard">
           <div class="metaIcon">🛡️</div>
-          <div><div class="metaTitle">Défense</div><div class="metaText">Accompagnement individuel & collectif</div></div>
+          <div><div class="metaTitle">Défense</div><div class="metaText">Accompagnement individuel &amp; collectif</div></div>
         </div>
         <div class="metaCard">
           <div class="metaIcon">📖</div>
-          <div><div class="metaTitle">Information</div><div class="metaText">Fiches pratiques & décryptages</div></div>
+          <div><div class="metaTitle">Information</div><div class="metaText">Fiches pratiques &amp; décryptages</div></div>
         </div>
         <div class="metaCard">
           <div class="metaIcon">⚡</div>
-          <div><div class="metaTitle">Action</div><div class="metaText">Présence terrain & représentation</div></div>
+          <div><div class="metaTitle">Action</div><div class="metaText">Présence terrain &amp; représentation</div></div>
         </div>
       </div>
-
     </div>
   </section>
 </header>
@@ -502,176 +310,72 @@
 
   <!-- ═══════════════════════════════════════════════
        POURQUOI PRO POLICE
-═══════════════════════════════════════════════ -->
-<section class="section alt" id="fonctionnalites">
-
-  <div class="container">
-
-    <div class="sectionHead">
-      <div class="sectionBadge">🚀 Notre différence</div>
-
-      <h2>Pourquoi PRO POLICE ?</h2>
-
-      <p>
-        Un syndicat qui pense autrement — indépendant, innovant, orienté terrain et spécialités.
-      </p>
+  ═══════════════════════════════════════════════ -->
+  <section class="section alt" id="fonctionnalites">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">🚀 Notre différence</div>
+        <h2>Pourquoi PRO POLICE ?</h2>
+        <p>Un syndicat qui pense autrement — indépendant, innovant, orienté terrain et spécialités.</p>
+      </div>
+      <div class="whyGrid">
+        <div class="whyCard">
+          <div class="whyOverlay"></div>
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+            <div class="whyIcon">🏴‍☠️</div>
+            <div class="whyTitle" style="color:#fff;">100% Indépendant</div>
+            <div class="whyDesc" style="color:rgba(255,255,255,.75);">Ni confédération, ni fédération, libre de toute pression politique ou syndicale extérieure. PRO POLICE ne répond qu'à une seule boussole : l'intérêt des policiers.</div>
+            <span class="whyTag">Unique en France</span>
+          </div>
+        </div>
+        <div class="whyCard">
+          <div class="whyOverlay"></div>
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+            <div class="whyIcon">🎓</div>
+            <div class="whyTitle" style="color:#fff;">Université PRO POLICE</div>
+            <div class="whyDesc" style="color:rgba(255,255,255,.75);">Progressez à votre rythme grâce à des parcours pédagogiques professionnels. Un formateur virtuel disponible 24h/24 — où que vous soyez, quand vous le souhaitez.</div>
+            <span class="whyTag">Digital Learning</span>
+          </div>
+        </div>
+        <div class="whyCard">
+          <div class="whyOverlay"></div>
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+            <div class="whyIcon">🧠</div>
+            <div class="whyTitle" style="color:#fff;">PRO POLICE Mentorat</div>
+            <div class="whyDesc" style="color:rgba(255,255,255,.75);">Accompagnement individuel par des professionnels certifiés. Coaching, leadership syndical — des compétences que personne d'autre ne vous enseigne. Places limitées — accès sur dossier "UNIQUEMENT".</div>
+            <span class="whyTag">Innovant</span>
+          </div>
+        </div>
+        <div class="whyCard">
+          <div class="whyOverlay"></div>
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+            <div class="whyIcon">📊</div>
+            <div class="whyTitle" style="color:#fff;">Simulateurs exclusifs tous corps</div>
+            <div class="whyDesc" style="color:rgba(255,255,255,.75);">Votre salaire. Vos primes. Votre réalité. Calibré sur les grilles officielles DGPN, tous corps, toutes zones. En adhérent : votre rémunération réelle, complète et détaillée.</div>
+            <span class="whyTag">Outil terrain</span>
+          </div>
+        </div>
+        <div class="whyCard">
+          <div class="whyOverlay"></div>
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+            <div class="whyIcon">🤝</div>
+            <div class="whyTitle" style="color:#fff;">Délégué en poche</div>
+            <div class="whyDesc" style="color:rgba(255,255,255,.75);">Accédez à votre délégué virtuel 24h/24. Ressources, fiches, modèles — tout ce dont vous avez besoin, quand vous en avez besoin.</div>
+            <span class="whyTag">Mobile first</span>
+          </div>
+        </div>
+        <div class="whyCard">
+          <div class="whyOverlay"></div>
+          <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
+            <div class="whyIcon">⚡</div>
+            <div class="whyTitle" style="color:#fff;">Ouvert à tous, pensé pour le meilleur</div>
+            <div class="whyDesc" style="color:rgba(255,255,255,.75);">80% de contenu gratuit pour tous. 17% exclusif adhérents. 3% réservé aux délégués formés et engagés. Chaque niveau se mérite, chaque accès s'acquiert.</div>
+            <span class="whyTag">Stratégie valeur</span>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="whyGrid">
-
-      <!-- 1 -->
-      <div class="whyCard">
-
-        <div class="whyOverlay"></div>
-
-        <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
-
-          <div class="whyIcon">🏴‍☠️</div>
-
-          <div class="whyTitle" style="color:#fff;">
-            100% Indépendant
-          </div>
-
-          <div class="whyDesc" style="color:rgba(255,255,255,.75);">
-            Ni confédération, ni fédération, libre de toute pression politique ou syndicale extérieure.
-            PRO POLICE ne répond qu'à une seule boussole : l'intérêt des policiers.
-          </div>
-
-          <span class="whyTag">Unique en France</span>
-
-        </div>
-
-      </div>
-
-      <!-- 2 -->
-      <div class="whyCard">
-
-        <div class="whyOverlay"></div>
-
-        <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
-
-          <div class="whyIcon">🎓</div>
-
-          <div class="whyTitle" style="color:#fff;">
-            Université PRO POLICE
-          </div>
-
-          <div class="whyDesc" style="color:rgba(255,255,255,.75);">
-            Progressez à votre rythme grâce à des parcours pédagogiques professionnels.
-            Un formateur virtuel disponible 24h/24 — où que vous soyez, quand vous le souhaitez.
-          </div>
-
-          <span class="whyTag">Digital Learning</span>
-
-        </div>
-
-      </div>
-
-      <!-- 3 -->
-      <div class="whyCard">
-
-        <div class="whyOverlay"></div>
-
-        <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
-
-          <div class="whyIcon">🧠</div>
-
-          <div class="whyTitle" style="color:#fff;">
-            PRO POLICE Mentorat
-          </div>
-
-          <div class="whyDesc" style="color:rgba(255,255,255,.75);">
-            Accompagnement individuel par des professionnels certifiés.
-            Coaching, leadership syndical — des compétences que personne d'autre ne vous enseigne.
-            Places limitées — accès sur dossier "UNIQUEMENT".
-          </div>
-
-          <span class="whyTag">Innovant</span>
-
-        </div>
-
-      </div>
-
-      <!-- 4 -->
-      <div class="whyCard">
-
-        <div class="whyOverlay"></div>
-
-        <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
-
-          <div class="whyIcon">📊</div>
-
-          <div class="whyTitle" style="color:#fff;">
-            Simulateurs exclusifs tous corps
-          </div>
-
-          <div class="whyDesc" style="color:rgba(255,255,255,.75);">
-            Votre salaire. Vos primes. Votre réalité.
-            Calibré sur les grilles officielles DGPN, tous corps, toutes zones.
-            En adhérent : votre rémunération réelle, complète et détaillée.
-          </div>
-
-          <span class="whyTag">Outil terrain</span>
-
-        </div>
-
-      </div>
-
-      <!-- 5 -->
-      <div class="whyCard">
-
-        <div class="whyOverlay"></div>
-
-        <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
-
-          <div class="whyIcon">🤝</div>
-
-          <div class="whyTitle" style="color:#fff;">
-            Délégué en poche
-          </div>
-
-          <div class="whyDesc" style="color:rgba(255,255,255,.75);">
-            Accédez à votre délégué virtuel 24h/24.
-            Ressources, fiches, modèles — tout ce dont vous avez besoin, quand vous en avez besoin.
-          </div>
-
-          <span class="whyTag">Mobile first</span>
-
-        </div>
-
-      </div>
-
-      <!-- 6 -->
-      <div class="whyCard">
-
-        <div class="whyOverlay"></div>
-
-        <div style="padding:22px 18px 18px;display:flex;flex-direction:column;height:100%;justify-content:flex-end;">
-
-          <div class="whyIcon">⚡</div>
-
-          <div class="whyTitle" style="color:#fff;">
-            Ouvert à tous, pensé pour le meilleur
-          </div>
-
-          <div class="whyDesc" style="color:rgba(255,255,255,.75);">
-            80% de contenu gratuit pour tous.
-            17% exclusif adhérents.
-            3% réservé aux délégués formés et engagés.
-            Chaque niveau se mérite, chaque accès s'acquiert.
-          </div>
-
-          <span class="whyTag">Stratégie valeur</span>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+  </section>
 
   <!-- ═══════════════════════════════════════════════
        NOS ACTIONS
@@ -701,7 +405,7 @@
         </div>
         <div class="actionCard">
           <div class="actionIcon">🔧</div>
-          <div class="actionTitle">Outils & ressources</div>
+          <div class="actionTitle">Outils &amp; ressources</div>
           <div class="actionDesc">Production de simulateurs, fiches pratiques et documents opérationnels pour le terrain. Des outils concrets pour des situations concrètes.</div>
         </div>
       </div>
@@ -709,13 +413,149 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════
-       actualites
+       SIMULATEURS EXCLUSIFS
+  ═══════════════════════════════════════════════ -->
+  <section class="section alt" id="simulateurs-home">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">🖥️ SIMULATEURS EXCLUSIFS</div>
+        <h2>Le premier portail de simulation multi-corps</h2>
+        <p>Développés à partir des données statutaires et indemnitaires réelles — point d'indice <strong>4,9228 €</strong> au 01/01/2026.</p>
+      </div>
+      <div class="simGrid">
+        <div class="simCard simCardPhare">
+          <div class="simPhareTag">⭐ Phare</div>
+          <div class="simIcon">💰</div>
+          <h3 class="simTitle">Simulateur Rémunération</h3>
+          <p class="simDesc">Traitement net, primes, ISSP, ITN — CEA, CRS, PTS, Administratifs. Toutes zones géographiques.</p>
+          <a class="simLink" href="simulateurs/remuneration/">Accéder →</a>
+        </div>
+        <div class="simCard">
+          <div class="simIcon">🏥</div>
+          <h3 class="simTitle">Simulateur CMO</h3>
+          <p class="simDesc">Estimation des droits et impacts liés au congé maladie ordinaire.</p>
+          <a class="simLink" href="simulateurs/cmo/">Accéder →</a>
+        </div>
+        <div class="simCard">
+          <div class="simIcon">🗂️</div>
+          <h3 class="simTitle">Simulateur Administratifs</h3>
+          <p class="simDesc">Outil dédié aux personnels administratifs de la Police nationale.</p>
+          <a class="simLink" href="simulateurs/administratifs/">Accéder →</a>
+        </div>
+        <div class="simCard">
+          <div class="simIcon">🔬</div>
+          <h3 class="simTitle">Simulateur PTS</h3>
+          <p class="simDesc">Outil dédié aux personnels techniques et scientifiques.</p>
+          <a class="simLink" href="simulateurs/pts/">Accéder →</a>
+        </div>
+      </div>
+      <div class="simFooterBar">
+        🏆 Des outils conçus par des policiers, pour des policiers. Données mises à jour au 01/01/2026.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       UNIVERSITÉ PRO POLICE  ← NOUVELLE SECTION
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="universite-home">
+    <div class="container">
+      <div class="univGrid">
+        <div class="univLeft">
+          <div class="sectionBadge">🎓 UNIVERSITÉ PRO POLICE</div>
+          <h2>La première université syndicale dédiée aux policiers de France</h2>
+          <p>Formations professionnelles, modules juridiques, préparations aux examens — construits par et pour les policiers.</p>
+          <div class="univCTAs">
+            <a class="btn primary" href="universite/">🎓 Accéder à l'Université</a>
+            <span class="chip">🚧 En développement</span>
+          </div>
+        </div>
+        <div class="univRight">
+          <div class="univModule">
+            <div class="univModuleIcon">📚</div>
+            <div class="univModuleLabel">Ressources professionnelles</div>
+          </div>
+          <div class="univModule">
+            <div class="univModuleIcon">⚖️</div>
+            <div class="univModuleLabel">Veille juridique &amp; statutaire</div>
+          </div>
+          <div class="univModule univModuleAccent">
+            <div class="univModuleIcon">🎓</div>
+            <div class="univModuleLabel">Formation continue certifiante</div>
+          </div>
+          <div class="univModule univModuleGold">
+            <div class="univModuleIcon">🤝</div>
+            <div class="univModuleLabel">Accompagnement des collègues</div>
+          </div>
+          <div class="univModule">
+            <div class="univModuleIcon">📊</div>
+            <div class="univModuleLabel">Outils &amp; simulateurs avancés</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       RESSOURCES
+  ═══════════════════════════════════════════════ -->
+  <section class="section alt" id="ressources">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">📚 Ressources</div>
+        <h2>Fiches &amp; ressources pratiques</h2>
+        <p>Des documents opérationnels pour vous aider au quotidien.</p>
+      </div>
+      <div class="grid3" id="ressourcesGrid">
+        <!-- Chargées dynamiquement via resources.json -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       UNIVERSITÉ — NIVEAUX
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="universite">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">🎓 Université PRO POLICE</div>
+        <h2>Apprendre. Progresser. S'engager.</h2>
+        <p>Une université syndicale unique — formations, modules juridiques, préparation aux examens.</p>
+      </div>
+      <div class="niveauxGrid">
+        <div class="niveauCard niveauPublic">
+          <span class="niveauEmoji">📖</span>
+          <div class="niveauPct">80%</div>
+          <div class="niveauTitle">Accès Public</div>
+          <div class="niveauDesc">Fiches pratiques, décryptages réglementaires, vidéos pédagogiques — accessibles à tous les policiers.</div>
+          <span class="niveauBadge">Gratuit</span>
+        </div>
+        <div class="niveauCard niveauMembre">
+          <span class="niveauEmoji">🔵</span>
+          <div class="niveauPct">17%</div>
+          <div class="niveauTitle">Adhérents</div>
+          <div class="niveauDesc">Modules avancés, simulateurs complets, accompagnement personnalisé et accès aux ressources exclusives.</div>
+          <span class="niveauBadge">Adhérents</span>
+        </div>
+        <div class="niveauCard niveauStaff">
+          <span class="niveauEmoji">⭐</span>
+          <div class="niveauPct">3%</div>
+          <div class="niveauTitle">Représentants</div>
+          <div class="niveauDesc">Formation syndicale certifiante, accès staff, outils de représentation — pour les délégués engagés.</div>
+          <span class="niveauBadge">Sur dossier</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       ACTUALITES
   ═══════════════════════════════════════════════ -->
   <section class="section alt" id="actualites">
     <div class="container">
       <div class="sectionHead">
-        <div class="sectionBadge">📰 actualites</div>
-        <h2>Articles & décryptages</h2>
+        <div class="sectionBadge">📰 Actualités</div>
+        <h2>Articles &amp; décryptages</h2>
         <p>Restez informé — analyses, tracts, vidéos, communiqués PRO POLICE.</p>
       </div>
       <div class="grid3" id="actualitesGrid">
@@ -742,13 +582,64 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════
+       ADHÉSION
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="adhesion">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">🤝 Adhérer</div>
+        <h2>Rejoindre PRO POLICE</h2>
+        <p>Un syndicat indépendant, engagé, innovant. Choisissez votre formule.</p>
+      </div>
+      <div class="pricingV5">
+        <div class="priceCardV5">
+          <span class="priceEmoji">📖</span>
+          <div class="priceTitle">Sympathisant</div>
+          <div class="priceAmount">Gratuit</div>
+          <div class="priceSub">Accès public illimité</div>
+          <div class="priceDesc">Fiches pratiques, actualités, simulateurs de base — pour rester informé sans engagement.</div>
+          <button class="priceCTA" data-plan="Sympathisant">Commencer gratuitement</button>
+        </div>
+        <div class="priceCardV5 featured">
+          <span class="priceEmoji">🛡️</span>
+          <div class="priceTitle">Adhérent</div>
+          <div class="priceAmount">Sur devis</div>
+          <div class="priceSub">Accès complet adhérent</div>
+          <div class="priceDesc">Simulateurs avancés, défense individuelle, ressources exclusives et accompagnement personnalisé.</div>
+          <button class="priceCTA" data-plan="Adhérent">Adhérer maintenant</button>
+        </div>
+        <div class="priceCardV5 staff">
+          <span class="priceEmoji">⭐</span>
+          <div class="priceTitle">Représentant</div>
+          <div class="priceAmount">Sur dossier</div>
+          <div class="priceSub">Accès représentant certifié</div>
+          <div class="priceDesc">Formation syndicale certifiante, outils de représentation, accès staff et accompagnement dédié.</div>
+          <button class="priceCTA" data-plan="Représentant">Candidater</button>
+        </div>
+      </div>
+      <div class="adhFormCard" id="adhForm-wrap">
+        <div id="planLabel" style="font-size:14px;color:var(--accent2);font-weight:700;margin-bottom:16px;"></div>
+        <form id="adhForm" class="formGrid">
+          <div class="field"><span>Prénom</span><input type="text" name="prenom" placeholder="Votre prénom" required /></div>
+          <div class="field"><span>Nom</span><input type="text" name="nom" placeholder="Votre nom" required /></div>
+          <div class="field"><span>Email</span><input type="email" name="email" placeholder="votre@email.fr" required /></div>
+          <div class="field"><span>Service / Affectation</span><input type="text" name="service" placeholder="Ex : CSP Paris 12e" /></div>
+          <div class="field full"><span>Message (optionnel)</span><textarea name="message" rows="3" placeholder="Votre situation, vos questions…"></textarea></div>
+          <div class="field full"><button class="btn primary" type="submit" style="width:100%;">Envoyer ma demande 🤝</button></div>
+        </form>
+        <div id="toast" class="toast"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
        BONS PLANS
   ═══════════════════════════════════════════════ -->
-  <section class="section" id="bonsplans">
+  <section class="section alt" id="bonsplans">
     <div class="container">
       <div class="sectionHead">
         <div class="sectionBadge">🎁 Bons plans</div>
-        <h2>Avantages & bons plans</h2>
+        <h2>Avantages &amp; bons plans</h2>
         <p>Des offres exclusives négociées pour les membres PRO POLICE.</p>
       </div>
       <div class="grid3">
@@ -768,7 +659,7 @@
         </article>
         <article class="card cardFeature">
           <div class="cardFeatureIcon">🎓</div>
-          <h3>Formations & webinaires</h3>
+          <h3>Formations &amp; webinaires</h3>
           <p>Accédez aux replays et sessions live réservés aux adhérents PRO POLICE et plus encore en devenant Représentant PRO POLICE.</p>
           <div class="cardTag">Adhérents</div>
         </article>
@@ -779,7 +670,7 @@
   <!-- ═══════════════════════════════════════════════
        À PROPOS
   ═══════════════════════════════════════════════ -->
-  <section class="section alt" id="apropos">
+  <section class="section" id="apropos">
     <div class="container">
       <div class="sectionHead">
         <div class="sectionBadge">👥 Notre équipe</div>
@@ -792,7 +683,7 @@
           <div class="profilInfo">
             <h3>Stéphane CIRACIYAN</h3>
             <div class="profilRole">Responsable National en charge du Développement</div>
-            <p style="font-size:14px;color:var(--muted);margin-top:8px;"> Le Syndicat PRO POLICE. Engagement terrain et structuration nationale.</p>
+            <p style="font-size:14px;color:var(--muted);margin-top:8px;">Le Syndicat PRO POLICE. Engagement terrain et structuration nationale.</p>
           </div>
         </div>
         <div class="card" style="background:rgba(59,130,246,.04);border-color:rgba(59,130,246,.2);">
@@ -810,7 +701,7 @@
   <!-- ═══════════════════════════════════════════════
        CONTACT
   ═══════════════════════════════════════════════ -->
-  <section class="section" id="contact">
+  <section class="section alt" id="contact">
     <div class="container">
       <div class="sectionHead">
         <div class="sectionBadge">📞 Contact</div>
@@ -826,7 +717,7 @@
         <div class="card contactCard">
           <div class="icon">✉️</div>
           <h3>Email</h3>
-          <p><a href="/cdn-cgi/l/email-protection#4b3832252f22282a3f653b39243b242722282e0b2c262a222765282426"><span class="__cf_email__" data-cfemail="aeddd7c0cac7cdcfda80dedcc1dec1c2c7cdcbeec9c3cfc7c280cdc1c3">[email&#160;protected]</span></a></p>
+          <p><a href="/cdn-cgi/l/email-protection#3a5955544e5b594e7a4a48554a555653595f145c48"><span class="__cf_email__" data-cfemail="8ae9e5e4feebe9fecafaf8e5fae5e6e3e9efa4ecf8">[email&#160;protected]</span></a></p>
         </div>
         <div class="card contactCard">
           <div class="icon">🌐</div>
@@ -840,6 +731,28 @@
         <a class="socialBtn" href="https://www.twitter.com" target="_blank" rel="noopener">🐦 Twitter/X</a>
         <a class="socialBtn" href="https://www.instagram.com" target="_blank" rel="noopener">📸 Instagram</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       CALENDRIER SOCIAL
+  ═══════════════════════════════════════════════ -->
+  <section class="section" id="calendrier">
+    <div class="container">
+      <div class="sectionHead">
+        <div class="sectionBadge">📅 Calendrier social</div>
+        <h2>Agenda syndical &amp; mouvement</h2>
+        <p>Suivez les échéances importantes : mouvements, examens, concours, événements PRO POLICE.</p>
+      </div>
+      <div class="calOnglets">
+        <button class="calOngletBtn active" data-onglet="actif">📌 En cours &amp; à venir <span class="calOngletCount" id="countActif"></span></button>
+        <button class="calOngletBtn" data-onglet="clos">🗂️ Archivés <span class="calOngletCount" id="countClos"></span></button>
+      </div>
+      <div class="calFiltres" id="calFiltres"></div>
+      <div class="calTimeline" id="calTimeline">
+        <div class="calVide">⏳ Chargement du calendrier…</div>
+      </div>
+      <div class="calSource" id="calSourceMention"></div>
     </div>
   </section>
 
@@ -863,21 +776,23 @@
     </div>
     <div class="footLinks">
       <strong>Navigation</strong>
-      <a href="#corps">Corps</a>
+      <a href="#fonctionnalites">Pourquoi PRO POLICE</a>
+      <a href="#simulateurs-home">Simulateurs</a>
+      <a href="#universite-home">Université</a>
       <a href="#ressources">Ressources</a>
-      <a href="#universite">Université</a>
-      <a href="#actualites">actualites</a>
+      <a href="#actualites">Actualités</a>
       <a href="#bonsplans">Bons plans</a>
     </div>
     <div class="footLinks">
       <strong>Outils</strong>
-      <a href="#simulateur">Simulateur primes</a>
-      <a href="#simulateur-cmo">Simulateur CMO</a>
+      <a href="simulateurs/remuneration/">Simulateur primes</a>
+      <a href="simulateurs/cmo/">Simulateur CMO</a>
+      <a href="universite/">Université</a>
       <a href="adherer/">Adhérer</a>
     </div>
     <div class="footLinks">
       <strong>Contact</strong>
-      <a href="/cdn-cgi/l/email-protection#33404a5d575a5052471d43415c435c5f5a505673545e525a5f1d505c5e">Email</a>
+      <a href="/cdn-cgi/l/email-protection#0f6c60617b6e6c7b4f7f7d607f6063666c6a21697d">Email</a>
       <a href="https://propolice.fr/" target="_blank" rel="noopener">Site officiel</a>
       <a href="#apropos">À propos</a>
     </div>
@@ -887,17 +802,14 @@
 <!-- ═══════════════════════════════════════════════
      SCRIPTS BDD
 ═══════════════════════════════════════════════ -->
-<script defer src="js/bdd/bdd_CEA.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script defer src="js/bdd/bdd_CEA.js"></script>
 <script defer src="js/bdd/bdd_CRS.js"></script>
 <script defer src="js/bdd/bdd_ADMIN.js"></script>
 <script defer src="js/bdd/bdd_PTS.js"></script>
 <script defer src="js/bdd/bdd_RETRAITE.js"></script>
 <script defer src="js/bdd/bdd_ADJOINTS.js"></script>
 <script defer src="js/bdd/bdd_RESERVISTES.js"></script>
-
 <script defer src="script.js"></script>
-
-<!-- 🔥 AJOUT CRITIQUE -->
 <script defer src="modules/salaire/simulateur-salaire.js"></script>
 
 <!-- ═══════════════════════════════════════════════
@@ -905,8 +817,7 @@
 ═══════════════════════════════════════════════ -->
 <script defer>
 (function () {
-
-  // ── Mode adhérent toggle ────────────────────────
+  // Mode adhérent toggle
   const btn = document.getElementById("btnMember");
   if (btn) {
     function refreshMemberButton() {
@@ -924,11 +835,11 @@
     refreshMemberButton();
   }
 
-  // ── Année footer ────────────────────────────────
+  // Année footer
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // ── Menu mobile ─────────────────────────────────
+  // Menu mobile
   const menuBtn    = document.getElementById("menuBtn");
   const menuMobile = document.getElementById("menuMobile");
   if (menuBtn && menuMobile) {
@@ -945,7 +856,7 @@
     });
   }
 
-  // ── Plan sélectionné via pricing ────────────────
+  // Plan sélectionné via pricing
   document.querySelectorAll(".priceCTA[data-plan]").forEach(function (btn) {
     btn.addEventListener("click", function () {
       const plan  = this.getAttribute("data-plan");
@@ -955,7 +866,7 @@
     });
   });
 
-  // ── Formulaire adhésion ─────────────────────────
+  // Formulaire adhésion
   const adhForm = document.getElementById("adhForm");
   if (adhForm) {
     adhForm.addEventListener("submit", function (e) {
@@ -976,230 +887,148 @@
     });
   }
 
+  // Ressources dynamiques
+  fetch("data/resources.json")
+    .then(r => r.json())
+    .then(items => {
+      const grid = document.getElementById("ressourcesGrid");
+      if (!grid) return;
+      const isMember = localStorage.getItem("propolice_member") === "true";
+      items.forEach(item => {
+        if (item.access === "membre" && !isMember) return;
+        const a = document.createElement("article");
+        a.className = "card articleCard";
+        a.innerHTML = \`
+          <div class="articleMeta">
+            <span class="articleTag\${item.access==="membre"?" locked":""}">\${item.tags[0]||""}</span>
+            <span class="articleDate">\${item.access==="membre"?"🔒 Adhérents":"Accès public"}</span>
+          </div>
+          <div class="articleTitle">\${item.access==="membre"?"🔒 ":""}
+            \${item.url ? "<a href=\""+item.url+"\" style=\"color:inherit;text-decoration:none;\">" : ""}
+            \${item.title}
+            \${item.url ? "</a>" : ""}
+          </div>
+          <p class="articleExcerpt">\${item.desc}</p>
+          \${item.url ? "<div class=\"row\" style=\"margin-top:12px;\"><a class=\"btn small primary\" href=\""+item.url+"\">Lire →</a></div>" : ""}
+        \`;
+        grid.appendChild(a);
+      });
+    })
+    .catch(() => {});
+
 })();
 </script>
 
 <!-- ═══════════════════════════════════════════════
      POPUP ADHÉRENT
 ═══════════════════════════════════════════════ -->
-<div id="popupAdherent" onclick="fermerPopup()" style="
-  display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,.75); justify-content:center; align-items:center;
-  z-index:9999; backdrop-filter:blur(4px);
-">
-  <div onclick="event.stopPropagation()" style="
-    background:linear-gradient(135deg,#0c1628,#0f1e38);
-    padding:32px 28px; border-radius:24px; max-width:440px; width:90%;
-    text-align:center; border:1px solid rgba(59,130,246,.3);
-    box-shadow:0 32px 80px rgba(0,0,0,.6);
-  ">
+<div id="popupAdherent" onclick="fermerPopup()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);justify-content:center;align-items:center;z-index:9999;backdrop-filter:blur(4px);">
+  <div onclick="event.stopPropagation()" style="background:linear-gradient(135deg,#0c1628,#0f1e38);padding:32px 28px;border-radius:24px;max-width:440px;width:90%;text-align:center;border:1px solid rgba(59,130,246,.3);box-shadow:0 32px 80px rgba(0,0,0,.6);">
     <div style="font-size:40px;margin-bottom:14px;">💰</div>
     <h3 style="font-size:20px;font-weight:800;margin-bottom:10px;">Et si tu pouvais aller plus loin ?</h3>
-    <p style="color:#8a9bbf;font-size:14px;line-height:1.6;margin-bottom:22px;">
-      Débloque la version avancée du simulateur : estimation plus précise, analyse détaillée, et gains potentiels.
-    </p>
+    <p style="color:#8a9bbf;font-size:14px;line-height:1.6;margin-bottom:22px;">Débloque la version avancée du simulateur : estimation plus précise, analyse détaillée, et gains potentiels.</p>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-      <button onclick="fermerPopup()" style="
-        padding:10px 18px;background:rgba(255,255,255,.08);color:#fff;
-        border:1px solid rgba(255,255,255,.15);border-radius:12px;cursor:pointer;
-        font-size:14px;font-weight:600;font-family:inherit;
-      ">Plus tard</button>
-      <a href="adherer/" onclick="fermerPopup()" style="
-        padding:10px 18px;background:linear-gradient(135deg,#2563eb,#3b82f6);
-        color:#fff;border-radius:12px;font-size:14px;font-weight:700;
-        box-shadow:0 4px 16px rgba(59,130,246,.35);text-decoration:none;
-      ">🔓 Devenir adhérent</a>
+      <button onclick="fermerPopup()" style="padding:10px 18px;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.15);border-radius:12px;cursor:pointer;font-size:14px;font-weight:600;font-family:inherit;">Plus tard</button>
+      <a href="adherer/" onclick="fermerPopup()" style="padding:10px 18px;background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border-radius:12px;font-size:14px;font-weight:700;box-shadow:0 4px 16px rgba(59,130,246,.35);text-decoration:none;">🔓 Devenir adhérent</a>
     </div>
   </div>
 </div>
 
+<script>
+function fermerPopup() { document.getElementById("popupAdherent").style.display = "none"; }
+</script>
 
-  <script>
-/* ══════════════════════════════════════════════════════════════
-   CALENDRIER SOCIAL — PRO POLICE
-   Lit calendrier.json — éditable sans toucher au code
-   Deux onglets : "Agenda en cours & à venir" / "Archivés"
-   Filtres par catégorie disponibles sur les deux onglets
-══════════════════════════════════════════════════════════════ */
-
+<!-- ═══════════════════════════════════════════════
+     CALENDRIER SOCIAL
+═══════════════════════════════════════════════ -->
+<script defer>
 (function() {
   'use strict';
-
   const MOIS = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
-  const STATUT_LABEL = {
-    ouvert:   '🟢 Ouvert',
-    en_cours: '🔵 En cours',
-    a_venir:  '⚪ À venir',
-    clos:     '🔴 Clôturé'
-  };
+  const STATUT_LABEL = { ouvert:'🟢 Ouvert', en_cours:'🔵 En cours', a_venir:'⚪ À venir', clos:'🔴 Clôturé' };
+  let allEvents = [], categories = {}, filtreActif = 'all', ongletActif = 'actif';
 
-  let allEvents  = [];
-  let categories = {};
-  let filtreActif = 'all';
-  let ongletActif = 'actif'; // 'actif' | 'clos'
-
-  /* ──────────────────────────────────────────
-     CHARGEMENT JSON
-  ────────────────────────────────────────── */
   function loadCalendrier() {
     fetch('calendrier.json?v=' + Date.now())
       .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(data => {
-        allEvents  = data.evenements || [];
+        allEvents = data.evenements || [];
         categories = data.categories || {};
         const src = document.getElementById('calSourceMention');
-        if (src) src.textContent =
-          '📡 Dernière mise à jour : ' + formatDate(data.lastUpdate) + ' — ' + data.source;
+        if (src) src.textContent = '📡 Dernière mise à jour : ' + formatDate(data.lastUpdate) + ' — ' + data.source;
         renderCalendrier();
         bindOnglets();
         bindFiltres();
       })
       .catch(err => {
-        console.error('Calendrier :', err);
         const tl = document.getElementById('calTimeline');
-        if (tl) tl.innerHTML =
-          '<div class="calVide">⚠️ Impossible de charger le calendrier. Vérifiez que calendrier.json est présent à la racine du site.</div>';
+        if (tl) tl.innerHTML = '<div class="calVide">⚠️ Impossible de charger le calendrier.</div>';
       });
   }
 
-  /* ──────────────────────────────────────────
-     RENDU TIMELINE
-  ────────────────────────────────────────── */
   function renderCalendrier() {
     const timeline = document.getElementById('calTimeline');
     if (!timeline) return;
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const currentYear = today.getFullYear();
-
-    // Filtrer par catégorie
-    const filtered = filtreActif === 'all'
-      ? allEvents
-      : allEvents.filter(e => e.categorie === filtreActif);
-
-    // Séparer actifs et clôturés
-    const actifs = filtered
-      .filter(e => {
-        const d = new Date(e.date);
-        return d >= today || e.statut === 'en_cours';
-      })
-      .sort((a, b) => new Date(a.date) - new Date(b.date));
-
-    const clos = filtered
-      .filter(e => {
-        const d = new Date(e.date);
-        return d < today && e.statut !== 'en_cours';
-      })
-      .sort((a, b) => new Date(b.date) - new Date(a.date)); // plus récent en premier
-
-    // Mettre à jour le compteur badge onglet clôturés
+    const today = new Date(); today.setHours(0,0,0,0);
+    const filtered = filtreActif === 'all' ? allEvents : allEvents.filter(e => e.categorie === filtreActif);
+    const actifs = filtered.filter(e => new Date(e.date) >= today || e.statut === 'en_cours').sort((a,b) => new Date(a.date)-new Date(b.date));
+    const clos = filtered.filter(e => new Date(e.date) < today && e.statut !== 'en_cours').sort((a,b) => new Date(b.date)-new Date(a.date));
     const countEl = document.getElementById('countClos');
     if (countEl) countEl.textContent = clos.length > 0 ? clos.length : '';
-
-    // Choisir le groupe à afficher
     const visible = ongletActif === 'actif' ? actifs : clos;
-
-    if (visible.length === 0) {
-      const msg = ongletActif === 'actif'
-        ? '✅ Aucune échéance à venir dans cette catégorie.'
-        : '📭 Aucun événement archivé dans cette catégorie pour ' + currentYear + '.';
-      timeline.innerHTML = '<div class="calVide">' + msg + '</div>';
-      return;
-    }
-
-    // Titre groupe
-    const groupTitle = ongletActif === 'actif'
-      ? '<div class="calGroupTitle">📅 Prochaines échéances (' + actifs.length + ')</div>'
-      : '<div class="calGroupTitle calGroupPast">🗂️ Archivés ' + currentYear + ' (' + clos.length + ')</div>';
-
-    const isPast = (ongletActif === 'clos');
-    timeline.innerHTML = groupTitle + visible.map((ev, i) => buildCard(ev, i, isPast)).join('');
+    if (visible.length === 0) { timeline.innerHTML = '<div class="calVide">Aucun événement à afficher.</div>'; return; }
+    timeline.innerHTML = '';
+    visible.forEach(ev => {
+      const cat = categories[ev.categorie] || {};
+      const d = new Date(ev.date);
+      const corps = ev.corps ? '<span class="calTag calTagCorps">' + ev.corps + '</span>' : '';
+      const lien = ev.lien ? '<a href="'+ev.lien+'" target="_blank" rel="noopener" class="calTag" style="background:rgba(59,130,246,.12);color:var(--accent2);">Voir →</a>' : '';
+      const diff = Math.ceil((d - today) / 86400000);
+      let countdown = '', countClass = '';
+      if (ongletActif === 'actif') {
+        if (diff < 0) countdown = 'En cours';
+        else if (diff === 0) { countdown = 'Aujourd'hui'; countClass = 'urgent'; }
+        else if (diff <= 7) { countdown = 'Dans ' + diff + 'j'; countClass = 'soon'; }
+        else countdown = 'Dans ' + diff + 'j';
+      }
+      timeline.insertAdjacentHTML('beforeend',
+        '<div class="calEvent" data-statut="'+ev.statut+'">'+
+        '<div class="calDate"><div class="calJour">'+d.getDate()+'</div><div class="calMois">'+MOIS[d.getMonth()]+'</div><div class="calAnnee">'+d.getFullYear()+'</div></div>'+
+        '<div class="calSep"></div>'+
+        '<div class="calBody">'+
+        '<div class="calTitre">'+cat.emoji+' '+ev.titre+'</div>'+
+        '<div class="calDesc">'+ev.description+'</div>'+
+        '<div class="calMeta"><span class="calBadgeStatut '+ev.statut+'">'+(STATUT_LABEL[ev.statut]||ev.statut)+'</span>'+corps+lien+'<span class="calCountdown '+countClass+'">'+countdown+'</span></div>'+
+        '</div></div>'
+      );
+    });
   }
 
-  /* ──────────────────────────────────────────
-     CONSTRUCTION D'UNE CARTE ÉVÉNEMENT
-  ────────────────────────────────────────── */
-  function buildCard(ev, i, isPast) {
-    const d    = new Date(ev.date);
-    const today = new Date(); today.setHours(0,0,0,0);
-    const diff  = Math.round((d - today) / (1000 * 60 * 60 * 24));
-    const cat   = categories[ev.categorie] || { emoji: '📌', couleur: '#3b82f6' };
-
-    // Countdown
-    let countdown = '', countClass = '';
-    if (diff < 0) {
-      const j = Math.abs(diff);
-      countdown  = j < 30 ? 'Il y a ' + j + 'j' : 'Il y a ' + Math.round(j / 30) + ' mois';
-      countClass = 'clos';
-    } else if (diff === 0) {
-      countdown  = "Aujourd'hui !";
-      countClass = 'urgent';
-    } else if (diff <= 7) {
-      countdown  = 'Dans ' + diff + ' jour' + (diff > 1 ? 's' : '');
-      countClass = 'urgent';
-    } else if (diff <= 30) {
-      countdown  = 'Dans ' + diff + ' jours';
-      countClass = 'soon';
-    } else {
-      countdown  = 'Dans ' + diff + ' jours';
-    }
-
-    // Tags corps
-    const corps = (ev.corps || [])
-      .map(c => '<span class="calTag calTagCorps">' + c + '</span>')
-      .join('');
-
-    // Lien optionnel
-    const lien = ev.lien
-      ? '<a href="' + ev.lien + '" target="_blank" rel="noopener" style="font-size:11px;color:var(--accent2);margin-left:8px;text-decoration:none;">→ Voir</a>'
-      : '';
-
-    const pastStyle = isPast ? 'opacity:.6;' : '';
-
-    return (
-      '<div class="calEvent" data-statut="' + ev.statut + '" data-cat="' + ev.categorie + '"' +
-      ' style="animation-delay:' + (i * 0.05) + 's;border-left:3px solid ' + cat.couleur + ';' + pastStyle + '">' +
-        '<div class="calDate">' +
-          '<div class="calJour">'  + d.getDate()             + '</div>' +
-          '<div class="calMois">'  + MOIS[d.getMonth()]      + '</div>' +
-          '<div class="calAnnee">' + d.getFullYear()          + '</div>' +
-        '</div>' +
-        '<div class="calSep"></div>' +
-        '<div class="calBody">' +
-          '<div class="calTitre">' + cat.emoji + ' ' + ev.titre + '</div>' +
-          '<div class="calDesc">'  + ev.description            + '</div>' +
-          '<div class="calMeta">' +
-            '<span class="calBadgeStatut ' + ev.statut + '">' + (STATUT_LABEL[ev.statut] || ev.statut) + '</span>' +
-            corps + lien +
-            '<span class="calCountdown ' + countClass + '">' + countdown + '</span>' +
-          '</div>' +
-        '</div>' +
-      '</div>'
-    );
-  }
-
-  /* ──────────────────────────────────────────
-     BINDING ONGLETS (actif / clos)
-  ────────────────────────────────────────── */
   function bindOnglets() {
     document.querySelectorAll('.calOngletBtn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.calOngletBtn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
-        ongletActif = this.dataset.onglet; // 'actif' ou 'clos'
+        ongletActif = this.dataset.onglet;
         renderCalendrier();
       });
     });
   }
 
-  /* ──────────────────────────────────────────
-     BINDING FILTRES CATÉGORIES
-  ────────────────────────────────────────── */
   function bindFiltres() {
-    document.querySelectorAll('.calFiltreBtn').forEach(btn => {
+    const cont = document.getElementById('calFiltres');
+    if (!cont) return;
+    const btn0 = document.createElement('button');
+    btn0.className = 'calFiltreBtn active'; btn0.dataset.cat = 'all'; btn0.textContent = 'Tous';
+    cont.appendChild(btn0);
+    Object.entries(categories).forEach(([key, cat]) => {
+      const b = document.createElement('button');
+      b.className = 'calFiltreBtn'; b.dataset.cat = key; b.textContent = cat.emoji + ' ' + cat.label;
+      cont.appendChild(b);
+    });
+    cont.querySelectorAll('.calFiltreBtn').forEach(btn => {
       btn.addEventListener('click', function() {
-        document.querySelectorAll('.calFiltreBtn').forEach(b => b.classList.remove('active'));
+        cont.querySelectorAll('.calFiltreBtn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         filtreActif = this.dataset.cat;
         renderCalendrier();
@@ -1207,26 +1036,16 @@
     });
   }
 
-  /* ──────────────────────────────────────────
-     UTILITAIRES
-  ────────────────────────────────────────── */
   function formatDate(str) {
     if (!str) return '—';
     const d = new Date(str);
     return d.getDate() + ' ' + MOIS[d.getMonth()] + ' ' + d.getFullYear();
   }
 
-  /* ──────────────────────────────────────────
-     INIT
-  ────────────────────────────────────────── */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadCalendrier);
-  } else {
-    loadCalendrier();
-  }
-
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', loadCalendrier); }
+  else { loadCalendrier(); }
 })();
-  </script>
+</script>
 
 </body>
 </html>
