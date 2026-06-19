@@ -374,107 +374,109 @@
       margin-top: 10px;  
     }
 
-    /* Grille des 3 profils */  
-    .qsnGrid {  
-      display: grid;  
-      grid-template-columns: repeat(3, 1fr);  
-      gap: 24px;  
-    }  
-    @media (max-width: 900px) {  
-      .qsnGrid { grid-template-columns: 1fr 1fr; }  
-    }  
     @media (max-width: 600px) {  
-      .qsnGrid { grid-template-columns: 1fr; }  
-      .qsnMission { flex-direction: column; }  
-    }
+  .qsnMission { flex-direction: column; }  
+}
 
-    .qsnCard {  
-      background: var(--card);  
-      border: 1px solid var(--line);  
-      border-radius: 20px;  
-      padding: 28px 24px;  
-      display: flex;  
-      flex-direction: column;  
-      gap: 16px;  
-      transition: transform .2s, border-color .2s;  
-    }  
-    .qsnCard:hover {  
-      transform: translateY(-4px);  
-      border-color: rgba(59,130,246,.35);  
-    }
+/* Layout alterné photo + bio */  
+.qsnMember {  
+  display: flex;  
+  align-items: center;  
+  gap: 48px;  
+  margin-bottom: 64px;  
+  padding: 40px;  
+  background: var(--card);  
+  border: 1px solid var(--line);  
+  border-radius: 24px;  
+  transition: border-color .2s;  
+}  
+.qsnMember:hover {  
+  border-color: rgba(59,130,246,.3);  
+}  
+.qsnMember.reverse {  
+  flex-direction: row-reverse;  
+}  
+.qsnMember-photo {  
+  flex-shrink: 0;  
+  width: 220px;  
+  text-align: center;  
+}  
+.qsnMember-photo img {  
+  width: 200px;  
+  height: 240px;  
+  object-fit: cover;  
+  object-position: top;  
+  border-radius: 16px;  
+  border: 3px solid rgba(59,130,246,.25);  
+  display: block;  
+  margin: 0 auto;  
+}  
+.qsnMember-photo .qsnInitial {  
+  width: 200px;  
+  height: 240px;  
+  border-radius: 16px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  font-size: 56px;  
+  font-weight: 800;  
+  color: #fff;  
+  margin: 0 auto;  
+}  
+.qsnMember-photo .qsnInitial.sg  { background: linear-gradient(135deg,#3b82f6,#6366f1); }  
+.qsnMember-photo .qsnInitial.sga { background: linear-gradient(135deg,#22c55e,#16a34a); }  
+.qsnMember-photo .qsnInitial.dev { background: linear-gradient(135deg,#f59e0b,#d97706); }
 
-    /* Couleurs accent par profil */  
-    .qsnCard.sg  { border-top: 3px solid #3b82f6; }  
-    .qsnCard.sga { border-top: 3px solid #22c55e; }  
-    .qsnCard.dev { border-top: 3px solid #f59e0b; }
-
-    .qsnCardTop {  
-      display: flex;  
-      align-items: center;  
-      gap: 14px;  
-    }  
-    .qsnAvatar {  
-      width: 64px;  
-      height: 64px;  
-      border-radius: 50%;  
-      object-fit: cover;  
-      border: 3px solid rgba(255,255,255,.1);  
-      flex-shrink: 0;  
-    }  
-    .qsnAvatarInitial {  
-      width: 64px;  
-      height: 64px;  
-      border-radius: 50%;  
-      display: flex;  
-      align-items: center;  
-      justify-content: center;  
-      font-size: 22px;  
-      font-weight: 800;  
-      flex-shrink: 0;  
-      color: #fff;  
-    }  
-    .qsnAvatarInitial.sg  { background: linear-gradient(135deg,#3b82f6,#6366f1); }  
-    .qsnAvatarInitial.sga { background: linear-gradient(135deg,#22c55e,#16a34a); }  
-    .qsnAvatarInitial.dev { background: linear-gradient(135deg,#f59e0b,#d97706); }
-
-    .qsnCardInfo h4 {  
-      font-size: 16px;  
-      font-weight: 700;  
-      margin-bottom: 2px;  
-    }  
-    .qsnCardInfo .role {  
-      font-size: 12px;  
-      font-weight: 600;  
-      letter-spacing: .05em;  
-      text-transform: uppercase;  
-    }  
-    .qsnCardInfo .role.sg  { color: #3b82f6; }  
-    .qsnCardInfo .role.sga { color: #22c55e; }  
-    .qsnCardInfo .role.dev { color: #f59e0b; }
-
-    .qsnCardBio {  
-      font-size: 14px;  
-      color: var(--muted);  
-      line-height: 1.65;  
-      flex: 1;  
-    }  
-    .qsnCardStatus {  
-      display: flex;  
-      align-items: center;  
-      gap: 8px;  
-      font-size: 12px;  
-      color: var(--muted);  
-      padding-top: 12px;  
-      border-top: 1px solid var(--line);  
-    }  
-    .qsnCardStatus .dot {  
-      width: 8px;  
-      height: 8px;  
-      border-radius: 50%;  
-      background: #22c55e;  
-      flex-shrink: 0;  
-    }  
-  </style>
+.qsnMember-bio {  
+  flex: 1;  
+}  
+.qsnMember-bio .role {  
+  font-size: 12px;  
+  font-weight: 700;  
+  letter-spacing: .08em;  
+  text-transform: uppercase;  
+  margin-bottom: 8px;  
+}  
+.qsnMember-bio .role.sg  { color: #3b82f6; }  
+.qsnMember-bio .role.sga { color: #22c55e; }  
+.qsnMember-bio .role.dev { color: #f59e0b; }  
+.qsnMember-bio h3 {  
+  font-size: 1.6rem;  
+  font-weight: 800;  
+  margin-bottom: 16px;  
+  color: var(--fg);  
+}  
+.qsnMember-bio p {  
+  font-size: 15px;  
+  color: var(--muted);  
+  line-height: 1.75;  
+  margin-bottom: 10px;  
+}  
+.qsnMember-status {  
+  display: flex;  
+  align-items: center;  
+  gap: 8px;  
+  font-size: 13px;  
+  color: var(--muted);  
+  margin-top: 20px;  
+  padding-top: 16px;  
+  border-top: 1px solid var(--line);  
+}  
+.qsnMember-status .dot {  
+  width: 8px;  
+  height: 8px;  
+  border-radius: 50%;  
+  background: #22c55e;  
+  flex-shrink: 0;  
+}  
+@media (max-width: 768px) {  
+  .qsnMember,  
+  .qsnMember.reverse {  
+    flex-direction: column;  
+    text-align: center;  
+  }  
+  .qsnMember-status { justify-content: center; }  
+}    </style>
 
   <div class="qsnWrap">
 
