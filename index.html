@@ -779,37 +779,190 @@
   <!-- ═══════════════════════════════════════════════
        NOS ACTIONS
   ═══════════════════════════════════════════════ -->
-  <section class="section" id="actions">
-    <div class="container">
-      <div class="sectionHead">
-        <div class="sectionBadge">⚡ Nos actions</div>
-        <h2>Ce que nous faisons concrètement</h2>
-        <p>Pas de discours politique. Des actions réelles pour les collègues.</p>
-      </div>
-      <div class="actionsGrid">
-        <div class="actionCard">
-          <div class="actionIcon">🛡️</div>
-          <div class="actionTitle">Défense individuelle</div>
-          <div class="actionDesc">Accompagnement des collègues en difficulté — procédures disciplinaires, contentieux, orientations pour recours administratifs. Nous sommes à vos côtés dès le premier échange.</div>
-        </div>
-        <div class="actionCard">
-          <div class="actionIcon">📋</div>
-          <div class="actionTitle">Accompagnement administratif</div>
-          <div class="actionDesc">Notation, primes, mutations, avancements — nous intervenons auprès de l'administration pour défendre vos droits et clarifier vos situations.</div>
-        </div>
-        <div class="actionCard">
-          <div class="actionIcon">🗂️</div>
-          <div class="actionTitle">Gestion de dossiers</div>
-          <div class="actionDesc">Suivi rigoureux de vos dossiers, de l'ouverture jusqu'à la résolution. Aucun dossier n'est laissé sans réponse.</div>
-        </div>
-        <div class="actionCard">
-          <div class="actionIcon">🔧</div>
-          <div class="actionTitle">Outils &amp; ressources</div>
-          <div class="actionDesc">Production de simulateurs, fiches pratiques et documents opérationnels pour le terrain. Des outils concrets pour des situations concrètes.</div>
-        </div>
-      </div>
+
+<!-- CSS INJECTÉ POUR LA SECTION ACTIONS -->
+<style>
+  /* ── actionsGrid — grille 2x2 ── */
+  .actionsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .actionsGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── actionCard ── */
+  .actionCard {
+    position: relative;
+    background: var(--card, #0f1623);
+    border: 1px solid var(--line, rgba(255,255,255,.07));
+    border-radius: 20px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+  }
+
+  /* Effet glow discret au survol */
+  .actionCard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      ellipse at 30% 0%,
+      rgba(59,130,246,.08) 0%,
+      transparent 65%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .actionCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,.5);
+    border-color: rgba(59,130,246,.25);
+  }
+
+  .actionCard:hover::before {
+    opacity: 1;
+  }
+
+  /* Ligne décorative en haut de la carte */
+  .actionCard::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 28px;
+    right: 28px;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(59,130,246,.5),
+      transparent
+    );
+    border-radius: 0 0 2px 2px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .actionCard:hover::after {
+    opacity: 1;
+  }
+
+  /* Icône */
+  .actionIcon {
+    font-size: 36px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 8px rgba(59,130,246,.3));
+    flex-shrink: 0;
+  }
+
+  /* Titre */
+  .actionTitle {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+  }
+
+  /* Description */
+  .actionDesc {
+    font-size: 14px;
+    color: var(--muted, rgba(255,255,255,.55));
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  /* Badge numéro optionnel — coin haut droit */
+  .actionBadge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(59,130,246,.10);
+    border: 1px solid rgba(59,130,246,.20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #60a5fa;
+    letter-spacing: .04em;
+  }
+</style>
+
+<section class="section" id="actions">
+  <div class="container">
+
+    <div class="sectionHead">
+      <div class="sectionBadge">⚡ Nos actions</div>
+      <h2>Ce que nous faisons concrètement</h2>
+      <p>Pas de discours politique. Des actions réelles pour les collègues.</p>
     </div>
-  </section>
+
+    <div class="actionsGrid">
+
+      <!-- 1 — Défense individuelle -->
+      <div class="actionCard">
+        <span class="actionBadge">01</span>
+        <div class="actionIcon">🛡️</div>
+        <div class="actionTitle">Défense individuelle</div>
+        <div class="actionDesc">
+          Accompagnement des collègues en difficulté — procédures disciplinaires, contentieux,
+          orientations pour recours administratifs. Nous sommes à vos côtés dès le premier échange.
+        </div>
+      </div>
+
+      <!-- 2 — Accompagnement administratif -->
+      <div class="actionCard">
+        <span class="actionBadge">02</span>
+        <div class="actionIcon">📋</div>
+        <div class="actionTitle">Accompagnement administratif</div>
+        <div class="actionDesc">
+          Notation, primes, mutations, avancements — nous intervenons auprès de l'administration
+          pour défendre vos droits et clarifier vos situations.
+        </div>
+      </div>
+
+      <!-- 3 — Gestion de dossiers -->
+      <div class="actionCard">
+        <span class="actionBadge">03</span>
+        <div class="actionIcon">🗂️</div>
+        <div class="actionTitle">Gestion de dossiers</div>
+        <div class="actionDesc">
+          Suivi rigoureux de vos dossiers, de l'ouverture jusqu'à la résolution.
+          Aucun dossier n'est laissé sans réponse.
+        </div>
+      </div>
+
+      <!-- 4 — Outils & ressources -->
+      <div class="actionCard">
+        <span class="actionBadge">04</span>
+        <div class="actionIcon">🔧</div>
+        <div class="actionTitle">Outils &amp; ressources</div>
+        <div class="actionDesc">
+          Production de simulateurs, fiches pratiques et documents opérationnels pour le terrain.
+          Des outils concrets pour des situations concrètes.
+        </div>
+      </div>
+
+    </div><!-- /actionsGrid -->
+  </div><!-- /container -->
+</section>
+
 
   <!-- ═══════════════════════════════════════════════
        SIMULATEURS EXCLUSIFS
