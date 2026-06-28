@@ -984,6 +984,115 @@
   </div><!-- /container -->
 </section>
 
+
+      <!-- ═══════════════════════════════════════════════
+     CALENDRIER SOCIAL
+═══════════════════════════════════════════════ -->
+<script defer>
+(function() {
+  'use strict';
+  const MOIS = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
+  const STATUT_LABEL = { ouvert:'🟢 Ouvert', en_cours:'🔵 En cours', a_venir:'⚪ À venir', clos:'🔴 Clôturé' };
+  let allEvents = [], categories = {}, filtreActif = 'all', ongletActif = 'actif';
+
+  function loadCalendrier() {
+    fetch('calendrier.json?v=' + Date.now())
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(data => {
+        allEvents = data.evenements || [];
+        categories = data.categories || {};
+        const src = document.getElementById('calSourceMention');
+        if (src) src.textContent = '📡 Dernière mise à jour : ' + formatDate(data.lastUpdate) + ' — ' + data.source;
+        renderCalendrier();
+        bindOnglets();
+        bindFiltres();
+      })
+      .catch(err => {
+        const tl = document.getElementById('calTimeline');
+        if (tl) tl.innerHTML = '<div class="calVide">⚠️ Impossible de charger le calendrier.</div>';
+      });
+  }
+
+  function renderCalendrier() {
+    const timeline = document.getElementById('calTimeline');
+    if (!timeline) return;
+    const today = new Date(); today.setHours(0,0,0,0);
+    const filtered = filtreActif === 'all' ? allEvents : allEvents.filter(e => e.categorie === filtreActif);
+    const actifs = filtered.filter(e => new Date(e.date) >= today || e.statut === 'en_cours').sort((a,b) => new Date(a.date)-new Date(b.date));
+    const clos = filtered.filter(e => new Date(e.date) < today && e.statut !== 'en_cours').sort((a,b) => new Date(b.date)-new Date(a.date));
+    const countEl = document.getElementById('countClos');
+    if (countEl) countEl.textContent = clos.length > 0 ? clos.length : '';
+    const visible = ongletActif === 'actif' ? actifs : clos;
+    if (visible.length === 0) { timeline.innerHTML = '<div class="calVide">Aucun événement à afficher.</div>'; return; }
+    timeline.innerHTML = '';
+    visible.forEach(ev => {
+      const cat = categories[ev.categorie] || {};
+      const d = new Date(ev.date);
+      const corps = ev.corps ? '<span class="calTag calTagCorps">' + ev.corps + '</span>' : '';
+      const lien = ev.lien ? '<a href="'+ev.lien+'" target="_blank" rel="noopener" class="calTag" style="background:rgba(59,130,246,.12);color:var(--accent2);">Voir →</a>' : '';
+      const diff = Math.ceil((d - today) / 86400000);
+      let countdown = '', countClass = '';
+      if (ongletActif === 'actif') {
+        if (diff < 0) countdown = 'En cours';
+        else if (diff === 0) { countdown = 'Aujourd'hui'; countClass = 'urgent'; }
+        else if (diff <= 7) { countdown = 'Dans ' + diff + 'j'; countClass = 'soon'; }
+        else countdown = 'Dans ' + diff + 'j';
+      }
+      timeline.insertAdjacentHTML('beforeend',
+        '<div class="calEvent" data-statut="'+ev.statut+'">'+
+        '<div class="calDate"><div class="calJour">'+d.getDate()+'</div><div class="calMois">'+MOIS[d.getMonth()]+'</div><div class="calAnnee">'+d.getFullYear()+'</div></div>'+
+        '<div class="calSep"></div>'+
+        '<div class="calBody">'+
+        '<div class="calTitre">'+cat.emoji+' '+ev.titre+'</div>'+
+        '<div class="calDesc">'+ev.description+'</div>'+
+        '<div class="calMeta"><span class="calBadgeStatut '+ev.statut+'">'+(STATUT_LABEL[ev.statut]||ev.statut)+'</span>'+corps+lien+'<span class="calCountdown '+countClass+'">'+countdown+'</span></div>'+
+        '</div></div>'
+      );
+    });
+  }
+
+  function bindOnglets() {
+    document.querySelectorAll('.calOngletBtn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.calOngletBtn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        ongletActif = this.dataset.onglet;
+        renderCalendrier();
+      });
+    });
+  }
+
+  function bindFiltres() {
+    const cont = document.getElementById('calFiltres');
+    if (!cont) return;
+    const btn0 = document.createElement('button');
+    btn0.className = 'calFiltreBtn active'; btn0.dataset.cat = 'all'; btn0.textContent = 'Tous';
+    cont.appendChild(btn0);
+    Object.entries(categories).forEach(([key, cat]) => {
+      const b = document.createElement('button');
+      b.className = 'calFiltreBtn'; b.dataset.cat = key; b.textContent = cat.emoji + ' ' + cat.label;
+      cont.appendChild(b);
+    });
+    cont.querySelectorAll('.calFiltreBtn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        cont.querySelectorAll('.calFiltreBtn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        filtreActif = this.dataset.cat;
+        renderCalendrier();
+      });
+    });
+  }
+
+  function formatDate(str) {
+    if (!str) return '—';
+    const d = new Date(str);
+    return d.getDate() + ' ' + MOIS[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', loadCalendrier); }
+  else { loadCalendrier(); }
+})();
+</script>
   <!-- ═══════════════════════════════════════════════
        UNIVERSITÉ PRO POLICE  ← NOUVELLE SECTION
   ═══════════════════════════════════════════════ -->
@@ -1415,115 +1524,6 @@
 
 <script>
 function fermerPopup() { document.getElementById("popupAdherent").style.display = "none"; }
-</script>
-
-<!-- ═══════════════════════════════════════════════
-     CALENDRIER SOCIAL
-═══════════════════════════════════════════════ -->
-<script defer>
-(function() {
-  'use strict';
-  const MOIS = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
-  const STATUT_LABEL = { ouvert:'🟢 Ouvert', en_cours:'🔵 En cours', a_venir:'⚪ À venir', clos:'🔴 Clôturé' };
-  let allEvents = [], categories = {}, filtreActif = 'all', ongletActif = 'actif';
-
-  function loadCalendrier() {
-    fetch('calendrier.json?v=' + Date.now())
-      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(data => {
-        allEvents = data.evenements || [];
-        categories = data.categories || {};
-        const src = document.getElementById('calSourceMention');
-        if (src) src.textContent = '📡 Dernière mise à jour : ' + formatDate(data.lastUpdate) + ' — ' + data.source;
-        renderCalendrier();
-        bindOnglets();
-        bindFiltres();
-      })
-      .catch(err => {
-        const tl = document.getElementById('calTimeline');
-        if (tl) tl.innerHTML = '<div class="calVide">⚠️ Impossible de charger le calendrier.</div>';
-      });
-  }
-
-  function renderCalendrier() {
-    const timeline = document.getElementById('calTimeline');
-    if (!timeline) return;
-    const today = new Date(); today.setHours(0,0,0,0);
-    const filtered = filtreActif === 'all' ? allEvents : allEvents.filter(e => e.categorie === filtreActif);
-    const actifs = filtered.filter(e => new Date(e.date) >= today || e.statut === 'en_cours').sort((a,b) => new Date(a.date)-new Date(b.date));
-    const clos = filtered.filter(e => new Date(e.date) < today && e.statut !== 'en_cours').sort((a,b) => new Date(b.date)-new Date(a.date));
-    const countEl = document.getElementById('countClos');
-    if (countEl) countEl.textContent = clos.length > 0 ? clos.length : '';
-    const visible = ongletActif === 'actif' ? actifs : clos;
-    if (visible.length === 0) { timeline.innerHTML = '<div class="calVide">Aucun événement à afficher.</div>'; return; }
-    timeline.innerHTML = '';
-    visible.forEach(ev => {
-      const cat = categories[ev.categorie] || {};
-      const d = new Date(ev.date);
-      const corps = ev.corps ? '<span class="calTag calTagCorps">' + ev.corps + '</span>' : '';
-      const lien = ev.lien ? '<a href="'+ev.lien+'" target="_blank" rel="noopener" class="calTag" style="background:rgba(59,130,246,.12);color:var(--accent2);">Voir →</a>' : '';
-      const diff = Math.ceil((d - today) / 86400000);
-      let countdown = '', countClass = '';
-      if (ongletActif === 'actif') {
-        if (diff < 0) countdown = 'En cours';
-        else if (diff === 0) { countdown = 'Aujourd'hui'; countClass = 'urgent'; }
-        else if (diff <= 7) { countdown = 'Dans ' + diff + 'j'; countClass = 'soon'; }
-        else countdown = 'Dans ' + diff + 'j';
-      }
-      timeline.insertAdjacentHTML('beforeend',
-        '<div class="calEvent" data-statut="'+ev.statut+'">'+
-        '<div class="calDate"><div class="calJour">'+d.getDate()+'</div><div class="calMois">'+MOIS[d.getMonth()]+'</div><div class="calAnnee">'+d.getFullYear()+'</div></div>'+
-        '<div class="calSep"></div>'+
-        '<div class="calBody">'+
-        '<div class="calTitre">'+cat.emoji+' '+ev.titre+'</div>'+
-        '<div class="calDesc">'+ev.description+'</div>'+
-        '<div class="calMeta"><span class="calBadgeStatut '+ev.statut+'">'+(STATUT_LABEL[ev.statut]||ev.statut)+'</span>'+corps+lien+'<span class="calCountdown '+countClass+'">'+countdown+'</span></div>'+
-        '</div></div>'
-      );
-    });
-  }
-
-  function bindOnglets() {
-    document.querySelectorAll('.calOngletBtn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.calOngletBtn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        ongletActif = this.dataset.onglet;
-        renderCalendrier();
-      });
-    });
-  }
-
-  function bindFiltres() {
-    const cont = document.getElementById('calFiltres');
-    if (!cont) return;
-    const btn0 = document.createElement('button');
-    btn0.className = 'calFiltreBtn active'; btn0.dataset.cat = 'all'; btn0.textContent = 'Tous';
-    cont.appendChild(btn0);
-    Object.entries(categories).forEach(([key, cat]) => {
-      const b = document.createElement('button');
-      b.className = 'calFiltreBtn'; b.dataset.cat = key; b.textContent = cat.emoji + ' ' + cat.label;
-      cont.appendChild(b);
-    });
-    cont.querySelectorAll('.calFiltreBtn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        cont.querySelectorAll('.calFiltreBtn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        filtreActif = this.dataset.cat;
-        renderCalendrier();
-      });
-    });
-  }
-
-  function formatDate(str) {
-    if (!str) return '—';
-    const d = new Date(str);
-    return d.getDate() + ' ' + MOIS[d.getMonth()] + ' ' + d.getFullYear();
-  }
-
-  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', loadCalendrier); }
-  else { loadCalendrier(); }
-})();
 </script>
 
 </body>
