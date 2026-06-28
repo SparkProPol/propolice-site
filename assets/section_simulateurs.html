@@ -1,0 +1,280 @@
+<!-- ═══════════════════════════════════════════════
+       SIMULATEURS EXCLUSIFS
+  ═══════════════════════════════════════════════ -->
+
+<style>
+  /* ── simulGrid — grille 2x2 ── */
+  .simulGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .simulGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── simulCard — même style que actionCard ── */
+  .simulCard {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: pointer;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    border: 1px solid rgba(255,255,255,.08);
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    text-decoration: none;
+  }
+
+  /* Placeholder couleur si pas d'image */
+  .simulCard.sim-remuneration  { background-color: #0f1e35; }
+  .simulCard.sim-retraite      { background-color: #1a1035; }
+  .simulCard.sim-nuit          { background-color: #0d1f2d; }
+  .simulCard.sim-pts           { background-color: #1a2510; }
+
+  .simulCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 56px rgba(0,0,0,.6);
+  }
+
+  /* Overlay dégradé */
+  .simulCard .simulOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(5, 10, 20, 0.10) 0%,
+      rgba(5, 10, 20, 0.45) 40%,
+      rgba(5, 10, 20, 0.88) 75%,
+      rgba(5, 10, 20, 0.97) 100%
+    );
+    border-radius: inherit;
+    z-index: 1;
+    transition: background 0.35s ease;
+  }
+
+  .simulCard:hover .simulOverlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(5, 10, 20, 0.15) 0%,
+      rgba(5, 10, 20, 0.50) 40%,
+      rgba(5, 10, 20, 0.92) 75%,
+      rgba(5, 10, 20, 1.00) 100%
+    );
+  }
+
+  /* Badge numéro */
+  .simulBadge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 3;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(59,130,246,.15);
+    border: 1px solid rgba(59,130,246,.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #93c5fd;
+    letter-spacing: .04em;
+    backdrop-filter: blur(6px);
+  }
+
+  /* Tag "EXCLUSIF" */
+  .simulTag {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 3;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(59,130,246,.15);
+    border: 1px solid rgba(59,130,246,.30);
+    font-size: 10px;
+    font-weight: 700;
+    color: #93c5fd;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(6px);
+  }
+
+  /* Contenu texte en bas */
+  .simulCardBody {
+    position: relative;
+    z-index: 2;
+    padding: 28px 28px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .simulCardBody::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 2px;
+    background: #3b82f6;
+    border-radius: 2px;
+    margin-bottom: 4px;
+    opacity: .85;
+  }
+
+  /* Icône */
+  .simulIcon {
+    font-size: 30px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 6px rgba(59,130,246,.4));
+    flex-shrink: 0;
+  }
+
+  /* Titre */
+  .simulTitle {
+    font-size: 19px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+    text-shadow: 0 1px 8px rgba(0,0,0,.6);
+  }
+
+  /* Description */
+  .simulDesc {
+    font-size: 13.5px;
+    color: rgba(255,255,255,.78);
+    line-height: 1.65;
+    text-shadow: 0 1px 4px rgba(0,0,0,.5);
+  }
+
+  /* CTA lien */
+  .simulCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #60a5fa;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    opacity: .85;
+    transition: opacity .2s, gap .2s;
+  }
+
+  .simulCard:hover .simulCta {
+    opacity: 1;
+    gap: 10px;
+  }
+</style>
+
+<section class="section" id="simulateurs">
+  <div class="container">
+
+    <div class="sectionHead">
+      <div class="sectionBadge">🖥️ Simulateurs exclusifs</div>
+      <h2>Le premier portail de simulation multi-corps</h2>
+      <p>Des outils de calcul précis, mis à jour, pensés pour les policiers. Gratuit pour tous les adhérents.</p>
+    </div>
+
+    <div class="simulGrid">
+
+      <!-- 1 — Simulateur Rémunération -->
+      <a class="simulCard sim-remuneration" href="simulateurs/remuneration/" style="background-image: url('assets/sim-remuneration.jpg');">
+        <div class="simulOverlay"></div>
+        <span class="simulTag">⭐ Exclusif</span>
+        <span class="simulBadge">01</span>
+        <div class="simulCardBody">
+          <div class="simulIcon">💰</div>
+          <div class="simulTitle">Simulateur Rémunération</div>
+          <div class="simulDesc">
+            Calculez votre traitement net mensuel selon votre grade, échelon et régime indemnitaire.
+            Tous corps : GP, Brig, Major, Officiers, CRS, CEA, PTS.
+          </div>
+          <span class="simulCta">Accéder au simulateur →</span>
+        </div>
+      </a>
+
+      <!-- 2 — Simulateur Retraite -->
+      <a class="simulCard sim-retraite" href="simulateurs/retraite/" style="background-image: url('assets/sim-retraite.jpg');">
+        <div class="simulOverlay"></div>
+        <span class="simulTag">⭐ Exclusif</span>
+        <span class="simulBadge">02</span>
+        <div class="simulCardBody">
+          <div class="simulIcon">🏛️</div>
+          <div class="simulTitle">Simulateur Retraite</div>
+          <div class="simulDesc">
+            Estimez votre pension de retraite, votre taux de liquidation et votre date de départ possible.
+            Intègre les bonifications et les trimestres spéciaux.
+          </div>
+          <span class="simulCta">Accéder au simulateur →</span>
+        </div>
+      </a>
+
+      <!-- 3 — Simulateur Travail de Nuit -->
+      <a class="simulCard sim-nuit" href="simulateurs/nuit/" style="background-image: url('assets/sim-nuit.jpg');">
+        <div class="simulOverlay"></div>
+        <span class="simulTag">🆕 Nouveau</span>
+        <span class="simulBadge">03</span>
+        <div class="simulCardBody">
+          <div class="simulIcon">🌙</div>
+          <div class="simulTitle">Simulateur Travail de Nuit</div>
+          <div class="simulDesc">
+            Calculez vos indemnités de nuit (ITN) sur 1 an ou 3 ans.
+            Simulation par grade avec projection de l'impact sur votre rémunération.
+          </div>
+          <span class="simulCta">Accéder au simulateur →</span>
+        </div>
+      </a>
+
+      <!-- 4 — Simulateur PTS / Points -->
+      <a class="simulCard sim-pts" href="simulateurs/pts/" style="background-image: url('assets/sim-pts.jpg');">
+        <div class="simulOverlay"></div>
+        <span class="simulTag">⭐ Exclusif</span>
+        <span class="simulBadge">04</span>
+        <div class="simulCardBody">
+          <div class="simulIcon">📊</div>
+          <div class="simulTitle">Simulateur PTS & Avancement</div>
+          <div class="simulDesc">
+            Simulez votre score PTS, anticipez votre avancement et comparez votre positionnement
+            dans les tableaux d'avancement selon les critères nationaux.
+          </div>
+          <span class="simulCta">Accéder au simulateur →</span>
+        </div>
+      </a>
+
+    </div><!-- /simulGrid -->
+
+    <!-- Note adhérent -->
+    <div style="
+      margin-top: 28px;
+      padding: 16px 24px;
+      border-radius: 14px;
+      background: rgba(59,130,246,.06);
+      border: 1px solid rgba(59,130,246,.15);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13.5px;
+      color: rgba(255,255,255,.65);
+    ">
+      <span style="font-size:20px;">🔓</span>
+      <span>
+        <strong style="color:#93c5fd;">Accès libre</strong> pour tous les visiteurs —
+        fonctionnalités avancées et exports réservés aux <strong style="color:#fff;">adhérents PRO POLICE</strong>.
+        <a href="adherer/" style="color:#60a5fa;text-decoration:none;font-weight:700;margin-left:6px;">Adhérer →</a>
+      </span>
+    </div>
+
+  </div><!-- /container -->
+</section>
